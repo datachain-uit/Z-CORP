@@ -1,3 +1,9 @@
 node_modules
 .env
-secret.json 
+secret.json
+
+# Optional: uncomment to avoid pushing large ZK artifacts (re-run setup to regenerate)
+# *.ptau
+# *.zkey
+# *.wtns
+# *.r1cs
