@@ -2,6 +2,7 @@ const { exec } = require('child_process');
 const fs = require('fs');
 const util = require('util');
 const execAsync = util.promisify(exec);
+const { INPUT_FILE } = require('./paths');
 
 async function main() {
     try {
@@ -29,7 +30,7 @@ async function main() {
 
         // 4. Generate witness
         console.log('Generating witness...');
-        await execAsync('node DiplomaVerifier_js/generate_witness.js DiplomaVerifier_js/DiplomaVerifier.wasm input.json witness.wtns');
+        await execAsync(`node DiplomaVerifier_js/generate_witness.js DiplomaVerifier_js/DiplomaVerifier.wasm "${INPUT_FILE}" witness.wtns`);
         console.log('Witness generated successfully!');
 
         // 5. Generate proof

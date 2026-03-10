@@ -1,6 +1,15 @@
 const fs = require('fs');
 const { execSync } = require('child_process');
 const path = require('path');
+<<<<<<< HEAD
+=======
+const {
+    projectRoot,
+    PROCESSED_DIPLOMAS_FILE,
+    merkleTreeDepthFile,
+    inputDepthFile,
+} = require('./paths');
+>>>>>>> a459fc8 (Refactor data layout into data/ and centralize paths)
 
 function ensureFileExists(filePath, message) {
     if (!fs.existsSync(filePath)) {
@@ -20,7 +29,11 @@ function main() {
     const projectRoot = process.cwd();
 
     // Các đường dẫn mặc định, chỉnh lại nếu bạn dùng tên khác
+<<<<<<< HEAD
     const inputFile = `input_depth_${depth}_index_${index}.json`;
+=======
+    const inputFile = inputDepthFile(depth, index);
+>>>>>>> a459fc8 (Refactor data layout into data/ and centralize paths)
     const witnessFile = `witness_depth_${depth}_index_${index}.wtns`;
     const proofFile = `proof_depth_${depth}_index_${index}.json`;
     const publicFile = `public_depth_${depth}_index_${index}.json`;
@@ -37,6 +50,7 @@ function main() {
     const zkeyPath = path.join(projectRoot, 'DiplomaVerifier_Depth10_0001.zkey');
 
     ensureFileExists(
+<<<<<<< HEAD
         path.join(projectRoot, 'processed_diplomas.json'),
         'Thiếu file processed_diplomas.json (dùng để tạo input)'
     );
@@ -47,6 +61,15 @@ function main() {
     );
     ensureFileExists(
         merkleDepthFile,
+=======
+        PROCESSED_DIPLOMAS_FILE,
+        'Thiếu file processed_diplomas.json (dùng để tạo input)'
+    );
+
+    const merkleDepthPath = merkleTreeDepthFile(depth);
+    ensureFileExists(
+        merkleDepthPath,
+>>>>>>> a459fc8 (Refactor data layout into data/ and centralize paths)
         `Thiếu file merkle_tree_data_depth_${depth}.json (vui lòng chạy scripts/create_merkle_tree_depth.js trước)`
     );
 
@@ -71,7 +94,11 @@ function main() {
     const tEndInput = Date.now();
 
     ensureFileExists(
+<<<<<<< HEAD
         path.join(projectRoot, inputFile),
+=======
+        inputFile,
+>>>>>>> a459fc8 (Refactor data layout into data/ and centralize paths)
         'Sau khi generate_input_depth.js chạy, không tìm thấy file input mong đợi.'
     );
 
@@ -79,7 +106,11 @@ function main() {
     console.log('\n[2] Tạo witness...');
     const tStartWitness = Date.now();
     execSync(
+<<<<<<< HEAD
         `node DiplomaVerifier_js/generate_witness.js ${wasmPath} ${inputFile} ${witnessFile}`,
+=======
+        `node DiplomaVerifier_js/generate_witness.js ${wasmPath} "${inputFile}" ${witnessFile}`,
+>>>>>>> a459fc8 (Refactor data layout into data/ and centralize paths)
         { stdio: 'inherit' }
     );
     const tEndWitness = Date.now();

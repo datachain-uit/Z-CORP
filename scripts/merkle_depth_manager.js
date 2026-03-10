@@ -1,5 +1,9 @@
 const fs = require('fs');
 const { execSync } = require('child_process');
+<<<<<<< HEAD
+=======
+const { merkleTreeDepthFile } = require('./paths');
+>>>>>>> a459fc8 (Refactor data layout into data/ and centralize paths)
 
 class MerkleDepthManager {
     constructor() {
@@ -51,7 +55,11 @@ class MerkleDepthManager {
     generateInput(depth, index = 0) {
         console.log(`\n=== Tạo Input cho Circuit độ sâu ${depth}, index ${index} ===`);
         
+<<<<<<< HEAD
         const merkleDataFile = `merkle_tree_data_depth_${depth}.json`;
+=======
+        const merkleDataFile = merkleTreeDepthFile(depth);
+>>>>>>> a459fc8 (Refactor data layout into data/ and centralize paths)
         if (!fs.existsSync(merkleDataFile)) {
             console.error(`❌ File ${merkleDataFile} không tồn tại!`);
             console.error('Vui lòng tạo Merkle tree trước.');
@@ -73,7 +81,11 @@ class MerkleDepthManager {
         console.log('\n=== Thông tin Merkle Trees ===');
         
         for (const depth of this.supportedDepths) {
+<<<<<<< HEAD
             const merkleDataFile = `merkle_tree_data_depth_${depth}.json`;
+=======
+            const merkleDataFile = merkleTreeDepthFile(depth);
+>>>>>>> a459fc8 (Refactor data layout into data/ and centralize paths)
             if (fs.existsSync(merkleDataFile)) {
                 const data = JSON.parse(fs.readFileSync(merkleDataFile, 'utf8'));
                 console.log(`\nĐộ sâu ${depth}:`);

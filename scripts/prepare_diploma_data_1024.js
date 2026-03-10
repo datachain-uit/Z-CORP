@@ -1,5 +1,9 @@
 const fs = require('fs');
 const { buildPoseidon } = require('circomlibjs');
+<<<<<<< HEAD
+=======
+const { DIPLOMA_SAMPLES_FILE, PROCESSED_DIPLOMAS_FILE } = require('./paths');
+>>>>>>> a459fc8 (Refactor data layout into data/ and centralize paths)
 
 async function main() {
     const TARGET_COUNT = 1024; // 2^10
@@ -8,7 +12,11 @@ async function main() {
     const poseidon = await buildPoseidon();
 
     // Đọc dữ liệu mẫu
+<<<<<<< HEAD
     const data = JSON.parse(fs.readFileSync('diploma_samples.json', 'utf8'));
+=======
+    const data = JSON.parse(fs.readFileSync(DIPLOMA_SAMPLES_FILE, 'utf8'));
+>>>>>>> a459fc8 (Refactor data layout into data/ and centralize paths)
     const samples = data.samples;
 
     if (!samples || samples.length === 0) {
@@ -97,7 +105,11 @@ async function main() {
     });
 
     // Lưu kết quả
+<<<<<<< HEAD
     fs.writeFileSync('processed_diplomas.json', JSON.stringify(processedData, null, 2));
+=======
+    fs.writeFileSync(PROCESSED_DIPLOMAS_FILE, JSON.stringify(processedData, null, 2));
+>>>>>>> a459fc8 (Refactor data layout into data/ and centralize paths)
 
     console.log('✅ Đã tạo 1024 văn bằng và lưu vào file processed_diplomas.json');
 }

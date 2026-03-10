@@ -1,4 +1,12 @@
 const fs = require('fs');
+<<<<<<< HEAD
+=======
+const {
+    PROCESSED_DIPLOMAS_FILE,
+    merkleTreeDepthFile,
+    inputDepthFile,
+} = require('./paths');
+>>>>>>> a459fc8 (Refactor data layout into data/ and centralize paths)
 
 function main() {
     // Lấy các tham số từ command line arguments
@@ -8,10 +16,17 @@ function main() {
     console.log(`=== Tạo input cho circuit độ sâu ${depth}, index ${index} ===`);
 
     // Đọc dữ liệu đã xử lý
+<<<<<<< HEAD
     const processedData = JSON.parse(fs.readFileSync('processed_diplomas.json', 'utf8'));
     
     // Đọc dữ liệu Merkle tree tương ứng với độ sâu
     const merkleDataFile = `merkle_tree_data_depth_${depth}.json`;
+=======
+    const processedData = JSON.parse(fs.readFileSync(PROCESSED_DIPLOMAS_FILE, 'utf8'));
+    
+    // Đọc dữ liệu Merkle tree tương ứng với độ sâu
+    const merkleDataFile = merkleTreeDepthFile(depth);
+>>>>>>> a459fc8 (Refactor data layout into data/ and centralize paths)
     if (!fs.existsSync(merkleDataFile)) {
         console.error(`File ${merkleDataFile} không tồn tại!`);
         console.error('Vui lòng chạy script create_merkle_tree_depth.js trước.');
@@ -51,7 +66,11 @@ function main() {
     };
 
     // Lưu input vào file
+<<<<<<< HEAD
     const inputFilename = `input_depth_${depth}_index_${index}.json`;
+=======
+    const inputFilename = inputDepthFile(depth, index);
+>>>>>>> a459fc8 (Refactor data layout into data/ and centralize paths)
     fs.writeFileSync(inputFilename, JSON.stringify(input, null, 2));
 
     console.log(`Đã tạo xong ${inputFilename} cho circuit độ sâu ${depth}`);

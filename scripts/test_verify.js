@@ -1,6 +1,7 @@
 const hre = require("hardhat");
 const fs = require("fs");
 const { ethers } = require("hardhat");
+const { MERKLE_TREE_FILE } = require("./paths");
 
 async function main() {
     // Kết nối với DiplomaManager contract đã deploy
@@ -12,7 +13,7 @@ async function main() {
     console.log("Connected to DiplomaManager at:", await diplomaManager.getAddress());
 
     // Đọc merkle tree data
-    const merkleData = JSON.parse(fs.readFileSync("merkle_tree_data.json"));
+    const merkleData = JSON.parse(fs.readFileSync(MERKLE_TREE_FILE));
     console.log("\nMerkle root:", merkleData.root);
 
     // Kiểm tra root có hợp lệ không

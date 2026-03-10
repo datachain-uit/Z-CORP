@@ -1,6 +1,7 @@
 const fs = require('fs');
 const circomlibjs = require('circomlibjs');
 const { buildMerkleTree } = require('./utils/merkle');
+const { DIPLOMA_SAMPLES_FILE } = require('./paths');
 
 function stringToHex(str) {
     return '0x' + Buffer.from(str).toString('hex');
@@ -14,7 +15,7 @@ async function main() {
     const startMerkle = Date.now();
     
     // Read diploma samples
-    const data = JSON.parse(fs.readFileSync('diploma_samples.json'));
+    const data = JSON.parse(fs.readFileSync(DIPLOMA_SAMPLES_FILE));
     const poseidon = await circomlibjs.buildPoseidon();
     
     const diplomas = data.samples.map(diploma => ({

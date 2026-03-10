@@ -47,10 +47,18 @@ All circuits are in `circuits/`.
 
 ## Data & Merkle Trees
 
+<<<<<<< HEAD
 - **`diploma_samples.json`** – raw diploma records (~20 samples).
 - **`scripts/prepare_diploma_data.js`** – builds `processed_diplomas.json` (nameHash, leafHash, etc.) from samples.
 - **`scripts/prepare_diploma_data_1024.js`** – optional: expand to 1,024 diplomas for depth-10 full tree.
 - **`scripts/create_merkle_tree_depth.js`** – builds Merkle trees for depth 5–15 (pad with zeros to 2^depth leaves), writes `merkle_tree_data_depth_<depth>.json` with roots and proofs.
+=======
+- **`data/`** – thư mục chứa toàn bộ file dữ liệu (mẫu văn bằng, processed, merkle, input). Các script đọc/ghi qua `scripts/paths.js`.
+- **`data/diploma_samples.json`** – raw diploma records (~20 samples).
+- **`scripts/prepare_diploma_data.js`** – đọc mẫu từ `data/diploma_samples.json`, ghi `data/processed_diplomas.json` (nameHash, leafHash, …).
+- **`scripts/prepare_diploma_data_1024.js`** – optional: mở rộng lên 1.024 văn bằng cho cây depth-10.
+- **`scripts/create_merkle_tree_depth.js`** – đọc `data/processed_diplomas.json`, ghi `data/merkle_tree_data_depth_<depth>.json` (roots + proofs).
+>>>>>>> a459fc8 (Refactor data layout into data/ and centralize paths)
 
 ---
 
@@ -180,7 +188,11 @@ Plonk constraints (from `snarkjs plonk setup`):
 node scripts/generate_input_depth.js 10 0
 node DiplomaVerifier_js/generate_witness.js \
   DiplomaVerifier_Depth10/DiplomaVerifier_Depth10_js/DiplomaVerifier_Depth10.wasm \
+<<<<<<< HEAD
   input_depth_10_index_0.json witness_depth_10_index_0.wtns
+=======
+  data/input_depth_10_index_0.json witness_depth_10_index_0.wtns
+>>>>>>> a459fc8 (Refactor data layout into data/ and centralize paths)
 snarkjs groth16 prove DiplomaVerifier_Depth10_0001.zkey witness_depth_10_index_0.wtns proof_depth_10_index_0.json public_depth_10_index_0.json
 snarkjs zkey export verificationkey DiplomaVerifier_Depth10_0001.zkey DiplomaVerifier_Depth10_vkey.json
 snarkjs groth16 verify DiplomaVerifier_Depth10_vkey.json public_depth_10_index_0.json proof_depth_10_index_0.json

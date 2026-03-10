@@ -1,6 +1,7 @@
 const fs = require('fs');
 const circomlibjs = require('circomlibjs');
 const { buildMerkleTree } = require('./utils/merkle');
+const { PROCESSED_DIPLOMAS_FILE, MERKLE_TREE_FILE, dataDir } = require('./paths');
 
 async function hashName(lastName, firstName, poseidon) {
     // Tạo name từ last_name và first_name
@@ -36,8 +37,8 @@ async function main() {
     console.log("\n1. Loading data...");
     const startLoad = Date.now();
     
-    const processedDiplomas = JSON.parse(fs.readFileSync('processed_diplomas.json'));
-    const merkleData = JSON.parse(fs.readFileSync('merkle_tree_data.json'));
+    const processedDiplomas = JSON.parse(fs.readFileSync(PROCESSED_DIPLOMAS_FILE));
+    const merkleData = JSON.parse(fs.readFileSync(MERKLE_TREE_FILE));
     
     const endLoad = Date.now();
     console.log(`Data loading time: ${(endLoad - startLoad) / 1000} seconds`);
@@ -117,8 +118,8 @@ async function main() {
     console.log("\n6. Generating proof...");
     const startGenerate = Date.now();
     
-    // Create input.json with studentId suffix
-    const inputFileName = `input_${studentId}.json`;
+    const path = require('path');
+    const inputFileName = path.join(dataDir, `input_${studentId}.json`);
     const input = {
         nameHash: matchingDiploma.nameHash,
         majorCode: matchingDiploma.majorCode,

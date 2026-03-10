@@ -1,6 +1,15 @@
 const fs = require('fs');
 const path = require('path');
 const { execSync } = require('child_process');
+<<<<<<< HEAD
+=======
+const {
+    projectRoot,
+    PROCESSED_DIPLOMAS_FILE,
+    merkleTreeDepthFile,
+    inputDepthFile,
+} = require('./paths');
+>>>>>>> a459fc8 (Refactor data layout into data/ and centralize paths)
 
 // Danh sách độ sâu Merkle / circuit cần test
 const DEPTHS = [5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
@@ -26,7 +35,10 @@ function exportVKeyIfNeeded(zkeyPath, vkeyPath) {
 
 function main() {
     const index = process.argv[2] ? parseInt(process.argv[2]) : 0;
+<<<<<<< HEAD
     const projectRoot = process.cwd();
+=======
+>>>>>>> a459fc8 (Refactor data layout into data/ and centralize paths)
 
     console.log(
         `=== Đo thời gian prove + verify cho các depth ${DEPTHS[0]}..${DEPTHS[DEPTHS.length - 1]} (index = ${index}) ===`
@@ -35,7 +47,11 @@ function main() {
     // Kiểm tra dữ liệu chung
     if (
         !ensureFileExists(
+<<<<<<< HEAD
             path.join(projectRoot, 'processed_diplomas.json'),
+=======
+            PROCESSED_DIPLOMAS_FILE,
+>>>>>>> a459fc8 (Refactor data layout into data/ and centralize paths)
             'Thiếu file processed_diplomas.json (dùng để tạo input)'
         )
     ) {
@@ -47,6 +63,7 @@ function main() {
         console.log(`>>> ĐỘ SÂU MERKLE: ${depth}`);
         console.log('=======================================================');
 
+<<<<<<< HEAD
         const merkleDepthFile = path.join(
             projectRoot,
             `merkle_tree_data_depth_${depth}.json`
@@ -54,6 +71,12 @@ function main() {
         if (
             !ensureFileExists(
                 merkleDepthFile,
+=======
+        const merkleDepthPath = merkleTreeDepthFile(depth);
+        if (
+            !ensureFileExists(
+                merkleDepthPath,
+>>>>>>> a459fc8 (Refactor data layout into data/ and centralize paths)
                 `Thiếu file merkle_tree_data_depth_${depth}.json (hãy chạy scripts/create_merkle_tree_depth.js trước)`
             )
         ) {
@@ -102,7 +125,11 @@ function main() {
             continue;
         }
 
+<<<<<<< HEAD
         const inputFile = `input_depth_${depth}_index_${index}.json`;
+=======
+        const inputFile = inputDepthFile(depth, index);
+>>>>>>> a459fc8 (Refactor data layout into data/ and centralize paths)
         const witnessFile = `witness_depth_${depth}_index_${index}.wtns`;
         const proofFile = `proof_depth_${depth}_index_${index}.json`;
         const publicFile = `public_depth_${depth}_index_${index}.json`;
@@ -128,7 +155,11 @@ function main() {
 
         if (
             !ensureFileExists(
+<<<<<<< HEAD
                 path.join(projectRoot, inputFile),
+=======
+                inputFile,
+>>>>>>> a459fc8 (Refactor data layout into data/ and centralize paths)
                 'Không tìm thấy file input sau khi generate_input_depth.js'
             )
         ) {
