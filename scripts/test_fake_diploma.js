@@ -2,12 +2,13 @@ const { exec } = require('child_process');
 const util = require('util');
 const execAsync = util.promisify(exec);
 const fs = require('fs');
+const { MERKLE_TREE_FILE, PROCESSED_DIPLOMAS_FILE, INPUT_FILE } = require('./paths');
 
 async function main() {
     try {
         // Đọc Merkle tree data để lấy root và proofs
-        const merkleData = JSON.parse(fs.readFileSync('merkle_tree_data.json', 'utf8'));
-        const processedDiplomas = JSON.parse(fs.readFileSync('processed_diplomas.json', 'utf8'));
+        const merkleData = JSON.parse(fs.readFileSync(MERKLE_TREE_FILE, 'utf8'));
+        const processedDiplomas = JSON.parse(fs.readFileSync(PROCESSED_DIPLOMAS_FILE, 'utf8'));
 
         // Lấy thông tin của diploma đầu tiên
         const realDiploma = processedDiplomas[0];
@@ -27,7 +28,7 @@ async function main() {
         };
 
         // Lưu input vào file
-        fs.writeFileSync('input.json', JSON.stringify(input, null, 2));
+        fs.writeFileSync(INPUT_FILE, JSON.stringify(input, null, 2));
 
         console.log('Đã tạo xong input.json cho diploma thật');
         console.log('\nThông tin diploma:');
@@ -42,7 +43,7 @@ async function main() {
 
         // 2. Generate witness
         console.log('\nGenerating witness...');
-        await execAsync('node DiplomaVerifier_js/generate_witness.js DiplomaVerifier_js/DiplomaVerifier.wasm input.json witness.wtns');
+        await execAsync(`node DiplomaVerifier_js/generate_witness.js DiplomaVerifier_js/DiplomaVerifier.wasm "${INPUT_FILE}" witness.wtns`);
         console.log('Witness generated successfully!');
 
         // 3. Generate proof

@@ -1,12 +1,17 @@
 const fs = require('fs');
+const {
+    PROCESSED_DIPLOMAS_FILE,
+    MERKLE_TREE_FILE,
+    INPUT_FILE,
+} = require('./paths');
 
 function main() {
     // Lấy index từ command line arguments
     const index = process.argv[2] ? parseInt(process.argv[2]) : 0;
 
     // Đọc dữ liệu đã xử lý
-    const processedData = JSON.parse(fs.readFileSync('processed_diplomas.json', 'utf8'));
-    const merkleData = JSON.parse(fs.readFileSync('merkle_tree_data.json', 'utf8'));
+    const processedData = JSON.parse(fs.readFileSync(PROCESSED_DIPLOMAS_FILE, 'utf8'));
+    const merkleData = JSON.parse(fs.readFileSync(MERKLE_TREE_FILE, 'utf8'));
 
     // Kiểm tra index hợp lệ
     if (index < 0 || index >= processedData.length) {
@@ -33,9 +38,9 @@ function main() {
     };
 
     // Lưu input vào file
-    fs.writeFileSync('input.json', JSON.stringify(input, null, 2));
+    fs.writeFileSync(INPUT_FILE, JSON.stringify(input, null, 2));
 
-    console.log('Đã tạo xong input.json cho circuit');
+    console.log(`Đã tạo xong input.json cho circuit (${INPUT_FILE})`);
     console.log('\nThông tin diploma được sử dụng:');
     console.log('- Index:', index);
     console.log('- nameHash:', diploma.nameHash);

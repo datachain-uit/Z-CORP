@@ -1,152 +1,224 @@
-# Diploma Verification System using Circom
+# Diploma Verification with Zero-Knowledge Proofs
 
-This project implements a zero-knowledge proof system for verifying diplomas using Circom. The system allows for secure and private verification of diploma authenticity without revealing sensitive personal information.
+This project implements a **zero-knowledge proof system** for verifying that a diploma belongs to a Merkle tree of valid diplomas, without revealing the diploma data. It uses **Circom** for circuits, **Poseidon** for hashing, and supports two zk-SNARK proof systems: **Groth16** and **Plonk**.
+
+---
+
+## Table of Contents
+
+- [Overview](#overview)
+- [Circuit Design](#circuit-design)
+- [Data & Merkle Trees](#data--merkle-trees)
+- [Multi-Depth Circuits (5–15)](#multi-depth-circuits-515)
+- [Groth16 Experiments](#groth16-experiments)
+- [Plonk Experiments](#plonk-experiments)
+- [Scripts Reference](#scripts-reference)
+- [Setup & Installation](#setup--installation)
+- [Usage](#usage)
+- [Dependencies](#dependencies)
+- [Deployed Contracts](#deployed-contracts)
+- [License](#license)
+
+---
 
 ## Overview
 
-The system uses Merkle trees and zero-knowledge proofs to verify the authenticity of diplomas. It consists of several key components:
+- **Goal:** Prove that a given diploma (nameHash, studentId, majorCode, issueDate) is a valid leaf in a Merkle tree whose root is published (e.g. on-chain).
+- **Flow:** Hash diploma → leaf; prove Merkle path from leaf to public root in zero-knowledge (Groth16 or Plonk).
+- **Circuits:** One parameterized circuit `DiplomaVerifier(levels)`; variants for Merkle depth 5–15 are generated and compiled separately.
 
-1. **HashDiploma**: Hashes diploma information into a leaf node
-2. **Selector**: Handles the selection of left/right nodes in the Merkle tree
-3. **MerkleProof**: Verifies the Merkle proof path
-4. **DiplomaVerifier**: Main circuit that combines all components
+---
 
-## Technical Details
+## Circuit Design
 
-### Circuit Components
+All circuits are in `circuits/`.
 
-- **HashDiploma**: Uses Poseidon hash function to combine:
-  - Name hash
-  - Major code
-  - Student ID
-  - Issue date
+| Component | Role |
+|-----------|------|
+| **HashDiploma** | Inputs: `nameHash`, `majorCode`, `studentId`, `issueDate`. Output: Poseidon hash = Merkle leaf. |
+| **Selector** | Inputs: `in[2]`, `s`. Output: order left/right by `s`. |
+| **MerkleProof(levels)** | Inputs: `leaf`, `pathIndices[levels]`, `siblings[levels]`. Output: computed `root`. |
+| **DiplomaVerifier(levels)** | Private: diploma + path; public: `root`. Asserts recomputed root === public root. |
 
-- **Selector**: Implements the logic for selecting left/right nodes based on path indices
+- Base file: `circuits/DiplomaVerifier.circom` (main with `levels = 5`).
+- Generated: `circuits/DiplomaVerifier_DepthX.circom` for X = 5..15.
 
-- **MerkleProof**: 
-  - Takes a leaf node and proof path
-  - Recomputes the Merkle root
-  - Verifies against the provided root
+---
 
-- **DiplomaVerifier**:
-  - Main circuit with 5 levels (32 leaves)
-  - Public input: root
-  - Private inputs: diploma information
+## Data & Merkle Trees
 
-### Security Features
+- **`data/`** – thư mục chứa toàn bộ file dữ liệu (mẫu văn bằng, processed, merkle, input). Các script đọc/ghi qua `scripts/paths.js`.
+- **`data/diploma_samples.json`** – raw diploma records (~20 samples).
+- **`scripts/prepare_diploma_data.js`** – đọc mẫu từ `data/diploma_samples.json`, ghi `data/processed_diplomas.json` (nameHash, leafHash, …).
+- **`scripts/prepare_diploma_data_1024.js`** – optional: mở rộng lên 1.024 văn bằng cho cây depth-10.
+- **`scripts/create_merkle_tree_depth.js`** – đọc `data/processed_diplomas.json`, ghi `data/merkle_tree_data_depth_<depth>.json` (roots + proofs).
 
-- Zero-knowledge proofs ensure privacy
-- Merkle tree structure for efficient verification
-- Poseidon hash function for cryptographic security
+---
 
-## Experimental Results
+## Multi-Depth Circuits (5–15)
 
-### Circuit Constraints
-- Total number of constraints: 1,507 (non-linear constraints)
-- Template instances: 148
-- Linear constraints: 0
-- Public inputs: 1
-- Private inputs: 14
-- Total wires: 1,522
+- **`scripts/generate_depth_circuits.js`** – generates `DiplomaVerifier_Depth5.circom` … `DiplomaVerifier_Depth15.circom` from the base template.
+- **`scripts/compile_depth_circuits.js`** – compiles each to R1CS, WASM, sym, C (output in `DiplomaVerifier_DepthX/`).
 
-### Performance Metrics
+### R1CS size (Groth16 / snarkjs r1cs info)
 
-#### Proof Generation
-- Average time: ~1.081 seconds
-- Name hashing: ~0.335 seconds
-- Proof generation: ~0.747 seconds
+| Depth | #Leaves (2^depth) | #Constraints | #Wires | #Public | #Private |
+|-------|--------------------|-------------|--------|---------|----------|
+| 5     | 32                 | 1,507       | 1,522  | 1       | 14       |
+| 6     | 64                 | 1,749       | 1,766  | 1       | 16       |
+| 7     | 128                | 1,991       | 2,010  | 1       | 18       |
+| 8     | 256                | 2,233       | 2,254  | 1       | 20       |
+| 9     | 512                | 2,475       | 2,498  | 1       | 22       |
+| 10    | 1,024              | 2,717       | 2,742  | 1       | 24       |
+| 11    | 2,048              | 2,959       | 2,986  | 1       | 26       |
+| 12    | 4,096              | 3,201       | 3,230  | 1       | 28       |
+| 13    | 8,192              | 3,443       | 3,474  | 1       | 30       |
+| 14    | 16,384             | 3,685       | 3,718  | 1       | 32       |
+| 15    | 32,768             | 3,927       | 3,962  | 1       | 34       |
 
-#### Blockchain Verification
-- Sepolia: Higher gas costs, longer verification time
-- ZkSync: Lower gas costs, faster verification time
+---
 
-### Memory Usage
-- Peak memory usage during proof generation: ~2.5GB
-- Average memory usage: ~1.8GB
+## Groth16 Experiments
 
-## Setup and Installation
+- **Trusted setup:** one `.zkey` per depth (e.g. `pot12_final.ptau` for Groth16).
+- **`scripts/measure_proving_time_all_depths.js`** – for each depth 5..15: generate input → witness → **Groth16 prove** → **Groth16 verify**; reports **Input / Witness / Prove / Verify / Total** time.
+- **`scripts/measure_proving_time_depth10.js`** – single-depth Groth16 timing (default depth 10).
+- **`scripts/analyze_depth_constraints.js`** – prints constraint counts per depth (via `snarkjs r1cs info`).
 
-1. Install dependencies:
-```bash
-npm install
-```
+Example timing (local Mac, index 0):
 
-2. Compile the circuit:
-```bash
-circom circuits/DiplomaVerifier.circom --r1cs --wasm --sym
-```
+| Depth | Input (s) | Witness (s) | Prove (s) | Verify (s) | Total (s) |
+|-------|-----------|-------------|----------|------------|-----------|
+| 5     | 0.051     | 0.056       | 0.476    | 0.362      | 0.945     |
+| 10    | 0.049     | 0.062       | 0.566    | 0.282      | 0.960     |
+| 15    | 0.048     | 0.057       | 0.651    | 0.289      | 1.045     |
 
-3. Generate the proving key:
-```bash
-snarkjs groth16 setup DiplomaVerifier.r1cs pot12_final.ptau DiplomaVerifier_final.zkey
-```
+Remote run results and full tables: see `remote_results/` (e.g. `TABLES_LOCAL_VS_SERVER.md`, `TIMING_SUMMARY.md`).
+
+---
+
+## Plonk Experiments
+
+- **Trusted setup:** one **Power of Tau** (e.g. **power 16**) is required; one **Plonk zkey** per depth.  
+  Plonk constraint count is much higher than R1CS; `pot12` is too small. Use `pot16_final.ptau` (see `Plonk/README.md`).
+- **`Plonk/`** – folder for Plonk-specific docs and constraint table.
+- **`Plonk/README.md`** – Plonk setup (ptau power 16, `snarkjs plonk setup` per depth), and how to run timing.
+- **`Plonk/PLONK_CONSTRAINTS_BY_DEPTH.md`** – table Depth vs Plonk constraints.
+- **`scripts/measure_plonk_time_all_depths.js`** – for each depth 5..15: input → witness → **Plonk prove** → **Plonk verify**; reports **Input / Witness / Prove / Verify / Total** and prints a summary table for comparison with Groth16.
+- **`scripts/measure_plonk_time_depth10.js`** – single-depth Plonk timing (args: `[depth] [index]`, default depth 5).
+
+Plonk constraints (from `snarkjs plonk setup`):
+
+| Depth | Plonk constraints |
+|-------|-------------------|
+| 5     | 19,222            |
+| 10    | 31,592            |
+| 15    | 43,962            |
+
+---
+
+## Scripts Reference
+
+| Script | Purpose |
+|--------|---------|
+| `prepare_diploma_data.js` | Build `processed_diplomas.json` from `diploma_samples.json`. |
+| `prepare_diploma_data_1024.js` | Build 1,024 diplomas for full depth-10 tree. |
+| `create_merkle_tree_depth.js` | Build Merkle trees depth 5–15 → `merkle_tree_data_depth_<d>.json`. |
+| `generate_depth_circuits.js` | Generate `DiplomaVerifier_DepthX.circom` (X = 5..15). |
+| `compile_depth_circuits.js` | Compile all depth circuits (R1CS, WASM, etc.). |
+| `generate_input_depth.js <depth> <index>` | Build `input_depth_<depth>_index_<index>.json`. |
+| `measure_proving_time_all_depths.js [index]` | Groth16: time Input/Witness/Prove/Verify/Total for all depths. |
+| `measure_proving_time_depth10.js [index]` | Groth16: single depth (default 10). |
+| `measure_plonk_time_all_depths.js [index]` | Plonk: time Input/Witness/Prove/Verify/Total for all depths. |
+| `measure_plonk_time_depth10.js [depth] [index]` | Plonk: single depth (default 5). |
+| `analyze_depth_constraints.js` | Print R1CS constraint counts (snarkjs r1cs info). |
+
+---
+
+## Setup & Installation
+
+1. **Install dependencies**
+
+   ```bash
+   npm install
+   ```
+
+2. **Prepare data and Merkle trees**
+
+   ```bash
+   node scripts/prepare_diploma_data.js
+   node scripts/create_merkle_tree_depth.js
+   ```
+
+3. **Generate and compile circuits**
+
+   ```bash
+   node scripts/generate_depth_circuits.js
+   node scripts/compile_depth_circuits.js
+   ```
+
+4. **Groth16 trusted setup (per depth, example depth 10)**
+
+   ```bash
+   snarkjs groth16 setup DiplomaVerifier_Depth10/DiplomaVerifier_Depth10.r1cs pot12_final.ptau DiplomaVerifier_Depth10_0000.zkey
+   snarkjs zkey contribute DiplomaVerifier_Depth10_0000.zkey DiplomaVerifier_Depth10_0001.zkey --name="contribution" -v
+   ```
+
+5. **Plonk trusted setup** (see `Plonk/README.md`): build `pot16_final.ptau`, then for each depth:
+
+   ```bash
+   snarkjs plonk setup DiplomaVerifier_Depth10/DiplomaVerifier_Depth10.r1cs pot16_final.ptau DiplomaVerifier_Depth10_plonk.zkey
+   snarkjs zkey export verificationkey DiplomaVerifier_Depth10_plonk.zkey DiplomaVerifier_Depth10_plonk_vkey.json
+   ```
+
+---
 
 ## Usage
 
-1. Generate a proof:
+### Groth16: prove and verify (e.g. depth 10, index 0)
+
 ```bash
-snarkjs groth16 prove DiplomaVerifier_final.zkey witness.wtns proof.json public.json
+node scripts/generate_input_depth.js 10 0
+node DiplomaVerifier_js/generate_witness.js \
+  DiplomaVerifier_Depth10/DiplomaVerifier_Depth10_js/DiplomaVerifier_Depth10.wasm \
+  data/input_depth_10_index_0.json witness_depth_10_index_0.wtns
+snarkjs groth16 prove DiplomaVerifier_Depth10_0001.zkey witness_depth_10_index_0.wtns proof_depth_10_index_0.json public_depth_10_index_0.json
+snarkjs zkey export verificationkey DiplomaVerifier_Depth10_0001.zkey DiplomaVerifier_Depth10_vkey.json
+snarkjs groth16 verify DiplomaVerifier_Depth10_vkey.json public_depth_10_index_0.json proof_depth_10_index_0.json
 ```
 
-2. Verify the proof:
+### Groth16: timing for all depths
+
 ```bash
-snarkjs groth16 verify verification_key.json public.json proof.json
+node scripts/measure_proving_time_all_depths.js
+node scripts/measure_proving_time_all_depths.js 3
 ```
+
+### Plonk: timing for all depths (compare with Groth16)
+
+```bash
+node scripts/measure_plonk_time_all_depths.js
+node scripts/measure_plonk_time_all_depths.js 3
+```
+
+---
 
 ## Dependencies
 
-- circom 2.0.0
-- circomlib
-- snarkjs
+- **circom** 2.x  
+- **circomlib**  
+- **snarkjs**  
+- **Node.js** (LTS)
+
+---
+
+## Deployed Contracts
+
+- **Sepolia:** `0x3D11895D0BB719AcF7B0D995ED19953388318B82`
+- **ZkSync Sepolia:** `0x3D11895D0BB719AcF7B0D995ED19953388318B82`
+
+---
 
 ## License
 
 MIT License
-
-## Contributing
-
-Contributions are welcome! Please feel free to submit a Pull Request.
-
-### Deployed Contracts
-
-#### Sepolia Testnet
-- Contract Address: `0x3D11895D0BB719AcF7B0D995ED19953388318B82`
-
-#### ZkSync Sepolia Testnet
-- Contract Address: `0x3D11895D0BB719AcF7B0D995ED19953388318B82`
-
-### Circuit Constraints
-
-- Total number of constraints: 1,507 (non-linear constraints)
-- Template instances: 148
-- Linear constraints: 0
-- Public inputs: 1
-- Private inputs: 14
-- Total wires: 1,522
-
-### Sample Proof Test
-
-```json
-{
-    "pi_a": [
-        "2362697662440781389547050573638905942109802000918492678604911253049211251656",
-        "17560770992279185907265606042719519214415065086173017313293760939833095056750"
-    ],
-    "pi_b": [
-        [
-            "9431950061316970408854248991205044687608401273022672686671426354505767570819",
-            "4832862778172240778693373324504720039322456535321360237946486748352360641410"
-        ],
-        [
-            "6716916866468099429243955441926554791738661249254531295138614130000844616656",
-            "15779362199440043520015197481782495554985528885454465338264181923082716237231"
-        ]
-    ],
-    "pi_c": [
-        "20087246615927649160492697042027676857909658589575550209181696305454221930865",
-        "16371044190390649430607633484498243034484776945072948821912926919772303999048"
-    ],
-    "public": [
-        "6127766017438882796241294385909301777591804685931624225673042574592414873794"
-    ]
-} 

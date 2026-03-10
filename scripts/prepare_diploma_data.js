@@ -1,12 +1,16 @@
 const fs = require('fs');
 const { buildPoseidon } = require('circomlibjs');
+const {
+    DIPLOMA_SAMPLES_FILE,
+    PROCESSED_DIPLOMAS_FILE,
+} = require('./paths');
 
 async function main() {
     // Khởi tạo Poseidon hash function
     const poseidon = await buildPoseidon();
     
     // Đọc dữ liệu từ file
-    const data = JSON.parse(fs.readFileSync('diploma_samples.json', 'utf8'));
+    const data = JSON.parse(fs.readFileSync(DIPLOMA_SAMPLES_FILE, 'utf8'));
     
     // Xử lý dữ liệu
     const processedData = data.samples.map(sample => {
@@ -57,9 +61,9 @@ async function main() {
     });
     
     // Lưu kết quả
-    fs.writeFileSync('processed_diplomas.json', JSON.stringify(processedData, null, 2));
+    fs.writeFileSync(PROCESSED_DIPLOMAS_FILE, JSON.stringify(processedData, null, 2));
     
-    console.log('Đã xử lý xong dữ liệu và lưu vào file processed_diplomas.json');
+    console.log(`Đã xử lý xong dữ liệu và lưu vào file ${PROCESSED_DIPLOMAS_FILE}`);
 }
 
 main().catch(console.error); 
