@@ -15,7 +15,8 @@ async function main() {
 
     // Lấy root từ merkle_tree_data.json
     const fs = require("fs");
-    const merkleData = JSON.parse(fs.readFileSync("merkle_tree_data.json"));
+    const { MERKLE_TREE_FILE } = require("./paths");
+    const merkleData = JSON.parse(fs.readFileSync(MERKLE_TREE_FILE));
     const root = merkleData.root;
 
     // Thêm root vào DiplomaManager

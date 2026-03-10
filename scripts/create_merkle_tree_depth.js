@@ -1,5 +1,12 @@
 const fs = require('fs');
 const { buildPoseidon } = require('circomlibjs');
+<<<<<<< HEAD
+=======
+const {
+    PROCESSED_DIPLOMAS_FILE,
+    merkleTreeDepthFile,
+} = require('./paths');
+>>>>>>> a459fc8 (Refactor data layout into data/ and centralize paths)
 
 async function createMerkleTreeWithDepth(targetDepth) {
     console.log(`\n=== Tạo Merkle Tree với độ sâu ${targetDepth} ===`);
@@ -8,7 +15,11 @@ async function createMerkleTreeWithDepth(targetDepth) {
     const poseidon = await buildPoseidon();
     
     // Đọc dữ liệu đã xử lý
+<<<<<<< HEAD
     const processedData = JSON.parse(fs.readFileSync('processed_diplomas.json', 'utf8'));
+=======
+    const processedData = JSON.parse(fs.readFileSync(PROCESSED_DIPLOMAS_FILE, 'utf8'));
+>>>>>>> a459fc8 (Refactor data layout into data/ and centralize paths)
     
     // Tạo leaf nodes từ dữ liệu
     const leaves = processedData.map(diploma => diploma.leafHash);
@@ -94,7 +105,11 @@ async function createMerkleTreeWithDepth(targetDepth) {
         proofs: proofs
     };
     
+<<<<<<< HEAD
     const filename = `merkle_tree_data_depth_${targetDepth}.json`;
+=======
+    const filename = merkleTreeDepthFile(targetDepth);
+>>>>>>> a459fc8 (Refactor data layout into data/ and centralize paths)
     fs.writeFileSync(filename, JSON.stringify(merkleData, null, 2));
     
     console.log(`Merkle tree độ sâu ${targetDepth} đã được tạo thành công!`);

@@ -1,6 +1,15 @@
 const fs = require('fs');
 const path = require('path');
 const { execSync } = require('child_process');
+<<<<<<< HEAD
+=======
+const {
+    projectRoot,
+    PROCESSED_DIPLOMAS_FILE,
+    merkleTreeDepthFile,
+    inputDepthFile,
+} = require('./paths');
+>>>>>>> a459fc8 (Refactor data layout into data/ and centralize paths)
 
 function ensureFileExists(filePath, message) {
   if (!fs.existsSync(filePath)) {
@@ -29,20 +38,28 @@ function main() {
   //   node scripts/measure_plonk_time_depth10.js 10 3      # depth = 10, index = 3
   const depth = process.argv[2] ? parseInt(process.argv[2]) : 5;
   const index = process.argv[3] ? parseInt(process.argv[3]) : 0;
+<<<<<<< HEAD
   const projectRoot = process.cwd();
+=======
+>>>>>>> a459fc8 (Refactor data layout into data/ and centralize paths)
 
   console.log(`=== Measuring Plonk proving + verifying time (depth ${depth}, index = ${index}) ===`);
 
   // Common data requirements
   if (
     !ensureFileExists(
+<<<<<<< HEAD
       path.join(projectRoot, 'processed_diplomas.json'),
+=======
+      PROCESSED_DIPLOMAS_FILE,
+>>>>>>> a459fc8 (Refactor data layout into data/ and centralize paths)
       'Missing processed_diplomas.json (used to build inputs). Run scripts/prepare_diploma_data.js first.'
     )
   ) {
     process.exit(1);
   }
 
+<<<<<<< HEAD
   const merkleDepthFile = path.join(
     projectRoot,
     `merkle_tree_data_depth_${depth}.json`
@@ -50,6 +67,12 @@ function main() {
   if (
     !ensureFileExists(
       merkleDepthFile,
+=======
+  const merkleDepthPath = merkleTreeDepthFile(depth);
+  if (
+    !ensureFileExists(
+      merkleDepthPath,
+>>>>>>> a459fc8 (Refactor data layout into data/ and centralize paths)
       `Missing merkle_tree_data_depth_${depth}.json. Run scripts/create_merkle_tree_depth.js first.`
     )
   ) {
@@ -98,7 +121,11 @@ function main() {
     process.exit(1);
   }
 
+<<<<<<< HEAD
   const inputFile = `input_depth_${depth}_index_${index}.json`;
+=======
+  const inputFile = inputDepthFile(depth, index);
+>>>>>>> a459fc8 (Refactor data layout into data/ and centralize paths)
   const witnessFile = `plonk_witness_depth_${depth}_index_${index}.wtns`;
   const proofFile = `plonk_proof_depth_${depth}_index_${index}.json`;
   const publicFile = `plonk_public_depth_${depth}_index_${index}.json`;
@@ -124,7 +151,11 @@ function main() {
 
   if (
     !ensureFileExists(
+<<<<<<< HEAD
       path.join(projectRoot, inputFile),
+=======
+      inputFile,
+>>>>>>> a459fc8 (Refactor data layout into data/ and centralize paths)
       'Input file not found after generate_input_depth.js'
     )
   ) {
@@ -136,7 +167,11 @@ function main() {
   const tStartWitness = Date.now();
   try {
     execSync(
+<<<<<<< HEAD
       `node DiplomaVerifier_js/generate_witness.js ${wasmPath} ${inputFile} ${witnessFile}`,
+=======
+      `node DiplomaVerifier_js/generate_witness.js ${wasmPath} "${inputFile}" ${witnessFile}`,
+>>>>>>> a459fc8 (Refactor data layout into data/ and centralize paths)
       { stdio: 'inherit' }
     );
   } catch (err) {

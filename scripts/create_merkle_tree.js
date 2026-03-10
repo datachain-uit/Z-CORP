@@ -1,12 +1,16 @@
 const fs = require('fs');
 const { buildPoseidon } = require('circomlibjs');
+const {
+    PROCESSED_DIPLOMAS_FILE,
+    MERKLE_TREE_FILE,
+} = require('./paths');
 
 async function main() {
     // Khởi tạo Poseidon hash function
     const poseidon = await buildPoseidon();
     
     // Đọc dữ liệu đã xử lý
-    const processedData = JSON.parse(fs.readFileSync('processed_diplomas.json', 'utf8'));
+    const processedData = JSON.parse(fs.readFileSync(PROCESSED_DIPLOMAS_FILE, 'utf8'));
     
     // Tạo leaf nodes từ dữ liệu
     const leaves = processedData.map(diploma => diploma.leafHash);
@@ -82,7 +86,7 @@ async function main() {
         proofs: proofs
     };
     
-    fs.writeFileSync('merkle_tree_data.json', JSON.stringify(merkleData, null, 2));
+    fs.writeFileSync(MERKLE_TREE_FILE, JSON.stringify(merkleData, null, 2));
     
     console.log('Merkle tree đã được tạo thành công!');
     console.log('Root:', root);

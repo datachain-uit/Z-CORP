@@ -1,6 +1,15 @@
 const fs = require('fs');
 const path = require('path');
 const { execSync } = require('child_process');
+<<<<<<< HEAD
+=======
+const {
+    projectRoot,
+    PROCESSED_DIPLOMAS_FILE,
+    merkleTreeDepthFile,
+    inputDepthFile,
+} = require('./paths');
+>>>>>>> a459fc8 (Refactor data layout into data/ and centralize paths)
 
 const DEPTHS = [5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
 
@@ -21,7 +30,10 @@ function exportVKeyIfNeeded(zkeyPath, vkeyPath) {
 
 function main() {
     const index = process.argv[2] ? parseInt(process.argv[2]) : 0;
+<<<<<<< HEAD
     const projectRoot = process.cwd();
+=======
+>>>>>>> a459fc8 (Refactor data layout into data/ and centralize paths)
     const results = [];
 
     console.log(
@@ -30,7 +42,11 @@ function main() {
 
     if (
         !ensureFileExists(
+<<<<<<< HEAD
             path.join(projectRoot, 'processed_diplomas.json'),
+=======
+            PROCESSED_DIPLOMAS_FILE,
+>>>>>>> a459fc8 (Refactor data layout into data/ and centralize paths)
             'Thiếu processed_diplomas.json. Chạy scripts/prepare_diploma_data.js trước.'
         )
     ) {
@@ -42,10 +58,17 @@ function main() {
         console.log(`>>> ĐỘ SÂU MERKLE (Plonk): ${depth}`);
         console.log('=======================================================');
 
+<<<<<<< HEAD
         const merkleDepthFile = path.join(projectRoot, `merkle_tree_data_depth_${depth}.json`);
         if (
             !ensureFileExists(
                 merkleDepthFile,
+=======
+        const merkleDepthPath = merkleTreeDepthFile(depth);
+        if (
+            !ensureFileExists(
+                merkleDepthPath,
+>>>>>>> a459fc8 (Refactor data layout into data/ and centralize paths)
                 `Thiếu merkle_tree_data_depth_${depth}.json. Chạy scripts/create_merkle_tree_depth.js trước.`
             )
         ) {
@@ -85,7 +108,11 @@ function main() {
             continue;
         }
 
+<<<<<<< HEAD
         const inputFile = `input_depth_${depth}_index_${index}.json`;
+=======
+        const inputFile = inputDepthFile(depth, index);
+>>>>>>> a459fc8 (Refactor data layout into data/ and centralize paths)
         const witnessFile = `plonk_witness_depth_${depth}_index_${index}.wtns`;
         const proofFile = `plonk_proof_depth_${depth}_index_${index}.json`;
         const publicFile = `plonk_public_depth_${depth}_index_${index}.json`;
@@ -102,7 +129,11 @@ function main() {
             continue;
         }
         const tEndInput = Date.now();
+<<<<<<< HEAD
         if (!ensureFileExists(path.join(projectRoot, inputFile), 'Không tìm thấy file input.')) continue;
+=======
+        if (!ensureFileExists(inputFile, 'Không tìm thấy file input.')) continue;
+>>>>>>> a459fc8 (Refactor data layout into data/ and centralize paths)
 
         // 2. Witness
         console.log('\n[2] Tạo witness...');
