@@ -1,4 +1,4 @@
-# Diploma Verification with Zero-Knowledge Proofs
+# Credential Verification with Zero-Knowledge Proofs
 
 This project implements a **zero-knowledge proof system** for verifying that a diploma belongs to a Merkle tree of valid diplomas, without revealing the diploma data. It uses **Circom** for circuits, **Poseidon** for hashing, and supports two zk-SNARK proof systems: **Groth16** and **Plonk**.
 
