@@ -1,0 +1,53 @@
+# Operating system
+.DS_Store
+
+# Dependencies
+node_modules/
+
+# Environment variables
+.env
+.env.*
+!.env.example
+secret.json
+
+# Hardhat
+artifacts/
+artifacts-zk/
+cache/
+cache-zk/
+typechain-types/
+
+# Circuit build outputs
+circuits/CredentialVerifier_Depth*.circom
+data/zkp-circuits/
+data/merkle-trees/
+data/inputs/
+data/groth16-witness/
+data/groth16-public-proof/
+data/groth16-vkeys/
+data/plonk-zkeys/
+data/plonk-vkeys/
+data/plonk-witness/
+data/plonk-public-proof/
+build/
+generated/
+*_cpp/
+*_js/
+*.wasm
+*.r1cs
+*.sym
+*.wtns
+
+# Trusted setup and proving keys
+*.ptau
+*.zkey
+
+# Generated proofs
+proof*.json
+public*.json
+
+plonk*proof*.json
+plonk*public*.json
+
+# Temporary results
+results/tmp/

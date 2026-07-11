@@ -1,0 +1,51 @@
+iteration,gas,gasPrice,latency_ms,status,error
+1,238750,48191231223,15469.00,success,
+2,238750,45197069837,14588.00,success,
+3,238750,45867949602,24691.00,success,
+4,238750,53222866381,30489.00,success,
+5,,,,failed,transaction receipt timeout
+6,,,,failed,transaction receipt timeout
+7,238750,69690002446,8742.00,success,
+8,238750,59000666982,12540.00,success,
+9,238750,58202064775,22850.00,success,
+10,238750,34710664277,13836.00,success,
+11,,,,failed,transaction receipt timeout
+12,,,,failed,transaction receipt timeout
+13,,,,failed,transaction receipt timeout
+14,,,,failed,transaction receipt timeout
+15,,,,failed,transaction receipt timeout
+16,,,,failed,transaction receipt timeout
+17,238750,48148206405,9712.00,success,
+18,238750,41437050630,16364.00,success,
+19,238750,61546368122,18410.00,success,
+20,,,,failed,transaction receipt timeout
+21,,,,failed,transaction receipt timeout
+22,238750,44754344773,14268.00,success,
+23,238750,60985699370,21370.00,success,
+24,,,,failed,transaction receipt timeout
+25,238750,53563436443,7216.00,success,
+26,238750,53193547054,10544.00,success,
+27,,,,failed,transaction receipt timeout
+28,238750,64283026428,15948.00,success,
+29,,,,failed,transaction receipt timeout
+30,,,,failed,transaction receipt timeout
+31,,,,failed,transaction receipt timeout
+32,238750,43983013219,8048.00,success,
+33,238750,61610887999,12108.00,success,
+34,,,,failed,transaction receipt timeout
+35,238750,55399265650,19890.00,success,
+36,238750,55406054172,13404.00,success,
+37,,,,failed,transaction receipt timeout
+38,238750,66064605503,15116.00,success,
+39,238750,55395264652,12972.00,success,
+40,,,,failed,transaction receipt timeout
+41,238750,39581129967,17196.00,success,
+42,,,,failed,transaction receipt timeout
+43,,,,failed,transaction receipt timeout
+44,,,,failed,transaction receipt timeout
+45,,,,failed,transaction receipt timeout
+46,238750,41395190762,11376.00,success,
+47,238750,50015990773,16780.00,success,
+48,,,,failed,transaction receipt timeout
+49,,,,failed,transaction receipt timeout
+50,,,,failed,transaction receipt timeout
