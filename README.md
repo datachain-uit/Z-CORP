@@ -95,6 +95,25 @@ Create `secret.json` at the project root (this file is gitignored):
 
 ---
 
+## Recommended reproduction order
+
+```
+1. npm install                          (inside Docker)
+2. setup_circuits_all.js                → circuits, zkeys, verifier .sol
+3. prep_full_merkle_all_depths.js       → Merkle trees
+4. generate_input_all_depths.js         → circuit inputs
+5. prove_all_depths-groth16.js        → Groth16 proofs (for on-chain tests)
+6. benchmark-groth16.js                 → proving CSV
+7. prove_all_depths-plonk.js           → PLONK zkeys + proofs
+8. benchmark-plonk.js                   → proving CSV
+9. measure_depth_constraints.js         → constraints CSV
+10. deploy + credential-verification    → blockchain CSV (Sepolia / zkSync / local)
+```
+
+Steps 5–8 can be reordered; step 10 requires step 5 (Groth16 proof for depth 11) and steps 2–3 (verifier contract + Merkle root).
+
+---
+
 ## Installation
 
 ### Step 1 — Toolchain container (recommended)
@@ -403,7 +422,7 @@ results/proving/{timestamp}-depth5-15-plonk-index0.csv
 
 ---
 
-## npm scripts reference
+## Scripts reference
 
 | Script | Command |
 |--------|---------|
@@ -414,25 +433,6 @@ results/proving/{timestamp}-depth5-15-plonk-index0.csv
 | PLONK prove-all | `node scripts/proving/prove_all_depths-plonk.js` |
 | Groth16 benchmark | `node scripts/proving/benchmark-groth16.js` |
 | PLONK benchmark | `node scripts/proving/benchmark-plonk.js` |
-
----
-
-## Recommended reproduction order
-
-```
-1. npm install                          (inside Docker)
-2. setup_circuits_all.js                → circuits, zkeys, verifier .sol
-3. prep_full_merkle_all_depths.js       → Merkle trees
-4. generate_input_all_depths.js         → circuit inputs
-5. prove_all_depths-groth16.js        → Groth16 proofs (for on-chain tests)
-6. benchmark-groth16.js                 → proving CSV
-7. prove_all_depths-plonk.js           → PLONK zkeys + proofs
-8. benchmark-plonk.js                   → proving CSV
-9. measure_depth_constraints.js         → constraints CSV
-10. deploy + credential-verification    → blockchain CSV (Sepolia / zkSync / local)
-```
-
-Steps 5–8 can be reordered; step 10 requires step 5 (Groth16 proof for depth 11) and steps 2–3 (verifier contract + Merkle root).
 
 ---
 
