@@ -146,7 +146,7 @@ If you cannot use Sepolia / zkSync Sepolia (no testnet ETH), run a **local Hardh
 
 1. In one terminal, start Hardhat node (must listen on `0.0.0.0` and join `zknet`):
 
-   ```bash
+   ```
    docker run -it --rm \
      --network zknet \
      --name hardhat-node \
@@ -154,18 +154,17 @@ If you cannot use Sepolia / zkSync Sepolia (no testnet ETH), run a **local Hardh
      -w /workspace \
      node:18.20.8-bullseye \
      npx hardhat node --hostname 0.0.0.0
-  bash
    ```
 
 2. In another terminal, use the toolchain container (same `zknet` network) and deploy with:
 
-   ```bash
+   ```
    docker run -it --rm \
     --network zknet \
     -v "$PWD":/workspace \
     -w /workspace \
     zk-toolchain:node18-circom216 \
-  bash
+  
    ```
 
 `hardhat.config.js` maps `dockerHardhat` to `http://hardhat-node:8545`.
