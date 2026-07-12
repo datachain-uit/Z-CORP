@@ -252,6 +252,11 @@ Groth16LegacyVerifierDepth11 deployed to: 0x...
 CredentialManager deployed to: 0x...
 Added root: ...
 ```
+**Result CSV:**
+
+```
+results/blockchain/deploy/{timestamp}-deploy-sepolia.csv
+```
 
 **Verify (50 iterations):**
 
@@ -281,6 +286,12 @@ On zkSync, contracts **must** be deployed via `hre.deployer.deploy()` (handled a
 
 ```bash
 npx hardhat run scripts/blockchain/deploy_credential_manager.js --network zkSyncSepolia
+```
+
+**Result CSV:**
+
+```
+results/blockchain/deploy/{timestamp}-deploy-zkSyncSepolia.csv
 ```
 
 **Verify (50 iterations):**
