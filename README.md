@@ -209,118 +209,7 @@ data/inputs/input_depth_{N}_index_0.json
 
 ---
 
-## Experiment 1 — Proving-time benchmark (Groth16)
-
-### Generate Groth16 artifacts
-
-```bash
-node scripts/proving/prove_all_depths-groth16.js
-```
-
-Pipeline steps: inputs → witness → `groth16 prove` → export vkey → local verify.
-
-**Outputs (per depth `N`, index `0`):**
-
-| Artifact | Path |
-|----------|------|
-| Witness | `data/groth16-witness/witness_depth_{N}_index_0.wtns` |
-| Proof | `data/groth16-public-proof/proof_depth_{N}_index_0.json` |
-| Public signals | `data/groth16-public-proof/public_depth_{N}_index_0.json` |
-| Verification key | `data/groth16-vkeys/CredentialVerifier_Depth{N}_vkey.json` |
-
-Skip steps if artifacts already exist:
-
-```bash
-node scripts/proving/prove_all_depths-groth16.js --skip-inputs
-```
-
-### Run Groth16 benchmark
-
-```bash
-node scripts/proving/benchmark-groth16.js
-```
-
-Measures input generation, witness, prove, and verify times per depth.
-
-**Result CSV:**
-
-```
-results/proving/{timestamp}-depth5-15-groth16-index0.csv
-```
-
-Columns: `Depth`, `Input(s)`, `Witness(s)`, `Prove(s)`, `Verify(s)`, `Total(s)`, `Status`
-
----
-
-## Experiment 2 — Proving-time benchmark (PLONK)
-
-### Generate PLONK artifacts
-
-```bash
-node scripts/proving/prove_all_depths-plonk.js
-```
-
-Pipeline steps: inputs → `plonk setup` → witness → `plonk prove` → export vkey → local verify.
-
-**Outputs (per depth `N`, index `0`):**
-
-| Artifact | Path |
-|----------|------|
-| PLONK zkey | `data/plonk-zkeys/CredentialVerifier_Depth{N}_plonk.zkey` |
-| Witness | `data/plonk-witness/witness_depth_{N}_index_0.wtns` |
-| Proof | `data/plonk-public-proof/proof_depth_{N}_index_0.json` |
-| Public signals | `data/plonk-public-proof/public_depth_{N}_index_0.json` |
-| Verification key | `data/plonk-vkeys/CredentialVerifier_Depth{N}_plonk_vkey.json` |
-
-Example setup command (equivalent to step 2 inside the script):
-
-```bash
-snarkjs plonk setup \
-  data/zkp-circuits/CredentialVerifier_Depth11/CredentialVerifier_Depth11.r1cs \
-  pot16_final.ptau \
-  data/plonk-zkeys/CredentialVerifier_Depth11_plonk.zkey
-```
-
-### Run PLONK benchmark
-
-Requires PLONK zkeys from the step above.
-
-```bash
-node scripts/proving/benchmark-plonk.js
-```
-
-**Result CSV:**
-
-```
-results/proving/{timestamp}-depth5-15-plonk-index0.csv
-```
-
----
-
-## Experiment 3 — Constraint-count comparison
-
-Compiles circuits (if needed) and measures Groth16 R1CS constraints vs PLONK expanded gate count.
-
-```bash
-node scripts/constraints/measure_depth_constraints.js
-```
-
-**Result CSV:**
-
-```
-results/constraints/{timestamp}-depth5-15-constraints.csv
-```
-
-Optional flags:
-
-```bash
-node scripts/constraints/measure_depth_constraints.js --skip-compile
-node scripts/constraints/measure_depth_constraints.js --depths 5,11,15
-```
-
----
-
-## Experiment 4 — On-chain deployment and verification
+## Experiment 1 — On-chain deployment and verification
 
 Uses **Groth16** proofs from `data/groth16-public-proof/` and Merkle roots from `data/merkle-trees/`. Default experiment depth: **11**, leaf index **0**, **50** verification calls.
 
@@ -401,6 +290,115 @@ npx hardhat credential-verification --network dockerHardhat \
   --depth 11 \
   --index 0 \
   --iterations 50
+```
+
+---
+
+## Experiment 2 — Constraint-count comparison
+
+Compiles circuits (if needed) and measures Groth16 R1CS constraints vs PLONK expanded gate count.
+
+```bash
+node scripts/constraints/measure_depth_constraints.js
+```
+
+**Result CSV:**
+
+```
+results/constraints/{timestamp}-depth5-15-constraints.csv
+```
+
+Optional flags:
+
+```bash
+node scripts/constraints/measure_depth_constraints.js --skip-compile
+node scripts/constraints/measure_depth_constraints.js --depths 5,11,15
+```
+
+## Experiment 3.1 — Proving-time benchmark (Groth16)
+
+### Generate Groth16 artifacts
+
+```bash
+node scripts/proving/prove_all_depths-groth16.js
+```
+
+Pipeline steps: inputs → witness → `groth16 prove` → export vkey → local verify.
+
+**Outputs (per depth `N`, index `0`):**
+
+| Artifact | Path |
+|----------|------|
+| Witness | `data/groth16-witness/witness_depth_{N}_index_0.wtns` |
+| Proof | `data/groth16-public-proof/proof_depth_{N}_index_0.json` |
+| Public signals | `data/groth16-public-proof/public_depth_{N}_index_0.json` |
+| Verification key | `data/groth16-vkeys/CredentialVerifier_Depth{N}_vkey.json` |
+
+Skip steps if artifacts already exist:
+
+```bash
+node scripts/proving/prove_all_depths-groth16.js --skip-inputs
+```
+
+### Run Groth16 benchmark
+
+```bash
+node scripts/proving/benchmark-groth16.js
+```
+
+Measures input generation, witness, prove, and verify times per depth.
+
+**Result CSV:**
+
+```
+results/proving/{timestamp}-depth5-15-groth16-index0.csv
+```
+
+Columns: `Depth`, `Input(s)`, `Witness(s)`, `Prove(s)`, `Verify(s)`, `Total(s)`, `Status`
+
+---
+
+## Experiment 3.2 — Proving-time benchmark (PLONK)
+
+### Generate PLONK artifacts
+
+```bash
+node scripts/proving/prove_all_depths-plonk.js
+```
+
+Pipeline steps: inputs → `plonk setup` → witness → `plonk prove` → export vkey → local verify.
+
+**Outputs (per depth `N`, index `0`):**
+
+| Artifact | Path |
+|----------|------|
+| PLONK zkey | `data/plonk-zkeys/CredentialVerifier_Depth{N}_plonk.zkey` |
+| Witness | `data/plonk-witness/witness_depth_{N}_index_0.wtns` |
+| Proof | `data/plonk-public-proof/proof_depth_{N}_index_0.json` |
+| Public signals | `data/plonk-public-proof/public_depth_{N}_index_0.json` |
+| Verification key | `data/plonk-vkeys/CredentialVerifier_Depth{N}_plonk_vkey.json` |
+
+Example setup command (equivalent to step 2 inside the script):
+
+```bash
+snarkjs plonk setup \
+  data/zkp-circuits/CredentialVerifier_Depth11/CredentialVerifier_Depth11.r1cs \
+  pot16_final.ptau \
+  data/plonk-zkeys/CredentialVerifier_Depth11_plonk.zkey
+```
+
+### Run PLONK benchmark
+
+Requires PLONK zkeys from the step above.
+
+```bash
+node scripts/proving/benchmark-plonk.js
+```
+
+**Result CSV:**
+
+```
+results/proving/{timestamp}-depth5-15-plonk-index0.csv
 ```
 
 ---
