@@ -153,15 +153,19 @@ If you cannot use Sepolia / zkSync Sepolia (no testnet ETH), run a **local Hardh
      -v "$PWD":/workspace \
      -w /workspace \
      node:18.20.8-bullseye \
-     bash -c "npm install && npx hardhat node --hostname 0.0.0.0"
+     npx hardhat node --hostname 0.0.0.0
+  bash
    ```
 
 2. In another terminal, use the toolchain container (same `zknet` network) and deploy with:
 
    ```bash
-   npx hardhat run scripts/blockchain/deploy_credential_manager.js --network dockerHardhat
-   npx hardhat credential-verification --network dockerHardhat \
-     --manager 0xYOUR_MANAGER_ADDRESS --depth 11 --index 0 --iterations 50
+   docker run -it --rm \
+    --network zknet \
+    -v "$PWD":/workspace \
+    -w /workspace \
+    zk-toolchain:node18-circom216 \
+  bash
    ```
 
 `hardhat.config.js` maps `dockerHardhat` to `http://hardhat-node:8545`.
@@ -237,7 +241,7 @@ Uses **Groth16** proofs from `data/groth16-public-proof/` and Merkle roots from 
 **Deploy:**
 
 ```bash
-npx hardhat run scripts/blockchain/deploy_credential_manager.js --network sepolia 11
+npx hardhat run scripts/blockchain/deploy_credential_manager.js --network sepolia
 ```
 
 Example output:
@@ -276,7 +280,7 @@ On zkSync, contracts **must** be deployed via `hre.deployer.deploy()` (handled a
 **Deploy:**
 
 ```bash
-npx hardhat run scripts/blockchain/deploy_credential_manager.js --network zkSyncSepolia 11
+npx hardhat run scripts/blockchain/deploy_credential_manager.js --network zkSyncSepolia
 ```
 
 **Verify (50 iterations):**
@@ -302,7 +306,7 @@ results/blockchain/{timestamp}-11-50-zkSyncSepolia.csv
 ### Local Hardhat (`dockerHardhat`)
 
 ```bash
-npx hardhat run scripts/blockchain/deploy_credential_manager.js --network dockerHardhat 11
+npx hardhat run scripts/blockchain/deploy_credential_manager.js --network dockerHardhat
 
 npx hardhat credential-verification --network dockerHardhat \
   --manager 0xYOUR_CREDENTIAL_MANAGER_ADDRESS \
