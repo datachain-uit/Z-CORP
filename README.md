@@ -327,6 +327,24 @@ npx hardhat credential-verification --network dockerHardhat \
 
 ---
 
+### Published experimental results
+
+The on-chain evaluation was conducted in two measurement campaigns. Each CSV file contains 50 verification attempts and records the iteration number, gas consumption, gas price, transaction latency, execution status, and error message, where applicable.
+
+| Campaign | Network | Raw transaction measurements | Result figure |
+|---|---|---|---|
+| Original campaign, depth 5 | Ethereum Sepolia | [Window 1](results/blockchain/paper-raw-verification-txs-fig5/20250430T030734-5-50-sepolia.csv)<br>[Window 2](results/blockchain/paper-raw-verification-txs-fig5/20250430T090921-5-50-sepolia.csv)<br>[Window 3](results/blockchain/paper-raw-verification-txs-fig5/20250430T151108-5-50-sepolia.csv) | [Figure 5.1 (PDF)](results/blockchain/paper-raw-verification-txs-fig5/Figure_5.1.pdf) |
+| Original campaign, depth 5 | zkSync Sepolia | [Window 1](results/blockchain/paper-raw-verification-txs-fig5/20250430T032458-5-50-zkSyncSepolia.csv)<br>[Window 2](results/blockchain/paper-raw-verification-txs-fig5/20250430T092847-5-50-zkSyncSepolia.csv)<br>[Window 3](results/blockchain/paper-raw-verification-txs-fig5/20250430T152936-5-50-zkSyncSepolia.csv) | [Figure 5.1 (PDF)](results/blockchain/paper-raw-verification-txs-fig5/Figure_5.1.pdf) |
+| Follow-up campaign, depth 11 | Ethereum Sepolia | [Window 1](results/blockchain/new-verification-txs/20260711T091246-11-50-sepolia.csv)<br>[Window 2](results/blockchain/new-verification-txs/20260711T131457-11-50-sepolia.csv)<br>[Window 3](results/blockchain/new-verification-txs/20260712T030525-11-50-sepolia.csv) | [Figure 5.2 (PDF)](results/blockchain/new-verification-txs/Figure_5.2.pdf) |
+| Follow-up campaign, depth 11 | zkSync Sepolia | [Window 1](results/blockchain/new-verification-txs/20260711T092751-11-50-zkSyncSepolia.csv)<br>[Window 2](results/blockchain/new-verification-txs/20260711T132711-11-50-zkSyncSepolia.csv)<br>[Window 3](results/blockchain/new-verification-txs/20260712T031611-11-50-zkSyncSepolia.csv) | [Figure 5.2 (PDF)](results/blockchain/new-verification-txs/Figure_5.2.pdf) |
+
+Complete artifact directories:
+
+- [Original depth-5 measurement campaign](results/blockchain/paper-raw-verification-txs-fig5/)
+- [Follow-up depth-11 measurement campaign](results/blockchain/new-verification-txs/)
+
+---
+
 ## Experiment 2 — Constraint-count comparison
 
 Compiles circuits (if needed) and measures Groth16 R1CS constraints vs PLONK expanded gate count.
@@ -347,6 +365,37 @@ Optional flags:
 node scripts/constraints/measure_depth_constraints.js --skip-compile
 node scripts/constraints/measure_depth_constraints.js --depths 5,11,15
 ```
+
+---
+
+### Published experimental results
+
+The following table reports the Groth16 R1CS constraint count and the corresponding expanded PLONK gate count for Merkle-tree depths 5–15. The number of leaves is \(2^d\), where \(d\) is the tree depth.
+
+| Depth | Leaves | Groth16 constraints | PLONK expanded gates | PLONK/Groth16 ratio |
+|---:|---:|---:|---:|---:|
+| 5 | 32 | 1,507 | 19,222 | 12.76 |
+| 6 | 64 | 1,749 | 21,696 | 12.40 |
+| 7 | 128 | 1,991 | 24,170 | 12.14 |
+| 8 | 256 | 2,233 | 26,644 | 11.93 |
+| 9 | 512 | 2,475 | 29,118 | 11.76 |
+| 10 | 1,024 | 2,717 | 31,592 | 11.63 |
+| 11 | 2,048 | 2,959 | 34,066 | 11.51 |
+| 12 | 4,096 | 3,201 | 36,540 | 11.42 |
+| 13 | 8,192 | 3,443 | 39,014 | 11.33 |
+| 14 | 16,384 | 3,685 | 41,488 | 11.26 |
+| 15 | 32,768 | 3,927 | 43,962 | 11.19 |
+
+The repeated measurement runs produced the same structural constraint and gate counts; only circuit compilation time varied between runs.
+
+| Artifact | Link |
+|---|---|
+| Constraint measurement, run 1 | [20260710T153602-depth5-15-constraints.csv](results/constraints/20260710T153602-depth5-15-constraints.csv) |
+| Constraint measurement, run 2 | [20260711T054936-depth5-15-constraints.csv](results/constraints/20260711T054936-depth5-15-constraints.csv) |
+| Constraint-growth visualization | [Figure 6 (PDF)](results/constraints/Figure_6.pdf) |
+| Complete artifact directory | [results/constraints](results/constraints/) |
+
+---
 
 ## Experiment 3.1 — Proving-time benchmark (Groth16)
 
@@ -388,6 +437,36 @@ results/proving/{timestamp}-depth5-15-groth16-index0.csv
 ```
 
 Columns: `Depth`, `Input(s)`, `Witness(s)`, `Prove(s)`, `Verify(s)`, `Total(s)`, `Status`
+
+---
+
+### Published Groth16 benchmark results
+
+The following table reports Groth16 proving and off-chain verification times across the three experimental devices. All values are in seconds. `D1`, `D2`, and `D3` denote Device #1, Device #2, and Device #3, respectively.
+
+| Depth | D1 prove | D1 verify | D2 prove | D2 verify | D3 prove | D3 verify |
+|---:|---:|---:|---:|---:|---:|---:|
+| 5 | 0.476 | 0.362 | 1.062 | 0.776 | 1.889 | 1.387 |
+| 6 | 0.493 | 0.284 | 1.003 | 0.758 | 1.748 | 1.392 |
+| 7 | 0.507 | 0.287 | 1.042 | 0.791 | 1.868 | 1.281 |
+| 8 | 0.558 | 0.285 | 1.098 | 0.780 | 1.855 | 1.325 |
+| 9 | 0.566 | 0.289 | 1.073 | 0.772 | 1.801 | 1.314 |
+| 10 | 0.566 | 0.282 | 1.161 | 0.784 | 1.814 | 1.274 |
+| 11 | 0.588 | 0.281 | 1.112 | 0.758 | 1.858 | 1.288 |
+| 12 | 0.623 | 0.284 | 1.060 | 0.780 | 1.858 | 1.292 |
+| 13 | 0.623 | 0.283 | 1.025 | 0.760 | 1.855 | 1.292 |
+| 14 | 0.637 | 0.283 | 1.121 | 0.775 | 1.982 | 1.376 |
+| 15 | 0.651 | 0.289 | 1.114 | 0.798 | 1.914 | 1.308 |
+
+All Groth16 benchmark executions completed successfully. The raw CSV files additionally report input-generation time, witness-generation time, total execution time, and execution status.
+
+| Artifact | Link |
+|---|---|
+| Device #1 Groth16 measurements | [device1-groth16.csv](results/proving/paper-raw-proving-fig7-8/device1-groth16.csv) |
+| Device #2 Groth16 measurements | [device2-groth16.csv](results/proving/paper-raw-proving-fig7-8/device2-groth16.csv) |
+| Device #3 Groth16 measurements | [device3-groth16.csv](results/proving/paper-raw-proving-fig7-8/device3-groth16.csv) |
+| Groth16 benchmark visualization | [Figure 7 (PDF)](results/proving/paper-raw-proving-fig7-8/Figure_7.pdf) |
+| Complete artifact directory | [paper-raw-proving-fig7-8](results/proving/paper-raw-proving-fig7-8/) |
 
 ---
 
@@ -433,6 +512,36 @@ node scripts/proving/benchmark-plonk.js
 ```
 results/proving/{timestamp}-depth5-15-plonk-index0.csv
 ```
+
+---
+
+### Published PLONK benchmark results
+
+The following table reports PLONK proving and off-chain verification times across the three experimental devices. All values are in seconds. `D1`, `D2`, and `D3` denote Device #1, Device #2, and Device #3, respectively.
+
+| Depth | D1 prove | D1 verify | D2 prove | D2 verify | D3 prove | D3 verify |
+|---:|---:|---:|---:|---:|---:|---:|
+| 5 | 17.961 | 0.350 | 24.502 | 0.782 | 51.748 | 1.301 |
+| 6 | 17.012 | 0.327 | 24.457 | 0.803 | 50.109 | 1.283 |
+| 7 | 17.923 | 0.328 | 24.152 | 0.803 | 49.958 | 1.281 |
+| 8 | 17.092 | 0.332 | 23.955 | 0.827 | 50.710 | 1.331 |
+| 9 | 17.036 | 0.320 | 23.606 | 0.773 | 50.752 | 1.338 |
+| 10 | 16.943 | 0.443 | 24.793 | 0.740 | 50.437 | 1.323 |
+| 11 | 33.417 | 0.335 | 46.516 | 0.803 | 98.949 | 1.288 |
+| 12 | 33.941 | 0.326 | 46.551 | 0.830 | 89.457 | 1.193 |
+| 13 | 32.565 | 0.352 | 47.624 | 0.770 | 100.421 | 1.294 |
+| 14 | 32.377 | 0.336 | 46.782 | 0.788 | 96.836 | 1.453 |
+| 15 | 32.824 | 0.333 | 47.494 | 0.755 | 97.541 | 1.205 |
+
+All PLONK benchmark executions completed successfully. The raw CSV files additionally report input-generation time, witness-generation time, total execution time, and execution status.
+
+| Artifact | Link |
+|---|---|
+| Device #1 PLONK measurements | [device1-plonk.csv](results/proving/paper-raw-proving-fig7-8/device1-plonk.csv) |
+| Device #2 PLONK measurements | [device2-plonk.csv](results/proving/paper-raw-proving-fig7-8/device2-plonk.csv) |
+| Device #3 PLONK measurements | [device3-plonk.csv](results/proving/paper-raw-proving-fig7-8/device3-plonk.csv) |
+| PLONK benchmark visualization | [Figure 8 (PDF)](results/proving/paper-raw-proving-fig7-8/Figure_8.pdf) |
+| Complete artifact directory | [paper-raw-proving-fig7-8](results/proving/paper-raw-proving-fig7-8/) |
 
 ---
 
