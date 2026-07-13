@@ -51,3 +51,6 @@ plonk*public*.json
 
 # Temporary results
 results/tmp/
+
+check-gas/results/
+check-gas/*
