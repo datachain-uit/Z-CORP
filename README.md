@@ -355,6 +355,7 @@ This Hardhat test checks that `CredentialManager.addRoot` is protected by the `o
 
 ```bash
 npx hardhat test test/CredentialManager.issuerAccess.js
+```
 
 ---
 
