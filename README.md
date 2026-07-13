@@ -345,6 +345,19 @@ Complete artifact directories:
 
 ---
 
+### Issuer access test (`addRoot` requires `setIssuer`)
+
+This Hardhat test checks that `CredentialManager.addRoot` is protected by the `onlyIssuer` modifier: an account that has not been granted issuer status via `setIssuer` cannot register a Merkle root.
+
+**Test file:** `test/CredentialManager.issuerAccess.js`
+
+**Run (inside the toolchain container or any environment with Hardhat installed):**
+
+```bash
+npx hardhat test test/CredentialManager.issuerAccess.js
+
+---
+
 ## Experiment 2 — Constraint-count comparison
 
 Compiles circuits (if needed) and measures Groth16 R1CS constraints vs PLONK expanded gate count.
