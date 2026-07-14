@@ -71,10 +71,14 @@ Most generated artifacts under `data/` and `results/` are listed in `.gitignore`
 
 ### 1. Powers-of-tau file
 
-Place **`pot16_final.ptau`** in the project root. It is required for:
+A ready-to-use sample **`pot16_final.ptau`** file is included in the repository root. Reviewers can therefore run the setup and proving pipelines without generating or downloading an additional Powers-of-Tau file.
+
+The included file is used by:
 
 - Groth16 trusted setup (`setup_circuits_all.js`)
 - PLONK setup (`prove_all_depths-plonk.js`)
+
+The bundled file is provided for artifact evaluation and experimental reproduction. A separately generated ceremony artifact should be used for a production deployment.
 
 ### 2. Hardhat wallet (`secret.json`)
 
@@ -82,12 +86,14 @@ Create `secret.json` at the project root (this file is gitignored):
 
 ```json
 {
-  "privateKey": "0xYOUR_PRIVATE_KEY_HERE"
+  "privateKey": "0x1111111111111111111111111111111111111111111111111111111111111111"
 }
 ```
 
 - **Sepolia** and **zkSync Sepolia** require a funded testnet account with Sepolia ETH (and ETH on zkSync Sepolia for L2 gas).
 - Do **not** commit real keys. Use your own wallet or a dedicated test account.
+
+To run the public-testnet experiments, replace the dummy value with the private key of a dedicated funded testnet account. Sepolia and zkSync Sepolia require testnet ETH for deployment and transaction fees. Never use a production or mainnet wallet key.
 
 ### 3. Seed data
 
@@ -116,9 +122,28 @@ Steps 5–8 can be reordered; step 10 requires step 5 (Groth16 proof for depth 1
 
 ## Installation
 
-### Step 1 — Toolchain container (recommended)
+### Step 1 — Build and start the toolchain container (recommended)
 
-Clone the repository, then start the ZK toolchain container:
+Clone the repository and enter the project directory:
+
+```bash
+git clone https://github.com/datachain-uit/Z-CORP.git
+cd Z-CORP
+```
+
+Build the Docker image from the `Dockerfile` included at the repository root:
+
+```bash
+docker build -t zk-toolchain:node18-circom216 .
+```
+
+Create the shared Docker network if it does not already exist:
+
+```bash
+docker network inspect zknet >/dev/null 2>&1 || docker network create zknet
+```
+
+Start the ZK toolchain container:
 
 ```bash
 docker run -it --rm \
@@ -129,14 +154,13 @@ docker run -it --rm \
   bash
 ```
 
-> **Note:** Create the Docker network first if it does not exist:  
-> `docker network create zknet`
-
-Inside the container:
+Inside the container, install the project dependencies:
 
 ```bash
 npm install
 ```
+
+Rebuild the image with the same `docker build` command whenever the repository's `Dockerfile` or toolchain dependencies are changed.
 
 Use **Node.js 18.20.8** and **Hardhat ^2.23.0** as pinned in `package.json`. Newer Hardhat major versions may break zkSync plugin compatibility on Node 18.
 
