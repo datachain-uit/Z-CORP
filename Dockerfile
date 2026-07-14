@@ -1,4 +1,4 @@
-#FROM node:18.20.8-bullseye
+FROM node:18.20.8-bullseye
 
 # Install dependencies
 RUN apt-get update && apt-get install -y \
