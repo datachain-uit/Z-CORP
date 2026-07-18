@@ -358,15 +358,15 @@ The on-chain evaluation was conducted in two measurement campaigns. Each CSV fil
 
 | Campaign | Network | Raw transaction measurements | Result figure |
 |---|---|---|---|
-| Original campaign, depth 5 | Ethereum Sepolia | [Window 1](results/blockchain/paper-raw-verification-txs-fig5/20250430T030734-5-50-sepolia.csv)<br>[Window 2](results/blockchain/paper-raw-verification-txs-fig5/20250430T090921-5-50-sepolia.csv)<br>[Window 3](results/blockchain/paper-raw-verification-txs-fig5/20250430T151108-5-50-sepolia.csv) | [Figure 5.1 (PDF)](results/blockchain/paper-raw-verification-txs-fig5/Figure_5.1.pdf) |
-| Original campaign, depth 5 | zkSync Sepolia | [Window 1](results/blockchain/paper-raw-verification-txs-fig5/20250430T032458-5-50-zkSyncSepolia.csv)<br>[Window 2](results/blockchain/paper-raw-verification-txs-fig5/20250430T092847-5-50-zkSyncSepolia.csv)<br>[Window 3](results/blockchain/paper-raw-verification-txs-fig5/20250430T152936-5-50-zkSyncSepolia.csv) | [Figure 5.1 (PDF)](results/blockchain/paper-raw-verification-txs-fig5/Figure_5.1.pdf) |
-| Follow-up campaign, depth 11 | Ethereum Sepolia | [Window 1](results/blockchain/new-verification-txs/20260711T091246-11-50-sepolia.csv)<br>[Window 2](results/blockchain/new-verification-txs/20260711T131457-11-50-sepolia.csv)<br>[Window 3](results/blockchain/new-verification-txs/20260712T030525-11-50-sepolia.csv) | [Figure 5.2 (PDF)](results/blockchain/new-verification-txs/Figure_5.2.pdf) |
-| Follow-up campaign, depth 11 | zkSync Sepolia | [Window 1](results/blockchain/new-verification-txs/20260711T092751-11-50-zkSyncSepolia.csv)<br>[Window 2](results/blockchain/new-verification-txs/20260711T132711-11-50-zkSyncSepolia.csv)<br>[Window 3](results/blockchain/new-verification-txs/20260712T031611-11-50-zkSyncSepolia.csv) | [Figure 5.2 (PDF)](results/blockchain/new-verification-txs/Figure_5.2.pdf) |
+| Original campaign, depth 5 | Ethereum Sepolia | [Window 1](results/blockchain/4.1.2-Proof-verification-behavior-across-time-windows-1/20250430T030734-5-50-sepolia.csv)<br>[Window 2](results/blockchain/4.1.2-Proof-verification-behavior-across-time-windows-1/20250430T090921-5-50-sepolia.csv)<br>[Window 3](results/blockchain/4.1.2-Proof-verification-behavior-across-time-windows-1/20250430T151108-5-50-sepolia.csv) | [Figure 5.1 (PDF)](results/blockchain/4.1.2-Proof-verification-behavior-across-time-windows-1/Figure_5.1.pdf) |
+| Original campaign, depth 5 | zkSync Sepolia | [Window 1](results/blockchain/4.1.2-Proof-verification-behavior-across-time-windows-1/20250430T032458-5-50-zkSyncSepolia.csv)<br>[Window 2](results/blockchain/4.1.2-Proof-verification-behavior-across-time-windows-1/20250430T092847-5-50-zkSyncSepolia.csv)<br>[Window 3](results/blockchain/4.1.2-Proof-verification-behavior-across-time-windows-1/20250430T152936-5-50-zkSyncSepolia.csv) | [Figure 5.1 (PDF)](results/blockchain/4.1.2-Proof-verification-behavior-across-time-windows-1/Figure_5.1.pdf) |
+| Follow-up campaign, depth 11 | Ethereum Sepolia | [Window 1](results/blockchain/4.1.2-Proof-verification-behavior-across-time-windows-2/20260711T091246-11-50-sepolia.csv)<br>[Window 2](results/blockchain/4.1.2-Proof-verification-behavior-across-time-windows-2/20260711T131457-11-50-sepolia.csv)<br>[Window 3](results/blockchain/4.1.2-Proof-verification-behavior-across-time-windows-2/20260712T030525-11-50-sepolia.csv) | [Figure 5.2 (PDF)](results/blockchain/4.1.2-Proof-verification-behavior-across-time-windows-2/Figure_5.2.pdf) |
+| Follow-up campaign, depth 11 | zkSync Sepolia | [Window 1](results/blockchain/4.1.2-Proof-verification-behavior-across-time-windows-2/20260711T092751-11-50-zkSyncSepolia.csv)<br>[Window 2](results/blockchain/4.1.2-Proof-verification-behavior-across-time-windows-2/20260711T132711-11-50-zkSyncSepolia.csv)<br>[Window 3](results/blockchain/4.1.2-Proof-verification-behavior-across-time-windows-2/20260712T031611-11-50-zkSyncSepolia.csv) | [Figure 5.2 (PDF)](results/blockchain/4.1.2-Proof-verification-behavior-across-time-windows-2/Figure_5.2.pdf) |
 
 Complete artifact directories:
 
-- [Original depth-5 measurement campaign](results/blockchain/paper-raw-verification-txs-fig5/)
-- [Follow-up depth-11 measurement campaign](results/blockchain/new-verification-txs/)
+- [Original depth-5 measurement campaign](results/blockchain/4.1.2-Proof-verification-behavior-across-time-windows-1/)
+- [Follow-up depth-11 measurement campaign](results/blockchain/4.1.2-Proof-verification-behavior-across-time-windows-2/)
 
 ---
 
@@ -429,10 +429,9 @@ The repeated measurement runs produced the same structural constraint and gate c
 
 | Artifact | Link |
 |---|---|
-| Constraint measurement, run 1 | [20260710T153602-depth5-15-constraints.csv](results/constraints/20260710T153602-depth5-15-constraints.csv) |
-| Constraint measurement, run 2 | [20260711T054936-depth5-15-constraints.csv](results/constraints/20260711T054936-depth5-15-constraints.csv) |
-| Constraint-growth visualization | [Figure 6 (PDF)](results/constraints/Figure_6.pdf) |
-| Complete artifact directory | [results/constraints](results/constraints/) |
+| Constraint measurement, run | [20260711T054936-depth5-15-constraints.csv](results/constraints/4.2.1-The-Growth-of-Depth-Parameterized-Circuit/20260711T054936-depth5-15-constraints.csv) |
+| Constraint-growth visualization | [Figure 6 (PDF)](results/constraints/4.2.1-The-Growth-of-Depth-Parameterized-Circuit/Figure_6.pdf) |
+| Complete artifact directory | [results/constraints](results/constraints/4.2.1-The-Growth-of-Depth-Parameterized-Circuit/) |
 
 ---
 
@@ -528,11 +527,11 @@ All Groth16 benchmark executions completed successfully. The raw CSV files repor
 
 | Artifact | Link |
 |---|---|
-| Device #1 Groth16 measurements | [device1-groth16.csv](results/proving/paper-raw-proving-fig7-8/device1-groth16.csv) |
-| Device #2 Groth16 measurements | [device2-groth16.csv](results/proving/paper-raw-proving-fig7-8/device2-groth16.csv) |
-| Device #3 Groth16 measurements | [device3-groth16.csv](results/proving/paper-raw-proving-fig7-8/device3-groth16.csv) |
-| Groth16 benchmark visualization | [Figure 7 (PDF)](results/proving/paper-raw-proving-fig7-8/Figure_7.pdf) |
-| Complete artifact directory | [paper-raw-proving-fig7-8](results/proving/paper-raw-proving-fig7-8/) |
+| Device #1 Groth16 measurements | [device1-groth16.csv](results/proving/4.2.2-Groth16-Prover-Side-performance/device1-groth16.csv) |
+| Device #2 Groth16 measurements | [device2-groth16.csv](results/proving/4.2.2-Groth16-Prover-Side-performance/device2-groth16.csv) |
+| Device #3 Groth16 measurements | [device3-groth16.csv](results/proving/4.2.2-Groth16-Prover-Side-performance/device3-groth16.csv) |
+| Groth16 benchmark visualization | [Figure 7 (PDF)](results/proving/4.2.2-Groth16-Prover-Side-performance/Figure_7.pdf) |
+| Complete artifact directory | [paper-raw-proving-fig7-8](results/proving/4.2.2-Groth16-Prover-Side-performance/) |
 
 ---
 
@@ -630,11 +629,11 @@ All PLONK benchmark executions completed successfully. The raw CSV files report 
 
 | Artifact | Link |
 |---|---|
-| Device #1 PLONK measurements | [device1-plonk.csv](results/proving/paper-raw-proving-fig7-8/device1-plonk.csv) |
-| Device #2 PLONK measurements | [device2-plonk.csv](results/proving/paper-raw-proving-fig7-8/device2-plonk.csv) |
-| Device #3 PLONK measurements | [device3-plonk.csv](results/proving/paper-raw-proving-fig7-8/device3-plonk.csv) |
-| PLONK benchmark visualization | [Figure 8 (PDF)](results/proving/paper-raw-proving-fig7-8/Figure_8.pdf) |
-| Complete artifact directory | [paper-raw-proving-fig7-8](results/proving/paper-raw-proving-fig7-8/) |
+| Device #1 PLONK measurements | [device1-plonk.csv](results/proving/4.2.3-PLONK-Prover-Side-performance/device1-plonk.csv) |
+| Device #2 PLONK measurements | [device2-plonk.csv](results/proving/4.2.3-PLONK-Prover-Side-performance/device2-plonk.csv) |
+| Device #3 PLONK measurements | [device3-plonk.csv](results/proving/4.2.3-PLONK-Prover-Side-performance/device3-plonk.csv) |
+| PLONK benchmark visualization | [Figure 8 (PDF)](results/proving/4.2.3-PLONK-Prover-Side-performance/Figure_8.pdf) |
+| Complete artifact directory | [paper-raw-proving-fig7-8](results/proving/4.2.3-PLONK-Prover-Side-performance/) |
 
 ---
 
