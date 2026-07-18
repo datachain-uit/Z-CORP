@@ -531,7 +531,7 @@ All Groth16 benchmark executions completed successfully. The raw CSV files repor
 | Device #2 Groth16 measurements | [device2-groth16.csv](results/proving/4.2.2-Groth16-Prover-Side-performance/device2-groth16.csv) |
 | Device #3 Groth16 measurements | [device3-groth16.csv](results/proving/4.2.2-Groth16-Prover-Side-performance/device3-groth16.csv) |
 | Groth16 benchmark visualization | [Figure 7 (PDF)](results/proving/4.2.2-Groth16-Prover-Side-performance/Figure_7.pdf) |
-| Complete artifact directory | [paper-raw-proving-fig7-8](results/proving/4.2.2-Groth16-Prover-Side-performance/) |
+| Complete artifact directory | [4.2.2-Groth16-Prover-Side-performance](results/proving/4.2.2-Groth16-Prover-Side-performance/) |
 
 ---
 
@@ -633,7 +633,7 @@ All PLONK benchmark executions completed successfully. The raw CSV files report 
 | Device #2 PLONK measurements | [device2-plonk.csv](results/proving/4.2.3-PLONK-Prover-Side-performance/device2-plonk.csv) |
 | Device #3 PLONK measurements | [device3-plonk.csv](results/proving/4.2.3-PLONK-Prover-Side-performance/device3-plonk.csv) |
 | PLONK benchmark visualization | [Figure 8 (PDF)](results/proving/4.2.3-PLONK-Prover-Side-performance/Figure_8.pdf) |
-| Complete artifact directory | [paper-raw-proving-fig7-8](results/proving/4.2.3-PLONK-Prover-Side-performance/) |
+| Complete artifact directory | [4.2.3-PLONK-Prover-Side-performance](results/proving/4.2.3-PLONK-Prover-Side-performance/) |
 
 ---
 
