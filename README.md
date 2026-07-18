@@ -59,6 +59,7 @@ Z-CORP/
 │   ├── constraints/             # Constraint measurement
 │   └── blockchain/              # Deploy + on-chain verification
 ├── hardhat.config.js
+├── Dockerfile
 ├── pot16_final.ptau             # Powers-of-tau (NOT in git — see Prerequisites)
 └── secret.json                  # Deployer private key (NOT in git — see below)
 ```
