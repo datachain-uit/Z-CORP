@@ -365,7 +365,7 @@ The on-chain evaluation was conducted in a campaign. Each CSV file contains 50 v
 
 Complete artifact directories:
 
-- [Meeasurement campaign](results/blockchain/4.1.2-Proof-verification-behavior-across-time-windows/)
+- [Measurement campaign](results/blockchain/4.1.2-Proof-verification-behavior-across-time-windows/)
 
 ---
 
