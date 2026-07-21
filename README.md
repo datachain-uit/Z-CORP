@@ -360,7 +360,7 @@ The on-chain evaluation was conducted in a campaign. Each CSV file contains 50 v
 
 | Campaign | Network | Raw transaction measurements | Result figure |
 |---|---|---|---|
-| Campaign, depth 11 | Ethereum Sepolia | [Window 1](results/blockchain/4.1.2-Proof-verification-behavior-across-time-windows/20260711T091246-11-50-sepolia.csv)<br>[Window 2](results/blockchain/4.1.2-Proof-verification-behavior-across-time-windows/20260711T131457-11-50-sepolia.csv)<br>[Window 3](results/blockchain/4.1.2-Proof-verification-behavior-across-time-windows/20260712T030525-11-50-sepolia.csv) | [Figure 5.2 (PDF)](results/blockchain/4.1.2-Proof-verification-behavior-across-time-windows/Figure_5.2.pdf) |
+| Campaign, depth 11 | Ethereum Sepolia | [Window 1](results/blockchain/4.1.2-Proof-verification-behavior-across-time-windows/20260711T091246-11-50-sepolia.csv)<br>[Window 2](results/blockchain/4.1.2-Proof-verification-behavior-across-time-windows/20260711T131457-11-50-sepolia.csv)<br>[Window 3](results/blockchain/4.1.2-Proof-verification-behavior-across-time-windows/20260712T030525-11-50-sepolia.csv) | [Figure 5 (PDF)](results/blockchain/4.1.2-Proof-verification-behavior-across-time-windows/Figure_5.pdf) |
 | Campaign, depth 11 | zkSync Sepolia | [Window 1](results/blockchain/4.1.2-Proof-verification-behavior-across-time-windows/20260711T092751-11-50-zkSyncSepolia.csv)<br>[Window 2](results/blockchain/4.1.2-Proof-verification-behavior-across-time-windows/20260711T132711-11-50-zkSyncSepolia.csv)<br>[Window 3](results/blockchain/4.1.2-Proof-verification-behavior-across-time-windows/20260712T031611-11-50-zkSyncSepolia.csv) | [Figure 5 (PDF)](results/blockchain/4.1.2-Proof-verification-behavior-across-time-windows/Figure_5.pdf) |
 
 Complete artifact directories:
