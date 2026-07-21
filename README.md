@@ -356,19 +356,16 @@ npx hardhat credential-verification --network dockerHardhat \
 
 ### Published experimental results
 
-The on-chain evaluation was conducted in two measurement campaigns. Each CSV file contains 50 verification attempts and records the iteration number, gas consumption, gas price, transaction latency, execution status, and error message, where applicable.
+The on-chain evaluation was conducted in a campaign. Each CSV file contains 50 verification attempts and records the iteration number, gas consumption, gas price, transaction latency, execution status, and error message, where applicable.
 
 | Campaign | Network | Raw transaction measurements | Result figure |
 |---|---|---|---|
-| Original campaign, depth 5 | Ethereum Sepolia | [Window 1](results/blockchain/4.1.2-Proof-verification-behavior-across-time-windows-1/20250430T030734-5-50-sepolia.csv)<br>[Window 2](results/blockchain/4.1.2-Proof-verification-behavior-across-time-windows-1/20250430T090921-5-50-sepolia.csv)<br>[Window 3](results/blockchain/4.1.2-Proof-verification-behavior-across-time-windows-1/20250430T151108-5-50-sepolia.csv) | [Figure 5.1 (PDF)](results/blockchain/4.1.2-Proof-verification-behavior-across-time-windows-1/Figure_5.1.pdf) |
-| Original campaign, depth 5 | zkSync Sepolia | [Window 1](results/blockchain/4.1.2-Proof-verification-behavior-across-time-windows-1/20250430T032458-5-50-zkSyncSepolia.csv)<br>[Window 2](results/blockchain/4.1.2-Proof-verification-behavior-across-time-windows-1/20250430T092847-5-50-zkSyncSepolia.csv)<br>[Window 3](results/blockchain/4.1.2-Proof-verification-behavior-across-time-windows-1/20250430T152936-5-50-zkSyncSepolia.csv) | [Figure 5.1 (PDF)](results/blockchain/4.1.2-Proof-verification-behavior-across-time-windows-1/Figure_5.1.pdf) |
-| Follow-up campaign, depth 11 | Ethereum Sepolia | [Window 1](results/blockchain/4.1.2-Proof-verification-behavior-across-time-windows-2/20260711T091246-11-50-sepolia.csv)<br>[Window 2](results/blockchain/4.1.2-Proof-verification-behavior-across-time-windows-2/20260711T131457-11-50-sepolia.csv)<br>[Window 3](results/blockchain/4.1.2-Proof-verification-behavior-across-time-windows-2/20260712T030525-11-50-sepolia.csv) | [Figure 5.2 (PDF)](results/blockchain/4.1.2-Proof-verification-behavior-across-time-windows-2/Figure_5.2.pdf) |
-| Follow-up campaign, depth 11 | zkSync Sepolia | [Window 1](results/blockchain/4.1.2-Proof-verification-behavior-across-time-windows-2/20260711T092751-11-50-zkSyncSepolia.csv)<br>[Window 2](results/blockchain/4.1.2-Proof-verification-behavior-across-time-windows-2/20260711T132711-11-50-zkSyncSepolia.csv)<br>[Window 3](results/blockchain/4.1.2-Proof-verification-behavior-across-time-windows-2/20260712T031611-11-50-zkSyncSepolia.csv) | [Figure 5.2 (PDF)](results/blockchain/4.1.2-Proof-verification-behavior-across-time-windows-2/Figure_5.2.pdf) |
+| Campaign, depth 11 | Ethereum Sepolia | [Window 1](results/blockchain/4.1.2-Proof-verification-behavior-across-time-windows/20260711T091246-11-50-sepolia.csv)<br>[Window 2](results/blockchain/4.1.2-Proof-verification-behavior-across-time-windows/20260711T131457-11-50-sepolia.csv)<br>[Window 3](results/blockchain/4.1.2-Proof-verification-behavior-across-time-windows/20260712T030525-11-50-sepolia.csv) | [Figure 5.2 (PDF)](results/blockchain/4.1.2-Proof-verification-behavior-across-time-windows/Figure_5.2.pdf) |
+| Campaign, depth 11 | zkSync Sepolia | [Window 1](results/blockchain/4.1.2-Proof-verification-behavior-across-time-windows/20260711T092751-11-50-zkSyncSepolia.csv)<br>[Window 2](results/blockchain/4.1.2-Proof-verification-behavior-across-time-windows/20260711T132711-11-50-zkSyncSepolia.csv)<br>[Window 3](results/blockchain/4.1.2-Proof-verification-behavior-across-time-windows/20260712T031611-11-50-zkSyncSepolia.csv) | [Figure 5 (PDF)](results/blockchain/4.1.2-Proof-verification-behavior-across-time-windows/Figure_5.pdf) |
 
 Complete artifact directories:
 
-- [Original depth-5 measurement campaign](results/blockchain/4.1.2-Proof-verification-behavior-across-time-windows-1/)
-- [Follow-up depth-11 measurement campaign](results/blockchain/4.1.2-Proof-verification-behavior-across-time-windows-2/)
+- [Meeasurement campaign](results/blockchain/4.1.2-Proof-verification-behavior-across-time-windows/)
 
 ---
 
