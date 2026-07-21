@@ -8,11 +8,12 @@ This repository contains the implementation and experimental artifact accompanyi
 
 ## Experimental scope
 
-The repository supports three experiment groups:
+The repository supports two experiment groups:
 
-1. **On-chain verification** — deploy `CredentialManager` and run Groth16 proof verification on **Ethereum Sepolia** and **zkSync Sepolia** (or locally via Hardhat).
-2. **Proving-time comparison** — benchmark **Groth16** vs **PLONK** across Merkle tree depths **5–15** (full trees, no zero-padding).
-3. **Constraint-count comparison** — measure R1CS constraints (Groth16) vs expanded PLONK gates for depths **5–15**.
+1. **Blockchain-Side Deployment and Verification**: **On-chain verification** — deploy `CredentialManager` and run Groth16 proof verification on **Ethereum Sepolia** and **zkSync Sepolia** (or locally via Hardhat).
+2. **ZKP proving and off-chain verification**
+2.1 **Constraint-count comparison** — measure R1CS constraints (Groth16) vs expanded PLONK gates for depths **5–15**.
+2.2 **Proving-time comparison** — benchmark **Groth16** vs **PLONK** across Merkle tree depths **5–15** (full trees, no zero-padding).
 
 ---
 
@@ -384,7 +385,9 @@ npx hardhat test test/CredentialManager.issuerAccess.js
 
 ---
 
-## Experiment 2 — Constraint-count comparison
+## Experiment 2 - ZKP proving and off-chain verification
+
+### Experiment 2.1 — The Growth of Depth-Parameterized Circuit
 
 Compiles circuits (if needed) and measures Groth16 R1CS constraints vs PLONK expanded gate count.
 
@@ -407,7 +410,7 @@ node scripts/constraints/measure_depth_constraints.js --depths 5,11,15
 
 ---
 
-### Published experimental results
+#### Published experimental results
 
 The following table reports the Groth16 R1CS constraint count and the corresponding expanded PLONK gate count for Merkle-tree depths 5–15. The number of leaves is \(2^d\), where \(d\) is the tree depth.
 
@@ -435,9 +438,9 @@ The repeated measurement runs produced the same structural constraint and gate c
 
 ---
 
-## Experiment 3.1 — Proving-time benchmark (Groth16)
+### Experiment 2.2 — Groth16 Prover-Side performance
 
-### Generate Groth16 artifacts
+#### Generate Groth16 artifacts
 
 ```bash
 node scripts/proving/prove_all_depths-groth16.js
@@ -460,7 +463,7 @@ Skip steps if artifacts already exist:
 node scripts/proving/prove_all_depths-groth16.js --skip-inputs
 ```
 
-### Run Groth16 benchmark
+#### Run Groth16 benchmark
 
 ```bash
 node scripts/proving/benchmark-groth16.js
@@ -478,7 +481,7 @@ Columns: `Depth`, `Input(s)`, `Witness(s)`, `Prove(s)`, `Verify(s)`, `Total(s)`,
 
 ---
 
-### Published Groth16 benchmark results
+#### Published Groth16 benchmark results
 
 **Table — Groth16 proving and verification time across Merkle tree depths on three environments (seconds).** For each `(depth, device)` configuration, values are summarized from repeated runs under the off-chain benchmarking protocol.
 
@@ -535,9 +538,9 @@ All Groth16 benchmark executions completed successfully. The raw CSV files repor
 
 ---
 
-## Experiment 3.2 — Proving-time benchmark (PLONK)
+### Experiment 2.3 — PLONK Prover-Side performance
 
-### Generate PLONK artifacts
+#### Generate PLONK artifacts
 
 ```bash
 node scripts/proving/prove_all_depths-plonk.js
@@ -564,7 +567,7 @@ snarkjs plonk setup \
   data/plonk-zkeys/CredentialVerifier_Depth11_plonk.zkey
 ```
 
-### Run PLONK benchmark
+#### Run PLONK benchmark
 
 Requires PLONK zkeys from the step above.
 
@@ -580,7 +583,7 @@ results/proving/{timestamp}-depth5-15-plonk-index0.csv
 
 ---
 
-### Published PLONK benchmark results
+#### Published PLONK benchmark results
 
 **Table — PLONK proving and verification time across Merkle tree depths on three environments (seconds).** For each `(depth, device)` configuration, values are summarized from repeated runs under the off-chain benchmarking protocol.
 
