@@ -14,8 +14,9 @@ The repository supports two experiment groups:
 
 2. **ZKP proving and off-chain verification**:
 
-  2.1 **Constraint-count comparison** — measure R1CS constraints (Groth16) vs expanded PLONK gates for depths **5–15**.
-  2.2 **Proving-time comparison** — benchmark **Groth16** vs **PLONK** across Merkle tree depths **5–15** (full trees, no zero-padding).
+  2.1. **Constraint-count comparison** — measure R1CS constraints (Groth16) vs expanded PLONK gates for depths **5–15**.
+
+  2.2. **Proving-time comparison** — benchmark **Groth16** vs **PLONK** across Merkle tree depths **5–15** (full trees, no zero-padding).
 
 ---
 
