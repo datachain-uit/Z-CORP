@@ -1,4 +1,4 @@
-# Experiment 4: PLONK prover-side performance
+# Experiment 2.3: PLONK prover-side performance
 
 This experiment generates PLONK proof artifacts and measures input generation,
 witness generation, proof generation, off-chain verification, and total

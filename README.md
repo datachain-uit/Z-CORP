@@ -16,9 +16,9 @@ scripts, and the published experimental measurements used in the paper.
 | Workflow | Scope | Reproduction guide | Published artifacts |
 |---|---|---|---|
 | Blockchain deployment and verification | Deploy `CredentialManager` and execute Groth16 proof verification on Ethereum Sepolia, zkSync Sepolia, or local Hardhat | [Experiment 1](docs/experiments/experiment-1-blockchain.md) | [Blockchain results](results/blockchain/4.1.2-Proof-verification-behavior-across-time-windows/) |
-| Circuit growth | Measure Groth16 R1CS constraints and expanded PLONK gates for Merkle-tree depths 5–15 | [Experiment 2.1](docs/experiments/experiment-2-constraints.md) | [Constraint results](results/constraints/4.2.1-The-Growth-of-Depth-Parameterized-Circuit/) |
-| Groth16 prover-side performance | Benchmark input, witness, proving, and off-chain verification time across depths 5–15 | [Experiment 2.2](docs/experiments/experiment-3-groth16.md) | [Groth16 results](results/proving/4.2.2-Groth16-Prover-Side-performance/) |
-| PLONK prover-side performance | Benchmark input, witness, proving, and off-chain verification time across depths 5–15 | [Experiment 2.3](docs/experiments/experiment-4-plonk.md) | [PLONK results](results/proving/4.2.3-PLONK-Prover-Side-performance/) |
+| Circuit growth | Measure Groth16 R1CS constraints and expanded PLONK gates for Merkle-tree depths 5–15 | [Experiment 2.1](docs/experiments/experiment-2.1-constraints.md) | [Constraint results](results/constraints/4.2.1-The-Growth-of-Depth-Parameterized-Circuit/) |
+| Groth16 prover-side performance | Benchmark input, witness, proving, and off-chain verification time across depths 5–15 | [Experiment 2.2](docs/experiments/experiment-2.2-groth16.md) | [Groth16 results](results/proving/4.2.2-Groth16-Prover-Side-performance/) |
+| PLONK prover-side performance | Benchmark input, witness, proving, and off-chain verification time across depths 5–15 | [Experiment 2.3](docs/experiments/experiment-2.3-plonk.md) | [PLONK results](results/proving/4.2.3-PLONK-Prover-Side-performance/) |
 
 ## Tested environment
 
@@ -93,7 +93,7 @@ artifact evaluation are retained under `results/`.
 The complete implementation is available in this repository. Published
 experimental artifacts are also available through Zenodo:
 
-https://doi.org/10.5281/zenodo.21447872
+https://doi.org/10.5281/zenodo.21471837
 
 ## License
 

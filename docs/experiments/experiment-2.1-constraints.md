@@ -1,4 +1,4 @@
-# Experiment 2: Circuit-growth measurement
+# Experiment 2.1: Circuit-growth measurement
 
 This experiment measures the structural growth of the depth-parameterized
 circuit for Merkle-tree depths 5–15.

@@ -1,4 +1,4 @@
-# Experiment 3: Groth16 prover-side performance
+# Experiment 2.2: Groth16 prover-side performance
 
 This experiment generates Groth16 proof artifacts and measures input generation,
 witness generation, proof generation, off-chain verification, and total
