@@ -34,4 +34,4 @@ The repeated measurement runs produced the same structural constraint and gate c
 ## Reproduction
 
 See the
-[circuit-growth measurement guide](../../../docs/experiments/experiment-2-constraints.md).
+[circuit-growth measurement guide](../../../docs/experiments/experiment-2.1-constraints.md).

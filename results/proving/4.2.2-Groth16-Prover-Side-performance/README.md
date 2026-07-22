@@ -75,4 +75,4 @@ All Groth16 benchmark executions completed successfully. The raw CSV files repor
 ## Reproduction
 
 See the
-[Groth16 prover-side performance guide](../../../docs/experiments/experiment-3-groth16.md).
+[Groth16 prover-side performance guide](../../../docs/experiments/experiment-2.2-groth16.md).

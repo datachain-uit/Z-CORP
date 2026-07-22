@@ -14,9 +14,9 @@ documentation for Z-CORP.
 
 - [Experiment overview](experiments/README.md)
 - [Blockchain deployment and verification](experiments/experiment-1-blockchain.md)
-- [Circuit-growth measurement](experiments/experiment-2-constraints.md)
-- [Groth16 prover-side performance](experiments/experiment-3-groth16.md)
-- [PLONK prover-side performance](experiments/experiment-4-plonk.md)
+- [Circuit-growth measurement](experiments/experiment-2.1-constraints.md)
+- [Groth16 prover-side performance](experiments/experiment-2.2-groth16.md)
+- [PLONK prover-side performance](experiments/experiment-2.3-plonk.md)
 
 ## Reference
 

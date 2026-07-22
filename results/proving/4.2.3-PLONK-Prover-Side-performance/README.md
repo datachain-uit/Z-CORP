@@ -75,4 +75,4 @@ All PLONK benchmark executions completed successfully. The raw CSV files report 
 ## Reproduction
 
 See the
-[PLONK prover-side performance guide](../../../docs/experiments/experiment-4-plonk.md).
+[PLONK prover-side performance guide](../../../docs/experiments/experiment-2.3-plonk.md).
