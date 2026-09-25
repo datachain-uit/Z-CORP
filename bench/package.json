@@ -1,0 +1,13 @@
+{
+  "name": "zcorp-bench",
+  "version": "3.0.0",
+  "private": true,
+  "description": "Z-CORP rerun protocol v3: prover benchmark harness (container image contents).",
+  "license": "UNLICENSED",
+  "engines": { "node": "18.20.8" },
+  "dependencies": {
+    "circom2": "0.2.16",
+    "circomlib": "2.0.5",
+    "snarkjs": "0.7.5"
+  }
+}

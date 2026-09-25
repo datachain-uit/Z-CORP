@@ -25,6 +25,15 @@ template Selector() {
     signal input s;      // selector (0 or 1)
     signal output out[2];
 
+    // Constrain the selector to a single bit.
+    // Without this, s ranges over the whole field. Since the sibling is also a
+    // prover-chosen witness, the two Poseidon inputs at this level would then be
+    // unconstrained, detaching the proof from the credential leaf: the circuit
+    // would prove knowledge of a hash chain ending at root rather than knowledge
+    // of a credential recorded in the registry.
+    // Regression coverage: test/circuit.selector.negative.js
+    s * (s - 1) === 0;
+
     // s = 0: out = [in[0], in[1]]
     // s = 1: out = [in[1], in[0]]
     out[0] <== (in[1] - in[0]) * s + in[0];

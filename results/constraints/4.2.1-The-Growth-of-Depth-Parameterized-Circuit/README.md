@@ -9,23 +9,23 @@ The following table reports the Groth16 R1CS constraint count and the correspond
 
 | Depth | Leaves | Groth16 constraints | PLONK expanded gates | PLONK/Groth16 ratio |
 |---:|---:|---:|---:|---:|
-| 5 | 32 | 1,507 | 19,222 | 12.76 |
-| 6 | 64 | 1,749 | 21,696 | 12.40 |
-| 7 | 128 | 1,991 | 24,170 | 12.14 |
-| 8 | 256 | 2,233 | 26,644 | 11.93 |
-| 9 | 512 | 2,475 | 29,118 | 11.76 |
-| 10 | 1,024 | 2,717 | 31,592 | 11.63 |
-| 11 | 2,048 | 2,959 | 34,066 | 11.51 |
-| 12 | 4,096 | 3,201 | 36,540 | 11.42 |
-| 13 | 8,192 | 3,443 | 39,014 | 11.33 |
-| 14 | 16,384 | 3,685 | 41,488 | 11.26 |
-| 15 | 32,768 | 3,927 | 43,962 | 11.19 |
+| 5 | 32 | 1,512 | 19,227 | 12.72 |
+| 6 | 64 | 1,755 | 21,702 | 12.37 |
+| 7 | 128 | 1,998 | 24,177 | 12.10 |
+| 8 | 256 | 2,241 | 26,652 | 11.89 |
+| 9 | 512 | 2,484 | 29,127 | 11.73 |
+| 10 | 1,024 | 2,727 | 31,602 | 11.59 |
+| 11 | 2,048 | 2,970 | 34,077 | 11.47 |
+| 12 | 4,096 | 3,213 | 36,552 | 11.38 |
+| 13 | 8,192 | 3,456 | 39,027 | 11.29 |
+| 14 | 16,384 | 3,699 | 41,502 | 11.22 |
+| 15 | 32,768 | 3,942 | 43,977 | 11.16 |
 
-The repeated measurement runs produced the same structural constraint and gate counts; only circuit compilation time varied between runs.
+Counts were measured with circom 2.1.6 after adding the binary selector constraint to `Selector()`. They are fixed by the circuit source and compiler version, so repeated compilations reproduce them exactly.
 
 | Artifact | Link |
 |---|---|
-| Constraint measurement, run | [20260711T054936-depth5-15-constraints.csv](20260711T054936-depth5-15-constraints.csv) |
+| Constraint measurement, run | [20260920T120000-depth5-15-constraints.csv](20260920T120000-depth5-15-constraints.csv) |
 | Constraint-growth visualization | [Figure 6 (PDF)](Figure_6.pdf) |
 | Complete artifact directory | This directory |
 

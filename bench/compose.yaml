@@ -1,0 +1,67 @@
+# Z-CORP rerun protocol v3: resource profiles (§4.1). Started only through run-campaign.sh,
+# which sets ZCORP_IMAGE, ZCORP_IMAGE_ID, ZCORP_REPO and ZCORP_RESULTS.
+# Every profile: exclusive cpuset, workers matched by the adapter, 8 GiB memory, swap disabled,
+# no CPU quota (no `cpus:` key), repository read-only, no network.
+name: zcorp-bench
+
+x-common: &common
+  image: ${ZCORP_IMAGE:?run through bench/run-campaign.sh}
+  platform: ${ZCORP_PLATFORM:-linux/arm64}
+  mem_limit: 8g
+  memswap_limit: 8g
+  network_mode: none
+  init: true
+  working_dir: /work
+  volumes:
+    - type: bind
+      source: ${ZCORP_REPO:?}
+      target: /work
+      read_only: true
+    - type: bind
+      source: ${ZCORP_RESULTS:?}
+      target: /results
+
+services:
+  cpu2:
+    <<: *common
+    cpuset: "1-2"
+    environment:
+      ZCORP_PROFILE: cpu2
+      ZCORP_CPUS: "2"
+      ZCORP_IMAGE_ID: ${ZCORP_IMAGE_ID:?}
+      ZCORP_SESSION_ID: ${ZCORP_SESSION_ID:-}
+  cpu4:
+    <<: *common
+    cpuset: "1-4"
+    environment:
+      ZCORP_PROFILE: cpu4
+      ZCORP_CPUS: "4"
+      ZCORP_IMAGE_ID: ${ZCORP_IMAGE_ID:?}
+      ZCORP_SESSION_ID: ${ZCORP_SESSION_ID:-}
+  cpu8:
+    <<: *common
+    cpuset: "1-8"
+    environment:
+      ZCORP_PROFILE: cpu8
+      ZCORP_CPUS: "8"
+      ZCORP_IMAGE_ID: ${ZCORP_IMAGE_ID:?}
+      ZCORP_SESSION_ID: ${ZCORP_SESSION_ID:-}
+  # Untimed work only (schedule, P7 provenance, summaries): same limits as cpu8.
+  tools:
+    <<: *common
+    cpuset: "1-8"
+    environment:
+      ZCORP_PROFILE: tools
+      ZCORP_CPUS: "8"
+      ZCORP_IMAGE_ID: ${ZCORP_IMAGE_ID:?}
+      ZCORP_SESSION_ID: ${ZCORP_SESSION_ID:-}
+  # Fallback profiles (protocol §4.1), used only if cpu8 fails its assertions.
+  cpu1:
+    <<: *common
+    cpuset: "1"
+    profiles: ["fallback"]
+    environment:
+      ZCORP_PROFILE: cpu1
+      ZCORP_CPUS: "1"
+      ZCORP_IMAGE_ID: ${ZCORP_IMAGE_ID:?}
+      ZCORP_SESSION_ID: ${ZCORP_SESSION_ID:-}
