@@ -31,7 +31,9 @@ Publication hygiene (two provenance layers): where a chain entry has ACQUISITION
 artifact raw and SOURCE.sha256 its manifest; the build checks that it equals the acquisition raw (hashes in ACQUISITION-RAW.json)
 with exactly the sanitation of SANITATION.json applied, that NEUTRALITY.json passed and that no credential remains
 (sanitize_chain_l2_devcreds.py --check). A chain protocol file shared by several chain entries is attributed to all of them in
-SNAPSHOTS.csv, with the digest each entry was frozen at.
+SNAPSHOTS.csv, with the digest each entry was frozen at. The dated public-network case study (CSI-CHAIN-PUBLIC-01) is a
+chain entry too: while planned/ready it has no source campaign; its own frozen inputs are checked against
+inputs/INPUTS.sha256 and its protocol (CHAIN-PUBLIC-PROTOCOL-v1) is attributed to it alone.
 Standard library only.
 """
 import argparse
@@ -56,16 +58,22 @@ ANALYSIS_CODE = ['scripts/analysis/derive_prover.py', 'scripts/analysis/compare_
                  'scripts/release/make_precorrection_manifest.py', 'scripts/release/save_image.sh',
                  'scripts/release/chain_image_record.py', 'scripts/analysis/derive_chain_l1.py', 'scripts/analysis/verify_chain_proofset.js',
                  'scripts/analysis/derive_chain_l2.py', 'scripts/release/chain_image_record_l2.py',
-                 'scripts/release/chain_l2_publication_hygiene.py', 'scripts/release/sanitize_chain_l2_devcreds.py']
+                 'scripts/release/chain_l2_publication_hygiene.py', 'scripts/release/sanitize_chain_l2_devcreds.py',
+                 'scripts/analysis/derive_chain_public.py']
 SUPERSEDED = 'results/PRECORRECTION-2026-07.sha256'
 EXPERIMENT_DIR = {'controlled prover scaling': 'prover', 'controlled on-chain verification (local L1)': 'chain',
-                  'controlled on-chain verification (local EraVM)': 'chain'}
+                  'controlled on-chain verification (local EraVM)': 'chain',
+                  'dated public-network case study (Ethereum Sepolia, ZKsync Era Sepolia)': 'chain'}
 # Per chain arm: frozen image record, derivation, frozen inputs (the L2 arm reuses the L1 entry's PS-01), attribution.
 L1_EXP, L2_EXP = 'controlled on-chain verification (local L1)', 'controlled on-chain verification (local EraVM)'
+PUB_EXP = 'dated public-network case study (Ethereum Sepolia, ZKsync Era Sepolia)'
 CHAIN_KIND = {
     L1_EXP: {'archive': 'chainbench/docker/ARCHIVE.json', 'derive': 'scripts/analysis/derive_chain_l1.py', 'derive_args': [], 'inputs': None},
     L2_EXP: {'archive': 'chainbench/adapters/eravm/ARCHIVE.json', 'derive': 'scripts/analysis/derive_chain_l2.py', 'derive_args': ['--plan', 'full'],
              'inputs': f'{CSI}/campaigns/chain/CSI-CHAIN-LOCAL-01/inputs'},
+    # CSI-CHAIN-PUBLIC-01: planned; its own frozen inputs (deployment artifacts, proof calldata) are under the entry's inputs/
+    # and checked against inputs/INPUTS.sha256; PS-01 is the L1 entry's. No image archive; derivation added when registered.
+    PUB_EXP: {'archive': None, 'derive': None, 'derive_args': [], 'inputs': f'{CSI}/campaigns/chain/CSI-CHAIN-LOCAL-01/inputs'},
 }
 CHAIN_PATHS = ['chainbench', 'contracts', 'scripts/setup/generate_input_depth.js', 'scripts/setup/paths.js', 'ARTIFACTS.sha256']
 CHAIN_PREFIXES = (f'{CSI}/protocols/chain/', f'{CSI}/campaigns/chain/', f'{CSI}/code/chain/')
@@ -282,6 +290,19 @@ def build_chain_campaign(row, plan, tmpdir):
             h, f = ln.split(None, 1)
             if sha(rd(f'{ps}/{f.strip()}')) != h:
                 raise Abort(f'{admin}: frozen proof-set file changed: {ps}/{f.strip()}')
+    own = f'{base}/inputs/INPUTS.sha256'
+    if os.path.exists(os.path.join(REPO, own)):
+        listed = []
+        for ln in rd(own).decode().splitlines():
+            h, f = ln.split(None, 1)
+            listed.append(f.strip())
+            if sha(rd(f'{base}/inputs/{f.strip()}')) != h:
+                raise Abort(f'{admin}: frozen input changed: {base}/inputs/{f.strip()}')
+        present = sorted(os.path.relpath(os.path.join(r, f), os.path.join(REPO, base, 'inputs')) for r, _, fs in os.walk(os.path.join(REPO, base, 'inputs')) for f in fs if f != 'INPUTS.sha256')
+        if sorted(listed) != present:
+            raise Abort(f'{admin}: {own} does not list exactly the files of {base}/inputs')
+    if scientific and not kind['derive']:
+        raise Abort(f"{admin}: scientific registration of this experiment is not implemented yet")
     if scientific:
         # frozen source fingerprint (the tracked raw campaign is the only source of truth)
         sm = source_manifest(src)
@@ -343,10 +364,16 @@ def check_layers(base, src, sm):
 
 
 def shared_protocol_row(rel, cctx, data):
-    """A chain protocol file shared by several chain entries: attributed to all of them, each with the digest it was frozen at."""
+    """A chain protocol file shared by several chain entries: attributed to all of them, each with the digest it was frozen at.
+    A protocol used by exactly one chain entry is attributed to that entry."""
     users = [c['row'] for c in cctx if c['row']['protocol_path'] == rel]
-    if len(users) < 2:
+    if not users:
         return None
+    if len(users) == 1:
+        r = users[0]
+        return {'artifact': rel, 'kind': 'protocol', 'source': 'hand-written; frozen at the entry baseline; amendments appended only',
+                'campaign_id': r['campaign_id'] if r['campaign_id'] not in ('', '-') else f"{r['admin_id']} (pre-run)", 'commit': r['commit'],
+                'baseline_tag': r['baseline_tag'], 'protocol_version': r['protocol_version'], 'image_manifest': '-', 'image_config': '-', 'sha256': sha(data)}
     per = []
     for r in users:
         frozen = git('show', f"{r['commit']}:{rel}", ok_fail=True)
@@ -430,9 +457,26 @@ def chain_attribution_l2(rel, crow):
     return 'hand-written', '-'
 
 
+def chain_attribution_public(rel, crow):
+    """CSI-CHAIN-PUBLIC-01, the dated public-network case study (CHAIN-PUBLIC-PROTOCOL-v1)."""
+    if rel.startswith(f'{CSI}/code/chain/'):
+        return 'generated', 'scripts/release/build_csi_bundle.py'
+    if '/inputs/' in rel:
+        return 'frozen input', 'chainbench/adapters/public/scripts/build_public_inputs.js (from the frozen L1/L2 build manifests, pinned zksolc and PS-01)'
+    if '/notes/dependency-audit/' in rel:
+        return 'record', 'npm audit --json of the tracked lockfiles (2026-09-25)'
+    if '/readiness/' in rel:
+        return 'record', 'chainbench/run.sh dry-run-public (engineering dry run; not scientific data)'
+    if rel.endswith('/campaign.json'):
+        return 'generated', 'chainbench/adapters/public/scripts/record_campaign_public.py'
+    return 'hand-written', '-'
+
+
 def chain_attribution(rel, crow):
     if crow['experiment'] == L2_EXP:
         return chain_attribution_l2(rel, crow)
+    if crow['experiment'] == PUB_EXP:
+        return chain_attribution_public(rel, crow)
     if f"/release/{crow['admin_id']}/" in rel:
         if rel.endswith('/IMAGE-ARCHIVE.json'):
             return 'generated', 'scripts/release/chain_image_record.py <- the docker save archives (campaign host)'

@@ -1,0 +1,23 @@
+{
+  "_comment": "zcorp workload, public-network procedure (CHAIN-PUBLIC-PROTOCOL-v1 section 4). Declarative: which contracts each backend deploys, the setup operations and the verification call. The public adapter (chainbench/adapters/public) supplies networks, signing, fees, timing and recording; the frozen artifacts and calldata come from the campaign's inputs directory.",
+  "depth": 11,
+  "backends": ["groth16", "plonk"],
+  "contracts": {
+    "groth16": { "verifier": "Groth16LegacyVerifierDepth11", "manager": "CredentialManagerGroth16" },
+    "plonk": { "verifier": "PlonkVerifierDepth11", "manager": "CredentialManagerPlonk" }
+  },
+  "setup": [
+    { "op": "deploy_verifier", "create": "verifier", "ctor": [] },
+    { "op": "deploy_manager", "create": "manager", "ctor": [{ "ref": "address:verifier" }] },
+    { "op": "set_issuer", "to": "manager", "fn": "setIssuer", "args": [{ "ref": "signer" }, true] },
+    { "op": "add_root", "to": "manager", "fn": "addRoot", "frozen_calldata": "add_root" }
+  ],
+  "post_setup_checks": [
+    { "check": "manager_verifier", "to": "manager", "fn": "verifier", "args": [], "expect": { "ref": "address:verifier" } },
+    { "check": "manager_owner", "to": "manager", "fn": "owner", "args": [], "expect": { "ref": "signer" } },
+    { "check": "signer_is_issuer", "to": "manager", "fn": "isIssuer", "args": [{ "ref": "signer" }], "expect": true },
+    { "check": "root_is_valid", "to": "manager", "fn": "isValidRoot", "args": [{ "ref": "root" }], "expect": true }
+  ],
+  "verification": { "op": "verify_credential", "to": "manager", "fn": "verifyCredential", "frozen_calldata": "verify_credential" },
+  "precheck": { "to": "manager", "fn": "verifyCredential", "frozen_calldata": "verify_credential", "expect": true }
+}

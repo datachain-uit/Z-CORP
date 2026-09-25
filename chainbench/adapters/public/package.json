@@ -1,0 +1,11 @@
+{
+  "name": "zcorp-chainbench-public",
+  "version": "1.0.0",
+  "private": true,
+  "description": "chainbench public-network adapter (Ethereum Sepolia, ZKsync Era Sepolia): the only npm dependencies of the public runner (signing, ABI encoding, EIP-1559 and EIP-712 serialisation). No Hardhat, no compiler, no prover at run time; artifacts and proof calldata are frozen inputs.",
+  "license": "UNLICENSED",
+  "dependencies": {
+    "ethers": "6.13.5",
+    "zksync-ethers": "6.21.2"
+  }
+}

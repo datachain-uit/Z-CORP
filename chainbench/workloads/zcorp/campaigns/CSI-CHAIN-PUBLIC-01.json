@@ -1,0 +1,96 @@
+{
+  "campaign_id": "CSI-CHAIN-PUBLIC-01",
+  "evidence_id": "CSI-CHAIN-PUBLIC-01",
+  "arm": "PUBLIC",
+  "arm_note": "Small dated public-network case study on Ethereum Sepolia and ZKsync Era Sepolia (CHAIN-PUBLIC-PROTOCOL-v1). It is not the controlled cost experiment: the controlled local arms CSI-CHAIN-LOCAL-01 (L1) and CSI-CHAIN-LOCAL-01-L2 (local EraVM) are frozen at their baseline tags and are not changed or rerun by it. It deploys the same contract sources, compiled artifacts and frozen PS-01 proofs (depth 11) and records only what the local environments cannot establish.",
+  "venue": "CSI",
+  "admin_record": {
+    "admin_id": "CSI-CHAIN-PUBLIC-01",
+    "experiment": "dated public-network case study (Ethereum Sepolia, ZKsync Era Sepolia)",
+    "registry": "csi/campaign-index.csv",
+    "notes_dir": "csi/campaigns/chain/CSI-CHAIN-PUBLIC-01/notes"
+  },
+  "campaign_dir": "csi/campaigns/chain/CSI-CHAIN-PUBLIC-01",
+  "evidence_dir": "csi/campaigns/chain/CSI-CHAIN-PUBLIC-01",
+  "protocol": "csi/protocols/chain/CHAIN-PUBLIC-PROTOCOL-v1.md",
+  "proofset_dir": "csi/campaigns/chain/CSI-CHAIN-LOCAL-01/inputs/proofset",
+  "inputs_dir": "csi/campaigns/chain/CSI-CHAIN-PUBLIC-01/inputs",
+  "procedure": "workloads/zcorp/public/procedure.json",
+  "controlled_references": {
+    "l1": { "admin_id": "CSI-CHAIN-LOCAL-01", "baseline_tag": "chain-l1-baseline-20260925", "commit": "71a58545a6bc6873499928154827d7075bdb3440",
+            "build_manifest": "results/chain-local-l1-20260925/full-71a5854-20260925T115726Z-edr-a/build_manifest.primary.json",
+            "ops": "results/chain-local-l1-20260925/full-71a5854-20260925T115726Z-edr-a/local_l1_ops.csv" },
+    "l2": { "admin_id": "CSI-CHAIN-LOCAL-01-L2", "baseline_tag": "chain-l2-baseline-20260925", "commit": "e97b69f92b6f1b31bd89f8fa2ffda1792e79a119",
+            "build_manifest": "results/chain-local-l2-20260925/full-l2-e97b69f-20260925T132901Z-a/build_manifest.eravm.json",
+            "ops": "results/chain-local-l2-20260925/full-l2-e97b69f-20260925T132901Z-a/local_l2_ops.csv" }
+  },
+  "depth": 11,
+  "proofs": {
+    "groth16": ["G16-d11-p0", "G16-d11-p1"],
+    "plonk": ["PLK-d11-p0", "PLK-d11-p1"],
+    "rule": "PS-01 proofs j = 0 and j = 1 at depth 11 for each backend, fixed before any public run by index (the protocol's default), never by gas; no new proof is generated"
+  },
+  "networks": {
+    "sepolia": { "label": "Ethereum Sepolia", "kind": "evm", "chain_id": 11155111, "short": "SEP", "native_unit": "Sepolia ETH (test ether, no monetary value)" },
+    "era-sepolia": { "label": "ZKsync Era Sepolia", "kind": "eravm", "chain_id": 300, "short": "ERA", "native_unit": "Era Sepolia ETH (test ether, no monetary value)" }
+  },
+  "refused_chain_ids": {
+    "1": "Ethereum mainnet", "324": "ZKsync Era mainnet", "31337": "Hardhat / EDR / anvil local", "1337": "geth --dev / local",
+    "260": "anvil-zksync / era-test-node local", "270": "ZKsync local node", "271": "ZKsync local node", "272": "ZKsync local node"
+  },
+  "sessions": [
+    { "id": "S1", "network_order": ["sepolia", "era-sepolia"], "scheduled_start_utc": null },
+    { "id": "S2", "network_order": ["era-sepolia", "sepolia"], "scheduled_start_utc": null },
+    { "id": "S3", "network_order": ["sepolia", "era-sepolia"], "scheduled_start_utc": null }
+  ],
+  "session_rule": "three sessions on at least two different UTC calendar days; start times are author inputs recorded in the schedule before session 1 and never moved after seeing network conditions except by a documented protocol deviation",
+  "schedule_seed": "CSI-CHAIN-PUBLIC-01/CHAIN-PUBLIC-PROTOCOL-v1",
+  "fee_policy": {
+    "sepolia": {
+      "tx_type": 2,
+      "gas_limit": { "deploy_verifier": 6000000, "deploy_manager": 6000000, "set_issuer": 300000, "add_root": 300000, "verify_credential": 1000000 },
+      "gas_limit_rule": "the fixed gas limits of the controlled L1 study (CHAIN-PROTOCOL-v1, chainbench/lib/constants.js GAS_LIMIT); on Ethereum the paid fee depends on gasUsed, not on the limit",
+      "max_priority_fee_per_gas_wei": 1000000000,
+      "priority_fee_rule": "fixed constant P = max_priority_fee_per_gas_wei (author input, frozen before session 1)",
+      "max_fee_rule": "maxFeePerGas = 2 * baseFeePerGas of the latest block read at preparation + P",
+      "base_fee_source": "eth_getBlockByNumber('latest', false).baseFeePerGas, read immediately before signing"
+    },
+    "era-sepolia": {
+      "tx_type": 113,
+      "estimate_gas_per_pubdata": 50000,
+      "rule": "zks_estimateFee on the exact transaction (from, to, data, value 0, eip712Meta.gasPerPubdata 50000 and, for deployments, the factory dependency); gasLimit, maxFeePerGas, maxPriorityFeePerGas and gasPerPubdata are the returned values, unchanged; eth_gasPrice and zks_getFeeParams are recorded beside them"
+    },
+    "common": {
+      "balance_rule": "the transaction is sent only if the latest balance >= gasLimit * maxFeePerGas; otherwise unsent_insufficient_balance",
+      "no_replacement": "a transaction is never replaced, re-priced, accelerated or re-sent; nonces are sequential and a nonce is never reused",
+      "no_retry": "no operation is retried inside a session; a failed or unsent operation stays in the record in its original state"
+    }
+  },
+  "timing": {
+    "poll_interval_ms": 1000,
+    "receipt_timeout_s": { "sepolia": 900, "era-sepolia": 600 },
+    "rpc_timeout_ms": 30000,
+    "clocks": "UTC wall clock (Date) and monotonic clock (process.hrtime.bigint) at t_prepare, t0, t_hash, t_receipt"
+  },
+  "states": ["unsent_preflight_failure", "unsent_client_error", "unsent_insufficient_balance", "submitted_no_receipt", "reverted", "confirmed_success"],
+  "halting": {
+    "submitted_no_receipt": "halts the rest of that network block (a pending nonce blocks later transactions); the remaining operations are recorded as unsent_preflight_failure (halted_after_no_receipt)",
+    "unsent": "after an unsent operation the block continues only if the pending and latest nonces both equal the next local nonce; otherwise the rest of the block is recorded as unsent_preflight_failure (halted_nonce_uncertain)",
+    "setup_dependency": "a setup operation whose prerequisite (verifier or manager address) is missing is recorded as unsent_preflight_failure (dependency_missing)"
+  },
+  "endpoints": {
+    "rule": "endpoints are author inputs given through environment variables (CHAINBENCH_PUBLIC_RPC_SEPOLIA, CHAINBENCH_PUBLIC_RPC_ERA_SEPOLIA) with a provider label (CHAINBENCH_PUBLIC_RPC_LABEL_SEPOLIA, CHAINBENCH_PUBLIC_RPC_LABEL_ERA_SEPOLIA); https only; only the label, the host and the sha256 of the URL are recorded unless the URL is listed here as public",
+    "public_defaults": { "era-sepolia": "https://sepolia.era.zksync.dev" }
+  },
+  "key": {
+    "rule": "a dedicated, externally supplied, funded key used only for this study: CHAINBENCH_PUBLIC_KEY_FILE (absolute path outside the repository, mode 0600 or 0400, one 0x-prefixed 32-byte hex key) or CHAINBENCH_PUBLIC_PRIVATE_KEY; never a mnemonic; only the signer address is recorded"
+  },
+  "out_roots": { "dry": "build/chainbench/public/dry-run", "live": "build/campaigns/chain-public" },
+  "results_dir": null,
+  "tracked_paths": [
+    "contracts", "chainbench/adapters/public", "chainbench/workloads/zcorp/public", "chainbench/workloads/zcorp/campaigns/CSI-CHAIN-PUBLIC-01.json",
+    "csi/protocols/chain/CHAIN-PUBLIC-PROTOCOL-v1.md", "csi/campaigns/chain/CSI-CHAIN-PUBLIC-01/inputs", "csi/campaigns/chain/CSI-CHAIN-LOCAL-01/inputs/proofset",
+    "scripts/analysis/derive_chain_public.py"
+  ],
+  "baseline_tag_prefix": "chain-public-baseline-"
+}

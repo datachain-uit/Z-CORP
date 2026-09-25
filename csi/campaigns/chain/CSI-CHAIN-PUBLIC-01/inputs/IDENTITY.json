@@ -1,0 +1,279 @@
+{
+  "all_pass": true,
+  "campaign": "CSI-CHAIN-PUBLIC-01",
+  "checks": [
+    {
+      "check": "l1_build_manifest_runs_identical",
+      "detail": {
+        "a": "98ee9072cfafccc69b2bba1347684cb85460bc90a4fda35ff23f53b3d96028c8",
+        "b": "98ee9072cfafccc69b2bba1347684cb85460bc90a4fda35ff23f53b3d96028c8"
+      },
+      "pass": true
+    },
+    {
+      "check": "l1_build_manifest_in_frozen_source",
+      "detail": "results/chain-local-l1-20260925/full-71a5854-20260925T115726Z-edr-a/build_manifest.primary.json",
+      "pass": true
+    },
+    {
+      "check": "l2_build_manifest_in_frozen_source",
+      "detail": "results/chain-local-l2-20260925/full-l2-e97b69f-20260925T132901Z-a/build_manifest.eravm.json",
+      "pass": true
+    },
+    {
+      "check": "zksolc_binary_pinned",
+      "detail": "1.5.15",
+      "pass": true
+    },
+    {
+      "check": "era_solc_binary_pinned",
+      "detail": "0.8.20-1.0.2",
+      "pass": true
+    },
+    {
+      "check": "eravm_input_equals_frozen",
+      "detail": {
+        "frozen": "7e71bd6af6552a6ede0a85697f89384c7552d7df976978f66e5f4e974cc81966",
+        "got": "7e71bd6af6552a6ede0a85697f89384c7552d7df976978f66e5f4e974cc81966"
+      },
+      "pass": true
+    },
+    {
+      "check": "eravm_output_equals_frozen",
+      "detail": {
+        "frozen": "04aba3ac3bc3e1b3d169e83ff091b2c1978eb6218b3449aace23cb2056e115db",
+        "got": "04aba3ac3bc3e1b3d169e83ff091b2c1978eb6218b3449aace23cb2056e115db"
+      },
+      "pass": true
+    },
+    {
+      "check": "Groth16LegacyVerifierDepth11_abi_equals_l1_and_l2",
+      "detail": "5460f8721d9f16e96253517e9004a11582b87168fe07bc27dddbff58cfa26fe8",
+      "pass": true
+    },
+    {
+      "check": "Groth16LegacyVerifierDepth11_evm_init_keccak",
+      "detail": "0x79575f70f39cc4a1efde3a0e8368551ad76f41ad9f914df803a27e610d430ea4",
+      "pass": true
+    },
+    {
+      "check": "Groth16LegacyVerifierDepth11_evm_runtime_keccak",
+      "detail": "0x1660e5c0187e477090c96776978c5c58afcac37df9cc19705e8395f2a690cefa",
+      "pass": true
+    },
+    {
+      "check": "Groth16LegacyVerifierDepth11_eravm_bytecode_equals_frozen",
+      "detail": "0x0100005f89c4cefae9b82d938e5f49479fd773521ddfd615284396aa1bbb65c1",
+      "pass": true
+    },
+    {
+      "check": "Groth16LegacyVerifierDepth11_source_equals_frozen",
+      "detail": {
+        "sha256": "da6e3075c9d17039615579eb1c0946423cae0651a57dca2256561a362fbf3dd7"
+      },
+      "pass": true
+    },
+    {
+      "check": "CredentialManagerGroth16_abi_equals_l1_and_l2",
+      "detail": "0d13ed4e78e33a8649c43ee32624f4ec4b1b9f798a8bde31eebfe3227421a464",
+      "pass": true
+    },
+    {
+      "check": "CredentialManagerGroth16_evm_init_keccak",
+      "detail": "0x1532142a464898ffa6fcf1dc2fe8c43a4f91c786fd8b216ba699f0020df04233",
+      "pass": true
+    },
+    {
+      "check": "CredentialManagerGroth16_evm_runtime_keccak",
+      "detail": "0x3fa88dab92b4daae5449537045ac5d6e143ea11f41fcdff2d37adb5523454ace",
+      "pass": true
+    },
+    {
+      "check": "CredentialManagerGroth16_eravm_bytecode_equals_frozen",
+      "detail": "0x010000d37155e3640948296be420258a2e1a98adb16b55738b817247e9fd54eb",
+      "pass": true
+    },
+    {
+      "check": "CredentialManagerGroth16_source_equals_frozen",
+      "detail": {
+        "sha256": "a240480dcb0def8ec7bafb6e50fb9250858601bee8091be4f5f4ad314ace5cfd"
+      },
+      "pass": true
+    },
+    {
+      "check": "PlonkVerifierDepth11_abi_equals_l1_and_l2",
+      "detail": "2e2d99234e3a2d03aa1d7637e2673c46be668ee12e8bf15d98082195288451c5",
+      "pass": true
+    },
+    {
+      "check": "PlonkVerifierDepth11_evm_init_keccak",
+      "detail": "0x014c955dd40d2632e56f18ffd5820b500ca7779f27125ca4fbd4808dce49ed6b",
+      "pass": true
+    },
+    {
+      "check": "PlonkVerifierDepth11_evm_runtime_keccak",
+      "detail": "0xb1839425094b9d5cc3e24cf8a9c779b46cb934c81145bd3eb8bace410ac95e03",
+      "pass": true
+    },
+    {
+      "check": "PlonkVerifierDepth11_eravm_bytecode_equals_frozen",
+      "detail": "0x0100052778196cbbed42200c01f2280655dacb2e92a94516f3d56c93d48e4b62",
+      "pass": true
+    },
+    {
+      "check": "PlonkVerifierDepth11_source_equals_frozen",
+      "detail": {
+        "sha256": "6c447f47aca057919496430770d3a84c7636d1e2bc0ae22bae1e89c74dd74b51"
+      },
+      "pass": true
+    },
+    {
+      "check": "CredentialManagerPlonk_abi_equals_l1_and_l2",
+      "detail": "02ae80126e26bacdf1b37bf7f83cf43aa6501c8213267c2741d3e9843a9784cc",
+      "pass": true
+    },
+    {
+      "check": "CredentialManagerPlonk_evm_init_keccak",
+      "detail": "0x6ca599afa08836ef119ae150e0ede484a53915d53e5d2b7f61f6cecc3bbda897",
+      "pass": true
+    },
+    {
+      "check": "CredentialManagerPlonk_evm_runtime_keccak",
+      "detail": "0x81cfa580fc010d5bf437f4e25120ed772a570f64d5503726e6beb874892ec653",
+      "pass": true
+    },
+    {
+      "check": "CredentialManagerPlonk_eravm_bytecode_equals_frozen",
+      "detail": "0x010000cf8ad512f1d77f4733ef95b69a7329a5310824ac0599410635c1c0ebcf",
+      "pass": true
+    },
+    {
+      "check": "CredentialManagerPlonk_source_equals_frozen",
+      "detail": {
+        "sha256": "3c4af458fc22c9cf4f2341b0b716c1be01db1e64b86c1d4995e767fc8d9af1de"
+      },
+      "pass": true
+    },
+    {
+      "check": "G16-d11-p0_selected_by_index",
+      "detail": "G16-d11-p0",
+      "pass": true
+    },
+    {
+      "check": "G16-d11-p0_calldata_equals_controlled_l1",
+      "detail": {
+        "got": "ca9621b912a5f11cbb8dd875c48c9971287be9dbbe4454fcd36230ca7d465efc",
+        "l1": "ca9621b912a5f11cbb8dd875c48c9971287be9dbbe4454fcd36230ca7d465efc"
+      },
+      "pass": true
+    },
+    {
+      "check": "G16-d11-p0_calldata_equals_controlled_l2",
+      "detail": {
+        "got": "ca9621b912a5f11cbb8dd875c48c9971287be9dbbe4454fcd36230ca7d465efc",
+        "l2": "ca9621b912a5f11cbb8dd875c48c9971287be9dbbe4454fcd36230ca7d465efc"
+      },
+      "pass": true
+    },
+    {
+      "check": "G16-d11-p1_selected_by_index",
+      "detail": "G16-d11-p1",
+      "pass": true
+    },
+    {
+      "check": "G16-d11-p1_calldata_equals_controlled_l1",
+      "detail": {
+        "got": "639c80471b559309e712f4c4ac80bdbc80d6df2460bd4c3bf55546677a3942c6",
+        "l1": "639c80471b559309e712f4c4ac80bdbc80d6df2460bd4c3bf55546677a3942c6"
+      },
+      "pass": true
+    },
+    {
+      "check": "G16-d11-p1_calldata_equals_controlled_l2",
+      "detail": {
+        "got": "639c80471b559309e712f4c4ac80bdbc80d6df2460bd4c3bf55546677a3942c6",
+        "l2": "639c80471b559309e712f4c4ac80bdbc80d6df2460bd4c3bf55546677a3942c6"
+      },
+      "pass": true
+    },
+    {
+      "check": "G16-d11-p1_same_root",
+      "detail": "13741875541804146615197212471377989082753334180286662970428373142262333549779",
+      "pass": true
+    },
+    {
+      "check": "PLK-d11-p0_selected_by_index",
+      "detail": "PLK-d11-p0",
+      "pass": true
+    },
+    {
+      "check": "PLK-d11-p0_calldata_equals_controlled_l1",
+      "detail": {
+        "got": "2b47235792217a37372089e141f1674bb5844d874e984fef7f6c13e2fa66e3e7",
+        "l1": "2b47235792217a37372089e141f1674bb5844d874e984fef7f6c13e2fa66e3e7"
+      },
+      "pass": true
+    },
+    {
+      "check": "PLK-d11-p0_calldata_equals_controlled_l2",
+      "detail": {
+        "got": "2b47235792217a37372089e141f1674bb5844d874e984fef7f6c13e2fa66e3e7",
+        "l2": "2b47235792217a37372089e141f1674bb5844d874e984fef7f6c13e2fa66e3e7"
+      },
+      "pass": true
+    },
+    {
+      "check": "PLK-d11-p0_same_root",
+      "detail": "13741875541804146615197212471377989082753334180286662970428373142262333549779",
+      "pass": true
+    },
+    {
+      "check": "PLK-d11-p1_selected_by_index",
+      "detail": "PLK-d11-p1",
+      "pass": true
+    },
+    {
+      "check": "PLK-d11-p1_calldata_equals_controlled_l1",
+      "detail": {
+        "got": "a298ee5b1ea8679aadf74fcb657d46d87472c6f0fdc20c3fb76317acbb8dc10b",
+        "l1": "a298ee5b1ea8679aadf74fcb657d46d87472c6f0fdc20c3fb76317acbb8dc10b"
+      },
+      "pass": true
+    },
+    {
+      "check": "PLK-d11-p1_calldata_equals_controlled_l2",
+      "detail": {
+        "got": "a298ee5b1ea8679aadf74fcb657d46d87472c6f0fdc20c3fb76317acbb8dc10b",
+        "l2": "a298ee5b1ea8679aadf74fcb657d46d87472c6f0fdc20c3fb76317acbb8dc10b"
+      },
+      "pass": true
+    },
+    {
+      "check": "PLK-d11-p1_same_root",
+      "detail": "13741875541804146615197212471377989082753334180286662970428373142262333549779",
+      "pass": true
+    },
+    {
+      "check": "add_root_calldata_equals_controlled_l1_and_l2",
+      "detail": "d02fee54c295d1b5cc2948d9c79837ece40c0013835e3b9bb349e94ae744e758",
+      "pass": true
+    }
+  ],
+  "controlled_references": {
+    "l1": {
+      "admin_id": "CSI-CHAIN-LOCAL-01",
+      "baseline_tag": "chain-l1-baseline-20260925",
+      "build_manifest": "results/chain-local-l1-20260925/full-71a5854-20260925T115726Z-edr-a/build_manifest.primary.json",
+      "commit": "71a58545a6bc6873499928154827d7075bdb3440",
+      "ops": "results/chain-local-l1-20260925/full-71a5854-20260925T115726Z-edr-a/local_l1_ops.csv"
+    },
+    "l2": {
+      "admin_id": "CSI-CHAIN-LOCAL-01-L2",
+      "baseline_tag": "chain-l2-baseline-20260925",
+      "build_manifest": "results/chain-local-l2-20260925/full-l2-e97b69f-20260925T132901Z-a/build_manifest.eravm.json",
+      "commit": "e97b69f92b6f1b31bd89f8fa2ffda1792e79a119",
+      "ops": "results/chain-local-l2-20260925/full-l2-e97b69f-20260925T132901Z-a/local_l2_ops.csv"
+    }
+  },
+  "tool": "chainbench/adapters/public/scripts/build_public_inputs.js"
+}

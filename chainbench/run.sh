@@ -17,7 +17,11 @@
 #   Local EraVM arm (L2; commands handled by adapters/eravm/run-l2.sh, see its header and CHAIN-PROTOCOL-v1 section 16):
 #   ./chainbench/run.sh doctor-l2 | smoke-l2 | dry-run-l2 | full-local-l2   (also build-image-l2, save-image-l2, load-image-l2, author-l2)
 #
-# Everything measured runs inside the chainbench container with --network none; the repository is mounted read-only.
+#   Public-network case study (CSI-CHAIN-PUBLIC-01; commands handled by adapters/public/run-public.sh, see its header and
+#   CHAIN-PUBLIC-PROTOCOL-v1): ./chainbench/run.sh doctor-public | dry-run-public | check-public-inputs | derive-public
+#   (live, author only: run-public-setup NETWORK, run-public-session S1|S2|S3, collect-era-finality; also build-image-public)
+#
+# Everything measured in the local arms runs inside a container with --network none; the repository is mounted read-only.
 set -uo pipefail
 
 CB_DIR=$(cd "$(dirname "$0")" && pwd -P)
@@ -45,7 +49,7 @@ fail() { printf '[FAIL] %s\n' "$1"; if [ -n "${2:-}" ]; then printf '       Fix:
 die()  { printf '[FAIL] %s\n' "$1" >&2; if [ -n "${2:-}" ]; then printf '       Fix: %s\n' "$2" >&2; fi; exit 1; }
 utc()  { date -u +%Y%m%dT%H%M%SZ; }
 sha256_of() { if command -v shasum >/dev/null 2>&1; then shasum -a 256 "$1" | awk '{print $1}'; else sha256sum "$1" | awk '{print $1}'; fi; }
-usage() { sed -n '2,20p' "$0" | sed 's/^# \{0,1\}//'; }
+usage() { sed -n '2,24p' "$0" | sed 's/^# \{0,1\}//'; }
 
 # ---------------------------------------------------------------- Docker helpers
 have_docker() {
@@ -544,6 +548,8 @@ case "$cmd" in
   load-image)     load_image_archive "$@" ;;
   build-image-l2|doctor-l2|smoke-l2|dry-run-l2|full-local-l2|save-image-l2|load-image-l2|author-l2)
                   exec "$CB_DIR/adapters/eravm/run-l2.sh" "$cmd" "$@" ;;
+  build-image-public|doctor-public|dry-run-public|check-public-inputs|derive-public|run-public-setup|run-public-session|collect-era-finality)
+                  exec bash "$CB_DIR/adapters/public/run-public.sh" "$cmd" "$@" ;;
   help|-h|--help) usage ;;
-  *) usage; die "unknown command '$cmd'" "Use one of: doctor, smoke, full-local-l1 (also build-image, dry-run); L2: doctor-l2, smoke-l2, full-local-l2." ;;
+  *) usage; die "unknown command '$cmd'" "Use one of: doctor, smoke, full-local-l1 (also build-image, dry-run); L2: doctor-l2, smoke-l2, full-local-l2; public: doctor-public, dry-run-public." ;;
 esac
