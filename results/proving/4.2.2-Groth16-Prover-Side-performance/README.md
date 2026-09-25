@@ -1,5 +1,12 @@
 # Groth16 prover-side performance
 
+<!-- pre-correction banner (rerun protocol v3, section 7.4) -->
+> **Pre-correction campaign (July 2026) — superseded, not used by the CSI manuscript.**
+> These Groth16 measurements (three machines) were taken before the selector-booleanity correction of `circuits/CredentialVerifier.circom` (commit `2524431`, P4a). They are kept unchanged as historical evidence. First commits,
+> git blob IDs and sha256 of every file: [`results/PRECORRECTION-2026-07.sha256`](../../PRECORRECTION-2026-07.sha256).
+> The post-correction prover data are the controlled campaign `results/postcorr-20260925/`
+> (CSI-PROVER-01, rerun protocol v3).
+
 This directory contains the published Groth16 measurements collected on three
 evaluation environments.
 

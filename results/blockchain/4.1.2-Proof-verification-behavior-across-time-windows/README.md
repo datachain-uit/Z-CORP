@@ -1,5 +1,12 @@
 # Proof-verification behavior across time windows
 
+<!-- pre-correction banner (rerun protocol v3, section 7.4) -->
+> **Pre-correction campaign (July 2026) — superseded, not used by the CSI manuscript.**
+> These on-chain measurements were taken before the selector-booleanity correction of `circuits/CredentialVerifier.circom` (commit `2524431`, P4a). They are kept unchanged as historical evidence. First commits,
+> git blob IDs and sha256 of every file: [`results/PRECORRECTION-2026-07.sha256`](../../PRECORRECTION-2026-07.sha256).
+> The only change to these CSV files since July is the 2026-09-21 transaction-hash annotation (P4b), which
+> altered no measured value. The post-correction on-chain rerun (protocol v3, section 5) has not been run yet.
+
 This directory contains the published blockchain-side proof-verification
 measurements and the corresponding figure used in the paper.
 
