@@ -19,7 +19,7 @@
       "scripts/setup/paths.js",
       "ARTIFACTS.sha256"
     ],
-    "measurement_paths_identical_to": "83a7eb7ca1c29ee7ce82041dc4ec046924fa7b83",
+    "measurement_paths_identical_to": "fbe379427223722c2d8a09e29abd5ad8cc9447d1",
     "tag": "chain-l1-baseline-20260925",
     "tagged_commit": "the commit that adds this record and the committed image records (see the registry and `git rev-parse <tag>`)",
     "workload": "zcorp"
@@ -123,8 +123,8 @@
   },
   "dry_run": {
     "cross_client": {
-      "a": "build/chainbench/dry-run/dry-83a7eb7-20260925T111609Z-edr-a",
-      "b": "build/chainbench/dry-run/dry-83a7eb7-20260925T111609Z-geth",
+      "a": "build/chainbench/dry-run/dry-fbe3794-20260925T112745Z-edr-a",
+      "b": "build/chainbench/dry-run/dry-fbe3794-20260925T112745Z-geth",
       "build_manifests_identical": true,
       "call_rows_compared": 25,
       "differences_per_field": {},
@@ -143,8 +143,8 @@
       "tx_rows_compared": 65
     },
     "determinism": {
-      "a": "build/chainbench/dry-run/dry-83a7eb7-20260925T111609Z-edr-a",
-      "b": "build/chainbench/dry-run/dry-83a7eb7-20260925T111609Z-edr-b",
+      "a": "build/chainbench/dry-run/dry-fbe3794-20260925T112745Z-edr-a",
+      "b": "build/chainbench/dry-run/dry-fbe3794-20260925T112745Z-edr-b",
       "build_manifests_identical": true,
       "call_rows_compared": 25,
       "differences_per_field": {},
@@ -161,55 +161,55 @@
     "plan": "dry (Groth16 d5, d11; PLONK d10, d11; bridge Groth16 d11; proofs p0, p1; all negative controls)",
     "runs": {
       "edr-a": {
-        "commit": "83a7eb7ca1c29ee7ce82041dc4ec046924fa7b83",
+        "commit": "fbe379427223722c2d8a09e29abd5ad8cc9447d1",
         "deployments_runtime_match": true,
         "env": "edr",
         "env_check_pass": true,
-        "finished_at_utc": "2026-09-25T11:16:15.066Z",
-        "ops_csv_sha256": "51892c27581a71d677644d974d17d11dc31ca71e08f0ce5a8e834cc17cde842d",
+        "finished_at_utc": "2026-09-25T11:27:55.723Z",
+        "ops_csv_sha256": "3d05a2549b579f598d9efcc34eb725a05d7adbdb169dc92e8361ed296157bff7",
         "plan": "dry",
-        "raw_dir": "build/chainbench/dry-run/dry-83a7eb7-20260925T111609Z-edr-a (git-ignored; engineering, not archived)",
+        "raw_dir": "build/chainbench/dry-run/dry-fbe3794-20260925T112745Z-edr-a (git-ignored; engineering, not archived)",
         "rows": 90,
         "rows_expected": 90,
         "rows_failing_check": 0,
-        "run_id": "dry-83a7eb7-20260925T111609Z-edr-a",
-        "started_at_utc": "2026-09-25T11:16:10.604Z"
+        "run_id": "dry-fbe3794-20260925T112745Z-edr-a",
+        "started_at_utc": "2026-09-25T11:27:50.947Z"
       },
       "edr-b": {
-        "commit": "83a7eb7ca1c29ee7ce82041dc4ec046924fa7b83",
+        "commit": "fbe379427223722c2d8a09e29abd5ad8cc9447d1",
         "deployments_runtime_match": true,
         "env": "edr",
         "env_check_pass": true,
-        "finished_at_utc": "2026-09-25T11:16:20.683Z",
-        "ops_csv_sha256": "9ce29fcb9d34f4631fac4c0fb34e001d475b9ad1e12ef4f05ba0a353fac93eae",
+        "finished_at_utc": "2026-09-25T11:28:01.415Z",
+        "ops_csv_sha256": "30efe3e7eae79d4f88d744f526b532fc082372667fb80aa8fea3769cf75a5763",
         "plan": "dry",
-        "raw_dir": "build/chainbench/dry-run/dry-83a7eb7-20260925T111609Z-edr-b (git-ignored; engineering, not archived)",
+        "raw_dir": "build/chainbench/dry-run/dry-fbe3794-20260925T112745Z-edr-b (git-ignored; engineering, not archived)",
         "rows": 90,
         "rows_expected": 90,
         "rows_failing_check": 0,
-        "run_id": "dry-83a7eb7-20260925T111609Z-edr-b",
-        "started_at_utc": "2026-09-25T11:16:16.178Z"
+        "run_id": "dry-fbe3794-20260925T112745Z-edr-b",
+        "started_at_utc": "2026-09-25T11:27:56.775Z"
       },
       "geth": {
-        "commit": "83a7eb7ca1c29ee7ce82041dc4ec046924fa7b83",
+        "commit": "fbe379427223722c2d8a09e29abd5ad8cc9447d1",
         "deployments_runtime_match": true,
         "env": "geth",
         "env_check_pass": true,
-        "finished_at_utc": "2026-09-25T11:16:29.442Z",
-        "ops_csv_sha256": "341a1e77505316f3cf8d5f8040cbf006d1e9beb8e75f85df31f2afc38155cad0",
+        "finished_at_utc": "2026-09-25T11:28:10.234Z",
+        "ops_csv_sha256": "8f09607804d131e7e1fb8eff9969f737e55ad1c85e791dc9a4dcadafe000b7da",
         "plan": "dry",
-        "raw_dir": "build/chainbench/dry-run/dry-83a7eb7-20260925T111609Z-geth (git-ignored; engineering, not archived)",
+        "raw_dir": "build/chainbench/dry-run/dry-fbe3794-20260925T112745Z-geth (git-ignored; engineering, not archived)",
         "rows": 90,
         "rows_expected": 90,
         "rows_failing_check": 0,
-        "run_id": "dry-83a7eb7-20260925T111609Z-geth",
-        "started_at_utc": "2026-09-25T11:16:21.765Z"
+        "run_id": "dry-fbe3794-20260925T112745Z-geth",
+        "started_at_utc": "2026-09-25T11:28:02.471Z"
       }
     },
     "vs_readiness_dry_run": {
       "edr": {
         "a": "build/campaigns/chain/dry-e141816-edr-a",
-        "b": "build/chainbench/dry-run/dry-83a7eb7-20260925T111609Z-edr-a",
+        "b": "build/chainbench/dry-run/dry-fbe3794-20260925T112745Z-edr-a",
         "build_manifests_identical": true,
         "call_rows_compared": 25,
         "differences_per_field": {},
@@ -223,7 +223,7 @@
       },
       "geth": {
         "a": "build/campaigns/chain/dry-e141816-geth",
-        "b": "build/chainbench/dry-run/dry-83a7eb7-20260925T111609Z-geth",
+        "b": "build/chainbench/dry-run/dry-fbe3794-20260925T112745Z-geth",
         "build_manifests_identical": true,
         "call_rows_compared": 25,
         "differences_per_field": {},
@@ -256,7 +256,7 @@
       "p256verify_valid_returns_1": false,
       "tx_gas_cap_2p24_plus_1_rejected": false
     },
-    "file": "build/chainbench/dry-run/dry-83a7eb7-20260925T111609Z-geth/env_check.json",
+    "file": "build/chainbench/dry-run/dry-fbe3794-20260925T112745Z-geth/env_check.json",
     "geth_markers": {
       "clz_returns_255": true,
       "p256verify_invalid_returns_empty": true,
@@ -281,7 +281,7 @@
     "version": "v1.16.9"
   },
   "harness": {
-    "commit": "83a7eb7ca1c29ee7ce82041dc4ec046924fa7b83",
+    "commit": "fbe379427223722c2d8a09e29abd5ad8cc9447d1",
     "edr_identity": {
       "client_version_note": "web3_clientVersion carries the EDR Rust workspace version (crate edr_provider, CARGO_PKG_VERSION = 0.3.8 at npm release 0.12.0-next.23); the npm package version is authoritative",
       "native_package": "@nomicfoundation/edr-linux-arm64-gnu",
@@ -323,6 +323,7 @@
     "soljson_sha256": "033dc42a16378dd036a475b8a7080af83cfae1841eb6848ce1667c56193972ba"
   },
   "notes": [
+    "csi/campaigns/chain/CSI-CHAIN-LOCAL-01/notes/DRY-RUN-packaged-83a7eb7.md",
     "csi/campaigns/chain/CSI-CHAIN-LOCAL-01/notes/DRY-RUN-readiness-e141816.md",
     "csi/campaigns/chain/CSI-CHAIN-LOCAL-01/notes/DRY-RUN.md",
     "csi/campaigns/chain/CSI-CHAIN-LOCAL-01/notes/PROOFSET-GENERATION.md"
@@ -416,6 +417,133 @@
           "run_id": "dry-e141816-geth",
           "started_at_utc": "2026-09-25T10:14:43.618Z"
         }
+      },
+      "superseded_because": "readiness dry run before packaging"
+    },
+    {
+      "container_image": "sha256:53d80311c0d3d2ff57b5eca3d8b1ace9eb4c45449fbb8b6596045dbb606e6cb6",
+      "cross_client": {
+        "a": "build/chainbench/dry-run/dry-83a7eb7-20260925T111609Z-edr-a",
+        "b": "build/chainbench/dry-run/dry-83a7eb7-20260925T111609Z-geth",
+        "build_manifests_identical": true,
+        "call_rows_compared": 25,
+        "differences_per_field": {},
+        "excluded_fields": [
+          "block_number",
+          "chain_id",
+          "client_version",
+          "env",
+          "gas_price_wei",
+          "run_id",
+          "tx_hash"
+        ],
+        "field_value_comparisons": 3960,
+        "identical": true,
+        "rows_compared": 90,
+        "tx_rows_compared": 65
+      },
+      "determinism": {
+        "a": "build/chainbench/dry-run/dry-83a7eb7-20260925T111609Z-edr-a",
+        "b": "build/chainbench/dry-run/dry-83a7eb7-20260925T111609Z-edr-b",
+        "build_manifests_identical": true,
+        "call_rows_compared": 25,
+        "differences_per_field": {},
+        "excluded_fields": [
+          "run_id"
+        ],
+        "field_value_comparisons": 4500,
+        "identical": true,
+        "rows_compared": 90,
+        "tx_rows_compared": 65
+      },
+      "environment": "packaged container, image sha256:53d80311c0d3d2ff57b5eca3d8b1ace9eb4c45449fbb8b6596045dbb606e6cb6, --network none",
+      "evidence_status": "engineering; not evidence (protocol section 10 item 7)",
+      "harness_commit": "83a7eb7ca1c29ee7ce82041dc4ec046924fa7b83",
+      "notes": "csi/campaigns/chain/CSI-CHAIN-LOCAL-01/notes/DRY-RUN-packaged-83a7eb7.md",
+      "plan": "dry (Groth16 d5, d11; PLONK d10, d11; bridge Groth16 d11; proofs p0, p1; all negative controls)",
+      "runs": {
+        "edr-a": {
+          "commit": "83a7eb7ca1c29ee7ce82041dc4ec046924fa7b83",
+          "deployments_runtime_match": true,
+          "env": "edr",
+          "env_check_pass": true,
+          "finished_at_utc": "2026-09-25T11:16:15.066Z",
+          "ops_csv_sha256": "51892c27581a71d677644d974d17d11dc31ca71e08f0ce5a8e834cc17cde842d",
+          "plan": "dry",
+          "raw_dir": "build/chainbench/dry-run/dry-83a7eb7-20260925T111609Z-edr-a (git-ignored; engineering, not archived)",
+          "rows": 90,
+          "rows_expected": 90,
+          "rows_failing_check": 0,
+          "run_id": "dry-83a7eb7-20260925T111609Z-edr-a",
+          "started_at_utc": "2026-09-25T11:16:10.604Z"
+        },
+        "edr-b": {
+          "commit": "83a7eb7ca1c29ee7ce82041dc4ec046924fa7b83",
+          "deployments_runtime_match": true,
+          "env": "edr",
+          "env_check_pass": true,
+          "finished_at_utc": "2026-09-25T11:16:20.683Z",
+          "ops_csv_sha256": "9ce29fcb9d34f4631fac4c0fb34e001d475b9ad1e12ef4f05ba0a353fac93eae",
+          "plan": "dry",
+          "raw_dir": "build/chainbench/dry-run/dry-83a7eb7-20260925T111609Z-edr-b (git-ignored; engineering, not archived)",
+          "rows": 90,
+          "rows_expected": 90,
+          "rows_failing_check": 0,
+          "run_id": "dry-83a7eb7-20260925T111609Z-edr-b",
+          "started_at_utc": "2026-09-25T11:16:16.178Z"
+        },
+        "geth": {
+          "commit": "83a7eb7ca1c29ee7ce82041dc4ec046924fa7b83",
+          "deployments_runtime_match": true,
+          "env": "geth",
+          "env_check_pass": true,
+          "finished_at_utc": "2026-09-25T11:16:29.442Z",
+          "ops_csv_sha256": "341a1e77505316f3cf8d5f8040cbf006d1e9beb8e75f85df31f2afc38155cad0",
+          "plan": "dry",
+          "raw_dir": "build/chainbench/dry-run/dry-83a7eb7-20260925T111609Z-geth (git-ignored; engineering, not archived)",
+          "rows": 90,
+          "rows_expected": 90,
+          "rows_failing_check": 0,
+          "run_id": "dry-83a7eb7-20260925T111609Z-geth",
+          "started_at_utc": "2026-09-25T11:16:21.765Z"
+        }
+      },
+      "superseded_because": "the reviewer entry point changed after this run (protocol section 12 step 4 unit tests added to the run procedure; one runner invocation per step, section 15 A3); packaged dry run repeated",
+      "vs_readiness_dry_run": {
+        "edr": {
+          "a": "build/campaigns/chain/dry-e141816-edr-a",
+          "b": "build/chainbench/dry-run/dry-83a7eb7-20260925T111609Z-edr-a",
+          "build_manifests_identical": true,
+          "call_rows_compared": 25,
+          "differences_per_field": {},
+          "excluded_fields": [
+            "run_id"
+          ],
+          "field_value_comparisons": 4500,
+          "identical": true,
+          "rows_compared": 90,
+          "tx_rows_compared": 65
+        },
+        "geth": {
+          "a": "build/campaigns/chain/dry-e141816-geth",
+          "b": "build/chainbench/dry-run/dry-83a7eb7-20260925T111609Z-geth",
+          "build_manifests_identical": true,
+          "call_rows_compared": 25,
+          "differences_per_field": {},
+          "excluded_fields": [
+            "block_number",
+            "chain_id",
+            "client_version",
+            "env",
+            "gas_price_wei",
+            "run_id",
+            "tx_hash"
+          ],
+          "field_value_comparisons": 3960,
+          "identical": true,
+          "rows_compared": 90,
+          "tx_rows_compared": 65
+        }
       }
     }
   ],
@@ -447,13 +575,13 @@
     "checks": 9,
     "evidence_status": "packaging check; not data",
     "pass": true,
-    "run_id": "smoke-20260925T111555Z"
+    "run_id": "smoke-20260925T112730Z"
   },
   "stage": "packaged (container) environment frozen; packaged engineering dry run passed; baseline tag chain-l1-baseline-20260925; full L1 scientific matrix not started; local-EraVM arm pending (protocol section 14)",
   "status": "ready",
   "unit_tests": {
     "failing": 0,
-    "log": "build/chainbench/smoke/smoke-20260925T111555Z/unit_tests.log",
+    "log": "build/chainbench/dry-run/dry-fbe3794-20260925T112745Z.unit_tests.log",
     "passing": 12
   },
   "used_in_manuscript": "no",

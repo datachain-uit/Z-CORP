@@ -42,7 +42,7 @@ bash scripts/release/save_image.sh                     # campaign host only: doc
 | Admin ID | Experiment | Status | Used in manuscript | Source |
 |---|---|---|---|---|
 | CSI-PROVER-01 | controlled prover scaling | validated | pending | `results/postcorr-20260925/` (`campaign-20260925T060607Z`, tag `rerun-baseline-20260925`, commit `dc13ddd`, protocol v3) |
-| CSI-CHAIN-LOCAL-01 | controlled on-chain verification (local L1) | ready | no | No scientific run yet. The packaged (container) engineering dry run passed and equals the readiness dry run (`campaigns/chain/CSI-CHAIN-LOCAL-01/notes/DRY-RUN.md`). Baseline tag `chain-l1-baseline-20260925`, harness commit `83a7eb7`, protocol `protocols/chain/CHAIN-PROTOCOL-v1.md`. Reviewer entry point: `chainbench/README.md`. |
+| CSI-CHAIN-LOCAL-01 | controlled on-chain verification (local L1) | ready | no | No scientific run yet. The packaged (container) engineering dry run passed and equals the readiness dry run (`campaigns/chain/CSI-CHAIN-LOCAL-01/notes/DRY-RUN.md`). Baseline tag `chain-l1-baseline-20260925`, harness commit `fbe3794`, protocol `protocols/chain/CHAIN-PROTOCOL-v1.md`. Reviewer entry point: `chainbench/README.md`. |
 
 ### Chain campaigns (`campaigns/chain/`)
 
