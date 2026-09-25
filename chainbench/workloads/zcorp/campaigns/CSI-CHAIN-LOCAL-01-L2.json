@@ -1,0 +1,80 @@
+{
+  "campaign_id": "CSI-CHAIN-LOCAL-01",
+  "arm": "L2-EraVM",
+  "arm_note": "Local EraVM arm of CSI-CHAIN-LOCAL-01 (CHAIN-PROTOCOL-v1 section 15.1 amendment A6 and section 16). It has its own binding, image, lockfile, output roots and baseline tag. The L1 arm (binding CSI-CHAIN-LOCAL-01.json) is frozen at chain-l1-baseline-20260925 and is not changed by this arm; L1 is reproduced from that tag.",
+  "venue": "CSI",
+  "admin_record": {
+    "admin_id": "CSI-CHAIN-LOCAL-01",
+    "experiment": "controlled on-chain verification (local EraVM)",
+    "registry": "csi/campaign-index.csv",
+    "notes_dir": "csi/campaigns/chain/CSI-CHAIN-LOCAL-01/l2/notes"
+  },
+  "campaign_dir": "csi/campaigns/chain/CSI-CHAIN-LOCAL-01",
+  "l2_dir": "csi/campaigns/chain/CSI-CHAIN-LOCAL-01/l2",
+  "protocol": "csi/protocols/chain/CHAIN-PROTOCOL-v1.md",
+  "protocol_amendment": "A6 (sections 15.1 and 16)",
+  "proofset_dir": "csi/campaigns/chain/CSI-CHAIN-LOCAL-01/inputs/proofset",
+  "live_observation": "csi/campaigns/chain/CSI-CHAIN-LOCAL-01/l2/observation/20260925T121116Z",
+  "compatibility_class": "B",
+  "tracked_paths": [
+    "contracts",
+    "chainbench",
+    ":(exclude)chainbench/docker/IMAGE.json",
+    ":(exclude)chainbench/docker/pins.env",
+    ":(exclude)chainbench/docker/ARCHIVE.json",
+    ":(exclude)chainbench/adapters/eravm/IMAGE.json",
+    ":(exclude)chainbench/adapters/eravm/ARCHIVE.json",
+    "csi/protocols/chain",
+    "csi/campaigns/chain/CSI-CHAIN-LOCAL-01/inputs"
+  ],
+  "measurement_paths_note": "tracked_paths: clean-tree check before a run. measurement_paths: everything that can change a measured value; used for the baseline-tag and record checks. The L2 image records (adapters/eravm/IMAGE.json, ARCHIVE.json) are checked separately against the image actually used.",
+  "measurement_paths": [
+    "contracts",
+    "chainbench",
+    ":(exclude)chainbench/docker",
+    ":(exclude)chainbench/adapters/eravm/IMAGE.json",
+    ":(exclude)chainbench/adapters/eravm/ARCHIVE.json",
+    ":(exclude)chainbench/README.md",
+    ":(exclude)chainbench/adapters/eravm/README.md",
+    "csi/protocols/chain",
+    "csi/campaigns/chain/CSI-CHAIN-LOCAL-01/inputs",
+    "ARTIFACTS.sha256"
+  ],
+  "measurement_code_paths_note": "The EraVM measurement implementation: contracts, frozen inputs, the reused workload modules and chainbench libraries that the adapter loads, the adapter (libraries, runner, validation and comparison scripts, lockfile, pins, image recipe, in-container dispatcher). Host orchestration, documentation, records and this binding are not part of it.",
+  "measurement_code_paths": [
+    "contracts",
+    "csi/campaigns/chain/CSI-CHAIN-LOCAL-01/inputs",
+    "ARTIFACTS.sha256",
+    "chainbench/lib/common.js",
+    "chainbench/lib/rpc.js",
+    "chainbench/lib/constants.js",
+    "chainbench/lib/plan.js",
+    "chainbench/lib/profiles.js",
+    "chainbench/lib/proofset.js",
+    "chainbench/lib/ops.js",
+    "chainbench/core/workload.js",
+    "chainbench/core/netcheck.js",
+    "chainbench/workloads/zcorp/workload.json",
+    "chainbench/adapters/eravm/lib",
+    "chainbench/adapters/eravm/scripts",
+    "chainbench/adapters/eravm/package.json",
+    "chainbench/adapters/eravm/package-lock.json",
+    "chainbench/adapters/eravm/pins.env",
+    "chainbench/adapters/eravm/Dockerfile",
+    "chainbench/adapters/eravm/incontainer.sh"
+  ],
+  "commit_semantics": {
+    "measurement_code_commit": "the commit at which the packaged L2 dry run validated the EraVM measurement implementation; measurement_code_paths must be byte-identical between it and baseline_commit",
+    "baseline_commit": "the commit of the annotated L2 baseline tag (chain-l2-baseline-*); the scientific L2 runs are launched from it with a clean tree",
+    "registry_commit": "the L1 row of csi/campaign-index.csv is unchanged; an L2 registry entry is added only when the scientific L2 run exists"
+  },
+  "baseline_tag_prefix": "chain-l2-baseline-",
+  "image_records": ["chainbench/adapters/eravm/IMAGE.json", "chainbench/adapters/eravm/ARCHIVE.json"],
+  "out_roots": {
+    "smoke": "build/chainbench/l2/smoke",
+    "dry": "build/chainbench/l2/dry-run",
+    "full": "build/campaigns/chain-l2"
+  },
+  "smoke_reference": "workloads/zcorp/smoke-reference-l2.csv",
+  "reference_dry_run": {}
+}

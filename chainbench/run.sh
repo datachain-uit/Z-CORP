@@ -14,6 +14,9 @@
 #   ./chainbench/run.sh author-prefreeze DIR  author only: archive the frozen image, linux/amd64 portability (doctor, smoke), doctor, smoke
 #   CHAINBENCH_PLATFORM=linux/amd64 ./chainbench/run.sh doctor|smoke   portability check on another platform (own image and state)
 #
+#   Local EraVM arm (L2; commands handled by adapters/eravm/run-l2.sh, see its header and CHAIN-PROTOCOL-v1 section 16):
+#   ./chainbench/run.sh doctor-l2 | smoke-l2 | dry-run-l2 | full-local-l2   (also build-image-l2, save-image-l2, load-image-l2, author-l2)
+#
 # Everything measured runs inside the chainbench container with --network none; the repository is mounted read-only.
 set -uo pipefail
 
@@ -42,7 +45,7 @@ fail() { printf '[FAIL] %s\n' "$1"; if [ -n "${2:-}" ]; then printf '       Fix:
 die()  { printf '[FAIL] %s\n' "$1" >&2; if [ -n "${2:-}" ]; then printf '       Fix: %s\n' "$2" >&2; fi; exit 1; }
 utc()  { date -u +%Y%m%dT%H%M%SZ; }
 sha256_of() { if command -v shasum >/dev/null 2>&1; then shasum -a 256 "$1" | awk '{print $1}'; else sha256sum "$1" | awk '{print $1}'; fi; }
-usage() { sed -n '2,18p' "$0" | sed 's/^# \{0,1\}//'; }
+usage() { sed -n '2,20p' "$0" | sed 's/^# \{0,1\}//'; }
 
 # ---------------------------------------------------------------- Docker helpers
 have_docker() {
@@ -539,6 +542,8 @@ case "$cmd" in
   author-prefreeze) author_prefreeze "$@" ;;
   save-image)     save_image "$@" ;;
   load-image)     load_image_archive "$@" ;;
+  build-image-l2|doctor-l2|smoke-l2|dry-run-l2|full-local-l2|save-image-l2|load-image-l2|author-l2)
+                  exec "$CB_DIR/adapters/eravm/run-l2.sh" "$cmd" "$@" ;;
   help|-h|--help) usage ;;
-  *) usage; die "unknown command '$cmd'" "Use one of: doctor, smoke, full-local-l1 (also build-image, dry-run)." ;;
+  *) usage; die "unknown command '$cmd'" "Use one of: doctor, smoke, full-local-l1 (also build-image, dry-run); L2: doctor-l2, smoke-l2, full-local-l2." ;;
 esac

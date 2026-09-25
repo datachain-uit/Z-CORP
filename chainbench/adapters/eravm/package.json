@@ -1,0 +1,13 @@
+{
+  "name": "zcorp-chainbench-eravm",
+  "version": "1.0.0",
+  "private": true,
+  "description": "chainbench local-EraVM adapter (anvil-zksync + zksolc): npm dependencies of the chainbench-l2 image, installed with npm ci at image build. Separate from the L1 lockfile (chainbench/package-lock.json), which is unchanged.",
+  "license": "UNLICENSED",
+  "dependencies": {
+    "@openzeppelin/contracts": "4.9.0",
+    "ethers": "6.13.5",
+    "snarkjs": "0.7.5",
+    "zksync-ethers": "6.21.2"
+  }
+}

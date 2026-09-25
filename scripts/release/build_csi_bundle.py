@@ -272,10 +272,11 @@ def build_chain_campaign(row, plan, tmpdir):
         if os.path.exists(existing) and open(existing, 'rb').read() != sm:
             raise Abort(f'{admin}: {src} no longer matches the frozen {sm_rel}; the source campaign must not change')
         plan.put(sm_rel, sm)
-        # protocol at the campaign commit must equal the committed protocol (no later edit)
+        # protocol at the campaign commit must be a byte prefix of the committed protocol: later amendments (e.g. A6,
+        # the local-EraVM arm) may only be appended; any edit of the text the campaign ran under aborts
         proto = git('show', f"{row['commit']}:{row['protocol_path']}")
-        if sha(proto) != sha(rd(row['protocol_path'])):
-            raise Abort(f"{admin}: {row['protocol_path']} changed after the campaign commit")
+        if not rd(row['protocol_path']).startswith(proto):
+            raise Abort(f"{admin}: {row['protocol_path']} was edited after the campaign commit (only appended amendments are allowed)")
         arc = json.loads(git('show', f"{row['commit']}:chainbench/docker/ARCHIVE.json"))
         dtmp = os.path.join(tmpdir, admin, 'derived')
         cmd = [sys.executable, os.path.join(REPO, 'scripts/analysis/derive_chain_l1.py'), '--campaign', os.path.join(REPO, src), '--out', dtmp,
@@ -334,6 +335,12 @@ def build_chain_release(ctx):
 
 
 def chain_attribution(rel, crow):
+    if f"/{crow['admin_id']}/l2/" in rel:  # local-EraVM arm (CHAIN-PROTOCOL-v1 section 16, A6): readiness records, no scientific data
+        if '/l2/observation/' in rel and not rel.endswith('.md'):
+            return 'record', 'chainbench/adapters/eravm/observe-public.sh (read-only JSON-RPC to ZKsync Era Sepolia, campaign host)'
+        if '/l2/readiness/' in rel:
+            return 'record', 'chainbench/run.sh author-l2 (campaign host; copied run records; not scientific data)'
+        return 'hand-written', '-'
     if f"/release/{crow['admin_id']}/" in rel:
         if rel.endswith('/IMAGE-ARCHIVE.json'):
             return 'generated', 'scripts/release/chain_image_record.py <- the docker save archives (campaign host)'

@@ -124,3 +124,13 @@ chainbench separates a workload- and venue-neutral core from the workloads it me
 - **Venue metadata:** a campaign binding such as `workloads/zcorp/campaigns/CSI-CHAIN-LOCAL-01.json`.
 
 See `chainbench/core/README.md` and `chainbench/workloads/README.md`.
+
+## Local EraVM arm (L2)
+
+The same workload also runs on a local EraVM node (anvil-zksync 0.6.11, protocol v29; zksolc 1.5.15 with era-solc
+0.8.20-1.0.2) in its own pinned image, with its own binding (`workloads/zcorp/campaigns/CSI-CHAIN-LOCAL-01-L2.json`)
+and protocol section (CHAIN-PROTOCOL-v1 section 16, amendment A6). Commands: `./chainbench/run.sh doctor-l2`,
+`smoke-l2`, `dry-run-l2`, `full-local-l2`. Details and the metric definitions: `chainbench/adapters/eravm/README.md`;
+adapter layout: `chainbench/adapters/README.md`.
+
+The L1 campaign above is frozen at the tag `chain-l1-baseline-20260925`; reproduce it from that tag.

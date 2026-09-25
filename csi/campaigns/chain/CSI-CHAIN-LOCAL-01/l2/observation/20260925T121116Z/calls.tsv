@@ -1,0 +1,13 @@
+name	method	params	t_request_utc	t_response_utc	http
+chainId	eth_chainId	[]	2026-09-25T12:11:16Z	2026-09-25T12:11:16Z	200
+clientVersion	web3_clientVersion	[]	2026-09-25T12:11:16Z	2026-09-25T12:11:18Z	200
+protocolVersion	zks_getProtocolVersion	[]	2026-09-25T12:11:18Z	2026-09-25T12:11:19Z	200
+feeParams	zks_getFeeParams	[]	2026-09-25T12:11:19Z	2026-09-25T12:11:20Z	200
+gasPrice	eth_gasPrice	[]	2026-09-25T12:11:20Z	2026-09-25T12:11:20Z	200
+blockNumber	eth_blockNumber	[]	2026-09-25T12:11:20Z	2026-09-25T12:11:21Z	200
+latestBlock	eth_getBlockByNumber	["latest",false]	2026-09-25T12:11:21Z	2026-09-25T12:11:21Z	200
+l1BatchNumber	zks_L1BatchNumber	[]	2026-09-25T12:11:21Z	2026-09-25T12:11:21Z	200
+blockDetails	zks_getBlockDetails	[8561516]	2026-09-25T12:11:21Z	2026-09-25T12:11:22Z	200
+l1BatchDetails	zks_getL1BatchDetails	[22260]	2026-09-25T12:11:22Z	2026-09-25T12:11:23Z	200
+l1BatchDetailsPrev	zks_getL1BatchDetails	[22259]	2026-09-25T12:11:23Z	2026-09-25T12:11:25Z	200
+bridgeContracts	zks_getBridgeContracts	[]	2026-09-25T12:11:25Z	2026-09-25T12:11:25Z	200
