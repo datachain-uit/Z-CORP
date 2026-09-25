@@ -17,6 +17,8 @@ const { loadSigner } = require('../lib/keysafety');
 const { observe } = require('../lib/observe');
 const { stable } = require('../lib/recorder');
 const INP = require('../lib/inputs');
+const IMG = require('../lib/imageid');
+const EP = require('../lib/endpoints');
 const PLAN = require('../lib/plan');
 const B = W.campaign;
 const PROC = JSON.parse(fs.readFileSync(path.join(CB, B.procedure), 'utf8'));
@@ -37,8 +39,20 @@ async function main() {
   try { for (const p of Object.keys(want)) got[p] = JSON.parse(fs.readFileSync(path.join(AD, 'node_modules', p, 'package.json'), 'utf8')).version; } catch (e) { got = null; }
   rec(got && Object.keys(want).every((p) => got[p] === want[p]) ? 'PASS' : 'FAIL', 'npm dependencies = package-lock.json (the only runtime dependencies)', got ? JSON.stringify(got) : 'node_modules missing', 'npm ci --ignore-scripts in chainbench/adapters/public (or use the image)');
   rec(Object.keys(lock.packages).filter((k) => k).length === 10 ? 'PASS' : 'WARN', 'dependency graph: 10 packages (ethers, zksync-ethers and their dependencies)', `${Object.keys(lock.packages).filter((k) => k).length} packages`);
-  const src = ['lib', 'scripts'].flatMap((d) => fs.readdirSync(path.join(AD, d)).filter((f) => f.endsWith('.js') && f !== 'doctor_public.js').map((f) => fs.readFileSync(path.join(AD, d, f), 'utf8'))).join('\n');
+  const src = ['lib', 'scripts', 'tools'].filter((d) => fs.existsSync(path.join(AD, d))).flatMap((d) => fs.readdirSync(path.join(AD, d)).filter((f) => f.endsWith('.js') && f !== 'doctor_public.js').map((f) => fs.readFileSync(path.join(AD, d, f), 'utf8'))).join('\n');
   rec(!/new\s+(WebSocket|ethers\.WebSocketProvider|WebSocketProvider)\b|JsonRpcProvider|require\(['"]ws['"]\)|\bfetch\(/.test(src) ? 'PASS' : 'FAIL', 'RPC path: node:https/http only (no WebSocket, no ethers provider, no fetch/undici)');
+  // frozen public image (D1): the versioned record and the image this doctor runs in
+  let imgRec = null;
+  try { imgRec = IMG.loadRecord(); rec('PASS', 'frozen public image record (ARCHIVE.json: index -> manifest -> config chain verified)', `image ${imgRec.image_id.slice(0, 19)}… ${imgRec.platform}; archive sha256 ${imgRec.archive_sha256.slice(0, 16)}…`); }
+  catch (e) { rec(e.code === 'image_record_missing' ? 'WARN' : 'FAIL', 'frozen public image record', `${e.code}: ${e.message}`, 'author: ./chainbench/run.sh save-image-public, then commit chainbench/adapters/public/ARCHIVE.json'); }
+  const running = IMG.fromEnv();
+  if (!running) rec('WARN', 'image used by this doctor', 'native run or started without the wrapper (live commands require the frozen image)');
+  else if (running.verified_by_wrapper === 'pass' && imgRec && running.image_id === imgRec.image_id) rec('PASS', 'image used by this doctor = the frozen public image', running.image_id);
+  else rec('WARN', 'image used by this doctor', `${running.image_id} is not the frozen public image (reviewer image; live commands refuse it)`, 'author: ./chainbench/run.sh load-image-public <archive> for the frozen image');
+  const unfrozen = Object.keys(B.networks).filter((n) => !EP.frozenOf(B, n).primary);
+  rec(unfrozen.length ? 'WARN' : 'PASS', 'frozen primary endpoints in the binding', unfrozen.length ? `not yet frozen: ${unfrozen.join(', ')}` :
+    Object.keys(B.networks).map((n) => { const f = EP.frozenOf(B, n); return `${n}: ${f.primary.label} (${f.primary.host})${f.secondary ? `; validated secondary ${f.secondary.label} (${f.secondary.host}), deviation only` : ''}`; }).join('; '),
+    'author input: endpoints.frozen in the binding (protocol section 17)');
   const proto = path.join(REPO, B.protocol);
   rec(fs.existsSync(proto) ? 'PASS' : 'FAIL', 'protocol present', fs.existsSync(proto) ? `${B.protocol} (sha256 ${sha(fs.readFileSync(proto)).slice(0, 16)}…)` : B.protocol);
   let inputs = null;
@@ -65,6 +79,11 @@ async function main() {
     try { checkEndpoint(url, 'live'); } catch (e) { rec('FAIL', `${prof.label} endpoint`, `${e.code}: ${e.message}`); continue; }
     const rpc = new Rpc(url, { label: process.env[ENV_LABEL[net]] || '', mode: 'live', timeoutMs: B.timing.rpc_timeout_ms, publicUrls: Object.values(B.endpoints.public_defaults || {}) });
     rec('PASS', `${prof.label} endpoint (https)`, `${rpc.identity.label} host ${rpc.identity.host}${rpc.identity.url ? '' : ' (URL recorded as sha256 only)'}`);
+    if (EP.frozenOf(B, net).primary) {
+      try { const role = EP.apply(B, net, rpc, process.env[ENV_LABEL[net]], { deviation: process.env.CHAINBENCH_PUBLIC_DEVIATION });
+        rec(role === 'primary' ? 'PASS' : 'WARN', `${prof.label} endpoint = frozen ${role === 'primary' ? 'primary' : 'secondary'}`, `${rpc.identity.label} (${role})`, 'live runs use the frozen primary; a secondary only under a recorded deviation'); }
+      catch (e) { rec('WARN', `${prof.label} endpoint identity`, `${e.code}: ${e.message}`, 'live runs refuse this endpoint'); }
+    }
     if (offline) continue;
     const o = await observe(rpc, prof, { signer: signer ? signer.address : null, label: 'doctor-public (read-only)' });
     obs[net] = o;
@@ -82,7 +101,8 @@ async function main() {
   const outDir = path.join(REPO, 'build', 'chainbench', 'public', 'doctor');
   fs.mkdirSync(outDir, { recursive: true });
   const file = argv.includes('--out') ? path.resolve(argv[argv.indexOf('--out') + 1]) : path.join(outDir, `doctor-${new Date().toISOString().replace(/[-:]/g, '').replace(/\.\d+Z$/, 'Z')}.json`);
-  const body = JSON.stringify(stable({ kind: 'doctor-public (engineering; not session evidence)', offline, results: res, observations: obs, signer_address: signer ? signer.address : null }), null, 2) + '\n';
+  const body = JSON.stringify(stable({ kind: 'doctor-public (engineering; not session evidence)', offline, results: res, observations: obs, signer_address: signer ? signer.address : null,
+    image: running, image_record: imgRec ? IMG.identity(imgRec) : null }), null, 2) + '\n';
   if (signer && signer.containsSecret(body)) { console.error('[FATAL] refusing to write a report containing the key'); process.exit(4); }
   fs.writeFileSync(file, body);
   console.log(`DOCTOR-PUBLIC: ${fails ? `${fails} FAIL` : 'no FAIL'} (${res.filter((r) => r.status === 'WARN').length} WARN); nothing was signed or sent; report ${path.relative(REPO, file)}`);

@@ -18,8 +18,9 @@
 #   ./chainbench/run.sh doctor-l2 | smoke-l2 | dry-run-l2 | full-local-l2   (also build-image-l2, save-image-l2, load-image-l2, author-l2)
 #
 #   Public-network case study (CSI-CHAIN-PUBLIC-01; commands handled by adapters/public/run-public.sh, see its header and
-#   CHAIN-PUBLIC-PROTOCOL-v1): ./chainbench/run.sh doctor-public | dry-run-public | check-public-inputs | derive-public
-#   (live, author only: run-public-setup NETWORK, run-public-session S1|S2|S3, collect-era-finality; also build-image-public)
+#   CHAIN-PUBLIC-PROTOCOL-v1): ./chainbench/run.sh doctor-public | dry-run-public | check-public-inputs | derive-public |
+#   test-guards-public | verify-image-public | load-image-public ARCHIVE (live, author only, frozen image only:
+#   run-public-setup NETWORK, run-public-session S1|S2|S3, collect-era-finality; also build-image-public, save-image-public)
 #
 # Everything measured in the local arms runs inside a container with --network none; the repository is mounted read-only.
 set -uo pipefail
@@ -548,7 +549,7 @@ case "$cmd" in
   load-image)     load_image_archive "$@" ;;
   build-image-l2|doctor-l2|smoke-l2|dry-run-l2|full-local-l2|save-image-l2|load-image-l2|author-l2)
                   exec "$CB_DIR/adapters/eravm/run-l2.sh" "$cmd" "$@" ;;
-  build-image-public|doctor-public|dry-run-public|check-public-inputs|derive-public|run-public-setup|run-public-session|collect-era-finality)
+  build-image-public|save-image-public|load-image-public|verify-image-public|test-guards-public|doctor-public|dry-run-public|check-public-inputs|derive-public|run-public-setup|run-public-session|collect-era-finality)
                   exec bash "$CB_DIR/adapters/public/run-public.sh" "$cmd" "$@" ;;
   help|-h|--help) usage ;;
   *) usage; die "unknown command '$cmd'" "Use one of: doctor, smoke, full-local-l1 (also build-image, dry-run); L2: doctor-l2, smoke-l2, full-local-l2; public: doctor-public, dry-run-public." ;;

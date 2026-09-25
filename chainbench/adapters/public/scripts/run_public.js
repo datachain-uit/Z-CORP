@@ -6,6 +6,9 @@
 // Live mode sends real transactions to the configured public endpoints and needs --confirm; dry mode accepts only
 // http://127.0.0.1 endpoints (the mock of dry_run_public.js). Endpoints: CHAINBENCH_PUBLIC_RPC_SEPOLIA,
 // CHAINBENCH_PUBLIC_RPC_ERA_SEPOLIA (+ _LABEL_). Key: CHAINBENCH_PUBLIC_KEY_FILE or CHAINBENCH_PUBLIC_PRIVATE_KEY.
+// Live mode also requires the frozen public image, verified by ./chainbench/run.sh against chainbench/adapters/public/
+// ARCHIVE.json before the container starts (CHAINBENCH_PUBLIC_IMAGE_*; lib/imageid.js), and the frozen endpoints of the
+// binding (lib/endpoints.js); both are checked before the key is loaded and recorded in run.json.
 // Exit codes: 0 run completed (whatever the transaction states), 2 usage, 3 refusal (nothing sent).
 process.env.CHAINBENCH_CAMPAIGN = process.env.CHAINBENCH_CAMPAIGN || 'CSI-CHAIN-PUBLIC-01';
 const fs = require('fs');
@@ -25,6 +28,8 @@ const INP = require('../lib/inputs');
 const PLAN = require('../lib/plan');
 const TX = require('../lib/txengine');
 const { now, ORIGIN_UTC } = require('../lib/clock');
+const IMG = require('../lib/imageid');
+const EP = require('../lib/endpoints');
 
 const B = W.campaign;
 const PROC = JSON.parse(fs.readFileSync(path.join(CB, B.procedure), 'utf8'));
@@ -39,7 +44,9 @@ function endpoint(network, mode) {
   const url = process.env[ENV_URL[network]] || (mode === 'live' ? (B.endpoints.public_defaults || {})[network] : null);
   if (!url) die('no_endpoint', `set ${ENV_URL[network]}`);
   try {
-    return new Rpc(url, { label: process.env[ENV_LABEL[network]] || '', mode, timeoutMs: B.timing.rpc_timeout_ms, publicUrls: Object.values(B.endpoints.public_defaults || {}) });
+    const rpc = new Rpc(url, { label: process.env[ENV_LABEL[network]] || '', mode, timeoutMs: B.timing.rpc_timeout_ms, publicUrls: Object.values(B.endpoints.public_defaults || {}) });
+    if (mode === 'live') EP.apply(B, network, rpc, process.env[ENV_LABEL[network]], { deviation: process.env.CHAINBENCH_PUBLIC_DEVIATION });
+    return rpc;
   } catch (e) { if (e instanceof Refusal) die(e.code, e.message); throw e; }
 }
 function timing(network, mode) {
@@ -109,8 +116,10 @@ async function main() {
   const protoSha = sha(fs.readFileSync(path.join(REPO, B.protocol)));
   let inputs;
   try { inputs = INP.load(REPO, B); } catch (e) { die('inputs', e.message); }
+  let image = IMG.fromEnv();
   if (mode === 'live') {
     if (arg('--confirm') !== (phase === 'setup' ? `setup-${network}` : sessionId)) die('not_confirmed', `live mode sends real transactions; repeat the target with --confirm ${phase === 'setup' ? `setup-${network}` : sessionId}`);
+    try { image = IMG.verifyLive(); } catch (e) { if (e instanceof Refusal) die(e.code, e.message); throw e; }
     if (dirty) die('dirty_tree', `tracked paths have uncommitted changes:\n${dirty}`);
     if (phase === 'session' && !sessionRec.scheduled_start_utc) die('session_not_scheduled', `session ${sessionId} has no frozen scheduled_start_utc in the campaign binding`);
     if (phase === 'session') {
@@ -135,7 +144,7 @@ async function main() {
     process_origin_utc: ORIGIN_UTC, started_utc: t.utc, schedule: plan.map((b) => ({ network: b.network, ops: b.ops.map(({ step, ...o }) => o) })),
     scheduled_start_utc: sessionRec ? sessionRec.scheduled_start_utc : null,
     start_offset_minutes: sessionRec && sessionRec.scheduled_start_utc ? +((Date.parse(t.utc) - Date.parse(sessionRec.scheduled_start_utc)) / 60000).toFixed(2) : null,
-    deviation: process.env.CHAINBENCH_PUBLIC_DEVIATION || null, fee_policy: B.fee_policy, endpoints: {}, timing: {}, blocks: [],
+    deviation: process.env.CHAINBENCH_PUBLIC_DEVIATION || null, image, fee_policy: B.fee_policy, endpoints: {}, timing: {}, blocks: [],
   };
   rec.json('run.json', run);
   const rpcLogs = [];

@@ -71,6 +71,17 @@ environment variables, must be `https`, and are identified in the records by a p
 the URL (a provider URL may contain an API key); a URL is recorded in full only if the binding lists it as public. A
 change of endpoint after setup is a deviation (section 18).
 
+3.3 Provider and fallback policy. The binding freezes, per network, the primary endpoint (`endpoints.frozen`: provider
+label, host, URL sha256; the URL itself only if it is public) and, optionally, a validated secondary endpoint
+(`endpoints.secondary`) that passed a read-only compatibility check of every JSON-RPC method the runner and the finality
+collector use (tools/rpc_compat_public.js; no key, no transaction). Setup and S1–S3 use the primary. The secondary is a
+fallback only: it may be used only after a documented operational failure of the primary, recorded as a deviation
+(section 18) before it is used and named by `CHAINBENCH_PUBLIC_DEVIATION`; never because another provider appears cheaper
+or faster. There is no automatic fail-over and no duplicate transaction through two providers; the provider is not an
+experimental factor and providers are not compared. The live runner and the finality collector refuse any other endpoint,
+the secondary without a deviation id, and a label other than the frozen one for a frozen URL; every row carries the label,
+host and URL sha256 of the endpoint actually used, so a provider change is visible in each affected row.
+
 3.2 The endpoint's `eth_chainId` must equal the profile's chain id before anything is signed. Always refused: Ethereum
 mainnet (1), ZKsync Era mainnet (324), local/dev chains (31337, 1337, 260, 270, 271, 272), the other public network's id
 (cross-network), and any other id. Live mode refuses loopback and non-https endpoints; the dry run refuses anything but
@@ -149,7 +160,12 @@ repository; a group- or world-readable key file; a mnemonic; a malformed key; an
 account — the first 20 accounts of every mnemonic of the reproducibility configuration (read from
 `chainbench/lib/constants.js` and `chainbench/adapters/eravm/lib/constants.js` at run time) and the ten legacy
 anvil-zksync / era-test-node rich wallets (addresses present in the pinned anvil-zksync 0.6.11 binary). No mnemonic is
-accepted by the public runner at all.
+accepted by the public runner at all. Before the key file is mounted, the host wrapper also refuses (lib/guards.sh, the
+same code on macOS/BSD and GNU/Linux `stat`): a symbolic link, a non-regular file, a key file not owned by the invoking
+user, a mode other than 0600/0400, and a key directory not owned by the invoking user or with any group/other permission.
+The dedicated key is created and checked with the versioned tools `chainbench/adapters/public/tools/new_public_key.sh`
+(generated in the frozen image with `--network none`, written exclusively with mode 0600, only the address printed) and
+`tools/verify_public_key.sh` (the same host rules and the runner's own key-safety module; the key is never printed).
 
 6.3 The key never leaves the key-safety module: it is not printed, logged, recorded, copied into CSI evidence, or included
 in raw JSON or CSV. Only the signer address is recorded. Every file the runner writes passes a guard that aborts the run
@@ -277,7 +293,19 @@ No column holds a secret.
 
 The runtime path uses no Hardhat, compiler or prover: signing, ABI encoding and EIP-1559/EIP-712 serialisation come from
 `ethers` and `zksync-ethers`; JSON-RPC goes through `node:https` (no WebSocket, no ethers provider, no `fetch`).
-`CHAINBENCH_PUBLIC_NATIVE=1` runs the same scripts with a host Node 22 instead of the image.
+`CHAINBENCH_PUBLIC_NATIVE=1` runs the reviewer commands with a host Node 22 instead of the image; live commands refuse it.
+
+13.1 Frozen public image. The live commands (setup, sessions, finality collection) run only in the image recorded in the
+versioned `chainbench/adapters/public/ARCHIVE.json`, written by `save-image-public` from the saved OCI archive: the
+image-index digest (the Docker image ID under the containerd image store), the platform manifest, the config, the archive
+sha256 and the architecture, with the three blobs verbatim so that the chain index → manifest → config can be re-verified
+offline. A Docker tag is never identity. Before anything else (before the key file is examined) the wrapper verifies that
+the selected and loaded image has exactly that ID, OS, architecture and rootfs layer list; it starts the container by
+digest and passes the verified identity in; the runner refuses a live run without it or with any difference, before the key
+is loaded, and records it in `run.json`; after the container exits the wrapper verifies the image again. Both checks are
+appended to `IMAGE-LEDGER.jsonl` in the live output root. `load-image-public` loads the archive after checking its sha256;
+`verify-image-public` reports the identity; `test-guards-public` runs the guard tests (key-file rules on both `stat`
+branches, image record and guards, endpoint policy, VP12/VP13) without key or network.
 
 ## 14. Derivations (descriptive only)
 
@@ -300,7 +328,9 @@ row per scheduled operation in schedule order, mode as expected; VP3 states from
 timing arithmetic (t0 ≤ t_hash ≤ t_receipt, derived latencies equal the clock differences); VP5 receipt fee = `gasUsed ×
 effectiveGasPrice`; VP6 the frozen send policy; VP7 chain ids; VP8 an observation before every block, linked from its rows;
 VP9 RPC hash = locally computed hash; VP10 the signer recorded as an address only; VP11 Era receipts carry an L1 batch
-number. Acceptance concerns the integrity of the record, not the success of transactions: states, deployed-code identity
+number; and, for live records, VP12 every run recorded the frozen public image (section 13.1), re-verified after the run
+(`IMAGE-LEDGER.jsonl`), one image for all runs, and VP13 every endpoint is the frozen primary (the secondary only under a
+recorded deviation) and every row carries the endpoint used. Acceptance concerns the integrity of the record, not the success of transactions: states, deployed-code identity
 and balance-based fee agreement are reported as findings, never used to exclude or normalise a row.
 
 ## 16. CSI evidence identity
@@ -321,8 +351,8 @@ for interpretations). Engineering records (dry runs, doctor reports) go to `read
 | # | Input | Where it is frozen |
 |---|---|---|
 | 1 | Scheduled UTC start of S1, S2, S3 (at least two calendar days; not a repeat of the 10:00/16:00/22:00 design) | binding `sessions[].scheduled_start_utc` |
-| 2 | Ethereum Sepolia endpoint and provider label (https; one for the whole study) | environment at run time; label, host and URL sha256 recorded; named in the ready record |
-| 3 | ZKsync Era Sepolia endpoint and provider label (default: the official public `https://sepolia.era.zksync.dev`) | as above |
+| 2 | Ethereum Sepolia endpoint and provider label (https; one for the whole study) | binding `endpoints.frozen` (label, host, URL sha256; the URL itself is given in the environment at run time); recorded in every row |
+| 3 | ZKsync Era Sepolia endpoint and provider label (default: the official public `https://sepolia.era.zksync.dev`); optionally a validated secondary (section 3.3) | as above; secondary in `endpoints.secondary` |
 | 4 | The dedicated signing key (created for this study only, kept outside the repository, chmod 600) and its public address | key file outside git; address in the ready record |
 | 5 | Funding of that address on both networks, after checking the current base fees with `doctor-public` | balances recorded in every observation |
 | 6 | Priority fee P for Sepolia (default 1 gwei) | binding `fee_policy.sepolia.max_priority_fee_per_gas_wei` |

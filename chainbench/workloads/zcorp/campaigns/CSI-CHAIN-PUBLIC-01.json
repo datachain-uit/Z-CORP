@@ -80,10 +80,20 @@
   },
   "endpoints": {
     "rule": "endpoints are author inputs given through environment variables (CHAINBENCH_PUBLIC_RPC_SEPOLIA, CHAINBENCH_PUBLIC_RPC_ERA_SEPOLIA) with a provider label (CHAINBENCH_PUBLIC_RPC_LABEL_SEPOLIA, CHAINBENCH_PUBLIC_RPC_LABEL_ERA_SEPOLIA); https only; only the label, the host and the sha256 of the URL are recorded unless the URL is listed here as public",
-    "public_defaults": { "era-sepolia": "https://sepolia.era.zksync.dev" }
+    "public_defaults": { "era-sepolia": "https://sepolia.era.zksync.dev" },
+    "frozen_rule": "frozen[network] = {role, label, scheme, host, url_sha256, url (only if public)}: the primary endpoint of each network (author input, protocol section 17); the URL is given at run time in the environment and must hash to url_sha256; the recorded label is the frozen label",
+    "frozen": { "sepolia": null, "era-sepolia": null },
+    "secondary": { "sepolia": null, "era-sepolia": null },
+    "fallback_policy": "CHAIN-PUBLIC-PROTOCOL-v1 section 3.3: setup and S1-S3 use the frozen primary; a validated secondary (read-only compatibility check of every JSON-RPC method the runner and the finality collector use) is a fallback only, usable only after a documented operational failure of the primary recorded as a protocol deviation named by CHAINBENCH_PUBLIC_DEVIATION, never because another provider appears cheaper or faster; no automatic fail-over, no duplicate transactions, no provider comparison; the live runner refuses any other endpoint, a secondary without a deviation id and a different label for a frozen URL; rows carry the label, host and URL sha256 actually used"
   },
   "key": {
-    "rule": "a dedicated, externally supplied, funded key used only for this study: CHAINBENCH_PUBLIC_KEY_FILE (absolute path outside the repository, mode 0600 or 0400, one 0x-prefixed 32-byte hex key) or CHAINBENCH_PUBLIC_PRIVATE_KEY; never a mnemonic; only the signer address is recorded"
+    "rule": "a dedicated, externally supplied, funded key used only for this study: CHAINBENCH_PUBLIC_KEY_FILE (absolute path outside the repository, mode 0600 or 0400, one 0x-prefixed 32-byte hex key) or CHAINBENCH_PUBLIC_PRIVATE_KEY; never a mnemonic; only the signer address is recorded",
+    "host_rule": "run-public.sh (lib/guards.sh, macOS/BSD and GNU/Linux stat): absolute, not a symbolic link, regular file, outside the repository, owned by the invoking user, mode 0600/0400, directory owned by the invoking user with no group/other permission",
+    "tools": ["chainbench/adapters/public/tools/new_public_key.sh", "chainbench/adapters/public/tools/verify_public_key.sh"]
+  },
+  "image_record": {
+    "path": "chainbench/adapters/public/ARCHIVE.json",
+    "rule": "CHAIN-PUBLIC-PROTOCOL-v1 section 13.1: live commands run only in this image (image-index digest = Docker image ID, platform manifest, config, archive sha256, architecture), verified by run-public.sh before and after every live command and recorded in run.json and IMAGE-LEDGER.jsonl; a Docker tag is never identity"
   },
   "out_roots": { "dry": "build/chainbench/public/dry-run", "live": "build/campaigns/chain-public" },
   "results_dir": null,

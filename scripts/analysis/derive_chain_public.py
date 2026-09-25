@@ -5,7 +5,8 @@ sections 13-15). Standard library only; needs no key and no network.
     derive_chain_public.py --root <out root> --out <dir> [--mode live|dry]
 
 Validation checks the integrity of the record (schema, schedule coverage, state taxonomy, timing arithmetic, fee
-arithmetic, frozen send policy, chain ids, observations, hash consistency). Outcomes (states, deployed-code identity,
+arithmetic, frozen send policy, chain ids, observations, hash consistency; in live mode also the frozen public image of
+every run, re-verified after the run, and the frozen endpoints). Outcomes (states, deployed-code identity,
 balance-based fee consistency) are findings: they are counted and reported, never used to exclude or normalise a row.
 Derived summaries are descriptive only (n, min, median, max; per session); no test, no inference. Fees are in wei of
 test ether (Sepolia ETH, Era Sepolia ETH), which have no monetary value.
@@ -16,6 +17,8 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 REPO = os.path.abspath(os.path.join(HERE, '..', '..'))
 AD = os.path.join(REPO, 'chainbench', 'adapters', 'public')
 BINDING = os.path.join(REPO, 'chainbench', 'workloads', 'zcorp', 'campaigns', 'CSI-CHAIN-PUBLIC-01.json')
+IMAGE_RECORD = os.path.join(AD, 'ARCHIVE.json')
+IMG_FIELDS = ('image_id', 'manifest_digest', 'config_digest', 'archive_sha256', 'architecture', 'platform')
 
 
 def js_list(src, name):
@@ -52,6 +55,56 @@ def wcsv(path, rows, cols):
             w.writerow([fmt(r.get(c, '')) for c in cols])
 
 
+def image_record(path=IMAGE_RECORD):
+    """The frozen public image record with its index -> manifest -> config chain verified (None if absent or broken)."""
+    if not os.path.isfile(path):
+        return None
+    r = json.load(open(path))
+    h = lambda s: 'sha256:' + hashlib.sha256(s.encode()).hexdigest()
+    try:
+        idx, man, cfg = json.loads(r['index_blob']), json.loads(r['manifest_blob']), json.loads(r['config_blob'])
+        ok = (h(r['index_blob']) == r['image_id'] and any(m['digest'] == r['manifest_digest'] and m.get('platform', {}).get('architecture') == r['architecture'] for m in idx['manifests'])
+              and h(r['manifest_blob']) == r['manifest_digest'] and man['config']['digest'] == r['config_digest'] and h(r['config_blob']) == r['config_digest']
+              and cfg['architecture'] == r['architecture'])
+    except (KeyError, ValueError, TypeError):
+        ok = False
+    return r if ok else None
+
+
+def live_image_check(run, rid, rec, ledger):
+    """VP12: run.json carries the wrapper-verified frozen image and the wrapper's post-flight check of the same image passed."""
+    img = run.get('image') or {}
+    bad = []
+    if rec is None:
+        bad.append('no valid frozen image record')
+    else:
+        bad += [k for k in IMG_FIELDS if img.get(k) != rec[k]]
+    if img.get('verified_by_wrapper') != 'pass':
+        bad.append('not verified by the wrapper')
+    post = [e for e in ledger if e.get('phase') == 'post' and rid in (e.get('run_ids') or [])]
+    if not post:
+        bad.append('no post-flight image check in IMAGE-LEDGER.jsonl')
+    elif not all(e.get('result') == 'pass' and e.get('image_id') == img.get('image_id') for e in post):
+        bad.append('post-flight image check failed')
+    return not bad, bad
+
+
+def live_endpoint_check(run, rr, B):
+    """VP13: each network's endpoint is the frozen primary, or the validated secondary under a recorded deviation, and every
+    row carries the label, host and URL sha256 of the endpoint that run used."""
+    ep = B.get('endpoints') or {}
+    bad = []
+    for net, ident in (run.get('endpoints') or {}).items():
+        role = ident.get('role', '')
+        exp = (ep.get('frozen') or {}).get(net) if role == 'primary' else ((ep.get('secondary') or {}).get(net) if role.startswith('secondary') and run.get('deviation') else None)
+        if not exp or any(ident.get(k) != exp.get(k) for k in ('label', 'host', 'url_sha256')):
+            bad.append(f'{net}: endpoint not frozen ({role or "no role"})')
+            continue
+        if any((r['provider_label'], r['endpoint_host'], r['endpoint_url_sha256']) != (ident['label'], ident['host'], ident['url_sha256']) for r in rr if r['network'] == net):
+            bad.append(f'{net}: a row does not carry the endpoint used')
+    return not bad, bad
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('--root', required=True); ap.add_argument('--out', required=True); ap.add_argument('--mode', default='live')
@@ -62,6 +115,10 @@ def main():
     P = int(B['fee_policy']['sepolia']['max_priority_fee_per_gas_wei'])
     GL = B['fee_policy']['sepolia']['gas_limit']
     root = os.path.abspath(a.root)
+    rec_img = image_record() if a.mode == 'live' else None
+    lp = os.path.join(root, 'IMAGE-LEDGER.jsonl')
+    ledger = [json.loads(l) for l in open(lp) if l.strip()] if a.mode == 'live' and os.path.isfile(lp) else []
+    images = set()
     runs = sorted(d for d in glob.glob(os.path.join(root, '*')) if os.path.isfile(os.path.join(d, 'run.json')) and os.path.isfile(os.path.join(d, 'tx.csv')))
     checks = []
 
@@ -126,10 +183,18 @@ def main():
         check(f'{rid}: VP10 signer recorded as an address only', re.fullmatch(r'0x[0-9a-fA-F]{40}', run.get('signer_address', '')) is not None
               and all(r['signer_address'] == run['signer_address'] for r in rr) and not any('key' in c.lower() and 'key_source' not in c for c in COLUMNS))
         check(f'{rid}: VP11 Era receipts carry an L1 batch number', all(r['l1_batch_number'] != '' for r in rr if r['network'] == 'era-sepolia' and r['receipt_status'] != ''))
+        if a.mode == 'live':
+            ok, det = live_image_check(run, rid, rec_img, ledger)
+            check(f'{rid}: VP12 frozen public image (index, manifest, config, archive, architecture) verified before and after the run', ok, det)
+            images.add((run.get('image') or {}).get('image_id'))
+            ok, det = live_endpoint_check(run, rr, B)
+            check(f'{rid}: VP13 frozen endpoints (secondary only under a recorded deviation); rows carry the endpoint used', ok, det)
         for r in rr:
             r['_run'] = rid
         rows += rr
     check('VP0 at least one run', len(runs) > 0, len(runs))
+    if a.mode == 'live':
+        check('VP12 one frozen public image for every live run', len(images) == 1 and rec_img is not None and images == {rec_img['image_id']}, sorted(str(x) for x in images))
 
     # ---------------- findings and descriptive summaries (EVM and EraVM values are never compared with each other)
     os.makedirs(a.out, exist_ok=True)

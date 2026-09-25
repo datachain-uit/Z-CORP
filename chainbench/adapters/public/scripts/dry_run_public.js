@@ -253,7 +253,7 @@ async function main() {
   const prev = fs.existsSync(prevPath) ? JSON.parse(fs.readFileSync(prevPath, 'utf8')) : { results: [] };
   const merged = [...prev.results.filter((x) => !steps.includes(x.step)), ...results];
   const sum = { kind: 'engineering dry run (NOT scientific data)', dry_id: dryId, commit, node: process.version, mode: 'dry (mock endpoints on 127.0.0.1; ephemeral key; no public network; no test ETH)',
-    signer_address_ephemeral: good.address, updated_utc: new Date().toISOString(), last_steps: steps, last_started_utc: t0,
+    signer_address_ephemeral: good.address, image: require('../lib/imageid').fromEnv(), updated_utc: new Date().toISOString(), last_steps: steps, last_started_utc: t0,
     results: merged, passed: merged.filter((x) => x.pass).length, total: merged.length, all_pass: merged.every((x) => x.pass) };
   fs.writeFileSync(prevPath, JSON.stringify(sum, null, 2) + '\n');
   fs.rmSync(KDIR, { recursive: true, force: true });
