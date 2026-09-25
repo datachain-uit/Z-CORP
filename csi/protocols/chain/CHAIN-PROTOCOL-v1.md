@@ -411,3 +411,98 @@ All of the following were made **before** the L1 scientific run and before the e
 | A3 | 2026-09-25 | §12 | A run is executed in steps (`init`, `build`, `envcheck`, `exec`, `finish`), and `exec` can resume per cell. | The execution environment of the campaign VM ends every process of a shell call after about 3 minutes. Cells are independent and each uses a fresh chain, so resuming at a cell boundary does not change any transaction. |
 | A4 | 2026-09-25 | §11 | The geth build recipe is committed at `chainbench/geth/`. It builds in a fixed directory, `/tmp/zcorp-geth-v1.16.9`, and the replay uses its output (sha256 in `SHA256SUMS`). | gnark-crypto's assembly include paths embed the absolute module-cache path in the binary despite `-trimpath`. Byte-identical rebuilds therefore need the same path; two from-scratch builds with the recipe gave identical binaries. |
 | A5 | 2026-09-25 | §5, §11, §12 | **Environment packaging (procedural only; made after the engineering dry runs and before the scientific run).** The scientific L1 campaign runs through `./chainbench/run.sh full-local-l1` in the final packaged chainbench container environment, which replaces the host description of §5 ("Linux VM … No container image is used") and the geth client of §11: (1) a digest-pinned Docker environment: base image `node:22.23.2-bookworm-slim` @ `sha256:48e4b67d85f87bd551df43704e24d252f56cc5f8e9718841aace50f19948f0f9` (Debian 12, Node v22.23.2, glibc 2.36), pins in `chainbench/docker/pins.env`, the image's toolchain identity in `chainbench/docker/IMAGE.json`, and the exact image that the campaign uses archived with `docker save` (its identity and sha256 in `chainbench/docker/ARCHIVE.json`; `full-local-l1` refuses any other image on that platform); (2) the repository is mounted read-only, each run uses a fresh container and a fresh tmpfs work directory, and only the output roots are writable; (3) `--network none`: no interface except loopback is up and there is no route, checked by the pre-flight doctor and recorded in every run's `environment.json`; (4) the npm dependencies are installed with `npm ci` from the unchanged `chainbench/package-lock.json` at image build (sha256 `0add12b8…68cd`), which replaces §12 step 1; (5) the primary cross-client implementation is the official geth v1.16.9 image `ethereum/client-go:v1.16.9` @ `sha256:2dd7ef210a1a3fb87887676f7ead1b98161af83810928cdf6fc5b84bcdcc8ef4`, accepted only because `geth version` reports Git Commit `95665d5703e1023995a0ff93e4ce9eb77e8a59bd` (Go 1.24.13; binary sha256 `a437c0a5…8f84`); the reproducible from-source build of A4 (Go 1.24.7, `SHA256SUMS`) is retained only as a fallback; (6) the §12 scientific procedure and every measurement definition are unchanged: the pre-flight checks (steps 2 and 3), the unit tests (step 4), EDR runs a and b from scratch and the geth replay with one runner invocation per step (steps 5 and 6, A3), the comparisons (step 7) and the summary (step 8); the matrix, proof set, contracts, compile profiles, hardfork, operation sequence, gas limits, raw schema, derived quantities and validation criteria (§6–§10) are unchanged. | Reviewer reproducibility, with Docker as the only prerequisite, in the same environment as the scientific run. This amendment packages the environment; it changes no measured quantity. The final packaged engineering dry run `dry-fbe3794-20260925T112745Z` (commit `fbe3794`) reproduced the accepted readiness dry run `e141816` on every scientific field: EDR runs a and b against the readiness runs, 4500/4500 field comparisons each, with byte-identical build manifests; the geth replay against the readiness replay, 3960/3960 under the §8.4 cross-client exclusions; unit tests 12/12, all Osaka markers, and all negative controls as expected. The geth-to-geth differences are only `client_version` (Go version), and `block_number` / `gas_price_wei` in the first cell, which also vary between two runs of the same geth binary. |
+
+### 15.1 Amendments after the L1 scientific run
+
+The L1 arm is complete (campaign `full-71a5854-20260925T115726Z`, baseline tag `chain-l1-baseline-20260925`, validated). The amendments below were made after it, through the route that §14 prescribes. They apply only to the local-EraVM arm. They change nothing in §1–§13, in the L1 matrix, data or records, and the text above this subsection is unchanged: the protocol at the L1 campaign commit is a byte prefix of this file, which `scripts/release/build_csi_bundle.py` checks.
+
+| ID | Date | Section | Change | Reason |
+|---|---|---|---|---|
+| A6 | 2026-09-25 | §14, §16 | **Activates the local-EraVM arm (L2)** and fills every field that §14 left pending, as specified in §16: the observed live version (Era Sepolia, minor version 29) and the selected local version (29), compatibility class **B (bounded)**; anvil-zksync 0.6.11 with its built-in v29 system contracts; zksolc 1.5.15 with era-solc 0.8.20-1.0.2 (optimizer mode `3`, size fallback, codegen `yul`); the fixed local fee input (base fee 45,250,000 wei, gas per pubdata 84), which the node itself imposes; the matrix, operation sequence, transaction fields, raw schema, derived quantity, validation and acceptance criteria, and limitations. Two departures from the design report: (1) the direct verifier transactions are kept, so each cell runs the whole §7 sequence (25 transactions and 11 calls); (2) the node's price options are not used, because without a fork they do not reach the executed fee model. | §14 requires an amendment before any anvil-zksync measurement. The values were fixed after the read-only live observation (2026-09-25T12:11:16Z) and after the packaged reduced dry run `dry-l2-3e0f6c8-20260925T125852Z` (runs a and b from scratch identical on all 3,960 field values; smoke runs on linux/arm64 and, emulated, linux/amd64 equal to the smoke reference on every compared field). No scientific L2 run preceded this amendment. |
+
+## 16. Local-EraVM arm (L2), frozen by A6
+
+Harness: `chainbench/adapters/eravm/` (a thin adapter; the workload `zcorp` is reused unchanged). Binding: `chainbench/workloads/zcorp/campaigns/CSI-CHAIN-LOCAL-01-L2.json`. Records: `csi/campaigns/chain/CSI-CHAIN-LOCAL-01/l2/`.
+
+### 16.1 Live observation and compatibility class
+
+- **Observation.** `l2/observation/20260925T121116Z/`: 12 read-only JSON-RPC calls to `https://sepolia.era.zksync.dev` (official ZKsync Era Sepolia RPC) from the campaign Mac, 2026-09-25T12:11:16Z to 12:11:25Z, with `chainbench/adapters/eravm/observe-public.sh`. No transaction, key or account. Raw answers and their sha256 values are committed.
+- **Live:** chain 300; `zks_getProtocolVersion` minor version **29** (activated 2025-09-08T11:47:27Z); bootloader `0x01000911…51e6`, default AA `0x010005f73e7c…0252`, EVM emulator `0x01000d8bae37…cd63`; upgrade transaction `0xa1ff3e02…e4ce`. At block 8,561,516: base fee 25,000,000 wei, fair pubdata price 1,911,153,947 wei, i.e. 77 gas per pubdata byte.
+- **Local:** anvil-zksync 0.6.11 supports protocol versions up to 29 (30 is rejected). Selected: **29**, with the built-in v29 system contracts (bootloader `0x0100092f045c41c21bd08a9c6fa909fa6a8b446e3f6cd9f08356352a3195a40c`, default AA `0x010005f74935e95e527d18ea9bfc82906fb20903a5683c528ee7af404e9bd531`, no EVM emulator).
+- **Class B (bounded).** It is the same minor version with different bootloader and default-account code and no EVM emulator; all contracts and operations of the matrix run. Every L2 result carries the label: *EraVM execution under protocol v29 (anvil-zksync 0.6.11 built-in v29 system contracts; bootloader and default-account hashes differ from live Era Sepolia; no EVM emulator; fixed local fee input)*. It is never presented as a reproduction of the live network. Details: `l2/observation/CLASSIFICATION.md`.
+
+### 16.2 Environment `L2-EraVM`
+
+| Item | Value |
+|---|---|
+| Image | `chainbench-l2`, built only by `./chainbench/run.sh build-image-l2` from `chainbench/adapters/eravm/Dockerfile`. Base `node:22.23.2-bookworm-slim` @ `sha256:48e4b67d85f87bd551df43704e24d252f56cc5f8e9718841aace50f19948f0f9` (the L1 base). npm dependencies by `npm ci` from `adapters/eravm/package-lock.json` (sha256 `2987f02e0807e9b354a1d90742bac4b71a565e43a478d1fbaf247ec6174f7f81`): ethers 6.13.5, zksync-ethers 6.21.2, snarkjs 0.7.5 (ffjavascript 0.3.1), @openzeppelin/contracts 4.9.0. The L1 lockfile and image are not used. |
+| Binaries | Official GitHub release assets, accepted only if their sha256 equals `adapters/eravm/pins.env`. anvil-zksync **0.6.11**: tarball arm64 `f7d85fd2…a7285`, amd64 `127f1a75…8728`; binary arm64 `565ea541…8216`, amd64 `4a801b25…228b`. zksolc **1.5.15** (LLVM build `fa0fc0bc…`): arm64 `ee4f02f8…8b44`, amd64 `b52df6ae…1b4b`. era-solc **0.8.20-1.0.2** (`0.8.20+commit.3b523ea3`): arm64 `d98d1068…50b2`, amd64 `9516f4ee…8756`. |
+| Frozen image | Identity: `adapters/eravm/IMAGE.json` (linux/arm64). Archive: `adapters/eravm/ARCHIVE.json`, image `sha256:255d0dacac2629988c339d311630e3efa99b6153478378570a63ad1b9a7491cc`, `docker save` archive `chainbench-l2-arm64.oci.tar`, 205,223,936 bytes, sha256 `8790cf4d90c8380aa348c76b7feeacd973f2a99169c719a2b8288fb2421db2e5`. `full-local-l2` refuses any other image on linux/arm64. |
+| Container | A fresh container per run; the repository read-only; a tmpfs work directory; writable output roots only; `--network none`, checked and recorded. No public RPC, no private key, no test ETH. |
+| Node | A fresh anvil-zksync process per cell: `--offline --timestamp 1000 --protocol-version 29 --dev-system-contracts built-in --enforce-bytecode-compression false --host 127.0.0.1 --port 18011 --cache none --chain-id 260 -m "test test … junk" -a 2 --balance 10000 --show-gas-details none --show-vm-details none --show-storage-logs none --log info --log-file-path <cell>/anvil.log run`, with `RUST_LOG=zksync_multivm::versions::vm_latest::utils::refund=trace`. Auto-mining; each transaction is sealed in its own block and batch. Accounts A0 and A1 as in §5. |
+| Fee input | Fixed by the binary: without a fork, anvil-zksync 0.6.11 builds its fee model from built-in defaults (FeeModelConfigV2: minimal L2 gas price 45,250,000; compute overhead 0; pubdata overhead 1; batch overhead 800,000 L1 gas; max 200,000,000 gas and 500,000 pubdata bytes per batch; L1 gas price 2,365,348,956; L1 pubdata price 1). The executed batch input is therefore fair L2 gas price **45,250,000**, fair pubdata price **3,784,558,330**, base fee **45,250,000** and **84** gas per pubdata byte. `--l1-gas-price`, `--l2-gas-price` and `--l1-pubdata-price` change only the start-up banner, so they are not used. The API values (`eth_gasPrice` 45,250,000; `zks_gasPerPubdata` 168 and the block-detail prices, scaled by the estimation factor 2) are recorded and never used as inputs. |
+| Environment check | Before a run's cells: binary sha256 values equal the pins; anvil-zksync version; chain id 260; `zkSync/v2.0`; block 0 reports `Version29` and the two base-system-contract hashes above, no EVM emulator; genesis timestamp 1000; balances; API values; network isolation; and a fee-accounting probe, where one 0-value self-transfer must reproduce its receipt `gasUsed` from its fee record (§16.6). |
+
+### 16.3 Compilation
+
+- zksolc standard JSON, invoked as `zksolc --standard-json <input> --solc <era-solc>`, in a fresh work directory per run. Settings: `optimizer {enabled: true, mode: "3", fallback_to_optimizing_for_size: true}`, `codegen: "yul"`, `evmVersion: "paris"`; output ABI, method identifiers and metadata (the EraVM bytecode is always emitted).
+- Sources: the 25 files of the §4 `primary` profile (3 managers, 11 PLONK and 11 Groth16 verifiers), read from the repository, with `@openzeppelin/contracts` 4.9.0 imports. This gives 24 deployable contracts (the abstract base has no bytecode), all within the EraVM bytecode limit (2^16 − 1 words).
+- Each run writes `build_manifest.eravm.json`: compiler versions and binary sha256 values, settings, source sha256 values and equality with `HEAD`, input and output sha256, and, per contract, bytecode size, words, sha256 and versioned bytecode hash. Two runs must give byte-identical manifests. In the packaged dry run the compiler output (sha256 `04aba3ac…15db`) was identical on the arm64 and the amd64 compilers.
+
+### 16.4 Matrix and cell procedure
+
+- **Cells (`full`):** backend ∈ {Groth16, PLONK} × d ∈ {5, 10, 11, 15}: **8 primary cells**, each on a fresh node. There is no bridge cell on EraVM.
+- **Proofs:** K = 8 per cell (p0…p7) from the frozen proof set PS-01 (§3), with calldata built as in §7. The partner depth and the tamper rule are those of §7.1. Nothing is regenerated.
+- **Sequence:** exactly the §7 sequence per cell: `deploy_verifier`, `deploy_manager` (verifier address as constructor argument), `set_issuer`, `add_root` p0, `precheck_call`, K × `verify_credential`, K × `verify_proof_call`, K × `verify_proof_direct`, `neg_unknown_root`, `neg_tampered_call`, `neg_tampered`, `neg_cross_depth_setup`, `neg_cross_depth_call`, `neg_cross_depth`, `neg_non_issuer` (from A1). Per cell that is 36 rows (25 transactions, 11 calls); `full` has 288 rows and 200 transactions.
+- **Transactions:** EIP-712 (type 113), signed locally and sent raw. value 0; nonces from 0 per account and cell; `maxFeePerGas` = `maxPriorityFeePerGas` = 45,250,000 wei; `gasPerPubdataByteLimit` 50,000; no paymaster. A deployment calls `ContractDeployer.create(0, bytecodeHash, constructorArgs)` with the bytecode as its only factory dependency. There is no gas estimation. Gas limits: deployments 20,000,000; `set_issuer`, `add_root`, `neg_cross_depth_setup`, `neg_non_issuer` 2,000,000; verifications and the other negatives 10,000,000.
+- **Calls:** `eth_call` at `latest` from A0.
+- **Non-scientific plans:** `smoke` (Groth16 d5, PLONK d10; p0) and `dry` (Groth16 d5 and d11, PLONK d10 and d11; p0, p1).
+
+### 16.5 Raw data
+
+- `local_l2_ops.csv`: one row per transaction or call, 56 columns (`adapters/eravm/lib/schema.js`). Per transaction:
+  - `status` and `gas_used` from the receipt;
+  - `revert_reason`, decoded from the output of `debug_traceTransaction` (callTracer);
+  - `return_value` of `verify_credential` and `verify_proof_direct`, decoded from the frame in which the account calls the target (a direct verifier transaction counts only if it returns `true`);
+  - `computational_gas`, `pubdata_bytes`, `pubdata_gas` and `fee_trace_gas_limit`, from the node's own fee record for that transaction hash (the four TRACE lines of zksync-era multivm `compute_refund` in `nodes/<cell>/anvil.log`; exactly one record per transaction, anything else fails);
+  - `gas_per_pubdata` = `pubdata_gas` / `pubdata_bytes`;
+  - `gas_used_derived` and `accounting_ok` (§16.6);
+  - calldata size and sha256, raw transaction size, factory dependencies, bytecode size and versioned hash, and whether `eth_getCode` equals the compiled bytecode;
+  - hash, block, batch, timestamp, effective gas price.
+- `computational_gas` is the EraVM gas the bootloader charges for computation: gas limit − bootloader refund − pubdata charge. It includes intrinsic, validation, bytecode-preparation and execution gas. `pubdata_bytes` is the growth of the VM pubdata counter during the transaction: state diffs, L2-to-L1 messages and published (compressed) bytecode.
+- Per run: `run.json`, `environment.json`, `env_check.json`, `build_manifest.eravm.json`, `cells/<cell>.json` and `nodes/<cell>/anvil.{log,stdout}`. Scientific runs write to `build/campaigns/chain-l2/`; smoke and dry runs write to `build/chainbench/l2/`.
+
+### 16.6 Derived quantity, validation and acceptance
+
+- **Derived `gasUsed`** (the bootloader's refund rule, vm_latest `compute_refund`): `gas_used_derived = gas_limit − ceil((gas_limit·B − (computational_gas·F_l2 + pubdata_bytes·min(B·84, F_pd))) / B)` with B = F_l2 = 45,250,000 and F_pd = 3,784,558,330. `accounting_ok = 1` iff the node's fee record exists exactly once, its gas limit equals the sent one, `pubdata_gas = 84 · pubdata_bytes`, the effective gas price equals B, and `gas_used_derived` equals the receipt `gasUsed`. Receipt `gasUsed` is reported only as this derived value under the stated local fee input.
+- **Validation** (`adapters/eravm/scripts/validate_l2.py`, recomputed from the raw files):
+  - V1 the header equals the schema;
+  - V2 row and transaction counts;
+  - V3–V4 cells in plan order, each with the §16.4 sequence;
+  - V5 every expected status, revert reason (`Invalid root`, `Invalid proof`, `CredentialManager: not issuer`) and return value;
+  - V6 frozen transaction fields, chain id and protocol version;
+  - V7 fee accounting, recomputed;
+  - V8 deployed bytecode equals the compiled artifact (size, versioned hash, one factory dependency);
+  - V9 EraVM size limit;
+  - V10 a fresh chain per cell (nonces from 0, increasing blocks, distinct hashes);
+  - V11 binaries equal the pins;
+  - V12 environment check passed;
+  - V13 base system contracts equal the v29 built-ins.
+- **Acceptance of the scientific L2 result:**
+  1. The pre-flight `doctor-l2` passes with `--require-clean --require-baseline --require-archived-image`: clean tracked paths; an annotated tag `chain-l2-baseline-*` whose measurement paths equal `HEAD`; the archived image.
+  2. Two runs, a and b, each from scratch in a fresh container, are accepted by the runner and pass V1–V13.
+  3. They are identical on every raw field except `run_id`, with byte-identical build manifests and identical environment-check probes (`adapters/eravm/scripts/compare_l2.py`). Differences are reported, never normalised.
+  4. The post-flight `doctor-l2` passes.
+
+  The commit semantics are those of the binding (`measurement_code_commit`, `baseline_commit`). There is no second EraVM implementation, so there is no cross-client replay.
+- **Portability (not data).** `smoke-l2` on linux/amd64 (emulated) must equal `chainbench/workloads/zcorp/smoke-reference-l2.csv` on the 17 compared fields.
+
+### 16.7 Execution
+
+`./chainbench/run.sh full-local-l2` runs, in order: pre-flight, run a, validation, run b, validation, determinism comparison, the per-cell summary (`summary.csv`, EraVM units, with the compile-size table for all 11 depths), and post-flight. For reviewers: `doctor-l2`, then `smoke-l2`, then `full-local-l2`. Docker is the only prerequisite.
+
+### 16.8 What L2 results may and may not state
+
+- **May:** success or revert on EraVM; EraVM computational gas and pubdata bytes per operation under the §16.1 label; EraVM bytecode size; the configured gas per pubdata (84) and fee input; receipt `gasUsed` only as the derived value under that local input.
+- **May not:** actual L1 publication cost; any live network fee; the live `gasPerPubdata`; latency or finality; batch or proving cost; behaviour under protocol versions other than 29 or under the live bootloader; anything about ZKsync OS chains.
+- **Units:** EraVM gas and EVM gas are different units. No L2 value is compared numerically with an L1 value of §8–§9, and L2 data are never pooled with L1 data.

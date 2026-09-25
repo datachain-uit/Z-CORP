@@ -1,0 +1,17 @@
+[PASS] runtime.node = v22.23.2
+[PASS] runtime.npm = 10.9.8
+[FAIL] runtime.arch: reference arm64, here x64
+[PASS] runtime.libc = glibc 2.36
+[PASS] packages.ethers = 6.13.5
+[PASS] packages.zksync-ethers = 6.21.2
+[PASS] packages.snarkjs = 0.7.5
+[PASS] packages.ffjavascript = 0.3.1
+[PASS] packages.@openzeppelin/contracts = 4.9.0
+[PASS] lockfile_sha256 = 2987f02e0807e9b354a1d90742bac4b71a565e43a478d1fbaf247ec6174f7f81
+[PASS] package_json_sha256 = 4ba06381255e13abeea2797325d03101bcf1e772f88459f9c976e2b48bcbd09e
+[FAIL] anvil_zksync.sha256: reference 565ea5418561937d704c5ef0b2fcea1cb01cd2338e45fdd32ac0516395938216, here 4a801b25f543099838fa88df50f0e59f5e5c93b7a22330948ca7ed029f48228b
+[PASS] anvil_zksync.version = anvil-zksync 0.6.11
+[FAIL] zksolc.sha256: reference ee4f02f8614ef320fc95d2f15c69678bb1781f9526df78fb35a906180c998b44, here b52df6ae7e64903deb4972f8a41c9c666a7ce1dfdce38680f387df01afe51b4b
+[PASS] zksolc.version = Solidity compiler for ZKsync v1.5.15 (LLVM build fa0fc0bc9caa7884f9f485735b537cb1ac441fe7)
+[FAIL] era_solc.sha256: reference d98d1068b3bff4679a32585ea75febbf75b004a2870a3e2ebf191550f36950b2, here 9516f4eea50d90d83972bea5a63f3dd8ffdc50543917a56176fe8329addc8756
+[PASS] era_solc.version = Version: 0.8.20+commit.3b523ea3.Linux.clang | ZKsync: 0.8.20-1.0.2

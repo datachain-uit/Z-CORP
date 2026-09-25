@@ -76,5 +76,8 @@
     "full": "build/campaigns/chain-l2"
   },
   "smoke_reference": "workloads/zcorp/smoke-reference-l2.csv",
-  "reference_dry_run": {}
+  "reference_dry_run": {
+    "l2": "build/chainbench/l2/dry-run/dry-l2-3e0f6c8-20260925T125852Z",
+    "note": "accepted packaged L2 dry run at 3e0f6c8 with the archived image (raw data on the author's machine only; git-ignored; records in csi/campaigns/chain/CSI-CHAIN-LOCAL-01/l2/readiness/)"
+  }
 }

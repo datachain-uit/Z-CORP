@@ -1,0 +1,12 @@
+image: sha256:255d0dacac2629988c339d311630e3efa99b6153478378570a63ad1b9a7491cc (linux/arm64) base node@sha256:48e4b67d85f87bd551df43704e24d252f56cc5f8e9718841aace50f19948f0f9
+native_doctor: PASS
+native_smoke_1: PASS (smoke-l2-20260925T125836Z; no reference yet)
+smoke_reference: written chainbench/workloads/zcorp/smoke-reference-l2.csv from smoke-l2-20260925T125836Z (commit it)
+native_smoke_2_vs_reference: PASS (smoke-l2-20260925T125844Z)
+dry_run: PASS (dry-l2-3e0f6c8-20260925T125852Z: runs a and b validated, identical)
+frozen_archive: build/chainbench/l2/release/image/chainbench-l2-arm64.oci.tar sha256 8790cf4d90c8380aa348c76b7feeacd973f2a99169c719a2b8288fb2421db2e5 image sha256:255d0dacac2629988c339d311630e3efa99b6153478378570a63ad1b9a7491cc
+load_image_native: PASS
+portability_amd64_doctor: PASS
+portability_amd64_smoke_vs_reference: PASS
+native_doctor_archived_image: PASS
+native_smoke_archived_image_vs_reference: PASS

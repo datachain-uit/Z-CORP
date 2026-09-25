@@ -1,0 +1,19 @@
+{
+  "schema": "chainbench-image-archive/1",
+  "arm": "L2-EraVM",
+  "role": "scientific",
+  "platform": "linux/arm64",
+  "image_ref": "chainbench-l2:local",
+  "image_id": "sha256:255d0dacac2629988c339d311630e3efa99b6153478378570a63ad1b9a7491cc",
+  "base_image": "node@sha256:48e4b67d85f87bd551df43704e24d252f56cc5f8e9718841aace50f19948f0f9",
+  "archive": "image/chainbench-l2-arm64.oci.tar",
+  "archive_file": "build/chainbench/l2/release/image/chainbench-l2-arm64.oci.tar",
+  "archive_bytes": 205223936,
+  "archive_sha256": "8790cf4d90c8380aa348c76b7feeacd973f2a99169c719a2b8288fb2421db2e5",
+  "archive_contains_image_index_blob": true,
+  "index_json_sha256": "653345ba8a058fed22562777905ffd9defa9e6f5d6423376464549f8e119426d",
+  "docker_client": "29.8.0",
+  "docker_engine": "29.8.0",
+  "saved_utc": "2026-09-25T12:59:15Z",
+  "load_command": "./chainbench/run.sh load-image-l2 build/chainbench/l2/release/image/chainbench-l2-arm64.oci.tar"
+}

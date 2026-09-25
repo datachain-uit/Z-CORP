@@ -1,0 +1,166 @@
+{
+  "schema": "chainbench-l2-toolchain-identity/1",
+  "at_utc": "2026-09-25T13:00:02.003Z",
+  "toolchain": {
+    "runtime": {
+      "node": "v22.23.2",
+      "npm": "10.9.8",
+      "arch": "x64",
+      "libc": "glibc 2.36"
+    },
+    "packages": {
+      "ethers": "6.13.5",
+      "zksync-ethers": "6.21.2",
+      "snarkjs": "0.7.5",
+      "ffjavascript": "0.3.1",
+      "@openzeppelin/contracts": "4.9.0"
+    },
+    "lockfile_sha256": "2987f02e0807e9b354a1d90742bac4b71a565e43a478d1fbaf247ec6174f7f81",
+    "package_json_sha256": "4ba06381255e13abeea2797325d03101bcf1e772f88459f9c976e2b48bcbd09e",
+    "anvil_zksync": {
+      "sha256": "4a801b25f543099838fa88df50f0e59f5e5c93b7a22330948ca7ed029f48228b",
+      "version": "anvil-zksync 0.6.11"
+    },
+    "zksolc": {
+      "sha256": "b52df6ae7e64903deb4972f8a41c9c666a7ce1dfdce38680f387df01afe51b4b",
+      "version": "Solidity compiler for ZKsync v1.5.15 (LLVM build fa0fc0bc9caa7884f9f485735b537cb1ac441fe7)"
+    },
+    "era_solc": {
+      "sha256": "9516f4eea50d90d83972bea5a63f3dd8ffdc50543917a56176fe8329addc8756",
+      "version": "Version: 0.8.20+commit.3b523ea3.Linux.clang | ZKsync: 0.8.20-1.0.2"
+    }
+  },
+  "pins_for_this_arch": {
+    "anvil_zksync": {
+      "version": "0.6.11",
+      "sha256": "4a801b25f543099838fa88df50f0e59f5e5c93b7a22330948ca7ed029f48228b",
+      "tgz_sha256": "127f1a75b6c4ccc5eaef00ca62753f243a76ba927cbd64a7b1bd99a5b5fb8728",
+      "url": "https://github.com/matter-labs/anvil-zksync/releases/download/v0.6.11/anvil-zksync-v0.6.11-x86_64-unknown-linux-gnu.tar.gz"
+    },
+    "zksolc": {
+      "version": "1.5.15",
+      "sha256": "b52df6ae7e64903deb4972f8a41c9c666a7ce1dfdce38680f387df01afe51b4b",
+      "url": "https://github.com/matter-labs/era-compiler-solidity/releases/download/1.5.15/zksolc-linux-amd64-musl-v1.5.15"
+    },
+    "era_solc": {
+      "version": "0.8.20-1.0.2",
+      "sha256": "9516f4eea50d90d83972bea5a63f3dd8ffdc50543917a56176fe8329addc8756",
+      "url": "https://github.com/matter-labs/era-solidity/releases/download/0.8.20-1.0.2/solc-linux-amd64-0.8.20-1.0.2"
+    },
+    "base_image": "node@sha256:48e4b67d85f87bd551df43704e24d252f56cc5f8e9718841aace50f19948f0f9"
+  },
+  "system": {
+    "os_release": "Debian GNU/Linux 12 (bookworm)",
+    "kernel": "7.0.12-linuxkit",
+    "cpus": 10,
+    "mem_bytes": 16745824256,
+    "git": "git version 2.39.5",
+    "python3": "Python 3.11.2",
+    "apt_packages": [
+      "ca-certificates 20250419~deb12u1",
+      "git 1:2.39.5-0+deb12u3",
+      "python3 3.11.2-1+b1",
+      "python3-minimal 3.11.2-1+b1"
+    ],
+    "eravm_versions": [
+      "anvil-zksync 0.6.11",
+      "Solidity compiler for ZKsync v1.5.15 (LLVM build fa0fc0bc9caa7884f9f485735b537cb1ac441fe7)",
+      "Version: 0.8.20+commit.3b523ea3.Linux.clang",
+      "ZKsync: 0.8.20-1.0.2"
+    ],
+    "network_isolation": {
+      "isolated": true,
+      "interfaces": [
+        "erspan0",
+        "gre0",
+        "gretap0",
+        "ip6_vti0",
+        "ip6gre0",
+        "ip6tnl0",
+        "ip_vti0",
+        "lo",
+        "sit0",
+        "tunl0"
+      ],
+      "up_non_loopback": [],
+      "loopback_up": true,
+      "ipv4_routes": 0,
+      "ipv6_non_loopback_routes": 0
+    }
+  },
+  "container": {
+    "image_id": "sha256:4ea75defda4bdd363746955fc789fc479b21336d4224eced677eda16ded57942",
+    "image_ref": "chainbench-l2:local-amd64",
+    "base_image": "node@sha256:48e4b67d85f87bd551df43704e24d252f56cc5f8e9718841aace50f19948f0f9",
+    "network": "none"
+  },
+  "host": {
+    "os": "Darwin",
+    "os_version": "26.6.2",
+    "arch": "arm64",
+    "docker_server": "29.8.0",
+    "docker_os": "Docker Desktop",
+    "docker_cpus": "10",
+    "docker_mem_bytes": "16745824256"
+  },
+  "build_metadata": {
+    "buildx.build.provenance": {
+      "builder": {
+        "id": ""
+      },
+      "buildType": "https://mobyproject.org/buildkit@v1",
+      "materials": [
+        {
+          "uri": "pkg:docker/node?digest=sha256:48e4b67d85f87bd551df43704e24d252f56cc5f8e9718841aace50f19948f0f9&platform=linux%2Famd64",
+          "digest": {
+            "sha256": "48e4b67d85f87bd551df43704e24d252f56cc5f8e9718841aace50f19948f0f9"
+          }
+        }
+      ],
+      "invocation": {
+        "configSource": {
+          "entryPoint": "Dockerfile"
+        },
+        "parameters": {
+          "frontend": "dockerfile.v0",
+          "args": {
+            "build-arg:BASE_IMAGE": "node@sha256:48e4b67d85f87bd551df43704e24d252f56cc5f8e9718841aace50f19948f0f9",
+            "build-arg:ERAVM_ARCH": "amd64"
+          },
+          "locals": [
+            {
+              "name": "context"
+            },
+            {
+              "name": "dockerfile"
+            }
+          ],
+          "root": {
+            "configSource": {
+              "path": "Dockerfile"
+            },
+            "request": {
+              "args": {
+                "build-arg:BASE_IMAGE": "node@sha256:48e4b67d85f87bd551df43704e24d252f56cc5f8e9718841aace50f19948f0f9",
+                "build-arg:ERAVM_ARCH": "amd64"
+              }
+            }
+          },
+          "compatibilityVersion": 30
+        },
+        "environment": {
+          "dockerfileVersion": "1.27.0",
+          "platform": "linux/arm64"
+        }
+      }
+    },
+    "buildx.build.ref": "desktop-linux/desktop-linux/xxeejfwbnnqp5xleovz6wrrqu",
+    "containerimage.descriptor": {
+      "mediaType": "application/vnd.oci.image.index.v1+json",
+      "digest": "sha256:4ea75defda4bdd363746955fc789fc479b21336d4224eced677eda16ded57942",
+      "size": 856
+    },
+    "containerimage.digest": "sha256:4ea75defda4bdd363746955fc789fc479b21336d4224eced677eda16ded57942",
+    "image.name": "docker.io/library/chainbench-l2:local-amd64"
+  }
+}

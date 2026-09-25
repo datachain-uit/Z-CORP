@@ -1,0 +1,51 @@
+{
+  "smoke_run": "smoke-l2-20260925T125836Z",
+  "reference": "workloads/zcorp/smoke-reference-l2.csv",
+  "reference_present": false,
+  "pass": true,
+  "checks": [
+    {
+      "ok": true,
+      "check": "run smoke-l2-20260925T125836Z finished with accepted checks (30 rows, 0 failing, 0 accounting failures)",
+      "level": "PASS",
+      "fix": ""
+    },
+    {
+      "ok": true,
+      "check": "raw data validates (validate_l2.py: schema, sequence, outcomes, fee accounting, bytecode identity)",
+      "level": "PASS",
+      "fix": ""
+    },
+    {
+      "ok": true,
+      "check": "a Groth16 proof verifies on EraVM through its manager",
+      "level": "PASS",
+      "fix": ""
+    },
+    {
+      "ok": true,
+      "check": "a PLONK proof verifies on EraVM through its manager",
+      "level": "PASS",
+      "fix": ""
+    },
+    {
+      "ok": true,
+      "check": "direct verifier transactions return true",
+      "level": "PASS",
+      "fix": ""
+    },
+    {
+      "ok": true,
+      "check": "negative controls rejected on both backends (unknown root, tampered proof, cross-depth proof, non-issuer)",
+      "level": "PASS",
+      "fix": ""
+    },
+    {
+      "ok": false,
+      "check": "L2 smoke reference smoke-reference-l2.csv not present (the author creates it); values not compared",
+      "level": "WARN",
+      "fix": ""
+    }
+  ],
+  "note": "smoke test only; not scientific data"
+}

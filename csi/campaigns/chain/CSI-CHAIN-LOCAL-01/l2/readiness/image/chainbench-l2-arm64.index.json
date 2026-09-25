@@ -1,0 +1,1 @@
+{"schemaVersion":2,"mediaType":"application/vnd.oci.image.index.v1+json","manifests":[{"mediaType":"application/vnd.oci.image.index.v1+json","digest":"sha256:255d0dacac2629988c339d311630e3efa99b6153478378570a63ad1b9a7491cc","size":856,"annotations":{"io.containerd.image.name":"docker.io/library/chainbench-l2:local","org.opencontainers.image.ref.name":"local"}}]}

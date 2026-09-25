@@ -1,0 +1,107 @@
+{
+  "schema": "chainbench-l2-toolchain-identity/1",
+  "at_utc": "2026-09-25T12:59:17.634Z",
+  "toolchain": {
+    "runtime": {
+      "node": "v22.23.2",
+      "npm": "10.9.8",
+      "arch": "arm64",
+      "libc": "glibc 2.36"
+    },
+    "packages": {
+      "ethers": "6.13.5",
+      "zksync-ethers": "6.21.2",
+      "snarkjs": "0.7.5",
+      "ffjavascript": "0.3.1",
+      "@openzeppelin/contracts": "4.9.0"
+    },
+    "lockfile_sha256": "2987f02e0807e9b354a1d90742bac4b71a565e43a478d1fbaf247ec6174f7f81",
+    "package_json_sha256": "4ba06381255e13abeea2797325d03101bcf1e772f88459f9c976e2b48bcbd09e",
+    "anvil_zksync": {
+      "sha256": "565ea5418561937d704c5ef0b2fcea1cb01cd2338e45fdd32ac0516395938216",
+      "version": "anvil-zksync 0.6.11"
+    },
+    "zksolc": {
+      "sha256": "ee4f02f8614ef320fc95d2f15c69678bb1781f9526df78fb35a906180c998b44",
+      "version": "Solidity compiler for ZKsync v1.5.15 (LLVM build fa0fc0bc9caa7884f9f485735b537cb1ac441fe7)"
+    },
+    "era_solc": {
+      "sha256": "d98d1068b3bff4679a32585ea75febbf75b004a2870a3e2ebf191550f36950b2",
+      "version": "Version: 0.8.20+commit.3b523ea3.Linux.clang | ZKsync: 0.8.20-1.0.2"
+    }
+  },
+  "pins_for_this_arch": {
+    "anvil_zksync": {
+      "version": "0.6.11",
+      "sha256": "565ea5418561937d704c5ef0b2fcea1cb01cd2338e45fdd32ac0516395938216",
+      "tgz_sha256": "f7d85fd20a41004e4c8662f6748a89ee45e9dc940bbca3a29b2a1634648a7285",
+      "url": "https://github.com/matter-labs/anvil-zksync/releases/download/v0.6.11/anvil-zksync-v0.6.11-aarch64-unknown-linux-gnu.tar.gz"
+    },
+    "zksolc": {
+      "version": "1.5.15",
+      "sha256": "ee4f02f8614ef320fc95d2f15c69678bb1781f9526df78fb35a906180c998b44",
+      "url": "https://github.com/matter-labs/era-compiler-solidity/releases/download/1.5.15/zksolc-linux-arm64-musl-v1.5.15"
+    },
+    "era_solc": {
+      "version": "0.8.20-1.0.2",
+      "sha256": "d98d1068b3bff4679a32585ea75febbf75b004a2870a3e2ebf191550f36950b2",
+      "url": "https://github.com/matter-labs/era-solidity/releases/download/0.8.20-1.0.2/solc-linux-arm64-0.8.20-1.0.2"
+    },
+    "base_image": "node@sha256:48e4b67d85f87bd551df43704e24d252f56cc5f8e9718841aace50f19948f0f9"
+  },
+  "system": {
+    "os_release": "Debian GNU/Linux 12 (bookworm)",
+    "kernel": "7.0.12-linuxkit",
+    "cpus": 10,
+    "mem_bytes": 16745824256,
+    "git": "git version 2.39.5",
+    "python3": "Python 3.11.2",
+    "apt_packages": [
+      "ca-certificates 20250419~deb12u1",
+      "git 1:2.39.5-0+deb12u3",
+      "python3 3.11.2-1+b1",
+      "python3-minimal 3.11.2-1+b1"
+    ],
+    "eravm_versions": [
+      "anvil-zksync 0.6.11",
+      "Solidity compiler for ZKsync v1.5.15 (LLVM build fa0fc0bc9caa7884f9f485735b537cb1ac441fe7)",
+      "Version: 0.8.20+commit.3b523ea3.Linux.clang",
+      "ZKsync: 0.8.20-1.0.2"
+    ],
+    "network_isolation": {
+      "isolated": true,
+      "interfaces": [
+        "erspan0",
+        "gre0",
+        "gretap0",
+        "ip6_vti0",
+        "ip6gre0",
+        "ip6tnl0",
+        "ip_vti0",
+        "lo",
+        "sit0",
+        "tunl0"
+      ],
+      "up_non_loopback": [],
+      "loopback_up": true,
+      "ipv4_routes": 0,
+      "ipv6_non_loopback_routes": 0
+    }
+  },
+  "container": {
+    "image_id": "sha256:255d0dacac2629988c339d311630e3efa99b6153478378570a63ad1b9a7491cc",
+    "image_ref": "chainbench-l2:local",
+    "base_image": "node@sha256:48e4b67d85f87bd551df43704e24d252f56cc5f8e9718841aace50f19948f0f9",
+    "network": "none"
+  },
+  "host": {
+    "os": "Darwin",
+    "os_version": "26.6.2",
+    "arch": "arm64",
+    "docker_server": "29.8.0",
+    "docker_os": "Docker Desktop",
+    "docker_cpus": "10",
+    "docker_mem_bytes": "16745824256"
+  },
+  "build_metadata": null
+}
