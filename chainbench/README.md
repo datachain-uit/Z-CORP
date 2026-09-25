@@ -69,7 +69,7 @@ Docker needs at least 2 CPUs and 4 GB of memory. Keep 5 GB of disk free.
 
 - **What is measured.** Gas for deployment, root publication and credential verification of the Z-CORP contracts: snarkjs Groth16 and PLONK verifiers behind a root-registry manager. The inputs are the frozen proof set PS-01 (64 proofs, `csi/campaigns/chain/CSI-CHAIN-LOCAL-01/inputs/proofset/`) on a local Osaka-rules chain. Gas is a deterministic function of code, inputs and fork rules, so two runs and two clients must agree exactly. The comparisons report any difference; they never normalise it.
 - **What is frozen.** The protocol, the proof set, the contracts in `contracts/` and `contracts/chain/`, the compiler settings, the fork, the operation order, the raw-data schema and the validation rules. Do not change these files. The runner refuses a scientific run from a modified tree.
-- **Why no network.** The measurement containers run with `--network none` (loopback only). The repository is mounted read-only, and every run uses a fresh container and a fresh work directory. Only the image build uses the network.
+- **Why no network.** The measurement containers run with `--network none`. The doctor checks it: no interface except loopback is up, and there are no routes. Every run records the same check in its `environment.json`. The repository is mounted read-only, and every run uses a fresh container and a fresh work directory. Only the image build uses the network.
 
 ## Toolchain identity
 

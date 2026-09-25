@@ -66,7 +66,8 @@ if img.get('toolchain') != fz_id.get('toolchain'): die('chainbench/docker/IMAGE.
 for k, e in envs.items():
     c = e.get('container') or {}
     if c.get('image_id') != fz_env['IMAGE_ID']: die(f'{k}: ran in image {c.get("image_id")}, not the frozen image {fz_env["IMAGE_ID"]}')
-    if c.get('network') != 'none' or c.get('network_interfaces') != ['lo']: die(f'{k}: not run without network ({c.get("network")}, {c.get("network_interfaces")})')
+    if c.get('network') != 'none' or (c.get('network_isolation') or {}).get('isolated') is not True:
+        die(f'{k}: not run without network ({c.get("network")}, {c.get("network_isolation")})')
 if open(P(os.path.join(a.freeze, 'DRY_RUN_ID'))).read().strip() != a.dry_run_id: die('the freeze directory belongs to another dry run')
 
 # ---- record
@@ -113,7 +114,7 @@ rec = {
                 'hardhat_console_sol_sha256': envA['hardhat_console_sol_sha256'], 'node': envA['node'], 'npm': envA['npm'], 'host': envA['host'],
                 'reviewer_entry_point': f'{CB_REL}/run.sh (doctor, smoke, full-local-l1)', 'reviewer_readme': f'{CB_REL}/README.md'},
     'container_image': {'image_id': fz_env['IMAGE_ID'], 'base_image': fz_env['BASE_IMAGE_PINNED'], 'geth_source': fz_env['GETH_SOURCE_DESC'],
-                        'platform': f'linux/{fz_env["ARCH"]}', 'built_at_utc': fz_env['BUILT_AT'], 'network_at_run_time': 'none (loopback only)',
+                        'platform': f'linux/{fz_env["ARCH"]}', 'built_at_utc': fz_env['BUILT_AT'], 'network_at_run_time': 'none: only loopback up, no IPv4 route, no non-loopback IPv6 route (core/netcheck.js; recorded per run in environment.json container.network_isolation)',
                         'identity_record': IMAGE_RECORDS[1], 'identity_record_sha256': sha(IMAGE_RECORDS[1]), 'pins': IMAGE_RECORDS[0], 'pins_sha256': sha(IMAGE_RECORDS[0]),
                         'toolchain': fz_id['toolchain'], 'apt_packages': (fz_id.get('system') or {}).get('apt_packages'),
                         'os_release': (fz_id.get('system') or {}).get('os_release'), 'docker_host': fz_id.get('host'),

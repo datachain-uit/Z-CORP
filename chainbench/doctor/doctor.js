@@ -38,11 +38,13 @@ for (const [label, file] of [['reference image record (chainbench/docker/IMAGE.j
 }
 
 // 2. Network isolation (the measurement container runs with --network none).
-const ifs = me.system.network_interfaces;
+// Judged on what can carry traffic (core/netcheck.js): kernel fallback tunnel devices that are listed but down are allowed.
+const ni = me.system.network_isolation || {};
 if (process.env.CHAINBENCH_NETWORK === 'none') {
-  if (ifs && ifs.length === 1 && ifs[0] === 'lo') rec('PASS', 'no network access at run time', 'only the loopback interface exists');
-  else rec('FAIL', 'no network access at run time', `interfaces: ${ifs}`, 'run through ./chainbench/run.sh (it starts containers with --network none)');
-} else rec('WARN', 'network isolation', 'not running inside the chainbench container (CHAINBENCH_NETWORK unset)');
+  const down = (ni.interfaces || []).filter((n) => n !== 'lo');
+  if (ni.isolated === true) rec('PASS', 'no network access at run time', `no interface up except loopback, no IPv4 route, no non-loopback IPv6 route${down.length ? ` (down, unroutable kernel devices: ${down.join(', ')})` : ''}`);
+  else rec('FAIL', 'no network access at run time', JSON.stringify(ni), 'run through ./chainbench/run.sh (it starts containers with --network none)');
+} else rec('WARN', 'network isolation', `not running inside the chainbench container (CHAINBENCH_NETWORK unset); isolated=${ni.isolated}`);
 
 // 3. Frozen inputs: proof set manifest, protocol, contract sources.
 const psDir = C.PROOFSET_DIR;

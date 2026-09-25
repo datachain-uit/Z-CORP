@@ -4,6 +4,7 @@
 // core/workload.js from workloads/<name>/workload.json.
 module.exports = {
   workload: require('./workload'),        // workload + campaign binding, module resolution
+  netcheck: require('./netcheck'),        // network isolation of the current namespace (container runs with --network none)
   rpc: require('../lib/rpc'),             // JSON-RPC access: in-process EDR or HTTP (geth); revert-data extraction; receipts
   geth: require('../lib/geth'),           // fresh in-memory `geth --dev` per cell; funding of test accounts
   envcheck: require('../lib/envcheck'),   // behavioural hardfork markers (Osaka: P256VERIFY, CLZ, EIP-7825 cap)

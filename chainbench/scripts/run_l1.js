@@ -79,6 +79,7 @@ function stepInit() {
       base_image: process.env.CHAINBENCH_BASE_IMAGE || null, geth_source: process.env.CHAINBENCH_GETH_SOURCE || null,
       network: process.env.CHAINBENCH_NETWORK || null,
       network_interfaces: (() => { try { return fs.readdirSync('/sys/class/net').sort(); } catch (e) { return null; } })(),
+      network_isolation: require('../core/netcheck').networkIsolation(),
     } : null,
   });
 }

@@ -67,6 +67,7 @@ function identity() {
       git: tryRun('git', ['--version']), python3: tryRun('python3', ['--version']),
       apt_packages: (() => { try { return fs.readFileSync('/opt/chainbench/APT-PACKAGES.txt', 'utf8').trim().split('\n'); } catch (e) { return null; } })(),
       network_interfaces: (() => { try { return fs.readdirSync('/sys/class/net').sort(); } catch (e) { return null; } })(),
+      network_isolation: require('../core/netcheck').networkIsolation(),
     },
     container: {
       image_id: process.env.CHAINBENCH_IMAGE_ID || null, image_ref: process.env.CHAINBENCH_IMAGE_REF || null,
