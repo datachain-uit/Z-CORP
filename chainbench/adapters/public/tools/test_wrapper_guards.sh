@@ -46,6 +46,7 @@ t "symbolic link as key file -> key_file_symlink" 'key_file_symlink' "$NOPROMPT"
 chmod 600 "$T/k/a.key"
 t "frozen image + acceptable key file: stops at the confirmation prompt (stdin closed), nothing sent" 'not confirmed; nothing was sent' '' env CHAINBENCH_PUBLIC_KEY_FILE="$T/k/a.key" "$RUN" run-public-setup sepolia
 n=$(grep -c '"phase":"pre"' "$LED" 2>/dev/null); n=${n:-0}; r=$(grep -c '"result":"refused' "$LED" 2>/dev/null); r=${r:-0}
-[ "$n" -ge 7 ] && [ "$r" -ge 4 ] && { pass=$((pass+1)); echo "PASS IMAGE-LEDGER.jsonl records every pre-flight image check ($n, of which $r refusals)"; } || { fail=$((fail+1)); echo "FAIL ledger ($n pre, $r refused)"; }
+# 8 commands reached the image check (3 refused on the image, 5 passed it); the native refusal happens before any Docker call
+[ "$n" -eq 8 ] && [ "$r" -eq 3 ] && { pass=$((pass+1)); echo "PASS IMAGE-LEDGER.jsonl records every pre-flight image check (8, of which 3 refusals; the native refusal precedes Docker)"; } || { fail=$((fail+1)); echo "FAIL ledger ($n pre, $r refused; expected 8 and 3)"; }
 echo "WRAPPER-GUARD-TESTS $STAMP: $pass/$((pass+fail)) pass (frozen image $FROZEN); ledger lines moved to build/chainbench/public/tests/"
 [ "$fail" = 0 ]

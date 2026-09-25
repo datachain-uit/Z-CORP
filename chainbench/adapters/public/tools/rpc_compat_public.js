@@ -8,6 +8,9 @@
 //   node rpc_compat_public.js [--networks sepolia,era-sepolia] [--secondary] --out <file>
 // --secondary probes the candidate secondary endpoints instead of the primaries: CHAINBENCH_PUBLIC_RPC_<NET>_SECONDARY and
 // CHAINBENCH_PUBLIC_RPC_LABEL_<NET>_SECONDARY (NET = SEPOLIA | ERA_SEPOLIA), for read-only compatibility only.
+// --errors adds read-only error-transport probes (an unknown method, an insufficient-funds simulation from the keyless
+// probe address, a reverting eth_call) and records how the endpoint returns JSON-RPC errors (HTTP status, code, message):
+// the runner's client treats any non-200 response as an HTTP error.
 const fs = require('fs');
 const path = require('path');
 const crypto = require('crypto');
@@ -27,6 +30,7 @@ const inputs = INP.load(REPO, B);
 const argv = process.argv.slice(2);
 const OUT = argv.includes('--out') ? path.resolve(argv[argv.indexOf('--out') + 1]) : null;
 const SECONDARY = argv.includes('--secondary');
+const ERRORS = argv.includes('--errors');
 const NETS = argv.includes('--networks') ? argv[argv.indexOf('--networks') + 1].split(',') : Object.keys(B.networks);
 const sha = (s) => crypto.createHash('sha256').update(s).digest('hex');
 const hex = (n) => '0x' + BigInt(n).toString(16);
@@ -129,6 +133,19 @@ async function probeNetwork(net) {
         { optional: true, note: 'simulation only (no key, no funds): the exact deployment shape of the frozen send policy, from the keyless probe address', bytecode_hash: d.art.bytecode_hash });
     }
   }
+  if (ERRORS) {
+    const E = { optional: true, expected_error: true };
+    await c('errUnknownMethod', 'chainbench_unknownMethod', [], { ...E, note: 'a method no endpoint implements' });
+    if (prof.kind === 'evm') {
+      await c('errInsufficientFunds', 'eth_estimateGas', [{ from: PROBE, to: PROBE, value: '0x1' }, 'latest'], { ...E, note: 'value > balance of the keyless probe address' });
+      await c('errRevert', 'eth_call', [{ from: PROBE, data: '0x60006000fd' }, 'latest'], { ...E, note: 'creation code PUSH1 0 PUSH1 0 REVERT' });
+    } else {
+      const gpp = hex(B.fee_policy['era-sepolia'].estimate_gas_per_pubdata);
+      await c('errInsufficientFunds', 'zks_estimateFee', [{ from: PROBE, to: PROBE, data: '0x', value: '0x1', type: hex(113), eip712Meta: { gasPerPubdata: gpp } }], { ...E, note: 'value > balance of the keyless probe address' });
+      await c('errRevert', 'eth_call', [{ from: PROBE, to: zu.CONTRACT_DEPLOYER_ADDRESS, data: zu.CONTRACT_DEPLOYER.encodeFunctionData('create', [ethers.ZeroHash, '0x0100' + '11'.repeat(30), '0x']) }, 'latest'],
+        { ...E, note: 'ContractDeployer.create of an unknown bytecode hash (reverts)' });
+    }
+  }
   res.coverage = coverage(res, prof);
   return res;
 }
@@ -150,6 +167,14 @@ function coverage(res, prof) {
     const est = res.calls.filter((x) => x.method === 'zks_estimateFee');
     out.fee_estimates_ok = est.length > 0 && est.every((x) => x.ok);
   }
+  const errs = res.calls.filter((x) => x.expected_error);
+  if (errs.length) {
+    out.error_transport = errs.map((x) => { let body = null; try { body = JSON.parse(x.response_raw || 'null'); } catch (e) { body = null; }
+      return { case: x.name, method: x.method, returned_error: !x.ok, http_status: x.ok ? x.http_status : (x.http_status || null), error_kind: x.ok ? null : x.error_kind,
+        jsonrpc_code: body && body.error ? body.error.code : (x.error_code === undefined ? null : x.error_code),
+        jsonrpc_message: body && body.error ? String(body.error.message).slice(0, 200) : (x.ok ? null : String(x.error_message).slice(0, 200)) }; });
+    out.errors_as_http_200_jsonrpc = out.error_transport.every((e) => e.returned_error && e.error_kind === 'jsonrpc');
+  }
   out.compatible = !res.stopped && missing.length === 0 && out.chain_id === prof.chain_id && out.historical_state && out.unknown_hash_returns_null
     && (prof.kind !== 'eravm' || (out.finality_fields_complete && out.fee_estimates_ok));
   return out;
@@ -169,7 +194,7 @@ async function main() {
     console.log(`== ${r.network} [${r.role}] (${r.endpoint ? `${r.endpoint.label} host ${r.endpoint.host}` : 'no endpoint'})${r.stopped ? ` STOPPED: ${r.stopped}` : ''}`);
     for (const x of r.calls) console.log(`  ${x.ok ? 'ok  ' : (x.optional ? 'miss' : 'FAIL')} ${x.method} [${x.name}]${x.ok ? '' : ` — ${x.error_kind} ${x.error_code === null ? '' : x.error_code} ${x.error_message}`}`);
   }
-  for (const r of nets) if (r.coverage) console.log(`COVERAGE ${r.network} [${r.role}]: ${r.coverage.methods_ok.length}/${r.coverage.required_methods.length} required methods; chain id ${r.coverage.chain_id}; historical state ${r.coverage.historical_state}; unknown hash -> null ${r.coverage.unknown_hash_returns_null}${r.coverage.protocol_version !== undefined ? `; protocol ${r.coverage.protocol_version}; finality fields ${r.coverage.finality_fields_complete}; fee estimates ${r.coverage.fee_estimates_ok}` : ''} -> ${r.coverage.compatible ? 'COMPATIBLE' : 'NOT COMPATIBLE: ' + r.coverage.missing.join(', ')}`);
+  for (const r of nets) if (r.coverage) console.log(`COVERAGE ${r.network} [${r.role}]: ${r.coverage.methods_ok.length}/${r.coverage.required_methods.length} required methods; chain id ${r.coverage.chain_id}; historical state ${r.coverage.historical_state}; unknown hash -> null ${r.coverage.unknown_hash_returns_null}${r.coverage.protocol_version !== undefined ? `; protocol ${r.coverage.protocol_version}; finality fields ${r.coverage.finality_fields_complete}; fee estimates ${r.coverage.fee_estimates_ok}` : ''}${r.coverage.error_transport ? `; errors: ${r.coverage.error_transport.map((e) => `${e.case}=${e.error_kind === 'http' ? 'HTTP ' + e.http_status : e.error_kind || 'no error'}/${e.jsonrpc_code}`).join(', ')}` : ''} -> ${r.coverage.compatible ? 'COMPATIBLE' : 'NOT COMPATIBLE: ' + r.coverage.missing.join(', ')}`);
   console.log(`RPC-PROBE: nothing was signed or sent; record ${OUT ? path.relative(REPO, OUT) : '(stdout only)'}`);
 }
 main().catch((e) => { console.error(e.stack || String(e)); process.exit(1); });

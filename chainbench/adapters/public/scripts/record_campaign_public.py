@@ -29,10 +29,13 @@ def git(*x): return subprocess.run(['git', '-C', REPO, *x], capture_output=True,
 def die(m): sys.exit(f'record_campaign_public: REFUSED: {m}')
 
 
-# the code that measures (runs, signs, sends, records, validates); the binding's author fields, the image record, READMEs and
-# records are outside it
+# the code that measures (runs, signs, sends, records, validates) and makes the image and the key; outside it: the binding's
+# author fields, the image record, this registration script, the engineering tests and the read-only probe, READMEs, records
+_S = 'chainbench/adapters/public/scripts/'
 MEASUREMENT_CODE_PATHS = ['contracts', 'chainbench/core', 'chainbench/lib/constants.js', 'chainbench/adapters/eravm/lib/constants.js',
-                          'chainbench/adapters/public/lib', 'chainbench/adapters/public/scripts', 'chainbench/adapters/public/tools',
+                          'chainbench/adapters/public/lib', *[_S + f for f in ('run_public.js', 'doctor_public.js', 'collect_era_finality.js', 'dry_run_public.js',
+                                                                               'mock_rpc.js', 'check_public_inputs.py', 'build_public_inputs.js')],
+                          *['chainbench/adapters/public/tools/' + f for f in ('new_public_key.sh', 'verify_public_key.sh', 'image_record.py')],
                           'chainbench/adapters/public/run-public.sh', 'chainbench/adapters/public/Dockerfile', 'chainbench/adapters/public/package.json',
                           'chainbench/adapters/public/package-lock.json', 'chainbench/adapters/public/pins.env', 'chainbench/workloads/zcorp/public',
                           'chainbench/run.sh', 'csi/protocols/chain/CHAIN-PUBLIC-PROTOCOL-v1.md', 'csi/campaigns/chain/CSI-CHAIN-PUBLIC-01/inputs',
