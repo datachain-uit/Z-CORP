@@ -18,7 +18,7 @@ const GAS_LIMIT = {
 };
 const FEES = {
   edr: { maxFeePerGas: 0n, maxPriorityFeePerGas: 0n },
-  geth: { maxFeePerGas: 100000000000n, maxPriorityFeePerGas: 0n },
+  geth: { maxFeePerGas: 100000000000n, maxPriorityFeePerGas: 1000000000n }, // geth txpool rejects tips below its minimum (1 wei); bookkeeping only
 };
 // BN254 moduli
 const BN254_Q = 21888242871839275222246405745257275088696311157297823662689037894645226208583n; // base field

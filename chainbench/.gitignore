@@ -1,5 +1,2 @@
 node_modules/
-.stage/
-artifacts-*/
-cache-*/
-out/
+.work/

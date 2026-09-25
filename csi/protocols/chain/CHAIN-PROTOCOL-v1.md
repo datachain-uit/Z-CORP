@@ -154,7 +154,7 @@ Run `chainbench/scripts/gen_proofset.js`. For each (backend, d, j):
 | `bridge` | `optimizer {enabled: false, runs: 200}`, `evmVersion: "paris"`, default metadata. These are the July 2026 settings recorded in `artifacts/build-info`. | `contracts/CredentialManager.sol`, `contracts/IGroth16Verifier.sol`, `contracts/Groth16LegacyVerifierDepth11.sol`. `hardhat/console.sol` comes from chainbench's hardhat 2.29.1 (sha256 `5a6db75e…4e31dd`, identical to the repository root's hardhat 2.23.0 copy). |
 
 **Staging.**
-- Sources are copied byte for byte into `chainbench/.stage/<profile>/`, keeping their repository-relative paths. That directory is the Hardhat project root, so the source names in the metadata are repository-relative (`contracts/…`).
+- Sources are copied byte for byte into a fresh per-run work directory, `chainbench/.work/<run_id>/stage/<profile>/` (§15, A2), keeping their repository-relative paths. That directory is the Hardhat project root, so the source names in the metadata are repository-relative (`contracts/…`). Library imports resolve to `chainbench/node_modules`.
 - The bytecode includes the metadata hash, and deployment gas depends on its bytes. The staging layout is therefore part of the protocol.
 - Each build writes `build_manifest.<profile>.json` (§8.3).
 
@@ -205,7 +205,7 @@ This must pass before any run is accepted. The result is recorded in `environmen
 | Environment | `maxFeePerGas` | `maxPriorityFeePerGas` | Status |
 |---|---|---|---|
 | EDR | 0 | 0 | bookkeeping only |
-| geth | 100 gwei | 0 | bookkeeping only |
+| geth | 100 gwei | 1 gwei (§15, A1) | bookkeeping only |
 
 **Calls.** `eth_call` operations consume no recorded gas.
 
@@ -359,11 +359,14 @@ From `chainbench/`:
 
 1. `npm ci`
 2. `node scripts/export_plonk_verifiers.js --check-only`
-3. `node scripts/env_check.js`: EDR under `osaka` plus the `prague` control, then geth.
+3. `node scripts/env_check.js --geth-bin <path>`: EDR under `osaka` plus the `prague` control, then geth. Each run repeats this and records the result in its `env_check.json`.
 4. `npm test`: the unit tests (§12.1).
-5. `node scripts/run_l1.js --plan <dry|full> --env edr --run-id <id>`, twice, as runs a and b.
-6. `node scripts/run_l1.js --plan <dry|full> --env geth --geth-bin <path> --run-id <id> --reference <run a>`
-7. `python3 scripts/compare_runs.py …`: determinism (a against b) and cross-client (a against geth).
+5. `node scripts/run_l1.js --plan <dry|full> --env edr --run-id <id> --step <init|build|envcheck|exec|finish>`, twice from scratch, as runs a and b. Each step is one invocation (§15, A3). `exec` processes the cells in plan order, each on a fresh chain, and resumes at the first cell not yet written.
+6. The same steps with `--env geth --geth-bin <path> --reference <run a dir>`. The `build` step fails unless both build manifests are byte-identical to run a's.
+7. `python3 scripts/compare_runs.py --mode determinism --a <run a> --b <run b>` and `--mode crossclient --a <run a> --b <geth run>`. The report goes to `compare.json`.
+8. `python3 scripts/summarize_l1.py <run dir>`: the per-cell summary (§9).
+
+**Rows per cell:** 4 setup transactions, 1 pre-check call, 3·K verification rows (K transactions, K calls and K direct transactions) and 7 negative-control rows (5 transactions, 2 calls). That is 18 rows per cell in `dry` (K = 2) and 36 in `full` (K = 8), so 90 and 324 rows respectively.
 
 ### 12.1 Unit tests (`chainbench/test/`, profile `primary`)
 
@@ -398,6 +401,10 @@ The arm is activated only by a §15 amendment that fills these fields. No anvil-
 
 ## 15. Amendments
 
-| Date | Section | Change | Reason |
-|---|---|---|---|
-| — | — | (none) | — |
+All of the following were made **before** the L1 scientific run and before the engineering dry run. None changes the matrix, the proof set, the compile profiles, the hardfork or any measured quantity. They are procedural, and they were found while the harness was being implemented.
+
+| ID | Date | Section | Change | Reason |
+|---|---|---|---|---|
+| A1 | 2026-09-25 | §7 | The geth `maxPriorityFeePerGas` becomes 1 gwei (it was 0). | geth's transaction pool rejects tips below its minimum ("gas tip cap 0, minimum needed 1"). Fee fields are bookkeeping only; `gasUsed` does not depend on them, as the cross-client comparison verifies. |
+| A2 | 2026-09-25 | §4 | Staging, artifacts and cache go into a fresh per-run directory, `chainbench/.work/<run_id>/`, instead of `chainbench/.stage/<profile>/`. | Every run is guaranteed to build from scratch, with no reuse or deletion of earlier builds. The source names in the metadata are unchanged (`contracts/…`). |
+| A3 | 2026-09-25 | §12 | A run is executed in steps (`init`, `build`, `envcheck`, `exec`, `finish`), and `exec` can resume per cell. | The execution environment of the campaign VM ends every process of a shell call after about 3 minutes. Cells are independent and each uses a fresh chain, so resuming at a cell boundary does not change any transaction. |

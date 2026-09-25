@@ -4,6 +4,9 @@
   "private": true,
   "description": "Z-CORP CSI-CHAIN-LOCAL-01: local L1 (EVM) on-chain verification benchmark harness. Isolated from the repository root toolchain.",
   "license": "UNLICENSED",
+  "scripts": {
+    "test": "node scripts/test.js"
+  },
   "dependencies": {
     "@nomicfoundation/hardhat-ethers": "3.0.8",
     "@openzeppelin/contracts": "4.9.0",
