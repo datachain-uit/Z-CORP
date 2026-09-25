@@ -1,7 +1,7 @@
 'use strict';
 // chainbench doctor, in-environment part (normally inside the container; run.sh does the host-side checks).
 // Checks everything needed before an experiment and stops; it never runs an experiment.
-//   node doctor/doctor.js [--require-clean] [--require-baseline] [--skip-envcheck] [--out file]
+//   node doctor/doctor.js [--require-clean] [--require-baseline] [--require-archived-image] [--skip-envcheck] [--out file]
 // Exit 1 if any check FAILs. Every FAIL prints a remediation line.
 const fs = require('fs');
 const os = require('os');
@@ -66,7 +66,7 @@ else rec('PASS', 'contract sources present', `${P.NAMES.map((n) => `${n}: ${P.ge
 // 4. Source state (git). The image records (pins.env, IMAGE.json) are excluded from the binding's path lists (the author
 // pins them after the packaged dry run) and are checked here explicitly.
 const CB_REL = path.relative(C.REPO, C.CHAINBENCH);
-const IMAGE_RECORDS = [`${CB_REL}/docker/pins.env`, `${CB_REL}/docker/IMAGE.json`];
+const IMAGE_RECORDS = [`${CB_REL}/docker/pins.env`, `${CB_REL}/docker/IMAGE.json`, `${CB_REL}/docker/ARCHIVE.json`];
 const MEAS = W.campaign.measurement_paths || W.campaign.tracked_paths;
 let head = null;
 try { head = C.gitHead(); } catch (e) { rec('FAIL', 'git repository readable', String(e.message).slice(0, 120), 'run from a git clone of the repository'); }
@@ -88,6 +88,19 @@ if (head) {
     else rec(has('--require-baseline') ? 'FAIL' : 'WARN', 'baseline tag', `${t} -> ${tc.slice(0, 7)}; changed since the tag: ${changed.split('\n').slice(0, 5).join(', ')}`, `git checkout ${t}`);
   }
 }
+
+// 4b. The exact archived image (docker/ARCHIVE.json, written when the author archives the frozen image with `docker save`).
+const ARCH_REC = path.join(C.CHAINBENCH, 'docker', 'ARCHIVE.json');
+if (fs.existsSync(ARCH_REC)) {
+  const ar = JSON.parse(fs.readFileSync(ARCH_REC, 'utf8'));
+  const here = process.env.CHAINBENCH_IMAGE_ID || null;
+  const samePlatform = ar.platform === `linux/${me.toolchain.runtime.arch}`;
+  if (here && here === ar.image_id) rec('PASS', 'archived image in use', `${ar.image_id} = ${ar.archive} (sha256 ${String(ar.archive_sha256).slice(0, 16)}…)`);
+  else if (!samePlatform) rec('WARN', 'archived image in use', `this platform is linux/${me.toolchain.runtime.arch}; the archived image is ${ar.platform} (a reproduction, not the archived environment)`);
+  else if (process.env.CHAINBENCH_ALLOW_REBUILT_IMAGE === '1') rec('WARN', 'archived image in use', `running ${here}, archived ${ar.image_id}: reproduction with a rebuilt image (CHAINBENCH_ALLOW_REBUILT_IMAGE=1)`);
+  else rec(has('--require-archived-image') ? 'FAIL' : 'WARN', 'archived image in use', `running ${here}, archived ${ar.image_id}`,
+    `load the archived image: ./chainbench/run.sh load-image <path to ${ar.archive}>`);
+} else rec(has('--require-archived-image') ? 'FAIL' : 'INFO', 'archived image record', 'chainbench/docker/ARCHIVE.json not present', 'the author archives the frozen image with ./chainbench/run.sh save-image');
 
 // 5. Output locations writable.
 for (const [plan, p] of Object.entries(W.workload.plans || {})) {

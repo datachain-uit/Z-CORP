@@ -16,6 +16,7 @@
     "chainbench",
     ":(exclude)chainbench/docker/IMAGE.json",
     ":(exclude)chainbench/docker/pins.env",
+    ":(exclude)chainbench/docker/ARCHIVE.json",
     "csi/protocols/chain",
     "csi/campaigns/chain/CSI-CHAIN-LOCAL-01/inputs"
   ],
@@ -25,6 +26,7 @@
     "chainbench",
     ":(exclude)chainbench/docker/IMAGE.json",
     ":(exclude)chainbench/docker/pins.env",
+    ":(exclude)chainbench/docker/ARCHIVE.json",
     ":(exclude)chainbench/README.md",
     ":(exclude)chainbench/workloads/zcorp/record_campaign.py",
     "csi/protocols/chain",
@@ -33,6 +35,30 @@
     "scripts/setup/paths.js",
     "ARTIFACTS.sha256"
   ],
+  "measurement_code_paths_note": "measurement_code_paths: the measurement implementation, i.e. every file that determines a raw row or its validation inside the container (contracts, frozen inputs, the runner and its libraries, the comparison and summary scripts, the unit tests, the dependency lockfile, the in-container step dispatcher, the image recipe). Host-side orchestration (run.sh, doctor, smoke check, identity tool), documentation, campaign records and this binding are not part of it.",
+  "measurement_code_paths": [
+    "contracts",
+    "csi/campaigns/chain/CSI-CHAIN-LOCAL-01/inputs",
+    "scripts/setup/generate_input_depth.js",
+    "scripts/setup/paths.js",
+    "ARTIFACTS.sha256",
+    "chainbench/lib",
+    "chainbench/scripts",
+    "chainbench/test",
+    "chainbench/hardhat.config.js",
+    "chainbench/package.json",
+    "chainbench/package-lock.json",
+    "chainbench/core/workload.js",
+    "chainbench/core/netcheck.js",
+    "chainbench/run/incontainer.sh",
+    "chainbench/docker/Dockerfile",
+    "chainbench/workloads/zcorp/workload.json"
+  ],
+  "commit_semantics": {
+    "measurement_code_commit": "the commit at which the final packaged engineering dry run validated the measurement implementation; measurement_code_paths must be byte-identical between it and baseline_commit",
+    "baseline_commit": "the commit of the annotated baseline tag; the scientific runs are launched from it with a clean tree, so every run.json 'commit' equals it",
+    "registry_commit": "csi/campaign-index.csv 'commit' = baseline_commit once the scientific run exists (the commit the campaign ran at, as for CSI-PROVER-01); before that, the dry-run commit"
+  },
   "baseline_tag_prefix": "chain-l1-baseline-",
   "reference_dry_run": {
     "edr": "build/campaigns/chain/dry-e141816-edr-a",

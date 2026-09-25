@@ -11,6 +11,7 @@
 - **What it checks:** Docker and its resources, the architecture, the toolchain image, the frozen proof set, the contract sources, the git state, the toolchain versions and hashes, and whether the output folders are writable. Each problem is printed as `[FAIL]` with a `Fix:` line.
 - **What it does not do:** it never runs an experiment.
 - **First run only:** it builds the pinned toolchain image. This needs network access once and takes a few minutes.
+- **Or load the archived image** (no build and no network): `./chainbench/run.sh load-image chainbench-l1-arm64.oci.tar`, using the archive deposited with the campaign (its sha256 is in `chainbench/docker/ARCHIVE.json`). On linux/arm64, `full-local-l1` accepts only this exact image; set `CHAINBENCH_ALLOW_REBUILT_IMAGE=1` for a reproduction with a rebuilt image, which is then recorded as such.
 - **Afterwards:** a few seconds to a minute.
 
 ### 2. Run the smoke test
@@ -100,6 +101,10 @@ Docker needs at least 2 CPUs and 4 GB of memory. Keep 5 GB of disk free.
 | `./chainbench/run.sh build-image` | Rebuild the image from the committed pins. |
 | `./chainbench/run.sh dry-run` | Reduced engineering dry run: Groth16 d5 and d11, PLONK d10 and d11, the bridge cell, 2 proofs. Same procedure as the full run. The output goes to `build/chainbench/dry-run/`. |
 | `./chainbench/run.sh author-freeze` | Author only. Pins new image digests and builds the image, then runs `author-verify`. |
+| `./chainbench/run.sh load-image <archive> [<record>]` | Load an archived image (`docker save` file) after checking its sha256 against `chainbench/docker/ARCHIVE.json` (or the given `IMAGE-ARCHIVE.<arch>.json`). |
+| `./chainbench/run.sh save-image <dir> [--frozen]` | Archive the current image and its geth image with `docker save`, with sizes, sha256 values and OCI index. `--frozen` records the archive as the one that `full-local-l1` requires. |
+| `CHAINBENCH_PLATFORM=linux/amd64 ./chainbench/run.sh doctor` (or `smoke`) | Portability check on another platform through emulation. It uses its own image and state; not scientific data. |
+| `./chainbench/run.sh author-prefreeze <dir>` | Author only. Archives the frozen image, loads it back, runs the linux/amd64 portability doctor and smoke, then the native doctor and smoke. |
 | `./chainbench/run.sh author-verify` | Author only. Runs doctor, smoke and a packaged dry run against the accepted readiness dry run, and writes a freeze record. It uses the existing image and does not rebuild. |
 
 ## Layout and reuse

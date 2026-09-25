@@ -7,8 +7,12 @@
 #   ./chainbench/run.sh full-local-l1   the frozen scientific procedure (unit tests, two EDR runs, geth replay, comparisons)
 #
 #   ./chainbench/run.sh dry-run         reduced engineering dry run (same procedure on a small subset)
+#   ./chainbench/run.sh load-image F    load the archived image (docker save file) instead of building it
+#   ./chainbench/run.sh save-image DIR  archive the image (and its geth image) with docker save; --frozen: record in docker/ARCHIVE.json
 #   ./chainbench/run.sh author-freeze   author only: pin image digests, build, then author-verify
 #   ./chainbench/run.sh author-verify   author only: doctor, smoke, dry-run vs the accepted run, freeze record (no rebuild)
+#   ./chainbench/run.sh author-prefreeze DIR  author only: archive the frozen image, linux/amd64 portability (doctor, smoke), doctor, smoke
+#   CHAINBENCH_PLATFORM=linux/amd64 ./chainbench/run.sh doctor|smoke   portability check on another platform (own image and state)
 #
 # Everything measured runs inside the chainbench container with --network none; the repository is mounted read-only.
 set -uo pipefail
@@ -19,6 +23,14 @@ WORKLOAD=${CHAINBENCH_WORKLOAD:-zcorp}
 PINS="$CB_DIR/docker/pins.env"
 IMG_STATE="$REPO/build/chainbench/image"
 LOCAL_TAG="chainbench-l1:local"
+# CHAINBENCH_PLATFORM (linux/arm64 | linux/amd64): portability checks on a platform other than the engine's native one.
+# The overridden platform gets its own image tag and state directory; the default (native) state is never touched.
+PLATFORM_OVERRIDE=${CHAINBENCH_PLATFORM:-}
+case "$PLATFORM_OVERRIDE" in
+  "") ;;
+  linux/arm64|linux/amd64) IMG_STATE="$REPO/build/chainbench/image-${PLATFORM_OVERRIDE#linux/}"; LOCAL_TAG="chainbench-l1:local-${PLATFORM_OVERRIDE#linux/}" ;;
+  *) printf '[FAIL] CHAINBENCH_PLATFORM must be linux/arm64 or linux/amd64 (got %s)\n' "$PLATFORM_OVERRIDE" >&2; exit 1 ;;
+esac
 FAILS=0
 IMAGE_ID="" BASE_IMAGE_PINNED="" GETH_SOURCE_DESC=""
 
@@ -30,7 +42,7 @@ fail() { printf '[FAIL] %s\n' "$1"; if [ -n "${2:-}" ]; then printf '       Fix:
 die()  { printf '[FAIL] %s\n' "$1" >&2; if [ -n "${2:-}" ]; then printf '       Fix: %s\n' "$2" >&2; fi; exit 1; }
 utc()  { date -u +%Y%m%dT%H%M%SZ; }
 sha256_of() { if command -v shasum >/dev/null 2>&1; then shasum -a 256 "$1" | awk '{print $1}'; else sha256sum "$1" | awk '{print $1}'; fi; }
-usage() { sed -n '2,14p' "$0" | sed 's/^# \{0,1\}//'; }
+usage() { sed -n '2,18p' "$0" | sed 's/^# \{0,1\}//'; }
 
 # ---------------------------------------------------------------- Docker helpers
 have_docker() {
@@ -40,6 +52,7 @@ have_docker() {
     "Start Docker Desktop (macOS/Windows) or the Docker service (Linux: sudo systemctl start docker), then re-run."
 }
 docker_arch() {
+  if [ -n "$PLATFORM_OVERRIDE" ]; then echo "${PLATFORM_OVERRIDE#linux/}"; return; fi
   case "$(docker info --format '{{.Architecture}}' 2>/dev/null)" in
     aarch64|arm64) echo arm64 ;; x86_64|amd64) echo amd64 ;; *) echo unknown ;;
   esac
@@ -67,6 +80,9 @@ image_present() {  # the image recorded in build/chainbench/image/image.env exis
   local id; id=$(sed -n 's/^IMAGE_ID="\(.*\)"$/\1/p' "$IMG_STATE/image.env")
   [ -n "$id" ] && docker image inspect "$id" >/dev/null 2>&1
 }
+json_get() {  # KEY FILE: value of a top-level "KEY": value line (records written by this script, one key per line)
+  sed -n "s/^ *\"$1\": *\"\{0,1\}\([^\",]*\)\"\{0,1\},\{0,1\} *\$/\1/p" "$2" | head -1
+}
 run_ok() {  # <host run dir>: the run finished and its own checks were accepted
   [ -f "$1/run.json" ] && grep -q '"accepted_checks": true' "$1/run.json"
 }
@@ -87,10 +103,12 @@ dkr() {
   while [ "$#" -gt 0 ] && [ "$1" != "--" ]; do envs+=("$1"); shift; done
   [ "$#" -gt 0 ] && shift
   mkdir -p "$REPO/chainbench/node_modules" "$REPO/chainbench/.work" "$REPO/build/chainbench" "$REPO/build/campaigns/chain"
-  local user=()
+  local user=() plat=()
   if [ "$(uname -s)" = Linux ]; then user=(--user "$(id -u):$(id -g)"); fi
-  docker run --rm --network none ${user[@]+"${user[@]}"} \
+  if [ -n "$PLATFORM_OVERRIDE" ]; then plat=(--platform "$PLATFORM_OVERRIDE"); fi
+  docker run --rm --network none ${user[@]+"${user[@]}"} ${plat[@]+"${plat[@]}"} \
     -e HOME=/tmp -e CHAINBENCH_WORKLOAD="$WORKLOAD" -e CHAINBENCH_NETWORK=none \
+    -e CHAINBENCH_ALLOW_REBUILT_IMAGE="${CHAINBENCH_ALLOW_REBUILT_IMAGE:-}" \
     -e CHAINBENCH_IMAGE_ID="$IMAGE_ID" -e CHAINBENCH_IMAGE_REF="$LOCAL_TAG" \
     -e CHAINBENCH_BASE_IMAGE="$BASE_IMAGE_PINNED" -e CHAINBENCH_GETH_SOURCE="$GETH_SOURCE_DESC" \
     ${envs[@]+"${envs[@]}"} \
@@ -276,7 +294,7 @@ doctor() {
 # ---------------------------------------------------------------- smoke
 smoke() {
   load_image
-  local rid; rid="smoke-$(utc)"
+  local rid; rid="smoke-${PLATFORM_OVERRIDE:+${PLATFORM_OVERRIDE#linux/}-}$(utc)"
   local out=/repo/build/chainbench/smoke hout="$REPO/build/chainbench/smoke"
   mkdir -p "$hout"
   say "chainbench smoke: $rid (not scientific data; output ${hout#"$REPO"/}/$rid)"
@@ -352,12 +370,140 @@ full_local_l1() {
   local rid; rid="full-$(dkr -- head | tail -1)-$(utc)"
   local out=/repo/build/campaigns/chain hout="$REPO/build/campaigns/chain"
   say "--- pre-flight (doctor, clean sources and baseline tag required; record ${hout#"$REPO"/}/$rid.preflight.json):"
-  dkr -e "CHAINBENCH_HOST_JSON=$(host_json)" -- doctor --require-clean --require-baseline --out "$out/$rid.preflight.json" \
+  dkr -e "CHAINBENCH_HOST_JSON=$(host_json)" -- doctor --require-clean --require-baseline --require-archived-image --out "$out/$rid.preflight.json" \
     || die "Pre-flight checks failed; the scientific run was NOT started." "Fix the items above."
   local log="$hout/$rid.log"; : >"$log"
   say "running $rid (outputs in ${hout#"$REPO"/}) ..."
   three_runs full "$rid" "$out" "$hout" "$log"
+  say "--- post-flight (same checks after the runs; record ${hout#"$REPO"/}/$rid.postflight.json):"
+  dkr -e "CHAINBENCH_HOST_JSON=$(host_json)" -- doctor --require-clean --require-baseline --require-archived-image --skip-envcheck --out "$out/$rid.postflight.json" \
+    || die "Post-flight checks failed: sources, baseline tag or image changed during the campaign." "Do not accept $rid; inspect ${hout#"$REPO"/}/$rid.postflight.json."
   say "FULL LOCAL L1 DONE: $rid-edr-a, $rid-edr-b, $rid-geth in ${hout#"$REPO"/}"
+}
+
+# ---------------------------------------------------------------- image archive (docker save / docker load)
+save_image() {  # save-image <output dir> [--frozen]
+  local out=${1:-} frozen=0
+  [ "${2:-}" = --frozen ] && frozen=1
+  [ -n "$out" ] || die "usage: ./chainbench/run.sh save-image <output dir> [--frozen]"
+  load_image
+  # shellcheck disable=SC1090
+  . "$PINS"
+  case "$out" in /*) ;; *) out="$REPO/$out" ;; esac
+  mkdir -p "$out/image"
+  local arch=$ARCH now
+  now=$(docker image inspect --format '{{.Id}}' "$LOCAL_TAG" 2>/dev/null)
+  [ "$now" = "$IMAGE_ID" ] || die "$LOCAL_TAG is '$now', not the recorded image $IMAGE_ID." "Rebuild or reload the image before archiving it."
+  local f="$out/image/chainbench-l1-$arch.oci.tar" g="$out/image/geth-$GETH_VERSION-$arch.oci.tar" rec="$out/IMAGE-ARCHIVE.$arch.json"
+  [ -e "$f" ] && die "$f already exists (archives are never overwritten)."
+  say "docker save $LOCAL_TAG ($IMAGE_ID) -> ${f#"$REPO"/}"
+  docker save -o "$f" "$LOCAL_TAG" || die "docker save failed for $LOCAL_TAG."
+  tar -tf "$f" | LC_ALL=C sort >"${f%.oci.tar}.listing.txt"
+  tar -xOf "$f" index.json >"${f%.oci.tar}.index.json"
+  local has_idx=false; grep -qx "blobs/sha256/${IMAGE_ID#sha256:}" "${f%.oci.tar}.listing.txt" && has_idx=true
+  local gref="" gsave=""
+  case "$GETH_SOURCE_DESC" in official:*) gref=${GETH_SOURCE_DESC#official:} ;; esac
+  if [ -n "$gref" ]; then
+    [ -e "$g" ] && die "$g already exists (archives are never overwritten)."
+    say "docker save --platform linux/$arch $gref -> ${g#"$REPO"/}"
+    if docker save --platform "linux/$arch" -o "$g" "$gref" 2>/dev/null; then gsave=$gref
+    elif [ "$(repo_digest "$GETH_IMAGE_REPO:$GETH_IMAGE_TAG")" = "${gref#*@}" ]; then
+      rm -f "$g"; docker save --platform "linux/$arch" -o "$g" "$GETH_IMAGE_REPO:$GETH_IMAGE_TAG" || die "docker save failed for the geth image."
+      gsave="$GETH_IMAGE_REPO:$GETH_IMAGE_TAG (= $gref)"
+    else die "Cannot save the pinned geth image $gref." "docker pull --platform linux/$arch $gref, then re-run."; fi
+    tar -tf "$g" | LC_ALL=C sort >"${g%.oci.tar}.listing.txt"
+    tar -xOf "$g" index.json >"${g%.oci.tar}.index.json"
+  fi
+  {
+    printf '{\n'
+    printf '  "schema": "chainbench-image-archive/1",\n'
+    printf '  "role": "%s",\n' "$([ "$frozen" = 1 ] && echo scientific || echo portability)"
+    printf '  "platform": "linux/%s",\n' "$arch"
+    printf '  "image_ref": "%s",\n' "$LOCAL_TAG"
+    printf '  "image_id": "%s",\n' "$IMAGE_ID"
+    printf '  "base_image": "%s",\n' "$BASE_IMAGE_PINNED"
+    printf '  "geth_source": "%s",\n' "$GETH_SOURCE_DESC"
+    printf '  "archive": "image/%s",\n' "$(basename "$f")"
+    printf '  "archive_file": "%s",\n' "${f#"$REPO"/}"
+    printf '  "archive_bytes": %s,\n' "$(wc -c <"$f" | tr -d ' ')"
+    printf '  "archive_sha256": "%s",\n' "$(sha256_of "$f")"
+    printf '  "archive_contains_image_index_blob": %s,\n' "$has_idx"
+    printf '  "index_json_sha256": "%s",\n' "$(sha256_of "${f%.oci.tar}.index.json")"
+    printf '  "geth_image_ref": "%s",\n' "$gref"
+    printf '  "geth_saved_as": "%s",\n' "$gsave"
+    if [ -n "$gref" ]; then
+      printf '  "geth_archive": "image/%s",\n' "$(basename "$g")"
+      printf '  "geth_archive_bytes": %s,\n' "$(wc -c <"$g" | tr -d ' ')"
+      printf '  "geth_archive_sha256": "%s",\n' "$(sha256_of "$g")"
+      printf '  "geth_index_json_sha256": "%s",\n' "$(sha256_of "${g%.oci.tar}.index.json")"
+    fi
+    printf '  "docker_client": "%s",\n' "$(docker version --format '{{.Client.Version}}' 2>/dev/null)"
+    printf '  "docker_engine": "%s",\n' "$(docker version --format '{{.Server.Version}}' 2>/dev/null)"
+    printf '  "saved_utc": "%s",\n' "$(date -u +%Y-%m-%dT%H:%M:%SZ)"
+    printf '  "load_command": "./chainbench/run.sh load-image %s"\n' "${f#"$REPO"/}"
+    printf '}\n'
+  } >"$rec"
+  [ "$has_idx" = true ] || die "The archive does not contain the image index blob ${IMAGE_ID}." "See ${f%.oci.tar}.listing.txt"
+  pass "image archive: ${f#"$REPO"/} ($(json_get archive_bytes "$rec") bytes, sha256 $(json_get archive_sha256 "$rec"))"
+  [ -n "$gref" ] && pass "geth archive: ${g#"$REPO"/} ($(json_get geth_archive_bytes "$rec") bytes, sha256 $(json_get geth_archive_sha256 "$rec"))"
+  if [ "$frozen" = 1 ]; then
+    cp "$rec" "$CB_DIR/docker/ARCHIVE.json"
+    pass "frozen-image record written: chainbench/docker/ARCHIVE.json (full-local-l1 now requires this exact image on linux/$arch)"
+  fi
+  say "record: ${rec#"$REPO"/}"
+}
+load_image_archive() {  # load-image <archive.oci.tar> [<record.json>]
+  have_docker
+  local f=${1:-} rec=${2:-$CB_DIR/docker/ARCHIVE.json}
+  [ -f "$f" ] || die "usage: ./chainbench/run.sh load-image <chainbench-l1-<arch>.oci.tar> [<IMAGE-ARCHIVE record>]"
+  [ -f "$rec" ] || die "No archive record $rec." "Pass the IMAGE-ARCHIVE.<arch>.json that belongs to this archive as the second argument."
+  local want_sha want_id plat sha
+  want_sha=$(json_get archive_sha256 "$rec"); want_id=$(json_get image_id "$rec"); plat=$(json_get platform "$rec")
+  say "verifying $(basename "$f") against ${rec#"$REPO"/} ..."
+  sha=$(sha256_of "$f")
+  [ "$sha" = "$want_sha" ] || die "Archive sha256 $sha does not match the record ($want_sha)." "Use the archive that belongs to ${rec#"$REPO"/}."
+  pass "archive sha256 $sha"
+  if [ "linux/$(docker_arch)" != "$plat" ]; then
+    die "This archive is $plat but the target platform is linux/$(docker_arch)." "Run with CHAINBENCH_PLATFORM=$plat (emulation) or use the archive for your platform."
+  fi
+  docker load -i "$f" || die "docker load failed."
+  docker image inspect "$want_id" >/dev/null 2>&1 || die "After loading, image $want_id is not present." "Check the archive and the record."
+  mkdir -p "$IMG_STATE"
+  {
+    printf 'IMAGE_ID="%s"\n' "$want_id"; printf 'BASE_IMAGE_PINNED="%s"\n' "$(json_get base_image "$rec")"
+    printf 'GETH_SOURCE_DESC="%s"\n' "$(json_get geth_source "$rec")"; printf 'ARCH="%s"\n' "${plat#linux/}"
+    printf 'BUILT_AT="loaded %s sha256:%s at %s"\n' "$(basename "$f")" "$sha" "$(utc)"
+  } >"$IMG_STATE/image.env"
+  # shellcheck disable=SC1091
+  . "$IMG_STATE/image.env"
+  docker tag "$want_id" "$LOCAL_TAG" >/dev/null 2>&1 || true
+  dkr -e "CHAINBENCH_HOST_JSON=$(host_json)" -- identity --out "/repo/build/chainbench/${IMG_STATE##*/}/identity.json" >/dev/null 2>&1 \
+    || die "Could not record the toolchain identity of the loaded image."
+  pass "image loaded: $want_id ($plat); next: ./chainbench/run.sh doctor"
+}
+
+author_prefreeze() {  # author only: archive the frozen image, linux/amd64 portability (doctor, smoke), then doctor and smoke
+  local out=${1:-}
+  [ -n "$out" ] || die "usage: ./chainbench/run.sh author-prefreeze <release dir>"
+  [ -z "$PLATFORM_OVERRIDE" ] || die "author-prefreeze runs on the native platform (unset CHAINBENCH_PLATFORM)."
+  load_image
+  local sum; sum="$REPO/build/chainbench/prefreeze-$(utc).txt"; : >"$sum"
+  note() { printf '%s\n' "$*" | tee -a "$sum"; }
+  say "=== author-prefreeze: archive the frozen image, portability check, doctor, smoke ==="
+  save_image "$out" --frozen
+  note "frozen_archive: $(json_get archive_file "$CB_DIR/docker/ARCHIVE.json") sha256 $(json_get archive_sha256 "$CB_DIR/docker/ARCHIVE.json")"
+  say "--- load-image round trip on the frozen archive:"
+  if "$0" load-image "$REPO/$(json_get archive_file "$CB_DIR/docker/ARCHIVE.json")"; then note "load_image_native: PASS"; else note "load_image_native: FAIL"; fi
+  local other=amd64; [ "$(docker_arch)" = amd64 ] && other=arm64
+  say "--- portability: linux/$other (emulated; not scientific data)"
+  if CHAINBENCH_PLATFORM="linux/$other" "$0" doctor; then note "portability_${other}_doctor: PASS"; else note "portability_${other}_doctor: FAIL"; fi
+  if CHAINBENCH_PLATFORM="linux/$other" "$0" smoke; then note "portability_${other}_smoke: PASS"; else note "portability_${other}_smoke: FAIL"; fi
+  if CHAINBENCH_PLATFORM="linux/$other" "$0" save-image "$out"; then note "portability_${other}_archive: PASS"; else note "portability_${other}_archive: FAIL"; fi
+  say "--- native platform (linux/$(docker_arch)): doctor and smoke"
+  if "$0" doctor; then note "native_doctor: PASS"; else note "native_doctor: FAIL"; fi
+  if "$0" smoke; then note "native_smoke: PASS"; else note "native_smoke: FAIL"; fi
+  say "AUTHOR-PREFREEZE finished; summary: ${sum#"$REPO"/}"
+  cat "$sum"
 }
 
 author_freeze() {
@@ -390,6 +536,9 @@ case "$cmd" in
   full-local-l1)  full_local_l1 ;;
   author-freeze)  author_freeze ;;
   author-verify)  author_verify ;;
+  author-prefreeze) author_prefreeze "$@" ;;
+  save-image)     save_image "$@" ;;
+  load-image)     load_image_archive "$@" ;;
   help|-h|--help) usage ;;
   *) usage; die "unknown command '$cmd'" "Use one of: doctor, smoke, full-local-l1 (also build-image, dry-run)." ;;
 esac
