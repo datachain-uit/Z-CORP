@@ -1,0 +1,118 @@
+{
+  "admin_id": "CSI-PROVER-01",
+  "baseline": {
+    "commit": "dc13ddd3e4561e5d69fe372fe3cb2d550bfb2b81",
+    "tag": "rerun-baseline-20260925",
+    "tag_resolves_to_commit": true
+  },
+  "code": {
+    "analysis": "csi/code/analysis/ANALYSIS.sha256",
+    "campaign_kit": "csi/code/prover/KIT.sha256"
+  },
+  "derived": {
+    "dir": "csi/campaigns/prover/CSI-PROVER-01/derived",
+    "outputs_sha256": {
+      "derivation.json": "ceb7a46af4109b7c01dc9ac852c9f777c784d23964ff1eb52a0953f072dd1c27",
+      "prover_boundary.csv": "73a155c2d43e494bfcdb9e926466d7a58d50e1360b5ca1125dedd4497c32b867",
+      "prover_containers.csv": "9e5bdeef88d45656f9ba83687276f15471fa9ee8a60c13d284ec299c3da02831",
+      "prover_crossbackend.csv": "cd17877495bb822402b1cb16531eac92607b883e06cae64217fe105444721c16",
+      "prover_diagnostic.csv": "26760c3663958a87f701a888d366cc08499b460a57045d3e9bb5ce48c8cfe3ae",
+      "prover_scaling.csv": "8153e55f376085b9a57562d3affae93d63f1e7124f420266f9447aececb9c62d",
+      "prover_stage_summary.csv": "0b2c8041a2e02466c9df5de622e427be1732327e4c9e2546ab987302ae26a4a1",
+      "prover_verify.csv": "55d30a33f4993bd61ea6e803dafca449b275880e31fc896fb6e465b112863dc3",
+      "values.tex": "ea35119ce1f765313349eb456a0e99a97babe3f827e9172933ab47dbf78649ce"
+    },
+    "tool": "scripts/analysis/derive_prover.py",
+    "tool_sha256": "bd461cbaa7f74fc067d43807e6454a6e400ec79bee64c4c2a0ce9ba1656e8aec"
+  },
+  "experiment": "controlled prover scaling",
+  "identities": {
+    "adapter_sha256": "749eea66bb9bf3256f1afbabd0119dd67c1fca95c3174c8373b49f9470942867",
+    "artifact_manifest_sha256": "9a7829fe2584259f1dd0dc45cf73c5ce904fce7e61e964fb7958826f156b43be",
+    "environment": {
+      "configured_memory_mib": "16384",
+      "docker_desktop": "4.92.0",
+      "engine": "29.8.0",
+      "kernel": "7.0.12-linuxkit",
+      "vm_mem_bytes": "16745824256",
+      "vm_ncpu": "10"
+    },
+    "execution_plan_sha256": "99fb360ccb801606ee13a7aa03705522aceb5845a0d62affd647d9a2b0badc94",
+    "schedule_sha256": "f7e6de3bbd1c9d24b0c41909414014c4e9cd1ee2ff2179c845aec8b9464fbb95"
+  },
+  "image": {
+    "archive": {
+      "bytes": 95669248,
+      "file": "csi/release/CSI-PROVER-01/image/zcorp-bench-campaign-20260925T060607Z.oci.tar",
+      "present_in_this_checkout": true,
+      "record": "csi/release/CSI-PROVER-01/IMAGE-ARCHIVE.json",
+      "sha256": "96af753619c0b172a1a563be687f646daf7c62231c953ca7d3a9cdfddde1884d",
+      "versioned": false
+    },
+    "base_arm64_manifest": "sha256:0cc5f8897ffbf799d16ffe58bf3ce6242d23e5f9aa658e55b8d5ca8fc7f01bad",
+    "base_image_ref": "node:18.20.8-bookworm-slim@sha256:f9ab18e354e6855ae56ef2b290dd225c1e51a564f87584b9bd21dd651838830e",
+    "config": "sha256:3f3ad4add97c954e9492e621f9844671c0ccf0ae51495c1fef0d09af0d2d32ab",
+    "id_per_build": "sha256:50c5f26d2c05b460aa702d89700b74f817ea4adce9d64a5abacaae7a9bb671c8",
+    "identity_source": "results/postcorr-20260925/environment/docker-build-S20260925T060607Z.log",
+    "manifest": "sha256:257d9d8a106dcb9efc1768136119106e88e314d6779be543bdbe49e3b267e5a5",
+    "platform": "linux/arm64",
+    "tag": "zcorp-bench:campaign-20260925T060607Z"
+  },
+  "notes": [
+    "csi/campaigns/prover/CSI-PROVER-01/HOST-ACTIVITY-NOTE.md",
+    "csi/campaigns/prover/CSI-PROVER-01/notes/report-vs-derivation.md"
+  ],
+  "protocol": {
+    "at_commit": "dc13ddd3e4561e5d69fe372fe3cb2d550bfb2b81",
+    "path": "submission/csi/RERUN-PROTOCOL.md",
+    "sha256": "bedef622c27d818c1a0f2bb136b6aa93614c2c32aa589941f812a2aea202dd98",
+    "snapshot": "csi/protocols/prover/RERUN-PROTOCOL-v3.md",
+    "version": "v3"
+  },
+  "source": {
+    "campaign_id": "campaign-20260925T060607Z",
+    "files": 51,
+    "manifest": "csi/campaigns/prover/CSI-PROVER-01/SOURCE.sha256",
+    "manifest_sha256": "482259f41ace9d53a40813e8d5c9caa310c5280b3012333b488700b31abebbfe",
+    "path": "results/postcorr-20260925",
+    "rule": "source of truth; never edited; SOURCE.sha256 is frozen and checked on every build",
+    "tracked_in_git": true,
+    "unchanged_vs_git_head": true
+  },
+  "status": "validated",
+  "superseded_campaign": {
+    "committed": true,
+    "file": "results/PRECORRECTION-2026-07.sha256",
+    "scope": "pre-correction July 2026 measurement files (protocol v3 section 7.4)",
+    "sha256": "d81c39b33b1e1221ab8494ab7a4a003a0d287394531d60ae05aa598d7b47db6e"
+  },
+  "used_in_manuscript": "pending",
+  "validation": {
+    "derivation_checks": {
+      "expected_counts": {
+        "containers": 48,
+        "diagnostic_rows": 240,
+        "measured_primary_rows": 495,
+        "warmup_rows_in_accepted_attempts_excluded": 162
+      },
+      "identity_matches_expectations": true,
+      "ledger": {
+        "accepted": 16,
+        "failed": 0,
+        "incomplete": 0,
+        "rerun_attempts": 0,
+        "units": 16
+      },
+      "pipeline_validation_pass": "14/14",
+      "repo_commit_manifest_structure": true,
+      "rows_identity": true
+    },
+    "pipeline_checks": "14/14",
+    "rounds_accepted": 16,
+    "rounds_scheduled": 16,
+    "sessions": [
+      "S20260925T060607Z"
+    ]
+  },
+  "venue": "CSI"
+}

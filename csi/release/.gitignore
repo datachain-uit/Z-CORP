@@ -1,0 +1,4 @@
+# Release binaries are not versioned. Their checksums are: RELEASE.sha256 (per campaign) and
+# IMAGE-ARCHIVE.json (image archive record written by scripts/release/save_image.sh).
+*.tar
+*.tar.gz

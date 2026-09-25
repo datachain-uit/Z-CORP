@@ -1,0 +1,18 @@
+{
+  "campaign_id": "campaign-20260925T060607Z",
+  "image_tag": "zcorp-bench:campaign-20260925T060607Z",
+  "image_id_per_build": "sha256:50c5f26d2c05b460aa702d89700b74f817ea4adce9d64a5abacaae7a9bb671c8",
+  "image_manifest": "sha256:257d9d8a106dcb9efc1768136119106e88e314d6779be543bdbe49e3b267e5a5",
+  "image_config": "sha256:3f3ad4add97c954e9492e621f9844671c0ccf0ae51495c1fef0d09af0d2d32ab",
+  "archive": "image/zcorp-bench-campaign-20260925T060607Z.oci.tar",
+  "archive_sha256": "96af753619c0b172a1a563be687f646daf7c62231c953ca7d3a9cdfddde1884d",
+  "archive_bytes": 95669248,
+  "archive_contains_image_manifest_blob": true,
+  "archive_contains_image_config_blob": true,
+  "archive_contains_per_build_index_blob": true,
+  "index_json_sha256": "b8ff1023969d37ae086af68df32252a80b512a3fcf50685171ab8d931aaeeacf",
+  "docker_client": "29.8.0",
+  "docker_engine": "29.8.0",
+  "saved_utc": "2026-09-25T08:23:45Z",
+  "command": "docker save -o csi/release/CSI-PROVER-01/image/zcorp-bench-campaign-20260925T060607Z.oci.tar zcorp-bench:campaign-20260925T060607Z"
+}
