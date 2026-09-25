@@ -177,7 +177,8 @@
       "solc": "0.8.20"
     },
     "path": "chainbench",
-    "soljson_sha256": "033dc42a16378dd036a475b8a7080af83cfae1841eb6848ce1667c56193972ba"
+    "soljson_sha256": "033dc42a16378dd036a475b8a7080af83cfae1841eb6848ce1667c56193972ba",
+    "unchanged_at_record_head": "52d8036c96ebd69f6e9f15f7e8dbb7093f9c221b"
   },
   "notes": [
     "csi/campaigns/chain/CSI-CHAIN-LOCAL-01/notes/DRY-RUN.md",
@@ -203,7 +204,8 @@
     "amendments_pre_run": [
       "A1",
       "A2",
-      "A3"
+      "A3",
+      "A4"
     ],
     "eravm_arm": "pending",
     "frozen_at_commit": "a7482a12e161ab996f6dbf5c11490d4b64e42606",
