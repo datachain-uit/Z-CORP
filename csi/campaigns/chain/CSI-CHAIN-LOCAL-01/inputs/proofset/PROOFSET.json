@@ -1,0 +1,234 @@
+{
+  "proofset": "PS-01",
+  "campaign": "CSI-CHAIN-LOCAL-01",
+  "protocol": "csi/protocols/chain/CHAIN-PROTOCOL-v1.md",
+  "protocol_sha256": "a60055090d381c5b903487d2d1bb633ab37fb98fa88d39ef1df188cfab9fee10",
+  "rule": "i_j = (2j+1) * 2^(d-4), j = 0..7; same indices for both backends",
+  "depths": [
+    5,
+    10,
+    11,
+    15
+  ],
+  "k": 8,
+  "backends": [
+    "groth16",
+    "plonk"
+  ],
+  "count": 64,
+  "started_at_utc": "2026-09-25T09:36:52.878Z",
+  "finished_at_utc": "2026-09-25T09:43:40.283Z",
+  "commit_at_start": "a7482a12e161ab996f6dbf5c11490d4b64e42606",
+  "environment": {
+    "node": "v22.23.2",
+    "platform": "linux 6.8.0-138-generic arm64",
+    "cpus": 4,
+    "snarkjs": "0.7.5",
+    "ffjavascript": "0.3.1",
+    "generator": "chainbench/scripts/gen_proofset.js"
+  },
+  "invocations": [
+    {
+      "started_at_utc": "2026-09-25T09:36:52.882Z",
+      "node": "v22.23.2",
+      "done": [
+        "G16-d5-p0",
+        "PLK-d5-p0",
+        "G16-d5-p1",
+        "PLK-d5-p1",
+        "G16-d5-p2",
+        "PLK-d5-p2",
+        "G16-d5-p3",
+        "PLK-d5-p3",
+        "G16-d5-p4",
+        "PLK-d5-p4",
+        "G16-d5-p5",
+        "PLK-d5-p5",
+        "G16-d5-p6",
+        "PLK-d5-p6",
+        "G16-d5-p7",
+        "PLK-d5-p7",
+        "G16-d10-p0",
+        "PLK-d10-p0",
+        "G16-d10-p1",
+        "PLK-d10-p1",
+        "G16-d10-p2",
+        "PLK-d10-p2",
+        "G16-d10-p3",
+        "PLK-d10-p3",
+        "G16-d10-p4",
+        "PLK-d10-p4",
+        "G16-d10-p5",
+        "PLK-d10-p5",
+        "G16-d10-p6",
+        "PLK-d10-p6",
+        "G16-d10-p7",
+        "PLK-d10-p7",
+        "G16-d11-p0",
+        "PLK-d11-p0"
+      ],
+      "finished_at_utc": "2026-09-25T09:39:24.984Z"
+    },
+    {
+      "started_at_utc": "2026-09-25T09:39:28.775Z",
+      "node": "v22.23.2",
+      "done": [
+        "G16-d11-p1",
+        "PLK-d11-p1",
+        "G16-d11-p2",
+        "PLK-d11-p2",
+        "G16-d11-p3",
+        "PLK-d11-p3",
+        "G16-d11-p4",
+        "PLK-d11-p4",
+        "G16-d11-p5",
+        "PLK-d11-p5",
+        "G16-d11-p6",
+        "PLK-d11-p6",
+        "G16-d11-p7",
+        "PLK-d11-p7",
+        "G16-d15-p0",
+        "PLK-d15-p0"
+      ],
+      "finished_at_utc": "2026-09-25T09:41:40.599Z"
+    },
+    {
+      "started_at_utc": "2026-09-25T09:41:44.347Z",
+      "node": "v22.23.2",
+      "done": [
+        "G16-d15-p1",
+        "PLK-d15-p1",
+        "G16-d15-p2",
+        "PLK-d15-p2",
+        "G16-d15-p3",
+        "PLK-d15-p3",
+        "G16-d15-p4",
+        "PLK-d15-p4",
+        "G16-d15-p5",
+        "PLK-d15-p5",
+        "G16-d15-p6",
+        "PLK-d15-p6",
+        "G16-d15-p7",
+        "PLK-d15-p7"
+      ],
+      "finished_at_utc": "2026-09-25T09:43:40.237Z"
+    }
+  ],
+  "artifacts": {
+    "5": {
+      "tree": "data/merkle-trees/merkle_tree_data_depth_5.json",
+      "tree_sha256": "e08ded80784616abc4fb85eb27b63467533166bdbf6a8e7590f9e97dbc0baa7c",
+      "processed": "data/merkle-trees/processed_diplomas_32.json",
+      "processed_sha256": "d7a3b9492ed156f93d3236c4918649a146d10c846c4460b7415f8cd93d786247",
+      "groth16": {
+        "zkey": "data/zkp-circuits/CredentialVerifier_Depth5/CredentialVerifier_Depth5_0001.zkey",
+        "zkey_sha256": "41c7636150900ee72cf6323930dd506bd0fc015a94a20905cc61c856b4fe919a",
+        "wasm": "data/zkp-circuits/CredentialVerifier_Depth5/CredentialVerifier_Depth5_js/CredentialVerifier_Depth5.wasm",
+        "wasm_sha256": "d55a45dca0a237648b31a53a5b8c9694489748ca4ac7359bd3898e68cb7ccfb2",
+        "vkey": "data/groth16-vkeys/CredentialVerifier_Depth5_vkey.json",
+        "vkey_sha256": "29db25872edc00211232ad17b7823af28973552a03e201a1929adb695c750560",
+        "committed_public": "data/groth16-public-proof/public_depth_5_index_0.json",
+        "committed_public_sha256": "f10988928fbf00d96464a78a8709fbeb3b2eef55d4376fd5a430b27a8e87ec58",
+        "committed_root": "8772061116891597512098326450504850663371859585885077427179882578819842555696"
+      },
+      "plonk": {
+        "zkey": "data/plonk-zkeys/CredentialVerifier_Depth5_plonk.zkey",
+        "zkey_sha256": "8b7d89ef154d0704a4a5fb8df978ea728f0decad61374b1d3a80a026ad357fec",
+        "wasm": "data/zkp-circuits/CredentialVerifier_Depth5/CredentialVerifier_Depth5_js/CredentialVerifier_Depth5.wasm",
+        "wasm_sha256": "d55a45dca0a237648b31a53a5b8c9694489748ca4ac7359bd3898e68cb7ccfb2",
+        "vkey": "data/plonk-vkeys/CredentialVerifier_Depth5_plonk_vkey.json",
+        "vkey_sha256": "9424cc86468f25ed703a6a03b759ffde4ecbbd6b2fe07d8cebda7af5af748849",
+        "committed_public": "data/plonk-public-proof/public_depth_5_index_0.json",
+        "committed_public_sha256": "f10988928fbf00d96464a78a8709fbeb3b2eef55d4376fd5a430b27a8e87ec58",
+        "committed_root": "8772061116891597512098326450504850663371859585885077427179882578819842555696"
+      }
+    },
+    "10": {
+      "tree": "data/merkle-trees/merkle_tree_data_depth_10.json",
+      "tree_sha256": "95f4fdafdcadcc7b468641806f7fd5517113a2d02b9d198c4675cf9a76cbf47d",
+      "processed": "data/merkle-trees/processed_diplomas_1024.json",
+      "processed_sha256": "043bff78eccc7c30a6993fb73bd4ad7dc26de1fa07501a2d04b1c9d12eb821f7",
+      "groth16": {
+        "zkey": "data/zkp-circuits/CredentialVerifier_Depth10/CredentialVerifier_Depth10_0001.zkey",
+        "zkey_sha256": "656d9ee8dd285db6410e0a4b4317201829a1347f7cc3ef6d8de625e8f99f432a",
+        "wasm": "data/zkp-circuits/CredentialVerifier_Depth10/CredentialVerifier_Depth10_js/CredentialVerifier_Depth10.wasm",
+        "wasm_sha256": "bb2286e24a3b4fdffe9dc2bebe8c1afff86c7853d7b478cd5714ca9c555593e6",
+        "vkey": "data/groth16-vkeys/CredentialVerifier_Depth10_vkey.json",
+        "vkey_sha256": "b2e0c372701c111d3223221d2f2e30ce69644bc52b548c596f97298a6a990da0",
+        "committed_public": "data/groth16-public-proof/public_depth_10_index_0.json",
+        "committed_public_sha256": "abed6427a7e1c8f4483b987cedfe6ce35ea37da0d14ef622f6d0408fcd547fbe",
+        "committed_root": "5493694120516454304625833950804950714434791624469988248149691492887491269863"
+      },
+      "plonk": {
+        "zkey": "data/plonk-zkeys/CredentialVerifier_Depth10_plonk.zkey",
+        "zkey_sha256": "bebeabf9a0c71095a0054d8bd4225201a55744b4b0560ef0825703d4931d0ced",
+        "wasm": "data/zkp-circuits/CredentialVerifier_Depth10/CredentialVerifier_Depth10_js/CredentialVerifier_Depth10.wasm",
+        "wasm_sha256": "bb2286e24a3b4fdffe9dc2bebe8c1afff86c7853d7b478cd5714ca9c555593e6",
+        "vkey": "data/plonk-vkeys/CredentialVerifier_Depth10_plonk_vkey.json",
+        "vkey_sha256": "51246dbf5c96101372f9f2609a7b14971ea126d2955dd0e21cfa79bb450663e1",
+        "committed_public": "data/plonk-public-proof/public_depth_10_index_0.json",
+        "committed_public_sha256": "abed6427a7e1c8f4483b987cedfe6ce35ea37da0d14ef622f6d0408fcd547fbe",
+        "committed_root": "5493694120516454304625833950804950714434791624469988248149691492887491269863"
+      }
+    },
+    "11": {
+      "tree": "data/merkle-trees/merkle_tree_data_depth_11.json",
+      "tree_sha256": "14e639ec19b3f5c93d7539939f286ce4640adf12dc1a0b5c341306b9a340f8e1",
+      "processed": "data/merkle-trees/processed_diplomas_2048.json",
+      "processed_sha256": "e87627162c8b240c45dc3043197a0f1efef4796d8e34d68ee7b90daab2c5e255",
+      "groth16": {
+        "zkey": "data/zkp-circuits/CredentialVerifier_Depth11/CredentialVerifier_Depth11_0001.zkey",
+        "zkey_sha256": "1241508317856e8cb42cf71f43cafeb13e26a2553d595182aefca30b78a5b754",
+        "wasm": "data/zkp-circuits/CredentialVerifier_Depth11/CredentialVerifier_Depth11_js/CredentialVerifier_Depth11.wasm",
+        "wasm_sha256": "64f5296b96407a9fcac7b4b12c595091fff23f50b1d8190b28bd0e13654aac79",
+        "vkey": "data/groth16-vkeys/CredentialVerifier_Depth11_vkey.json",
+        "vkey_sha256": "6caad706874b9cfa54ea45e4671e38375528fb7cccdaa6bc2ecf7f9f703602ff",
+        "committed_public": "data/groth16-public-proof/public_depth_11_index_0.json",
+        "committed_public_sha256": "35ab1ba086649701c5768a03feb2150e0c5c60a224cb377c69076766b66e9401",
+        "committed_root": "13741875541804146615197212471377989082753334180286662970428373142262333549779"
+      },
+      "plonk": {
+        "zkey": "data/plonk-zkeys/CredentialVerifier_Depth11_plonk.zkey",
+        "zkey_sha256": "55b85a8c273635d0f8f2cdda0e7ce81b35231792d5212b770681d612dbf1c56a",
+        "wasm": "data/zkp-circuits/CredentialVerifier_Depth11/CredentialVerifier_Depth11_js/CredentialVerifier_Depth11.wasm",
+        "wasm_sha256": "64f5296b96407a9fcac7b4b12c595091fff23f50b1d8190b28bd0e13654aac79",
+        "vkey": "data/plonk-vkeys/CredentialVerifier_Depth11_plonk_vkey.json",
+        "vkey_sha256": "17e0dd435813a4559c78d0f0608d7cf44fce29a3ae7fbae477ac1b774f5a6e1e",
+        "committed_public": "data/plonk-public-proof/public_depth_11_index_0.json",
+        "committed_public_sha256": "35ab1ba086649701c5768a03feb2150e0c5c60a224cb377c69076766b66e9401",
+        "committed_root": "13741875541804146615197212471377989082753334180286662970428373142262333549779"
+      }
+    },
+    "15": {
+      "tree": "data/merkle-trees/merkle_tree_data_depth_15.json",
+      "tree_sha256": "ad9af3090c879e23e026ad2aa84daba29fea584f0d53d8169c0dc7a61202e747",
+      "processed": "data/merkle-trees/processed_diplomas_32768.json",
+      "processed_sha256": "aaedff9f05568fdeef708fa27fb84c2cd19091f4073dbb6671dbed86784f5822",
+      "groth16": {
+        "zkey": "data/zkp-circuits/CredentialVerifier_Depth15/CredentialVerifier_Depth15_0001.zkey",
+        "zkey_sha256": "d6be53096894f276c29d0702fcead9cafd5a510db26c6b563aa91a72f3a7c974",
+        "wasm": "data/zkp-circuits/CredentialVerifier_Depth15/CredentialVerifier_Depth15_js/CredentialVerifier_Depth15.wasm",
+        "wasm_sha256": "2c3b95467ac8c265ec86c16f35a8a14ceee149b346caf66a5800f478e59f32e5",
+        "vkey": "data/groth16-vkeys/CredentialVerifier_Depth15_vkey.json",
+        "vkey_sha256": "0cf7b5b8a6f24510d5ecb153a96f543527e6ef0e53fd71dc4e3e0c6d63b11e0e",
+        "committed_public": "data/groth16-public-proof/public_depth_15_index_0.json",
+        "committed_public_sha256": "f992bf49d47c4e51e3363f67f283e69a21f367fae2d844b25ff893d0871d9e5b",
+        "committed_root": "16175814224772832097117886582757018531876340808696504341109560169071733404932"
+      },
+      "plonk": {
+        "zkey": "data/plonk-zkeys/CredentialVerifier_Depth15_plonk.zkey",
+        "zkey_sha256": "590ecdca303cbdece71bd9566d50ed9ad6168b343d2955edb57da417b966d08b",
+        "wasm": "data/zkp-circuits/CredentialVerifier_Depth15/CredentialVerifier_Depth15_js/CredentialVerifier_Depth15.wasm",
+        "wasm_sha256": "2c3b95467ac8c265ec86c16f35a8a14ceee149b346caf66a5800f478e59f32e5",
+        "vkey": "data/plonk-vkeys/CredentialVerifier_Depth15_plonk_vkey.json",
+        "vkey_sha256": "6a6600229bbab5a3532be08ba19a1ae6b471eacb317c0d911665618d144d6fc0",
+        "committed_public": "data/plonk-public-proof/public_depth_15_index_0.json",
+        "committed_public_sha256": "f992bf49d47c4e51e3363f67f283e69a21f367fae2d844b25ff893d0871d9e5b",
+        "committed_root": "16175814224772832097117886582757018531876340808696504341109560169071733404932"
+      }
+    }
+  },
+  "note": "prove_wall_ms_engineering is an engineering log value, not a measurement. Circuit inputs are not stored (input_sha256 only).",
+  "csv_sha256": "9f82f3830bad61d8824f2a40f6705701d5ec4fba41ef95d0d340bb65c77ae9c4",
+  "sha256_file_sha256": "55f42c19f477df44f88323abd0f2caf3c17535093df64345305f6261621d1990"
+}
