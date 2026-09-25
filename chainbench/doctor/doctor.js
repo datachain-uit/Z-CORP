@@ -94,9 +94,10 @@ const ARCH_REC = path.join(C.CHAINBENCH, 'docker', 'ARCHIVE.json');
 if (fs.existsSync(ARCH_REC)) {
   const ar = JSON.parse(fs.readFileSync(ARCH_REC, 'utf8'));
   const here = process.env.CHAINBENCH_IMAGE_ID || null;
-  const samePlatform = ar.platform === `linux/${me.toolchain.runtime.arch}`;
+  const dockerArch = { x64: 'amd64', arm64: 'arm64' }[me.toolchain.runtime.arch] || me.toolchain.runtime.arch;  // Node's names -> Docker's
+  const samePlatform = ar.platform === `linux/${dockerArch}`;
   if (here && here === ar.image_id) rec('PASS', 'archived image in use', `${ar.image_id} = ${ar.archive} (sha256 ${String(ar.archive_sha256).slice(0, 16)}…)`);
-  else if (!samePlatform) rec('WARN', 'archived image in use', `this platform is linux/${me.toolchain.runtime.arch}; the archived image is ${ar.platform} (a reproduction, not the archived environment)`);
+  else if (!samePlatform) rec('WARN', 'archived image in use', `this platform is linux/${dockerArch}; the archived image is ${ar.platform} (a reproduction, not the archived environment)`);
   else if (process.env.CHAINBENCH_ALLOW_REBUILT_IMAGE === '1') rec('WARN', 'archived image in use', `running ${here}, archived ${ar.image_id}: reproduction with a rebuilt image (CHAINBENCH_ALLOW_REBUILT_IMAGE=1)`);
   else rec(has('--require-archived-image') ? 'FAIL' : 'WARN', 'archived image in use', `running ${here}, archived ${ar.image_id}`,
     `load the archived image: ./chainbench/run.sh load-image <path to ${ar.archive}>`);

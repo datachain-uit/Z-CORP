@@ -69,6 +69,14 @@ The times were measured on an Apple M5 Mac with Docker Desktop (Engine 29.8; 10 
 
 Docker needs at least 2 CPUs and 4 GB of memory. Keep 5 GB of disk free.
 
+**Tested platforms.**
+
+- **linux/arm64** (native, Apple M5, Docker Desktop): the platform of the scientific campaign.
+- **linux/amd64** (Docker Desktop emulation on the same Mac): `doctor` and `smoke` pass. The smoke rows equal the arm64 rows on every field except the run ID.
+- **Not tested:** a native x86-64 host.
+
+On amd64 the native EDR binary differs from arm64 (`edr-linux-x64-gnu`), so the doctor reports architecture warnings. In the smoke subset, the gas values were identical to arm64. The archived images and their sha256 are listed in `csi/campaigns/chain/CSI-CHAIN-LOCAL-01/notes/PORTABILITY.md`.
+
 ## What is measured, and what is fixed
 
 - **What is measured.** Gas for deployment, root publication and credential verification of the Z-CORP contracts: snarkjs Groth16 and PLONK verifiers behind a root-registry manager. The inputs are the frozen proof set PS-01 (64 proofs, `csi/campaigns/chain/CSI-CHAIN-LOCAL-01/inputs/proofset/`) on a local Osaka-rules chain. Gas is a deterministic function of code, inputs and fork rules, so two runs and two clients must agree exactly. The comparisons report any difference; they never normalise it.

@@ -223,10 +223,10 @@ build_image() {
   pass "image built: $LOCAL_TAG = $IMAGE_ID"
 
   # 4. Record the toolchain identity (inside the new image, no network) and compare with the accepted toolchain.
-  dkr -e CHAINBENCH_BUILD_METADATA=/repo/build/chainbench/image/build-metadata.json -e "CHAINBENCH_HOST_JSON=$(host_json)" \
-    -- identity --out /repo/build/chainbench/image/identity.json >>"$log" 2>&1 \
+  dkr -e "CHAINBENCH_BUILD_METADATA=/repo/build/chainbench/${IMG_STATE##*/}/build-metadata.json" -e "CHAINBENCH_HOST_JSON=$(host_json)" \
+    -- identity --out "/repo/build/chainbench/${IMG_STATE##*/}/identity.json" >>"$log" 2>&1 \
     || die "Could not record the toolchain identity of the new image." "Details in $log"
-  pass "toolchain identity recorded: build/chainbench/image/identity.json"
+  pass "toolchain identity recorded: ${IMG_STATE#"$REPO"/}/identity.json"
   if dkr -- identity --compare docker/ACCEPTED-TOOLCHAIN.json >"$IMG_STATE/accepted-compare.txt" 2>&1; then
     pass "toolchain matches the accepted readiness toolchain ($(grep -c '^\[PASS\]' "$IMG_STATE/accepted-compare.txt") fields; warn-only: $(grep -c '^\[WARN\]' "$IMG_STATE/accepted-compare.txt"))"
   else

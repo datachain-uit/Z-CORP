@@ -58,6 +58,8 @@ Chain campaigns are registered in the same `campaign-index.csv`. Their layout di
 | `chainbench/workloads/zcorp/campaigns/CSI-CHAIN-LOCAL-01.json` | The campaign binding: the only place where the venue-neutral chainbench core learns the CSI campaign id, protocol, frozen inputs, tracked/measurement paths and baseline-tag prefix | Hand-written, committed |
 | `chainbench/README.md` | Reviewer instructions: `./chainbench/run.sh doctor`, `smoke`, `full-local-l1` (Docker only) | Hand-written |
 | `code/chain/CSI-CHAIN-LOCAL-01.KIT.sha256` | The chain campaign's code at its registered commit | `scripts/release/build_csi_bundle.py` |
+| `release/CSI-CHAIN-LOCAL-01/` | `docker save` archives of the scientific image (linux/arm64), of the official geth image it was built from, and of the linux/amd64 portability image. The archives are not versioned; their records (`IMAGE-ARCHIVE.<arch>.json`, OCI index, listing) and `IMAGE-ARCHIVE.json` are. | `./chainbench/run.sh save-image` on the campaign host; `scripts/release/chain_image_record.py` |
+| `campaigns/chain/CSI-CHAIN-LOCAL-01/notes/PORTABILITY.md` | Archived images and the reviewer-platform check (linux/amd64 doctor and smoke) | Hand-written from the records |
 
 - **Raw run data** goes to `build/campaigns/chain/<run_id>/` (git-ignored).
 - **After the scientific run** (not started), the raw data is archived into `release/CSI-CHAIN-LOCAL-01/` and the derived outputs go to `campaigns/chain/CSI-CHAIN-LOCAL-01/derived/`.

@@ -46,7 +46,8 @@ INDEX = f'{CSI}/campaign-index.csv'
 CAMPAIGN_PATHS = ['bench', 'scripts/setup', 'circuits', 'contracts', 'test', 'ARTIFACTS.sha256', 'PROVENANCE.md']
 ANALYSIS_CODE = ['scripts/analysis/derive_prover.py', 'scripts/analysis/compare_completion_report.py',
                  'scripts/analysis/input_stage_diagnostic.js', 'scripts/release/build_csi_bundle.py',
-                 'scripts/release/make_precorrection_manifest.py', 'scripts/release/save_image.sh']
+                 'scripts/release/make_precorrection_manifest.py', 'scripts/release/save_image.sh',
+                 'scripts/release/chain_image_record.py', 'scripts/analysis/derive_chain_l1.py', 'scripts/analysis/verify_chain_proofset.js']
 SUPERSEDED = 'results/PRECORRECTION-2026-07.sha256'
 EXPERIMENT_DIR = {'controlled prover scaling': 'prover', 'controlled on-chain verification (local L1)': 'chain'}
 CHAIN_PATHS = ['chainbench', 'contracts', 'scripts/setup/generate_input_depth.js', 'scripts/setup/paths.js', 'ARTIFACTS.sha256']
@@ -257,6 +258,12 @@ def build_chain_campaign(row, plan):
 
 
 def chain_attribution(rel, crow):
+    if f"/release/{crow['admin_id']}/" in rel:
+        if rel.endswith('/IMAGE-ARCHIVE.json'):
+            return 'generated', 'scripts/release/chain_image_record.py <- the docker save archives (campaign host)'
+        if rel.endswith('RELEASE.sha256'):
+            return 'generated', 'scripts/release/build_csi_bundle.py --release'
+        return 'record', 'chainbench/run.sh save-image (campaign host)'
     if '/inputs/proofset/' in rel:
         return 'frozen input', 'chainbench/scripts/gen_proofset.js (proof set PS-01)'
     if rel.endswith('plonk-verifiers.provenance.json'):
@@ -351,8 +358,10 @@ def main():
             if rel == f'{CSI}/provenance/SNAPSHOTS.csv' or rel.endswith('.tar'):
                 continue
             data = plan.files.get(rel) or rd(rel)
-            if rel.startswith(CHAIN_PREFIXES):
-                owners = [c['row'] for c in cctx if rel.startswith(c['base'] + '/') or rel == f"{CSI}/code/chain/{c['row']['admin_id']}.KIT.sha256"]
+            chain_release = tuple(f"{CSI}/release/{c['row']['admin_id']}/" for c in cctx)
+            if rel.startswith(CHAIN_PREFIXES + chain_release):
+                owners = [c['row'] for c in cctx if rel.startswith(c['base'] + '/') or rel.startswith(f"{CSI}/release/{c['row']['admin_id']}/")
+                          or rel == f"{CSI}/code/chain/{c['row']['admin_id']}.KIT.sha256"]
                 crow = owners[0] if owners else (cctx[0]['row'] if cctx else None)
                 if crow is None:
                     raise Abort(f'{rel}: chain file but no chain campaign is registered')

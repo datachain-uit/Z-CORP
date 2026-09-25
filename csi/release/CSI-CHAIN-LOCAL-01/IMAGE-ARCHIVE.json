@@ -1,0 +1,190 @@
+{
+  "campaign": "CSI-CHAIN-LOCAL-01",
+  "check_failures": [],
+  "checks_pass": true,
+  "images": [
+    {
+      "base_image": "node@sha256:48e4b67d85f87bd551df43704e24d252f56cc5f8e9718841aace50f19948f0f9",
+      "chainbench": {
+        "bytes": 299819008,
+        "file": "csi/release/CSI-CHAIN-LOCAL-01/image/chainbench-l1-arm64.oci.tar",
+        "geth_binary_sha256": "a437c0a5e17d4c740418fbae6657b62d695b71dda8c923112f22fe4e91d58f84",
+        "manifests": [
+          {
+            "config": "sha256:1064fae8b2f6c5b7fc2e60c007c872051c9d7d03a25de3037dc9bd078057e30e",
+            "digest": "sha256:70c74b85b9995caa65f4fb603a49faf8696b882cfc3ebe5cf67e788fb08eb3a8",
+            "kind": "image",
+            "platform": "linux/arm64"
+          },
+          {
+            "config": "sha256:44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+            "digest": "sha256:dcb54606492ecf52c4cc16a1ddddfa913e7f651fd62f97c91012d896679f9f71",
+            "kind": "attestation-manifest",
+            "platform": "unknown/unknown"
+          }
+        ],
+        "present_in_this_checkout": true,
+        "ref_name": "docker.io/library/chainbench-l1:local",
+        "sha256": "bc16b206855bf8d569c41ebe62eb8a8d72fe12ea44ed9aef154142883d11c313",
+        "top_digest": "sha256:53d80311c0d3d2ff57b5eca3d8b1ace9eb4c45449fbb8b6596045dbb606e6cb6",
+        "top_media_type": "application/vnd.oci.image.index.v1+json",
+        "versioned": false
+      },
+      "docker": "29.8.0",
+      "geth": {
+        "bytes": 22351360,
+        "file": "csi/release/CSI-CHAIN-LOCAL-01/image/geth-v1.16.9-arm64.oci.tar",
+        "geth_binary_sha256": "a437c0a5e17d4c740418fbae6657b62d695b71dda8c923112f22fe4e91d58f84",
+        "manifests": [
+          {
+            "config": "sha256:f0c8143bbf2bdfd92fea00223386c60babcb1446a2999a5a93b1e4f694a8115f",
+            "digest": "sha256:8e4ea9e38df1472b05a0179672afe0118e58375dac18563b84444237f714763e",
+            "kind": "image",
+            "platform": "linux/arm64"
+          }
+        ],
+        "present_in_this_checkout": true,
+        "ref_name": null,
+        "sha256": "b438bdabd72518def96346d4b927d521b3467966696b38691ab9fd9a093e3bde",
+        "top_digest": "sha256:8e4ea9e38df1472b05a0179672afe0118e58375dac18563b84444237f714763e",
+        "top_media_type": "application/vnd.oci.image.manifest.v1+json",
+        "versioned": false
+      },
+      "geth_source": "official:ethereum/client-go@sha256:2dd7ef210a1a3fb87887676f7ead1b98161af83810928cdf6fc5b84bcdcc8ef4",
+      "host_record": "csi/release/CSI-CHAIN-LOCAL-01/IMAGE-ARCHIVE.arm64.json",
+      "host_record_sha256": "fc0483ec585798a7214bc4571f0d77e4addeddaa53f2728551642bb56389d445",
+      "image_id": "sha256:53d80311c0d3d2ff57b5eca3d8b1ace9eb4c45449fbb8b6596045dbb606e6cb6",
+      "image_ref": "chainbench-l1:local",
+      "platform": "linux/arm64",
+      "role": "scientific",
+      "saved_utc": "2026-09-25T11:48:17Z",
+      "toolchain": {
+        "edr_native": {
+          "file": "edr.linux-arm64-gnu.node",
+          "package": "@nomicfoundation/edr-linux-arm64-gnu",
+          "sha256": "17e6d355e924c5aa05b0e162ab63a15f62833408f03913aec497c886d8163ebc",
+          "version": "0.12.0-next.23"
+        },
+        "geth": {
+          "git_commit": "95665d5703e1023995a0ff93e4ce9eb77e8a59bd",
+          "go": "go1.24.13",
+          "sha256": "a437c0a5e17d4c740418fbae6657b62d695b71dda8c923112f22fe4e91d58f84",
+          "version": "1.16.9-stable"
+        },
+        "hardhat_console_sol_sha256": "5a6db75ebe2603ab1ce17c40f48447f3040268675f027a77fe5e9b236f4e31dd",
+        "lockfile_sha256": "0add12b819839bb7ebbb5a70d65d61bd1202fd1a2a1a0ca823e47d0fa2b068cd",
+        "package_json_sha256": "5ebd42186a72180ee3b10aad8484aa7fbfdd4165f9550fdb91ebc586925cc109",
+        "packages": {
+          "@nomicfoundation/edr": "0.12.0-next.23",
+          "@nomicfoundation/hardhat-ethers": "3.0.8",
+          "@openzeppelin/contracts": "4.9.0",
+          "ejs": "3.1.10",
+          "ethers": "6.13.5",
+          "ffjavascript": "0.3.1",
+          "hardhat": "2.29.1",
+          "snarkjs": "0.7.5",
+          "solc": "0.8.20"
+        },
+        "runtime": {
+          "arch": "arm64",
+          "libc": "glibc 2.36",
+          "node": "v22.23.2",
+          "npm": "10.9.8"
+        },
+        "soljson_sha256": "033dc42a16378dd036a475b8a7080af83cfae1841eb6848ce1667c56193972ba"
+      }
+    },
+    {
+      "base_image": "node@sha256:48e4b67d85f87bd551df43704e24d252f56cc5f8e9718841aace50f19948f0f9",
+      "chainbench": {
+        "bytes": 290817024,
+        "file": "csi/release/CSI-CHAIN-LOCAL-01/image/chainbench-l1-amd64.oci.tar",
+        "geth_binary_sha256": "8c474e73d98fb74d17a25aa4700637bdbf9bc7d4697bd22f5e097d7bf2a1b547",
+        "manifests": [
+          {
+            "config": "sha256:af64d4eb061f8ccb2ce659ef74958878c55b187d443095995b680e136a99e650",
+            "digest": "sha256:3cff98758e38c9b5a048b9bb2e700c6fefe40951602f0873542b31013146f430",
+            "kind": "image",
+            "platform": "linux/amd64"
+          },
+          {
+            "config": "sha256:44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+            "digest": "sha256:48b69dab56068f6bfeaa6cc12aecbd2dbfae30b611f9024e800633b8c3360c46",
+            "kind": "attestation-manifest",
+            "platform": "unknown/unknown"
+          }
+        ],
+        "present_in_this_checkout": true,
+        "ref_name": "docker.io/library/chainbench-l1:local-amd64",
+        "sha256": "e50bdb38ab308fd481c380a25f7fcb6ce6a73f1ab6f437cdd8e58110a66d0b37",
+        "top_digest": "sha256:89026482802da564fcab3a044b29ea6234ba26f67fbb1d07c62d19b0747aadd3",
+        "top_media_type": "application/vnd.oci.image.index.v1+json",
+        "versioned": false
+      },
+      "docker": "29.8.0",
+      "geth": {
+        "bytes": 23296512,
+        "file": "csi/release/CSI-CHAIN-LOCAL-01/image/geth-v1.16.9-amd64.oci.tar",
+        "geth_binary_sha256": "8c474e73d98fb74d17a25aa4700637bdbf9bc7d4697bd22f5e097d7bf2a1b547",
+        "manifests": [
+          {
+            "config": "sha256:78563624329dd4580f8580e485180d7c6fd96377b571fa685f36a728b83fa156",
+            "digest": "sha256:d7f80607a4c83972ed16545d4b4bd37d9e763040e5aa482424cf460f0be497a5",
+            "kind": "image",
+            "platform": "linux/amd64"
+          }
+        ],
+        "present_in_this_checkout": true,
+        "ref_name": null,
+        "sha256": "ec1ec8d537ec5b77728be6fd8b1c05ab51e2da6ad1a4546e888b397792e2a932",
+        "top_digest": "sha256:d7f80607a4c83972ed16545d4b4bd37d9e763040e5aa482424cf460f0be497a5",
+        "top_media_type": "application/vnd.oci.image.manifest.v1+json",
+        "versioned": false
+      },
+      "geth_source": "official:ethereum/client-go@sha256:2dd7ef210a1a3fb87887676f7ead1b98161af83810928cdf6fc5b84bcdcc8ef4",
+      "host_record": "csi/release/CSI-CHAIN-LOCAL-01/IMAGE-ARCHIVE.amd64.json",
+      "host_record_sha256": "9e49e44f4c9cfc04e5da1dbac5cb2459043499422f846b61c2f9b5f322d2bc9b",
+      "image_id": "sha256:89026482802da564fcab3a044b29ea6234ba26f67fbb1d07c62d19b0747aadd3",
+      "image_ref": "chainbench-l1:local-amd64",
+      "platform": "linux/amd64",
+      "role": "portability",
+      "saved_utc": "2026-09-25T11:50:10Z",
+      "toolchain": {
+        "edr_native": {
+          "file": "edr.linux-x64-gnu.node",
+          "package": "@nomicfoundation/edr-linux-x64-gnu",
+          "sha256": "cf163a301fcabbe14a0a915ed12af317f10e973463dc6b335e88212ac8e2cf11",
+          "version": "0.12.0-next.23"
+        },
+        "geth": {
+          "git_commit": "95665d5703e1023995a0ff93e4ce9eb77e8a59bd",
+          "go": "go1.24.13",
+          "sha256": "8c474e73d98fb74d17a25aa4700637bdbf9bc7d4697bd22f5e097d7bf2a1b547",
+          "version": "1.16.9-stable"
+        },
+        "hardhat_console_sol_sha256": "5a6db75ebe2603ab1ce17c40f48447f3040268675f027a77fe5e9b236f4e31dd",
+        "lockfile_sha256": "0add12b819839bb7ebbb5a70d65d61bd1202fd1a2a1a0ca823e47d0fa2b068cd",
+        "package_json_sha256": "5ebd42186a72180ee3b10aad8484aa7fbfdd4165f9550fdb91ebc586925cc109",
+        "packages": {
+          "@nomicfoundation/edr": "0.12.0-next.23",
+          "@nomicfoundation/hardhat-ethers": "3.0.8",
+          "@openzeppelin/contracts": "4.9.0",
+          "ejs": "3.1.10",
+          "ethers": "6.13.5",
+          "ffjavascript": "0.3.1",
+          "hardhat": "2.29.1",
+          "snarkjs": "0.7.5",
+          "solc": "0.8.20"
+        },
+        "runtime": {
+          "arch": "x64",
+          "libc": "glibc 2.36",
+          "node": "v22.23.2",
+          "npm": "10.9.8"
+        },
+        "soljson_sha256": "033dc42a16378dd036a475b8a7080af83cfae1841eb6848ce1667c56193972ba"
+      }
+    }
+  ],
+  "rule": "the scientific campaign runs only in the archived linux/arm64 image (chainbench/docker/ARCHIVE.json); the linux/amd64 image is a reviewer-portability artifact (doctor and smoke only; not scientific data)"
+}

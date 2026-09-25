@@ -4,13 +4,15 @@
     "campaign_binding": "workloads/zcorp/campaigns/CSI-CHAIN-LOCAL-01.json",
     "image_records": [
       "chainbench/docker/pins.env",
-      "chainbench/docker/IMAGE.json"
+      "chainbench/docker/IMAGE.json",
+      "chainbench/docker/ARCHIVE.json"
     ],
     "measurement_paths": [
       "contracts",
       "chainbench",
       ":(exclude)chainbench/docker/IMAGE.json",
       ":(exclude)chainbench/docker/pins.env",
+      ":(exclude)chainbench/docker/ARCHIVE.json",
       ":(exclude)chainbench/README.md",
       ":(exclude)chainbench/workloads/zcorp/record_campaign.py",
       "csi/protocols/chain",
@@ -20,9 +22,54 @@
       "ARTIFACTS.sha256"
     ],
     "measurement_paths_identical_to": "fbe379427223722c2d8a09e29abd5ad8cc9447d1",
+    "previous_tag_positions": [
+      {
+        "commit": "35443d043f2896bf2c5e6b355294bd3915f6dfe9",
+        "note": "moved before publication; never pushed; no scientific run had started",
+        "tag_object": "bcbb0029f31a454ab4cb9dbb97fc4c48ff3c2328"
+      },
+      {
+        "commit": "618d2a0de817e46c831a5bbb40653988889ddd08",
+        "note": "moved before publication; never pushed; no scientific run had started",
+        "tag_object": "e11b214f36642f23251a265e6eebdf32fe48dc02"
+      }
+    ],
     "tag": "chain-l1-baseline-20260925",
     "tagged_commit": "the commit that adds this record and the committed image records (see the registry and `git rev-parse <tag>`)",
     "workload": "zcorp"
+  },
+  "commits": {
+    "baseline_commit": "the commit of tag chain-l1-baseline-20260925 (git rev-parse chain-l1-baseline-20260925^{commit}); scientific run.json commit must equal it",
+    "baseline_commit_meaning": "the commit of the annotated baseline tag; the scientific runs are launched from it with a clean tree, so every run.json 'commit' equals it",
+    "changed_after_measurement_code_commit_outside_measurement_code": [
+      "chainbench/doctor/doctor.js",
+      "chainbench/run.sh",
+      "chainbench/workloads/zcorp/campaigns/CSI-CHAIN-LOCAL-01.json",
+      "csi/protocols/chain/CHAIN-PROTOCOL-v1.md"
+    ],
+    "measurement_code_commit": "fbe379427223722c2d8a09e29abd5ad8cc9447d1",
+    "measurement_code_commit_meaning": "the commit at which the final packaged engineering dry run validated the measurement implementation; measurement_code_paths must be byte-identical between it and baseline_commit",
+    "measurement_code_paths": [
+      "contracts",
+      "csi/campaigns/chain/CSI-CHAIN-LOCAL-01/inputs",
+      "scripts/setup/generate_input_depth.js",
+      "scripts/setup/paths.js",
+      "ARTIFACTS.sha256",
+      "chainbench/lib",
+      "chainbench/scripts",
+      "chainbench/test",
+      "chainbench/hardhat.config.js",
+      "chainbench/package.json",
+      "chainbench/package-lock.json",
+      "chainbench/core/workload.js",
+      "chainbench/core/netcheck.js",
+      "chainbench/run/incontainer.sh",
+      "chainbench/docker/Dockerfile",
+      "chainbench/workloads/zcorp/workload.json"
+    ],
+    "measurement_code_unchanged_in_record_worktree": true,
+    "registry_commit_meaning": "csi/campaign-index.csv 'commit' = baseline_commit once the scientific run exists (the commit the campaign ran at, as for CSI-PROVER-01); before that, the dry-run commit",
+    "why_outside": "protocol amendment A5 (text only) and host-side orchestration/records; none is on the per-row measurement path"
   },
   "container_image": {
     "apt_packages": [
@@ -31,6 +78,50 @@
       "python3 3.11.2-1+b1",
       "python3-minimal 3.11.2-1+b1"
     ],
+    "archive": {
+      "bytes": 299819008,
+      "file": "csi/release/CSI-CHAIN-LOCAL-01/image/chainbench-l1-arm64.oci.tar",
+      "geth_bytes": 22351360,
+      "geth_file": "image/geth-v1.16.9-arm64.oci.tar",
+      "geth_sha256": "b438bdabd72518def96346d4b927d521b3467966696b38691ab9fd9a093e3bde",
+      "record": "chainbench/docker/ARCHIVE.json",
+      "record_sha256": "fc0483ec585798a7214bc4571f0d77e4addeddaa53f2728551642bb56389d445",
+      "rule": "full-local-l1 accepts only this exact image on linux/arm64 (doctor --require-archived-image)",
+      "sha256": "bc16b206855bf8d569c41ebe62eb8a8d72fe12ea44ed9aef154142883d11c313",
+      "versioned": false
+    },
+    "archive_identity": {
+      "images": [
+        {
+          "archive_bytes": 299819008,
+          "archive_sha256": "bc16b206855bf8d569c41ebe62eb8a8d72fe12ea44ed9aef154142883d11c313",
+          "config": "sha256:1064fae8b2f6c5b7fc2e60c007c872051c9d7d03a25de3037dc9bd078057e30e",
+          "geth_archive_bytes": 22351360,
+          "geth_archive_sha256": "b438bdabd72518def96346d4b927d521b3467966696b38691ab9fd9a093e3bde",
+          "geth_binary_sha256": "a437c0a5e17d4c740418fbae6657b62d695b71dda8c923112f22fe4e91d58f84",
+          "geth_manifest": "sha256:8e4ea9e38df1472b05a0179672afe0118e58375dac18563b84444237f714763e",
+          "image_id": "sha256:53d80311c0d3d2ff57b5eca3d8b1ace9eb4c45449fbb8b6596045dbb606e6cb6",
+          "platform": "linux/arm64",
+          "platform_manifest": "sha256:70c74b85b9995caa65f4fb603a49faf8696b882cfc3ebe5cf67e788fb08eb3a8",
+          "role": "scientific"
+        },
+        {
+          "archive_bytes": 290817024,
+          "archive_sha256": "e50bdb38ab308fd481c380a25f7fcb6ce6a73f1ab6f437cdd8e58110a66d0b37",
+          "config": "sha256:af64d4eb061f8ccb2ce659ef74958878c55b187d443095995b680e136a99e650",
+          "geth_archive_bytes": 23296512,
+          "geth_archive_sha256": "ec1ec8d537ec5b77728be6fd8b1c05ab51e2da6ad1a4546e888b397792e2a932",
+          "geth_binary_sha256": "8c474e73d98fb74d17a25aa4700637bdbf9bc7d4697bd22f5e097d7bf2a1b547",
+          "geth_manifest": "sha256:d7f80607a4c83972ed16545d4b4bd37d9e763040e5aa482424cf460f0be497a5",
+          "image_id": "sha256:89026482802da564fcab3a044b29ea6234ba26f67fbb1d07c62d19b0747aadd3",
+          "platform": "linux/amd64",
+          "platform_manifest": "sha256:3cff98758e38c9b5a048b9bb2e700c6fefe40951602f0873542b31013146f430",
+          "role": "portability"
+        }
+      ],
+      "record": "csi/release/CSI-CHAIN-LOCAL-01/IMAGE-ARCHIVE.json",
+      "record_sha256": "1d6f414788259becf1d061f88e8380f4f477fcc5626820e90db8fd2f68b3ae4a"
+    },
     "base_image": "node@sha256:48e4b67d85f87bd551df43704e24d252f56cc5f8e9718841aace50f19948f0f9",
     "buildx_metadata": {
       "buildx.build.ref": "desktop-linux/desktop-linux/ogquddnus20tfui86r3xcu0h5",
@@ -334,6 +425,37 @@
     "provenance": "csi/campaigns/chain/CSI-CHAIN-LOCAL-01/inputs/plonk-verifiers.provenance.json",
     "sha256": "e076fb94ab55c7d13b5baee6ba8589d5fe7483a5f6b7b302cd3127dfd1955dd8"
   },
+  "portability": {
+    "checks": [
+      {
+        "accepted_checks": true,
+        "edr_native_package": "@nomicfoundation/edr-linux-x64-gnu",
+        "edr_native_sha256": "cf163a301fcabbe14a0a915ed12af317f10e973463dc6b335e88212ac8e2cf11",
+        "evidence_status": "reviewer-portability check (emulated); not scientific data",
+        "image_id": "sha256:89026482802da564fcab3a044b29ea6234ba26f67fbb1d07c62d19b0747aadd3",
+        "native_smoke_compared": "smoke-20260925T112730Z",
+        "network_isolated": true,
+        "platform": "linux/amd64",
+        "rows": 30,
+        "rows_equal_native_smoke_all_fields_except_run_id": true,
+        "smoke_checks": 9,
+        "smoke_pass": true,
+        "smoke_run": "smoke-amd64-20260925T114936Z",
+        "unit_tests_passing": 12
+      }
+    ],
+    "prefreeze_summary": {
+      "frozen_archive": "csi/release/CSI-CHAIN-LOCAL-01/image/chainbench-l1-arm64.oci.tar sha256 bc16b206855bf8d569c41ebe62eb8a8d72fe12ea44ed9aef154142883d11c313",
+      "load_image_native": "PASS",
+      "native_doctor": "PASS",
+      "native_smoke": "PASS",
+      "portability_amd64_archive": "PASS",
+      "portability_amd64_doctor": "PASS",
+      "portability_amd64_smoke": "PASS"
+    },
+    "prefreeze_summary_file": "build/chainbench/prefreeze-20260925T114813Z.txt",
+    "scientific_platform": "linux/arm64 only"
+  },
   "previous_dry_runs": [
     {
       "cross_client": {
@@ -562,12 +684,13 @@
       "A1",
       "A2",
       "A3",
-      "A4"
+      "A4",
+      "A5"
     ],
     "eravm_arm": "pending",
     "frozen_at_commit": "a7482a12e161ab996f6dbf5c11490d4b64e42606",
     "path": "csi/protocols/chain/CHAIN-PROTOCOL-v1.md",
-    "sha256": "135b3e6b94406256240c88e6db292f6cd4f9b4c15a52f6ef0e91dc48476d5a0a",
+    "sha256": "086206c5a6df8e78fdd9c47639e6288533c3e7fb51271e352c997f2ebd5dc4da",
     "version": "v1"
   },
   "scientific_run": null,

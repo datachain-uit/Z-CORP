@@ -27,6 +27,10 @@ ap = argparse.ArgumentParser()
 ap.add_argument('--dry-run-id', required=True); ap.add_argument('--smoke', required=True); ap.add_argument('--freeze', required=True)
 ap.add_argument('--baseline-tag', required=True); ap.add_argument('--dry-root', default='build/chainbench/dry-run')
 ap.add_argument('--binding', default=os.path.join(HERE, 'campaigns', 'CSI-CHAIN-LOCAL-01.json'))
+ap.add_argument('--archive-record', help='CSI image archive record (csi/release/<id>/IMAGE-ARCHIVE.json)')
+ap.add_argument('--portability-smoke', action='append', default=[], help='smoke run dir on another platform (repeatable)')
+ap.add_argument('--prefreeze-summary', help='summary file written by run.sh author-prefreeze')
+ap.add_argument('--previous-tag', action='append', default=[], help='TAGOBJECT:COMMIT of an earlier (moved, never pushed) baseline tag')
 a = ap.parse_args()
 
 def P(p): return p if os.path.isabs(p) else os.path.join(REPO, p)
@@ -39,7 +43,9 @@ def die(msg): sys.exit(f'record_campaign: REFUSED: {msg}')
 B = jl(a.binding); AR = B['admin_record']
 CAMP = B['campaign_dir']; NOTES = AR['notes_dir']; PROTO = B['protocol']
 MEAS = B['measurement_paths']
+MCODE = B.get('measurement_code_paths', MEAS)
 IMAGE_RECORDS = [f'{CB_REL}/docker/pins.env', f'{CB_REL}/docker/IMAGE.json']
+ARCHIVE_REC = f'{CB_REL}/docker/ARCHIVE.json'
 dry = os.path.join(a.dry_root, a.dry_run_id)
 D = {'edr-a': f'{dry}-edr-a', 'edr-b': f'{dry}-edr-b', 'geth': f'{dry}-geth'}
 runs = {k: jl(os.path.join(d, 'run.json')) for k, d in D.items()}
@@ -52,8 +58,9 @@ for k, r in runs.items():
     if r.get('accepted_checks') is not True: die(f'{k}: run checks not accepted')
     if not all(s in r.get('steps', {}) for s in ('build', 'envcheck', 'exec', 'finish')): die(f'{k}: incomplete steps {r.get("steps")}')
     if r.get('campaign_id') != B['campaign_id']: die(f'{k}: campaign {r.get("campaign_id")} is not {B["campaign_id"]}')
-changed = git('diff', '--name-only', head, '--', *MEAS)
-if changed: die(f'measurement paths differ between the dry-run commit {head[:7]} and the working tree: {changed}')
+changed = git('diff', '--name-only', head, '--', *MCODE)
+if changed: die(f'measurement code differs between the dry-run commit {head[:7]} (measurement_code_commit) and the working tree: {changed}')
+changed_other = [f for f in git('diff', '--name-only', head, '--', *MEAS).splitlines() if f]
 cmp = {'determinism': jl(os.path.join(D['edr-b'], 'compare_determinism.json')), 'cross_client': jl(os.path.join(D['geth'], 'compare_crossclient.json')),
        'edr_vs_readiness': jl(os.path.join(D['edr-a'], 'compare_vs_reference.json')), 'geth_vs_readiness': jl(os.path.join(D['geth'], 'compare_vs_reference.json'))}
 for k, c in cmp.items():
@@ -64,6 +71,10 @@ fz_env = envfile(os.path.join(a.freeze, 'image.env')); fz_id = jl(os.path.join(a
 if open(P(IMAGE_RECORDS[0])).read() != open(P(os.path.join(a.freeze, 'pins.env'))).read(): die('chainbench/docker/pins.env differs from the pins used for the packaged dry run')
 img = jl(IMAGE_RECORDS[1])
 if img.get('toolchain') != fz_id.get('toolchain'): die('chainbench/docker/IMAGE.json toolchain differs from the identity of the image used')
+arc = jl(ARCHIVE_REC) if os.path.exists(P(ARCHIVE_REC)) else None
+if arc and (arc.get('image_id') != fz_env['IMAGE_ID'] or arc.get('role') != 'scientific'): die('chainbench/docker/ARCHIVE.json does not archive the image of the packaged dry run')
+csi_arc = jl(a.archive_record) if a.archive_record else None
+if csi_arc and csi_arc.get('checks_pass') is not True: die(f'{a.archive_record}: image archive checks failed')
 for k, e in envs.items():
     c = e.get('container') or {}
     if c.get('image_id') != fz_env['IMAGE_ID']: die(f'{k}: ran in image {c.get("image_id")}, not the frozen image {fz_env["IMAGE_ID"]}')
@@ -96,6 +107,29 @@ if old.get('dry_run') and old['dry_run'].get('runs', {}).get('edr-a', {}).get('c
                      'harness_commit': old.get('harness', {}).get('commit'),
                      'notes': f'{NOTES}/DRY-RUN-{"packaged" if packaged else "readiness"}-{oc}.md'})
 
+def portability():
+    if not a.portability_smoke:
+        return None
+    base = list(csv.DictReader(open(P(os.path.join(a.smoke, 'local_l1_ops.csv')))))
+    res = []
+    for d in a.portability_smoke:
+        e = jl(os.path.join(d, 'environment.json')); s = jl(os.path.join(d, 'smoke_check.json')); r = jl(os.path.join(d, 'run.json'))
+        rows = list(csv.DictReader(open(P(os.path.join(d, 'local_l1_ops.csv')))))
+        diffs = sum(1 for x, y in zip(rows, base) for c in x if c != 'run_id' and x[c] != y.get(c)) + abs(len(rows) - len(base))
+        ut = open(P(os.path.join(d, 'unit_tests.log'))).read()
+        res.append({'smoke_run': os.path.basename(os.path.normpath(d)), 'platform': f"linux/{ {'x64': 'amd64'}.get(e['host']['arch'], e['host']['arch']) }",
+                    'image_id': (e.get('container') or {}).get('image_id'), 'edr_native_package': e['edr_identity']['native_package'],
+                    'edr_native_sha256': e['edr_identity']['native_sha256'],
+                    'network_isolated': ((e.get('container') or {}).get('network_isolation') or {}).get('isolated'),
+                    'smoke_pass': s['pass'], 'smoke_checks': len(s['checks']), 'rows': r['rows'], 'accepted_checks': r['accepted_checks'],
+                    'unit_tests_passing': int(re.search(r'(\d+) passing', ut).group(1)) if re.search(r'(\d+) passing', ut) else 0,
+                    'rows_equal_native_smoke_all_fields_except_run_id': diffs == 0, 'native_smoke_compared': os.path.basename(os.path.normpath(a.smoke)),
+                    'evidence_status': 'reviewer-portability check (emulated); not scientific data'})
+    summ = dict(re.findall(r'^([a-z0-9_]+): (.*)$', open(P(a.prefreeze_summary)).read(), re.M)) if a.prefreeze_summary else None
+    return {'checks': res, 'prefreeze_summary': summ, 'prefreeze_summary_file': a.prefreeze_summary,
+            'scientific_platform': 'linux/arm64 only'}
+
+
 def run_summary(k):
     r = runs[k]
     return {'run_id': r['run_id'], 'env': r['env'], 'plan': r['plan'], 'commit': r['commit'], 'rows': r['rows'], 'rows_expected': r['rows_expected'],
@@ -118,8 +152,17 @@ rec = {
                  'frozen_at_commit': git('log', '--diff-filter=A', '--format=%H', '--', PROTO).splitlines()[-1],
                  'amendments_pre_run': re.findall(r'^\| (A\d+) \|', open(P(PROTO)).read(), re.M), 'eravm_arm': 'pending'},
     'baseline': {'tag': a.baseline_tag, 'tagged_commit': 'the commit that adds this record and the committed image records (see the registry and `git rev-parse <tag>`)',
-                 'measurement_paths_identical_to': head, 'measurement_paths': MEAS, 'image_records': IMAGE_RECORDS,
-                 'workload': runs['edr-a'].get('workload'), 'campaign_binding': runs['edr-a'].get('campaign_binding')},
+                 'measurement_paths_identical_to': head, 'measurement_paths': MEAS, 'image_records': IMAGE_RECORDS + ([ARCHIVE_REC] if arc else []),
+                 'workload': runs['edr-a'].get('workload'), 'campaign_binding': runs['edr-a'].get('campaign_binding'),
+                 'previous_tag_positions': [dict(zip(('tag_object', 'commit'), t.split(':'))) | {'note': 'moved before publication; never pushed; no scientific run had started'} for t in a.previous_tag]},
+    'commits': {'measurement_code_commit': head,
+                'measurement_code_commit_meaning': B.get('commit_semantics', {}).get('measurement_code_commit'),
+                'measurement_code_paths': MCODE, 'measurement_code_unchanged_in_record_worktree': True,
+                'baseline_commit': f'the commit of tag {a.baseline_tag} (git rev-parse {a.baseline_tag}^{{commit}}); scientific run.json commit must equal it',
+                'baseline_commit_meaning': B.get('commit_semantics', {}).get('baseline_commit'),
+                'registry_commit_meaning': B.get('commit_semantics', {}).get('registry_commit'),
+                'changed_after_measurement_code_commit_outside_measurement_code': changed_other,
+                'why_outside': 'protocol amendment A5 (text only) and host-side orchestration/records; none is on the per-row measurement path'},
     'harness': {'path': CB_REL, 'commit': head, 'lockfile_sha256': envA['lockfile_sha256'], 'packages': envA['packages'],
                 'edr_native_binary': envA['edr_native_binary'], 'edr_identity': envA.get('edr_identity'), 'soljson_sha256': envA['soljson_sha256'],
                 'hardhat_console_sol_sha256': envA['hardhat_console_sol_sha256'], 'node': envA['node'], 'npm': envA['npm'], 'host': envA['host'],
@@ -130,7 +173,19 @@ rec = {
                         'toolchain': fz_id['toolchain'], 'apt_packages': (fz_id.get('system') or {}).get('apt_packages'),
                         'os_release': (fz_id.get('system') or {}).get('os_release'), 'docker_host': fz_id.get('host'),
                         'buildx_metadata': {k: v for k, v in (fz_id.get('build_metadata') or {}).items() if k in ('containerimage.config.digest', 'containerimage.digest', 'buildx.build.ref')},
-                        'image_id_note': 'the image id is machine-specific (apt layer); reproducibility is defined by the pinned base/geth digests, the lockfile and the recorded toolchain identity'},
+                        'image_id_note': 'the image id is machine-specific (apt layer); reproducibility is defined by the pinned base/geth digests, the lockfile and the recorded toolchain identity',
+                        'archive': ({'record': ARCHIVE_REC, 'record_sha256': sha(ARCHIVE_REC), 'file': arc['archive_file'], 'bytes': arc['archive_bytes'],
+                                     'sha256': arc['archive_sha256'], 'geth_file': arc.get('geth_archive'), 'geth_bytes': arc.get('geth_archive_bytes'),
+                                     'geth_sha256': arc.get('geth_archive_sha256'), 'versioned': False,
+                                     'rule': 'full-local-l1 accepts only this exact image on linux/arm64 (doctor --require-archived-image)'} if arc else None),
+                        'archive_identity': ({'record': a.archive_record, 'record_sha256': sha(a.archive_record),
+                                              'images': [{k: e[k] for k in ('platform', 'role', 'image_id')} | {
+                                                  'platform_manifest': next((m['digest'] for m in e['chainbench'].get('manifests', []) if m['kind'] == 'image'), None),
+                                                  'config': next((m['config'] for m in e['chainbench'].get('manifests', []) if m['kind'] == 'image'), None),
+                                                  'archive_sha256': e['chainbench']['sha256'], 'archive_bytes': e['chainbench']['bytes'],
+                                                  'geth_archive_sha256': e['geth']['sha256'], 'geth_archive_bytes': e['geth']['bytes'],
+                                                  'geth_manifest': e['geth'].get('top_digest'), 'geth_binary_sha256': e['geth'].get('geth_binary_sha256')}
+                                                  for e in csi_arc['images']]} if csi_arc else None)},
     'contracts': {f: sha(f) for f in contract_files},
     'plonk_verifiers': {'provenance': B['plonk_verifier_provenance'], 'sha256': sha(B['plonk_verifier_provenance']),
                         'all_checks_pass': prov['all_checks_pass'], 'depths': len(prov['depths'])},
@@ -146,6 +201,7 @@ rec = {
     'unit_tests': {'passing': int(m_pass.group(1)) if m_pass else 0, 'failing': int(m_fail.group(1)) if m_fail else 0, 'log': os.path.relpath(P(UT), REPO)},
     'smoke': {'run_id': os.path.basename(os.path.normpath(a.smoke)), 'pass': sm['pass'], 'checks': len(sm.get('checks', [])),
               'evidence_status': 'packaging check; not data'},
+    'portability': portability(),
     'dry_run': {
         'plan': 'dry (Groth16 d5, d11; PLONK d10, d11; bridge Groth16 d11; proofs p0, p1; all negative controls)',
         'environment': 'packaged container (this record\'s container_image), --network none',
