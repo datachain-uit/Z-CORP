@@ -1,0 +1,708 @@
+{
+  "kind": "rpc-compatibility-probe (pre-flight engineering record; not session evidence)",
+  "campaign_id": "CSI-CHAIN-PUBLIC-01",
+  "role": "secondary endpoints (read-only compatibility)",
+  "tool": "chainbench/adapters/public/tools/rpc_compat_public.js",
+  "image": {
+    "image_id": "sha256:246e35a06b0e823697fd42c5297739e1c3ecca145d6869adbf19b094d9d8eb49",
+    "manifest_digest": "",
+    "config_digest": "",
+    "archive_sha256": "",
+    "architecture": "",
+    "platform": "",
+    "verified_by_wrapper": "frozen-record-id",
+    "precheck_utc": ""
+  },
+  "started_utc": "2026-09-25T16:41:32.511Z",
+  "finished_utc": "2026-09-25T16:41:46.656Z",
+  "probe_address": "0x2425aD1c5bd224a87493c2CA0E04189F775Bf9EF",
+  "probe_address_rule": "last 20 bytes of keccak256('CSI-CHAIN-PUBLIC-01 pre-flight probe address (no key exists)')",
+  "unknown_tx_hash": "0xa8612cbc932622469e04f6fbf96b270a5f71149ee9cc80dfbea3f34e7f41620a",
+  "placeholder_manager_ctor_verifier": "0xAC07E64D312e5B7736b2Dc38BB00C68eA74dE247",
+  "node": "v22.23.2",
+  "inputs_manifest_sha256": "14cbed1bac6a22d7015380ac3615bc5fd95892ef1d6d4c457ff66a2a910c84ab",
+  "never": "no key loaded; nothing signed; eth_sendRawTransaction not called",
+  "networks": [
+    {
+      "network": "era-sepolia",
+      "role": "candidate secondary (read-only compatibility)",
+      "chain_id_expected": 300,
+      "endpoint": {
+        "label": "Alchemy",
+        "host": "zksync-sepolia.g.alchemy.com",
+        "scheme": "https",
+        "url_sha256": "7d4cec0f512d9dc2768cff439d28c12a1d4cfcf3ba088dca288a7317d3ff1921",
+        "url": null
+      },
+      "calls": [
+        {
+          "name": "chainId",
+          "method": "eth_chainId",
+          "params": [],
+          "t_request_utc": "2026-09-25T16:41:32.512Z",
+          "t_response_utc": "2026-09-25T16:41:33.224Z",
+          "ms": 712.435,
+          "http_status": 200,
+          "ok": true,
+          "response_raw": "{\"jsonrpc\":\"2.0\",\"id\":1,\"result\":\"0x12c\"}",
+          "response_sha256": "57542f60e6a80a747e1722b9de65b9125a74522052ac6af20ca36555aad3b838"
+        },
+        {
+          "name": "clientVersion",
+          "method": "web3_clientVersion",
+          "params": [],
+          "t_request_utc": "2026-09-25T16:41:33.226Z",
+          "t_response_utc": "2026-09-25T16:41:33.748Z",
+          "ms": 522.023,
+          "http_status": 200,
+          "ok": true,
+          "response_raw": "{\"jsonrpc\":\"2.0\",\"id\":2,\"result\":\"zkSync/v2.0\"}",
+          "response_sha256": "193cdff101937b4739f713bfb70b743961415e5e8ed5f203765b5c0b1953c6f8"
+        },
+        {
+          "name": "blockNumber",
+          "method": "eth_blockNumber",
+          "params": [],
+          "t_request_utc": "2026-09-25T16:41:33.748Z",
+          "t_response_utc": "2026-09-25T16:41:34.285Z",
+          "ms": 536.552,
+          "http_status": 200,
+          "ok": true,
+          "response_raw": "{\"jsonrpc\":\"2.0\",\"id\":3,\"result\":\"0x82a7ea\"}",
+          "response_sha256": "31c0457e64a74d1c66edbca144c5bc00e133b7ac7abd890e401329e0d4015005"
+        },
+        {
+          "name": "latestBlock",
+          "method": "eth_getBlockByNumber",
+          "params": [
+            "latest",
+            false
+          ],
+          "t_request_utc": "2026-09-25T16:41:34.286Z",
+          "t_response_utc": "2026-09-25T16:41:34.877Z",
+          "ms": 591.18,
+          "http_status": 200,
+          "ok": true,
+          "response_raw": "{\"jsonrpc\":\"2.0\",\"id\":4,\"result\":{\"hash\":\"0x4a5e3736b07098d97a669ee26b99e5e072dd05c6c88efb4ad7f8e18b57d3c694\",\"parentHash\":\"0x4b723f6064599eb4c77213c1ea2acf67d50e53e94238c366acc61632562724e4\",\"sha3Uncles\":\"0x1dcc4de8dec75d7aab85b567b6ccd41ad312451b948a7413f0a142fd40d49347\",\"miner\":\"0x0000000000000000000000000000000000000000\",\"stateRoot\":\"0x0000000000000000000000000000000000000000000000000000000000000000\",\"transactionsRoot\":\"0x0000000000000000000000000000000000000000000000000000000000000000\",\"receiptsRoot\":\"0x0000000000000000000000000000000000000000000000000000000000000000\",\"number\":\"0x82a7ea\",\"l1BatchNumber\":null,\"gasUsed\":\"0x319cc\",\"gasLimit\":\"0x4000000000000\",\"baseFeePerGas\":\"0x17d7840\",\"extraData\":\"0x\",\"logsBloom\":\"0x00000000000400000000000000004000000000000000000000000000000000000000000000020000000000000000004000100000000400000000000000000000000000000000040000000008000000000000000000000000000000000000080000000000000000000000000000000000000000000000000000000010000000000000000000000000000004000004000000000000000000000000000000000000000000000000100000000000000000000000000000000000000000000000000000000002008000000000000020000020000000000000000000000000000000000000000000000000000000000000020000000000000000000000000000000000\",\"timestamp\":\"0x6ab6a433\",\"l1BatchTimestamp\":null,\"difficulty\":\"0x0\",\"totalDifficulty\":\"0x0\",\"sealFields\":[],\"uncles\":[],\"transactions\":[\"0xa53912fc4588d685fc7afc69b2fdd028c996b32baf2d96e64b0d7e9b0b444969\",\"0x2626b8faa5ed7145bee9a856f56893c25ace19225eddf7a116fd5119f5994ee1\"],\"size\":\"0x0\",\"mixHash\":\"0x0000000000000000000000000000000000000000000000000000000000000000\",\"nonce\":\"0x0000000000000000\"}}",
+          "response_sha256": "afed84ee2eef21a615bf80b43722a3ce2ce878f1e55d3a066a3b8a4c7a63101d"
+        },
+        {
+          "name": "blockByNumber",
+          "method": "eth_getBlockByNumber",
+          "params": [
+            "0x82a7e9",
+            false
+          ],
+          "t_request_utc": "2026-09-25T16:41:34.878Z",
+          "t_response_utc": "2026-09-25T16:41:35.100Z",
+          "ms": 222.725,
+          "http_status": 200,
+          "ok": true,
+          "response_raw": "{\"jsonrpc\":\"2.0\",\"id\":5,\"result\":{\"hash\":\"0x4b723f6064599eb4c77213c1ea2acf67d50e53e94238c366acc61632562724e4\",\"parentHash\":\"0x3e5dc987e34c6f29402235ee15faeac7f3f65b58545e2216ae5dadd17e15eb44\",\"sha3Uncles\":\"0x1dcc4de8dec75d7aab85b567b6ccd41ad312451b948a7413f0a142fd40d49347\",\"miner\":\"0x0000000000000000000000000000000000000000\",\"stateRoot\":\"0x0000000000000000000000000000000000000000000000000000000000000000\",\"transactionsRoot\":\"0x0000000000000000000000000000000000000000000000000000000000000000\",\"receiptsRoot\":\"0x0000000000000000000000000000000000000000000000000000000000000000\",\"number\":\"0x82a7e9\",\"l1BatchNumber\":null,\"gasUsed\":\"0x18ce6\",\"gasLimit\":\"0x4000000000000\",\"baseFeePerGas\":\"0x17d7840\",\"extraData\":\"0x\",\"logsBloom\":\"0x00000000000400000000000000000000000000000000000000000000000000000000000000000000000000040000004000000000000400000000000000000000000000000000040000000008000000000000000000000000000000000000080000000040000000000000000000000000000000000000000000000010000000000000000000000000000005000000000000000000000000000000000000000000000000000000100000000000000000000000000000000000000000000000000000000002008000000000000000000000000000000000000000000000000000000000000000000000000000000000020000000000000000000000000000000000\",\"timestamp\":\"0x6ab6a42a\",\"l1BatchTimestamp\":null,\"difficulty\":\"0x0\",\"totalDifficulty\":\"0x0\",\"sealFields\":[],\"uncles\":[],\"transactions\":[\"0xec1bf99e6f501254d94cc622220c7ddbc9ab2204e25df67475e8466ea4fffbc6\"],\"size\":\"0x0\",\"mixHash\":\"0x0000000000000000000000000000000000000000000000000000000000000000\",\"nonce\":\"0x0000000000000000\"}}",
+          "response_sha256": "42d2adf9d57f7fb98c65877759bd0ed4f270b69418b9c97b7afe71d9f998dc8c"
+        },
+        {
+          "name": "gasPrice",
+          "method": "eth_gasPrice",
+          "params": [],
+          "t_request_utc": "2026-09-25T16:41:35.101Z",
+          "t_response_utc": "2026-09-25T16:41:35.981Z",
+          "ms": 880.257,
+          "http_status": 200,
+          "ok": true,
+          "response_raw": "{\"jsonrpc\":\"2.0\",\"id\":6,\"result\":\"0x17d7840\"}",
+          "response_sha256": "451154e5cf6ee094963db8d664f0a0cde0143f1c91faec065b691d04cba95eb1"
+        },
+        {
+          "name": "balanceLatest",
+          "method": "eth_getBalance",
+          "params": [
+            "0x2425aD1c5bd224a87493c2CA0E04189F775Bf9EF",
+            "latest"
+          ],
+          "t_request_utc": "2026-09-25T16:41:35.982Z",
+          "t_response_utc": "2026-09-25T16:41:36.514Z",
+          "ms": 532.44,
+          "http_status": 200,
+          "ok": true,
+          "response_raw": "{\"jsonrpc\":\"2.0\",\"id\":7,\"result\":\"0x0\"}",
+          "response_sha256": "c8b0e87a41a39c070ef17d34b565751cb983a56ecf49135171c66372db2399d6"
+        },
+        {
+          "name": "balanceAtBlock",
+          "method": "eth_getBalance",
+          "params": [
+            "0x2425aD1c5bd224a87493c2CA0E04189F775Bf9EF",
+            "0x82a7e9"
+          ],
+          "t_request_utc": "2026-09-25T16:41:36.515Z",
+          "t_response_utc": "2026-09-25T16:41:36.746Z",
+          "ms": 231.136,
+          "http_status": 200,
+          "ok": true,
+          "response_raw": "{\"jsonrpc\":\"2.0\",\"id\":8,\"result\":\"0x0\"}",
+          "response_sha256": "86e8c64bda9ebd0fa07617b476992b285e71072147b10daf1fb449a4c21c7eb5"
+        },
+        {
+          "name": "nonceLatest",
+          "method": "eth_getTransactionCount",
+          "params": [
+            "0x2425aD1c5bd224a87493c2CA0E04189F775Bf9EF",
+            "latest"
+          ],
+          "t_request_utc": "2026-09-25T16:41:36.747Z",
+          "t_response_utc": "2026-09-25T16:41:36.972Z",
+          "ms": 225.116,
+          "http_status": 200,
+          "ok": true,
+          "response_raw": "{\"jsonrpc\":\"2.0\",\"id\":9,\"result\":\"0x0\"}",
+          "response_sha256": "f159747aef7bcf0426c47144af1d26bc1046f661c2229f8b68c0aed225e0e1ea"
+        },
+        {
+          "name": "noncePending",
+          "method": "eth_getTransactionCount",
+          "params": [
+            "0x2425aD1c5bd224a87493c2CA0E04189F775Bf9EF",
+            "pending"
+          ],
+          "t_request_utc": "2026-09-25T16:41:36.973Z",
+          "t_response_utc": "2026-09-25T16:41:37.503Z",
+          "ms": 530.483,
+          "http_status": 200,
+          "ok": true,
+          "response_raw": "{\"jsonrpc\":\"2.0\",\"id\":10,\"result\":\"0x0\"}",
+          "response_sha256": "ab5ead2b28eaf315ccfbcecfeead8b6ba87c2fa34168d4d2ef691707ab3b8d34"
+        },
+        {
+          "name": "code",
+          "method": "eth_getCode",
+          "params": [
+            "0x2425aD1c5bd224a87493c2CA0E04189F775Bf9EF",
+            "latest"
+          ],
+          "t_request_utc": "2026-09-25T16:41:37.504Z",
+          "t_response_utc": "2026-09-25T16:41:37.718Z",
+          "ms": 214.269,
+          "http_status": 200,
+          "ok": true,
+          "response_raw": "{\"jsonrpc\":\"2.0\",\"id\":11,\"result\":\"0x\"}",
+          "response_sha256": "e44b77072fb20f80e30229ae8f640c2b39147084aa5154c47bfc2e00c64ceb7e"
+        },
+        {
+          "name": "call",
+          "method": "eth_call",
+          "params": [
+            {
+              "from": "0x2425aD1c5bd224a87493c2CA0E04189F775Bf9EF",
+              "to": "0x2425aD1c5bd224a87493c2CA0E04189F775Bf9EF",
+              "data": "0x"
+            },
+            "latest"
+          ],
+          "t_request_utc": "2026-09-25T16:41:37.719Z",
+          "t_response_utc": "2026-09-25T16:41:38.242Z",
+          "ms": 522.827,
+          "http_status": 200,
+          "ok": true,
+          "response_raw": "{\"jsonrpc\":\"2.0\",\"id\":12,\"result\":\"0x\"}",
+          "response_sha256": "54896796db5bc5bef1f5eb02f006c261cbbd06e20bdaac8e2b94195add4d0f60"
+        },
+        {
+          "name": "callAtBlock",
+          "method": "eth_call",
+          "params": [
+            {
+              "from": "0x2425aD1c5bd224a87493c2CA0E04189F775Bf9EF",
+              "to": "0x2425aD1c5bd224a87493c2CA0E04189F775Bf9EF",
+              "data": "0x"
+            },
+            "0x82a7e9"
+          ],
+          "note": "historical eth_call (revert replay at the parent block)",
+          "t_request_utc": "2026-09-25T16:41:38.243Z",
+          "t_response_utc": "2026-09-25T16:41:38.870Z",
+          "ms": 627.551,
+          "http_status": 200,
+          "ok": true,
+          "response_raw": "{\"jsonrpc\":\"2.0\",\"id\":13,\"result\":\"0x\"}",
+          "response_sha256": "b15c5af37c2ad573da4217cd188d86f133a53232b5931c6314202a37fc1f444b"
+        },
+        {
+          "name": "receiptUnknown",
+          "method": "eth_getTransactionReceipt",
+          "params": [
+            "0xa8612cbc932622469e04f6fbf96b270a5f71149ee9cc80dfbea3f34e7f41620a"
+          ],
+          "t_request_utc": "2026-09-25T16:41:38.871Z",
+          "t_response_utc": "2026-09-25T16:41:39.179Z",
+          "ms": 308.185,
+          "http_status": 200,
+          "ok": true,
+          "response_raw": "{\"jsonrpc\":\"2.0\",\"id\":14,\"result\":null}",
+          "response_sha256": "2decc11f20465d4fce83c3eff0b1b6cf22d0924460722d1cb736b2527717b31a"
+        },
+        {
+          "name": "txUnknown",
+          "method": "eth_getTransactionByHash",
+          "params": [
+            "0xa8612cbc932622469e04f6fbf96b270a5f71149ee9cc80dfbea3f34e7f41620a"
+          ],
+          "t_request_utc": "2026-09-25T16:41:39.179Z",
+          "t_response_utc": "2026-09-25T16:41:39.484Z",
+          "ms": 304.983,
+          "http_status": 200,
+          "ok": true,
+          "response_raw": "{\"jsonrpc\":\"2.0\",\"id\":15,\"result\":null}",
+          "response_sha256": "49bb0d608adc6b3a6a1ad67fb48328e0eb552b03538f060bd3e16406a30bf016"
+        },
+        {
+          "name": "ethConfig",
+          "method": "eth_config",
+          "params": [],
+          "optional": true,
+          "note": "EIP-7910 fork configuration; not used by the runner",
+          "t_request_utc": "2026-09-25T16:41:39.485Z",
+          "t_response_utc": "2026-09-25T16:41:39.696Z",
+          "ok": false,
+          "error_kind": "http",
+          "error_code": null,
+          "error_message": "HTTP 400",
+          "http_status": 400,
+          "response_raw": "{\"jsonrpc\":\"2.0\",\"id\":16,\"error\":{\"code\":-32600,\"message\":\"eth_config is not available on the ZKSYNC_SEPOLIA. For more information see our docs: https://docs.alchemy.com/alchemy/documentation/apis/ethereum\"}}"
+        },
+        {
+          "name": "protocolVersion",
+          "method": "zks_getProtocolVersion",
+          "params": [],
+          "t_request_utc": "2026-09-25T16:41:39.697Z",
+          "t_response_utc": "2026-09-25T16:41:39.912Z",
+          "ms": 215.76,
+          "http_status": 200,
+          "ok": true,
+          "response_raw": "{\"jsonrpc\":\"2.0\",\"id\":17,\"result\":{\"version_id\":29,\"minorVersion\":29,\"timestamp\":1757332047,\"verification_keys_hashes\":{\"recursion_scheduler_level_vk_hash\":\"0x0000000000000000000000000000000000000000000000000000000000000000\",\"fflonk_snark_wrapper_vk_hash\":null},\"base_system_contracts\":{\"bootloader\":\"0x01000911c4db4fe62c98e180cfa7e9b3a22fb15f505905d4bf36192f481551e6\",\"default_aa\":\"0x010005f73e7c299ed73db937843643bdc276cbc2cc8596287e1e0cf3afc60252\",\"evm_emulator\":\"0x01000d8bae37b82f311186426184866498b357f41d7a02ced11f3e3fbfbacd63\"},\"bootloaderCodeHash\":\"0x01000911c4db4fe62c98e180cfa7e9b3a22fb15f505905d4bf36192f481551e6\",\"defaultAccountCodeHash\":\"0x010005f73e7c299ed73db937843643bdc276cbc2cc8596287e1e0cf3afc60252\",\"evmSimulatorCodeHash\":\"0x01000d8bae37b82f311186426184866498b357f41d7a02ced11f3e3fbfbacd63\",\"l2_system_upgrade_tx_hash\":\"0xa1ff3e02225fe7ec1fc05ad9f3a1082f770f7de11095c9a1af5ea88fbba0e4ce\",\"l2SystemUpgradeTxHash\":\"0xa1ff3e02225fe7ec1fc05ad9f3a1082f770f7de11095c9a1af5ea88fbba0e4ce\"}}",
+          "response_sha256": "56f30030e09254d5875c01e83fa950d95927759dab440a70ff84b808668af15f"
+        },
+        {
+          "name": "feeParams",
+          "method": "zks_getFeeParams",
+          "params": [],
+          "t_request_utc": "2026-09-25T16:41:39.913Z",
+          "t_response_utc": "2026-09-25T16:41:40.125Z",
+          "ms": 212.194,
+          "http_status": 200,
+          "ok": true,
+          "response_raw": "{\"jsonrpc\":\"2.0\",\"id\":18,\"result\":{\"V2\":{\"config\":{\"minimal_l2_gas_price\":25000000,\"compute_overhead_part\":0.0,\"pubdata_overhead_part\":1.0,\"batch_overhead_l1_gas\":800000,\"max_gas_per_batch\":200000000,\"max_pubdata_per_batch\":700000},\"l1_gas_price\":1527388937,\"l1_pubdata_price\":77999733,\"conversion_ratio\":{\"l1\":{\"numerator\":1,\"denominator\":1},\"sl\":{\"numerator\":1,\"denominator\":1},\"numerator\":1,\"denominator\":1}}}}",
+          "response_sha256": "27e00100b291a980cf30a4873171f363ce1d82c611b14f41dbc35c1732c3406e"
+        },
+        {
+          "name": "l1BatchNumber",
+          "method": "zks_L1BatchNumber",
+          "params": [],
+          "t_request_utc": "2026-09-25T16:41:40.126Z",
+          "t_response_utc": "2026-09-25T16:41:40.341Z",
+          "ms": 215.445,
+          "http_status": 200,
+          "ok": true,
+          "response_raw": "{\"jsonrpc\":\"2.0\",\"id\":19,\"result\":\"0x56f7\"}",
+          "response_sha256": "468cf82629506d9d885d7a51f9a602aeead543675fb29218c4ae50922cdfbaa5"
+        },
+        {
+          "name": "l1BatchDetails",
+          "method": "zks_getL1BatchDetails",
+          "params": [
+            22263
+          ],
+          "t_request_utc": "2026-09-25T16:41:40.342Z",
+          "t_response_utc": "2026-09-25T16:41:40.554Z",
+          "ms": 212.222,
+          "http_status": 200,
+          "ok": true,
+          "response_raw": "{\"jsonrpc\":\"2.0\",\"id\":20,\"result\":{\"number\":22263,\"commitment\":\"0x493c5049f7fa2feb7381af042cf11836d8efa61714525ae8c6b45ce5ecfc35cd\",\"timestamp\":1790346333,\"l1TxCount\":0,\"l2TxCount\":230,\"rootHash\":\"0xc94f953a3bed32818fe9e70d3f2bd770004ba784c747c1f297d8e15182c5da4a\",\"status\":\"verified\",\"commitTxHash\":\"0x1666039fafcf7496b55d2346881e584b009410fcf2a171c4f58e79826983f353\",\"committedAt\":\"2026-09-25T15:48:49.920444Z\",\"commitTxFinality\":\"finalized\",\"commitChainId\":11155111,\"proveTxHash\":\"0x9abd121063bc1c12f9af21bf5db3bcabbf07cc1df09f3d6a2209a331316ac38d\",\"proveTxFinality\":\"finalized\",\"provenAt\":\"2026-09-25T16:01:38.200181Z\",\"proveChainId\":11155111,\"executeTxHash\":\"0xdfb1b2186d0b5d472ce65f438f1effc47abf13dc6d068ee86e9665ea83d1903d\",\"executeTxFinality\":\"finalized\",\"executedAt\":\"2026-09-25T16:01:38.208542Z\",\"executeChainId\":11155111,\"precommitTxHash\":null,\"precommitTxFinality\":null,\"precommittedAt\":null,\"precommitChainId\":null,\"l1GasPrice\":1554418521,\"l2FairGasPrice\":25000000,\"fairPubdataPrice\":1889628120,\"baseSystemContractsHashes\":{\"bootloader\":\"0x01000911c4db4fe62c98e180cfa7e9b3a22fb15f505905d4bf36192f481551e6\",\"default_aa\":\"0x010005f73e7c299ed73db937843643bdc276cbc2cc8596287e1e0cf3afc60252\",\"evm_emulator\":\"0x01000d8bae37b82f311186426184866498b357f41d7a02ced11f3e3fbfbacd63\"}}}",
+          "response_sha256": "ef2dff3d10c145c4e2d226e9fa46a7127e7d334b9a99a7dd0304a2eb94e5ce53"
+        },
+        {
+          "name": "l1BatchDetailsPrev",
+          "method": "zks_getL1BatchDetails",
+          "params": [
+            22262
+          ],
+          "t_request_utc": "2026-09-25T16:41:40.554Z",
+          "t_response_utc": "2026-09-25T16:41:41.083Z",
+          "ms": 528.984,
+          "http_status": 200,
+          "ok": true,
+          "response_raw": "{\"jsonrpc\":\"2.0\",\"id\":21,\"result\":{\"number\":22262,\"commitment\":\"0x64819d88f5004daac2b06c627980b2f7127053463ef1e765b868b08168ae396f\",\"timestamp\":1790341455,\"l1TxCount\":1,\"l2TxCount\":330,\"rootHash\":\"0x8a5312369478b91ac443f15c4b0d897d175c696a17367d1d66e05b20f0106954\",\"status\":\"verified\",\"commitTxHash\":\"0x766572bb5814585eae923a1fa53cde56b8e7fd40c649be26ed89c368e9205c30\",\"committedAt\":\"2026-09-25T14:38:26.264806Z\",\"commitTxFinality\":\"finalized\",\"commitChainId\":11155111,\"proveTxHash\":\"0x3d36706263a110e0b89f3534d599e23a81745aa07e23c4d485fe513e881701e5\",\"proveTxFinality\":\"finalized\",\"provenAt\":\"2026-09-25T14:51:14.289831Z\",\"proveChainId\":11155111,\"executeTxHash\":\"0x6e61c7ca07fb0eb28013b0e6fda47f8f42dbca99a5b6e185189458f172e834ed\",\"executeTxFinality\":\"finalized\",\"executedAt\":\"2026-09-25T14:51:14.296517Z\",\"executeChainId\":11155111,\"precommitTxHash\":null,\"precommitTxFinality\":null,\"precommittedAt\":null,\"precommitChainId\":null,\"l1GasPrice\":1549923276,\"l2FairGasPrice\":25000000,\"fairPubdataPrice\":1860077230,\"baseSystemContractsHashes\":{\"bootloader\":\"0x01000911c4db4fe62c98e180cfa7e9b3a22fb15f505905d4bf36192f481551e6\",\"default_aa\":\"0x010005f73e7c299ed73db937843643bdc276cbc2cc8596287e1e0cf3afc60252\",\"evm_emulator\":\"0x01000d8bae37b82f311186426184866498b357f41d7a02ced11f3e3fbfbacd63\"}}}",
+          "response_sha256": "d87d7e6ddc960397d879748b18ac2bfe7f3be303cf542b4242182fa783e5a0fb"
+        },
+        {
+          "name": "l1BatchDetailsOld",
+          "method": "zks_getL1BatchDetails",
+          "params": [
+            21263
+          ],
+          "optional": true,
+          "note": "an older batch, to check that commit/prove/execute fields populate (post-hoc finality collection)",
+          "t_request_utc": "2026-09-25T16:41:41.084Z",
+          "t_response_utc": "2026-09-25T16:41:41.305Z",
+          "ms": 221.13,
+          "http_status": 200,
+          "ok": true,
+          "response_raw": "{\"jsonrpc\":\"2.0\",\"id\":22,\"result\":{\"number\":21263,\"commitment\":\"0x97d3e48a3c0cd16ecd224c8e8bbc6b0be31adddea4e3d2d04e305c5fcac7270b\",\"timestamp\":1783750040,\"l1TxCount\":1,\"l2TxCount\":296,\"rootHash\":\"0xb46394794cfbde10a7a8f117e8abcdad4328537ce210bb9bbc575e5a0bfb575e\",\"status\":\"verified\",\"commitTxHash\":\"0xae0ee8e08ded6ea4145c1a4b6a45467f4e63ec9e805e44ee7fc0ba0c435f0efa\",\"committedAt\":\"2026-07-11T08:20:52.563687Z\",\"commitTxFinality\":\"finalized\",\"commitChainId\":11155111,\"proveTxHash\":\"0x58cfb6b979b3ba5f0ab4c4ed10f827e2f07785edd3446641389f09cae4922a35\",\"proveTxFinality\":\"finalized\",\"provenAt\":\"2026-07-11T08:33:40.440600Z\",\"proveChainId\":11155111,\"executeTxHash\":\"0x6c2e2b268ea27bbe257f7fbd151f986ade67a3893a3bc72a60d94e6571a5357b\",\"executeTxFinality\":\"finalized\",\"executedAt\":\"2026-07-11T08:33:40.446863Z\",\"executeChainId\":11155111,\"precommitTxHash\":null,\"precommitTxFinality\":null,\"precommittedAt\":null,\"precommitChainId\":null,\"l1GasPrice\":2018750744,\"l2FairGasPrice\":25000000,\"fairPubdataPrice\":2406400034,\"baseSystemContractsHashes\":{\"bootloader\":\"0x01000911c4db4fe62c98e180cfa7e9b3a22fb15f505905d4bf36192f481551e6\",\"default_aa\":\"0x010005f73e7c299ed73db937843643bdc276cbc2cc8596287e1e0cf3afc60252\",\"evm_emulator\":\"0x01000d8bae37b82f311186426184866498b357f41d7a02ced11f3e3fbfbacd63\"}}}",
+          "response_sha256": "4998b3e723045403a4f8bde76bf096ea3dc9ec21cc92b08b2dcea1778f581e33"
+        },
+        {
+          "name": "blockDetails",
+          "method": "zks_getBlockDetails",
+          "params": [
+            8562666
+          ],
+          "t_request_utc": "2026-09-25T16:41:41.306Z",
+          "t_response_utc": "2026-09-25T16:41:41.523Z",
+          "ms": 217.334,
+          "http_status": 200,
+          "ok": true,
+          "response_raw": "{\"jsonrpc\":\"2.0\",\"id\":23,\"result\":{\"number\":8562666,\"l1BatchNumber\":22264,\"timestamp\":1790354483,\"l1TxCount\":0,\"l2TxCount\":2,\"rootHash\":\"0x4a5e3736b07098d97a669ee26b99e5e072dd05c6c88efb4ad7f8e18b57d3c694\",\"status\":\"sealed\",\"commitTxHash\":null,\"committedAt\":null,\"commitTxFinality\":null,\"commitChainId\":null,\"proveTxHash\":null,\"proveTxFinality\":null,\"provenAt\":null,\"proveChainId\":null,\"executeTxHash\":null,\"executeTxFinality\":null,\"executedAt\":null,\"executeChainId\":null,\"precommitTxHash\":null,\"precommitTxFinality\":null,\"precommittedAt\":null,\"precommitChainId\":null,\"l1GasPrice\":1529147181,\"l2FairGasPrice\":25000000,\"fairPubdataPrice\":1962053157,\"baseSystemContractsHashes\":{\"bootloader\":\"0x01000911c4db4fe62c98e180cfa7e9b3a22fb15f505905d4bf36192f481551e6\",\"default_aa\":\"0x010005f73e7c299ed73db937843643bdc276cbc2cc8596287e1e0cf3afc60252\",\"evm_emulator\":null},\"operatorAddress\":\"0x381b5cbd43f30a88ac2c7d8ed021325443156455\",\"protocolVersion\":\"Version29\"}}",
+          "response_sha256": "6fe8ad3da7a778eca92c6d9772c0a533c6fdaa5f931ca759a3c6fff48a799d9a"
+        },
+        {
+          "name": "txDetailsUnknown",
+          "method": "zks_getTransactionDetails",
+          "params": [
+            "0xa8612cbc932622469e04f6fbf96b270a5f71149ee9cc80dfbea3f34e7f41620a"
+          ],
+          "t_request_utc": "2026-09-25T16:41:41.524Z",
+          "t_response_utc": "2026-09-25T16:41:42.058Z",
+          "ms": 534.701,
+          "http_status": 200,
+          "ok": true,
+          "response_raw": "{\"jsonrpc\":\"2.0\",\"id\":24,\"result\":null}",
+          "response_sha256": "c87358acdaa0e8eb2b837d598059b1e4ecf997e2ea15e67b3763ff5ccdc29470"
+        },
+        {
+          "name": "estimateFeeCall",
+          "method": "zks_estimateFee",
+          "params": [
+            {
+              "from": "0x2425aD1c5bd224a87493c2CA0E04189F775Bf9EF",
+              "to": "0x2425aD1c5bd224a87493c2CA0E04189F775Bf9EF",
+              "data": "0x",
+              "value": "0x0",
+              "type": "0x71",
+              "eip712Meta": {
+                "gasPerPubdata": "0xc350"
+              }
+            }
+          ],
+          "note": "simulation only (no key, no funds)",
+          "t_request_utc": "2026-09-25T16:41:42.059Z",
+          "t_response_utc": "2026-09-25T16:41:42.352Z",
+          "ms": 293.608,
+          "http_status": 200,
+          "ok": true,
+          "response_raw": "{\"jsonrpc\":\"2.0\",\"id\":25,\"result\":{\"gas_limit\":\"0x206c8\",\"max_fee_per_gas\":\"0x17d7840\",\"max_priority_fee_per_gas\":\"0x0\",\"gas_per_pubdata_limit\":\"0x5e\"}}",
+          "response_sha256": "18bd2cee046004030dd4892eef031d78d400392e83b60dce1d070104f25a94d4"
+        },
+        {
+          "name": "estimateDeploy:Groth16LegacyVerifierDepth11",
+          "method": "zks_estimateFee",
+          "params": [
+            {
+              "from": "0x2425aD1c5bd224a87493c2CA0E04189F775Bf9EF",
+              "to": "0x0000000000000000000000000000000000008006",
+              "data": {
+                "hex_sha256": "44902f4c5418adc4f6045353bef005634115a381bd55c4251a7ee58b10447d67",
+                "bytes": 132
+              },
+              "value": "0x0",
+              "type": "0x71",
+              "eip712Meta": {
+                "gasPerPubdata": "0xc350",
+                "factoryDeps": [
+                  {
+                    "byte_array_sha256": "3be22e7e89c4cefae9b82d938e5f49479fd773521ddfd615284396aa1bbb65c1",
+                    "bytes": 3040
+                  }
+                ]
+              }
+            }
+          ],
+          "optional": true,
+          "note": "simulation only (no key, no funds): the exact deployment shape of the frozen send policy, from the keyless probe address",
+          "bytecode_hash": "0x0100005f89c4cefae9b82d938e5f49479fd773521ddfd615284396aa1bbb65c1",
+          "t_request_utc": "2026-09-25T16:41:42.360Z",
+          "t_response_utc": "2026-09-25T16:41:42.761Z",
+          "ms": 400.666,
+          "http_status": 200,
+          "ok": true,
+          "response_raw": "{\"jsonrpc\":\"2.0\",\"id\":26,\"result\":{\"gas_limit\":\"0xda74a\",\"max_fee_per_gas\":\"0x17d7840\",\"max_priority_fee_per_gas\":\"0x0\",\"gas_per_pubdata_limit\":\"0x5e\"}}",
+          "response_sha256": "72b7c5ef3de9004309f92f5f1de7dfba0cbbbe0abd0a228fa1f4b902bd5d1154"
+        },
+        {
+          "name": "estimateDeploy:CredentialManagerGroth16",
+          "method": "zks_estimateFee",
+          "params": [
+            {
+              "from": "0x2425aD1c5bd224a87493c2CA0E04189F775Bf9EF",
+              "to": "0x0000000000000000000000000000000000008006",
+              "data": {
+                "hex_sha256": "f53228aded3d38efd8d7eaa8d760d69a9940412fc0c377fee867d47f5d73577a",
+                "bytes": 164
+              },
+              "value": "0x0",
+              "type": "0x71",
+              "eip712Meta": {
+                "gasPerPubdata": "0xc350",
+                "factoryDeps": [
+                  {
+                    "byte_array_sha256": "3f186bb57155e3640948296be420258a2e1a98adb16b55738b817247e9fd54eb",
+                    "bytes": 6752
+                  }
+                ]
+              }
+            }
+          ],
+          "optional": true,
+          "note": "simulation only (no key, no funds): the exact deployment shape of the frozen send policy, from the keyless probe address",
+          "bytecode_hash": "0x010000d37155e3640948296be420258a2e1a98adb16b55738b817247e9fd54eb",
+          "t_request_utc": "2026-09-25T16:41:42.766Z",
+          "t_response_utc": "2026-09-25T16:41:43.274Z",
+          "ms": 508.527,
+          "http_status": 200,
+          "ok": true,
+          "response_raw": "{\"jsonrpc\":\"2.0\",\"id\":27,\"result\":{\"gas_limit\":\"0x15319a\",\"max_fee_per_gas\":\"0x17d7840\",\"max_priority_fee_per_gas\":\"0x0\",\"gas_per_pubdata_limit\":\"0x5e\"}}",
+          "response_sha256": "5ca8ab8313195ed25b8747af9d4702f12e52dfbe3f62619cecde39c5c2c76f94"
+        },
+        {
+          "name": "estimateDeploy:PlonkVerifierDepth11",
+          "method": "zks_estimateFee",
+          "params": [
+            {
+              "from": "0x2425aD1c5bd224a87493c2CA0E04189F775Bf9EF",
+              "to": "0x0000000000000000000000000000000000008006",
+              "data": {
+                "hex_sha256": "b840d88b70e2760221354d48781808507b306c245f173e22f28ce00246c4ce9c",
+                "bytes": 132
+              },
+              "value": "0x0",
+              "type": "0x71",
+              "eip712Meta": {
+                "gasPerPubdata": "0xc350",
+                "factoryDeps": [
+                  {
+                    "byte_array_sha256": "22b03e4178196cbbed42200c01f2280655dacb2e92a94516f3d56c93d48e4b62",
+                    "bytes": 42208
+                  }
+                ]
+              }
+            }
+          ],
+          "optional": true,
+          "note": "simulation only (no key, no funds): the exact deployment shape of the frozen send policy, from the keyless probe address",
+          "bytecode_hash": "0x0100052778196cbbed42200c01f2280655dacb2e92a94516f3d56c93d48e4b62",
+          "t_request_utc": "2026-09-25T16:41:43.284Z",
+          "t_response_utc": "2026-09-25T16:41:44.677Z",
+          "ms": 1393.132,
+          "http_status": 200,
+          "ok": true,
+          "response_raw": "{\"jsonrpc\":\"2.0\",\"id\":28,\"result\":{\"gas_limit\":\"0x591588\",\"max_fee_per_gas\":\"0x17d7840\",\"max_priority_fee_per_gas\":\"0x0\",\"gas_per_pubdata_limit\":\"0x5e\"}}",
+          "response_sha256": "4d6f53f596a3054ca1e9161e14b5fddf23681d6c1e2726eb1c68861abebf3045"
+        },
+        {
+          "name": "estimateDeploy:CredentialManagerPlonk",
+          "method": "zks_estimateFee",
+          "params": [
+            {
+              "from": "0x2425aD1c5bd224a87493c2CA0E04189F775Bf9EF",
+              "to": "0x0000000000000000000000000000000000008006",
+              "data": {
+                "hex_sha256": "8f2a643290a50b1420ec48c15e2f7426a846cf3a5df892e70d42af3eabd774d1",
+                "bytes": 164
+              },
+              "value": "0x0",
+              "type": "0x71",
+              "eip712Meta": {
+                "gasPerPubdata": "0xc350",
+                "factoryDeps": [
+                  {
+                    "byte_array_sha256": "27a368628ad512f1d77f4733ef95b69a7329a5310824ac0599410635c1c0ebcf",
+                    "bytes": 6624
+                  }
+                ]
+              }
+            }
+          ],
+          "optional": true,
+          "note": "simulation only (no key, no funds): the exact deployment shape of the frozen send policy, from the keyless probe address",
+          "bytecode_hash": "0x010000cf8ad512f1d77f4733ef95b69a7329a5310824ac0599410635c1c0ebcf",
+          "t_request_utc": "2026-09-25T16:41:44.682Z",
+          "t_response_utc": "2026-09-25T16:41:45.279Z",
+          "ms": 597.517,
+          "http_status": 200,
+          "ok": true,
+          "response_raw": "{\"jsonrpc\":\"2.0\",\"id\":29,\"result\":{\"gas_limit\":\"0x14c620\",\"max_fee_per_gas\":\"0x17d7840\",\"max_priority_fee_per_gas\":\"0x0\",\"gas_per_pubdata_limit\":\"0x5e\"}}",
+          "response_sha256": "29743a12d4197d134fbf1c96895c98b1deffcfd65bf5e708cc45cd3ee42a97e2"
+        },
+        {
+          "name": "errUnknownMethod",
+          "method": "chainbench_unknownMethod",
+          "params": [],
+          "optional": true,
+          "expected_error": true,
+          "note": "a method no endpoint implements",
+          "t_request_utc": "2026-09-25T16:41:45.280Z",
+          "t_response_utc": "2026-09-25T16:41:45.489Z",
+          "ok": false,
+          "error_kind": "http",
+          "error_code": null,
+          "error_message": "HTTP 400",
+          "http_status": 400,
+          "response_raw": "{\"jsonrpc\":\"2.0\",\"id\":30,\"error\":{\"code\":-32600,\"message\":\"Unsupported method: chainbench_unknownMethod on ZKSYNC_SEPOLIA\"}}"
+        },
+        {
+          "name": "errInsufficientFunds",
+          "method": "zks_estimateFee",
+          "params": [
+            {
+              "from": "0x2425aD1c5bd224a87493c2CA0E04189F775Bf9EF",
+              "to": "0x2425aD1c5bd224a87493c2CA0E04189F775Bf9EF",
+              "data": "0x",
+              "value": "0x1",
+              "type": "0x71",
+              "eip712Meta": {
+                "gasPerPubdata": "0xc350"
+              }
+            }
+          ],
+          "optional": true,
+          "expected_error": true,
+          "note": "value > balance of the keyless probe address",
+          "t_request_utc": "2026-09-25T16:41:45.489Z",
+          "t_response_utc": "2026-09-25T16:41:46.368Z",
+          "ok": false,
+          "error_kind": "jsonrpc",
+          "error_code": 3,
+          "error_message": "insufficient funds for gas + value. balance: 0, fee: 0, value: 1",
+          "http_status": null,
+          "response_raw": "{\"jsonrpc\":\"2.0\",\"id\":31,\"error\":{\"code\":3,\"message\":\"insufficient funds for gas + value. balance: 0, fee: 0, value: 1\",\"data\":\"0x\"}}"
+        },
+        {
+          "name": "errRevert",
+          "method": "eth_call",
+          "params": [
+            {
+              "from": "0x2425aD1c5bd224a87493c2CA0E04189F775Bf9EF",
+              "to": "0x0000000000000000000000000000000000008006",
+              "data": {
+                "hex_sha256": "e50e80d845e87a73893916b0a7a6e1a643abbf768d6a96ead82184797c2c6a7a",
+                "bytes": 132
+              }
+            },
+            "latest"
+          ],
+          "optional": true,
+          "expected_error": true,
+          "note": "ContractDeployer.create of an unknown bytecode hash (reverts)",
+          "t_request_utc": "2026-09-25T16:41:46.369Z",
+          "t_response_utc": "2026-09-25T16:41:46.652Z",
+          "ok": false,
+          "error_kind": "jsonrpc",
+          "error_code": 3,
+          "error_message": "execution reverted",
+          "http_status": null,
+          "response_raw": "{\"jsonrpc\":\"2.0\",\"id\":32,\"error\":{\"code\":3,\"message\":\"execution reverted\",\"data\":\"0x3e5efef90100111111111111111111111111111111111111111111111111111111111111\"}}"
+        }
+      ],
+      "stopped": null,
+      "coverage": {
+        "required_methods": [
+          "eth_chainId",
+          "web3_clientVersion",
+          "eth_blockNumber",
+          "eth_getBlockByNumber",
+          "eth_gasPrice",
+          "eth_getBalance",
+          "eth_getTransactionCount",
+          "eth_getCode",
+          "eth_call",
+          "eth_getTransactionReceipt",
+          "eth_getTransactionByHash",
+          "zks_estimateFee",
+          "zks_getProtocolVersion",
+          "zks_getFeeParams",
+          "zks_L1BatchNumber",
+          "zks_getL1BatchDetails",
+          "zks_getBlockDetails",
+          "zks_getTransactionDetails"
+        ],
+        "methods_ok": [
+          "eth_chainId",
+          "web3_clientVersion",
+          "eth_blockNumber",
+          "eth_getBlockByNumber",
+          "eth_gasPrice",
+          "eth_getBalance",
+          "eth_getTransactionCount",
+          "eth_getCode",
+          "eth_call",
+          "eth_getTransactionReceipt",
+          "eth_getTransactionByHash",
+          "zks_estimateFee",
+          "zks_getProtocolVersion",
+          "zks_getFeeParams",
+          "zks_L1BatchNumber",
+          "zks_getL1BatchDetails",
+          "zks_getBlockDetails",
+          "zks_getTransactionDetails"
+        ],
+        "missing": [],
+        "chain_id": 300,
+        "historical_state": true,
+        "unknown_hash_returns_null": true,
+        "protocol_version": 29,
+        "finality_fields": {
+          "committedAt": true,
+          "provenAt": true,
+          "executedAt": true,
+          "commitTxHash": true,
+          "proveTxHash": true,
+          "executeTxHash": true,
+          "commitChainId": true,
+          "status": true
+        },
+        "finality_fields_complete": true,
+        "fee_estimates_ok": false,
+        "error_transport": [
+          {
+            "case": "errUnknownMethod",
+            "method": "chainbench_unknownMethod",
+            "returned_error": true,
+            "http_status": 400,
+            "error_kind": "http",
+            "jsonrpc_code": -32600,
+            "jsonrpc_message": "Unsupported method: chainbench_unknownMethod on ZKSYNC_SEPOLIA"
+          },
+          {
+            "case": "errInsufficientFunds",
+            "method": "zks_estimateFee",
+            "returned_error": true,
+            "http_status": null,
+            "error_kind": "jsonrpc",
+            "jsonrpc_code": 3,
+            "jsonrpc_message": "insufficient funds for gas + value. balance: 0, fee: 0, value: 1"
+          },
+          {
+            "case": "errRevert",
+            "method": "eth_call",
+            "returned_error": true,
+            "http_status": null,
+            "error_kind": "jsonrpc",
+            "jsonrpc_code": 3,
+            "jsonrpc_message": "execution reverted"
+          }
+        ],
+        "errors_as_http_200_jsonrpc": false,
+        "compatible": false
+      }
+    }
+  ]
+}

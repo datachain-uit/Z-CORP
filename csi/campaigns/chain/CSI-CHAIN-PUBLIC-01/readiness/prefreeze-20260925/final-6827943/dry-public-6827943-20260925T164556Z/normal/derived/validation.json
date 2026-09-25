@@ -1,0 +1,385 @@
+{
+  "checks": [
+    {
+      "check": "dry-S1-6827943-20260925T164612Z: VP1 schema (tx.csv header = schema.js COLUMNS)",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "dry-S1-6827943-20260925T164612Z: VP1 tx.csv and tx.jsonl hold the same rows",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "dry-S1-6827943-20260925T164612Z: VP2 one row per scheduled operation, in schedule order",
+      "detail": {
+        "rows": 8,
+        "scheduled": 8
+      },
+      "pass": true
+    },
+    {
+      "check": "dry-S1-6827943-20260925T164612Z: VP2 run mode = dry",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "dry-S1-6827943-20260925T164612Z: VP3 states from the frozen taxonomy; every non-success has an error class",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "dry-S1-6827943-20260925T164612Z: VP4 timing (t0 <= t_hash <= t_receipt; derived latencies = clock differences)",
+      "detail": [],
+      "pass": true
+    },
+    {
+      "check": "dry-S1-6827943-20260925T164612Z: VP5 receipt fee = gasUsed x effectiveGasPrice",
+      "detail": [],
+      "pass": true
+    },
+    {
+      "check": "dry-S1-6827943-20260925T164612Z: VP6 frozen send policy (Sepolia: type 2, maxFee = 2*base + P, fixed limits; Era: type 113, estimate unchanged)",
+      "detail": [],
+      "pass": true
+    },
+    {
+      "check": "dry-S1-6827943-20260925T164612Z: VP7 chain ids and networks as in the binding",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "dry-S1-6827943-20260925T164612Z: VP8 read-only observation before every block, linked from its rows",
+      "detail": [],
+      "pass": true
+    },
+    {
+      "check": "dry-S1-6827943-20260925T164612Z: VP9 RPC-returned hash = locally computed hash",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "dry-S1-6827943-20260925T164612Z: VP10 signer recorded as an address only",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "dry-S1-6827943-20260925T164612Z: VP11 Era receipts carry an L1 batch number",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "dry-S2-6827943-20260925T164618Z: VP1 schema (tx.csv header = schema.js COLUMNS)",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "dry-S2-6827943-20260925T164618Z: VP1 tx.csv and tx.jsonl hold the same rows",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "dry-S2-6827943-20260925T164618Z: VP2 one row per scheduled operation, in schedule order",
+      "detail": {
+        "rows": 8,
+        "scheduled": 8
+      },
+      "pass": true
+    },
+    {
+      "check": "dry-S2-6827943-20260925T164618Z: VP2 run mode = dry",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "dry-S2-6827943-20260925T164618Z: VP3 states from the frozen taxonomy; every non-success has an error class",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "dry-S2-6827943-20260925T164618Z: VP4 timing (t0 <= t_hash <= t_receipt; derived latencies = clock differences)",
+      "detail": [],
+      "pass": true
+    },
+    {
+      "check": "dry-S2-6827943-20260925T164618Z: VP5 receipt fee = gasUsed x effectiveGasPrice",
+      "detail": [],
+      "pass": true
+    },
+    {
+      "check": "dry-S2-6827943-20260925T164618Z: VP6 frozen send policy (Sepolia: type 2, maxFee = 2*base + P, fixed limits; Era: type 113, estimate unchanged)",
+      "detail": [],
+      "pass": true
+    },
+    {
+      "check": "dry-S2-6827943-20260925T164618Z: VP7 chain ids and networks as in the binding",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "dry-S2-6827943-20260925T164618Z: VP8 read-only observation before every block, linked from its rows",
+      "detail": [],
+      "pass": true
+    },
+    {
+      "check": "dry-S2-6827943-20260925T164618Z: VP9 RPC-returned hash = locally computed hash",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "dry-S2-6827943-20260925T164618Z: VP10 signer recorded as an address only",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "dry-S2-6827943-20260925T164618Z: VP11 Era receipts carry an L1 batch number",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "dry-S3-6827943-20260925T164624Z: VP1 schema (tx.csv header = schema.js COLUMNS)",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "dry-S3-6827943-20260925T164624Z: VP1 tx.csv and tx.jsonl hold the same rows",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "dry-S3-6827943-20260925T164624Z: VP2 one row per scheduled operation, in schedule order",
+      "detail": {
+        "rows": 8,
+        "scheduled": 8
+      },
+      "pass": true
+    },
+    {
+      "check": "dry-S3-6827943-20260925T164624Z: VP2 run mode = dry",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "dry-S3-6827943-20260925T164624Z: VP3 states from the frozen taxonomy; every non-success has an error class",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "dry-S3-6827943-20260925T164624Z: VP4 timing (t0 <= t_hash <= t_receipt; derived latencies = clock differences)",
+      "detail": [],
+      "pass": true
+    },
+    {
+      "check": "dry-S3-6827943-20260925T164624Z: VP5 receipt fee = gasUsed x effectiveGasPrice",
+      "detail": [],
+      "pass": true
+    },
+    {
+      "check": "dry-S3-6827943-20260925T164624Z: VP6 frozen send policy (Sepolia: type 2, maxFee = 2*base + P, fixed limits; Era: type 113, estimate unchanged)",
+      "detail": [],
+      "pass": true
+    },
+    {
+      "check": "dry-S3-6827943-20260925T164624Z: VP7 chain ids and networks as in the binding",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "dry-S3-6827943-20260925T164624Z: VP8 read-only observation before every block, linked from its rows",
+      "detail": [],
+      "pass": true
+    },
+    {
+      "check": "dry-S3-6827943-20260925T164624Z: VP9 RPC-returned hash = locally computed hash",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "dry-S3-6827943-20260925T164624Z: VP10 signer recorded as an address only",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "dry-S3-6827943-20260925T164624Z: VP11 Era receipts carry an L1 batch number",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "dry-setup-era-sepolia-6827943-20260925T164607Z: VP1 schema (tx.csv header = schema.js COLUMNS)",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "dry-setup-era-sepolia-6827943-20260925T164607Z: VP1 tx.csv and tx.jsonl hold the same rows",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "dry-setup-era-sepolia-6827943-20260925T164607Z: VP2 one row per scheduled operation, in schedule order",
+      "detail": {
+        "rows": 8,
+        "scheduled": 8
+      },
+      "pass": true
+    },
+    {
+      "check": "dry-setup-era-sepolia-6827943-20260925T164607Z: VP2 run mode = dry",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "dry-setup-era-sepolia-6827943-20260925T164607Z: VP3 states from the frozen taxonomy; every non-success has an error class",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "dry-setup-era-sepolia-6827943-20260925T164607Z: VP4 timing (t0 <= t_hash <= t_receipt; derived latencies = clock differences)",
+      "detail": [],
+      "pass": true
+    },
+    {
+      "check": "dry-setup-era-sepolia-6827943-20260925T164607Z: VP5 receipt fee = gasUsed x effectiveGasPrice",
+      "detail": [],
+      "pass": true
+    },
+    {
+      "check": "dry-setup-era-sepolia-6827943-20260925T164607Z: VP6 frozen send policy (Sepolia: type 2, maxFee = 2*base + P, fixed limits; Era: type 113, estimate unchanged)",
+      "detail": [],
+      "pass": true
+    },
+    {
+      "check": "dry-setup-era-sepolia-6827943-20260925T164607Z: VP7 chain ids and networks as in the binding",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "dry-setup-era-sepolia-6827943-20260925T164607Z: VP8 read-only observation before every block, linked from its rows",
+      "detail": [],
+      "pass": true
+    },
+    {
+      "check": "dry-setup-era-sepolia-6827943-20260925T164607Z: VP9 RPC-returned hash = locally computed hash",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "dry-setup-era-sepolia-6827943-20260925T164607Z: VP10 signer recorded as an address only",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "dry-setup-era-sepolia-6827943-20260925T164607Z: VP11 Era receipts carry an L1 batch number",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "dry-setup-sepolia-6827943-20260925T164559Z: VP1 schema (tx.csv header = schema.js COLUMNS)",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "dry-setup-sepolia-6827943-20260925T164559Z: VP1 tx.csv and tx.jsonl hold the same rows",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "dry-setup-sepolia-6827943-20260925T164559Z: VP2 one row per scheduled operation, in schedule order",
+      "detail": {
+        "rows": 8,
+        "scheduled": 8
+      },
+      "pass": true
+    },
+    {
+      "check": "dry-setup-sepolia-6827943-20260925T164559Z: VP2 run mode = dry",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "dry-setup-sepolia-6827943-20260925T164559Z: VP3 states from the frozen taxonomy; every non-success has an error class",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "dry-setup-sepolia-6827943-20260925T164559Z: VP4 timing (t0 <= t_hash <= t_receipt; derived latencies = clock differences)",
+      "detail": [],
+      "pass": true
+    },
+    {
+      "check": "dry-setup-sepolia-6827943-20260925T164559Z: VP5 receipt fee = gasUsed x effectiveGasPrice",
+      "detail": [],
+      "pass": true
+    },
+    {
+      "check": "dry-setup-sepolia-6827943-20260925T164559Z: VP6 frozen send policy (Sepolia: type 2, maxFee = 2*base + P, fixed limits; Era: type 113, estimate unchanged)",
+      "detail": [],
+      "pass": true
+    },
+    {
+      "check": "dry-setup-sepolia-6827943-20260925T164559Z: VP7 chain ids and networks as in the binding",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "dry-setup-sepolia-6827943-20260925T164559Z: VP8 read-only observation before every block, linked from its rows",
+      "detail": [],
+      "pass": true
+    },
+    {
+      "check": "dry-setup-sepolia-6827943-20260925T164559Z: VP9 RPC-returned hash = locally computed hash",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "dry-setup-sepolia-6827943-20260925T164559Z: VP10 signer recorded as an address only",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "dry-setup-sepolia-6827943-20260925T164559Z: VP11 Era receipts carry an L1 batch number",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "VP0 at least one run",
+      "detail": 5,
+      "pass": true
+    }
+  ],
+  "checks_passed": 66,
+  "checks_total": 66,
+  "findings": {
+    "balance_fee_consistency": {
+      "different": 0,
+      "equal": 40,
+      "not_available": 0
+    },
+    "deployed_code_matches_artifact": {
+      "confirmed_deployments": 8,
+      "matches": 8
+    },
+    "era_finality_collection": "build/chainbench/public/dry-run/dry-public-6827943-20260925T164556Z/normal/FINALITY/finality-dry-20260925T164638Z/finality.json",
+    "rows": 40,
+    "sepolia_gas_equal_to_controlled_l1": {
+      "equal": 20,
+      "rows": 20
+    },
+    "states": {
+      "confirmed_success": 40,
+      "reverted": 0,
+      "submitted_no_receipt": 0,
+      "unsent_client_error": 0,
+      "unsent_insufficient_balance": 0,
+      "unsent_preflight_failure": 0
+    }
+  },
+  "mode": "dry",
+  "passed": true,
+  "runs": [
+    "dry-S1-6827943-20260925T164612Z",
+    "dry-S2-6827943-20260925T164618Z",
+    "dry-S3-6827943-20260925T164624Z",
+    "dry-setup-era-sepolia-6827943-20260925T164607Z",
+    "dry-setup-sepolia-6827943-20260925T164559Z"
+  ]
+}

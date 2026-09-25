@@ -1,0 +1,47 @@
+#0 building with "desktop-linux" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 1.31kB done
+#1 WARN: InvalidDefaultArgInFrom: Default value for ARG ${BASE_IMAGE} results in empty or invalid base image name (line 8)
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/node@sha256:48e4b67d85f87bd551df43704e24d252f56cc5f8e9718841aace50f19948f0f9
+#2 DONE 0.0s
+
+#3 [internal] load .dockerignore
+#3 transferring context: 2B done
+#3 DONE 0.0s
+
+#4 [1/5] FROM docker.io/library/node@sha256:48e4b67d85f87bd551df43704e24d252f56cc5f8e9718841aace50f19948f0f9
+#4 resolve docker.io/library/node@sha256:48e4b67d85f87bd551df43704e24d252f56cc5f8e9718841aace50f19948f0f9 done
+#4 DONE 0.0s
+
+#5 [internal] load build context
+#5 transferring context: 71B done
+#5 DONE 0.0s
+
+#6 [3/5] WORKDIR /repo/chainbench/adapters/public
+#6 CACHED
+
+#7 [4/5] COPY package.json package-lock.json ./
+#7 CACHED
+
+#8 [2/5] RUN set -eu; apt-get update; apt-get install -y --no-install-recommends git python3; rm -rf /var/lib/apt/lists/*;     git config --system --add safe.directory '*'; mkdir -p /opt/chainbench;     dpkg-query -W -f='${Package} ${Version}\n' git python3 python3-minimal > /opt/chainbench/APT-PACKAGES.txt
+#8 CACHED
+
+#9 [5/5] RUN npm ci --ignore-scripts --no-audit --no-fund && npm cache clean --force  && node -e "for (const p of ['ethers','zksync-ethers']) console.log(p, require('./node_modules/'+p+'/package.json').version)" > /opt/chainbench/NPM-PACKAGES.txt
+#9 CACHED
+
+#10 exporting to image
+#10 exporting layers done
+#10 exporting manifest sha256:3a0cf3776167447ee37332fd5fc1756b2b6b253bcdf0f38d68bdabbe12fbdb0d done
+#10 exporting config sha256:34381409de95cb54c90b06c63a04ecb34dff0b37bc386b15e0aa2d4ca5d825db done
+#10 exporting attestation manifest sha256:1520c4b0b65f4a17b56193c6c38a3bfde7ac5b74dd4357298586d42135ef7296 done
+#10 exporting manifest list sha256:246e35a06b0e823697fd42c5297739e1c3ecca145d6869adbf19b094d9d8eb49 done
+#10 naming to docker.io/library/chainbench-public:local done
+#10 unpacking to docker.io/library/chainbench-public:local done
+#10 DONE 0.0s
+
+ [33m1 warning found (use docker --debug to expand):
+[0m - InvalidDefaultArgInFrom: Default value for ARG ${BASE_IMAGE} results in empty or invalid base image name (line 8)
+[PASS] chainbench-public image sha256:246e35a06b0e823697fd42c5297739e1c3ecca145d6869adbf19b094d9d8eb49

@@ -1,0 +1,1 @@
+"29.8.0" "Docker Desktop" "aarch64" "overlayfs" [["driver-type","io.containerd.snapshotter.v1"]] 10 16745824256

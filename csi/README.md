@@ -44,7 +44,7 @@ bash scripts/release/save_image.sh                     # campaign host only: doc
 | CSI-PROVER-01 | controlled prover scaling | validated | pending | `results/postcorr-20260925/` (`campaign-20260925T060607Z`, tag `rerun-baseline-20260925`, commit `dc13ddd`, protocol v3) |
 | CSI-CHAIN-LOCAL-01 | controlled on-chain verification (local L1) | validated | no | `results/chain-local-l1-20260925/` (`full-71a5854-20260925T115726Z`: EDR runs a and b and the geth replay; tag `chain-l1-baseline-20260925`, baseline commit `71a5854`, measurement code `fbe3794`, protocol `protocols/chain/CHAIN-PROTOCOL-v1.md` with A1–A5). Validation: `campaigns/chain/CSI-CHAIN-LOCAL-01/VALIDATION.md`. Reviewer entry point: `chainbench/README.md`. |
 | CSI-CHAIN-LOCAL-01-L2 | controlled on-chain verification (local EraVM) | validated | no | The local-EraVM arm of CSI-CHAIN-LOCAL-01, a separate evidence entry (protocol §16, A6 and A7; class B: EraVM under protocol v29, anvil-zksync 0.6.11 built-in system contracts, fixed local fee input). `results/chain-local-l2-20260925/` (`full-l2-e97b69f-20260925T132901Z`: runs a and b; tag `chain-l2-baseline-20260925`, baseline commit `e97b69f`, measurement code `3e0f6c8`). Validation: `campaigns/chain/CSI-CHAIN-LOCAL-01-L2/VALIDATION.md`; archived image: `release/CSI-CHAIN-LOCAL-01-L2/`; reviewer entry point: `chainbench/adapters/eravm/README.md`. The tracked source is the public artifact raw: 54 development-credential banner lines in 18 node start-up logs were sanitised after acceptance (`SANITATION.json`, scientific neutrality in `NEUTRALITY.json`); the exact acquisition raw is archived outside git (`ACQUISITION-RAW.json`). |
-| CSI-CHAIN-PUBLIC-01 | dated public-network case study (Ethereum Sepolia, ZKsync Era Sepolia) | planned | no | No source yet: no public transaction has been sent. Protocol `protocols/chain/CHAIN-PUBLIC-PROTOCOL-v1.md` (draft for freeze); harness commit `05c9bfe`; frozen inputs `campaigns/chain/CSI-CHAIN-PUBLIC-01/inputs/`; engineering dry run 92/92 (`readiness/`); author inputs open. Reviewer entry point: `chainbench/adapters/public/README.md`. |
+| CSI-CHAIN-PUBLIC-01 | dated public-network case study (Ethereum Sepolia, ZKsync Era Sepolia) | planned | no | No source yet: no public transaction has been sent. Protocol `protocols/chain/CHAIN-PUBLIC-PROTOCOL-v1.md` (draft for freeze); harness commit `6827943` (measurement code `8674988`); frozen public image `sha256:246e35a0…` (`chainbench/adapters/public/ARCHIVE.json`); frozen inputs `campaigns/chain/CSI-CHAIN-PUBLIC-01/inputs/`; session times, frozen endpoints and P recorded; container dry run 92/92 and pre-freeze checks (`readiness/`); signer, funding, results label and baseline tag open. Reviewer entry point: `chainbench/adapters/public/README.md`. |
 
 ### Chain campaigns (`campaigns/chain/`)
 
@@ -93,8 +93,8 @@ same depth-11 artifacts and PS-01 proofs as the controlled study (`campaigns/cha
 against the frozen L1/L2 build manifests and raw rows). It records deployability, observed price and paid fee, endpoint
 request/receipt behaviour, public `gasUsed`, client/RPC failures and Era batch lifecycle as dated observations; it is not
 a cost benchmark and makes no inference beyond them. Adapter: `chainbench/adapters/public/` (`doctor-public`,
-`dry-run-public`, `check-public-inputs`, `derive-public`; live commands for the author only). Nothing has been sent to a
-public network yet.
+`dry-run-public`, `check-public-inputs`, `test-guards-public`, `derive-public`; live commands for the author only, and
+only in the frozen public image). Nothing has been sent to a public network yet.
 
 The pre-correction July 2026 files are superseded; their provenance is `results/PRECORRECTION-2026-07.sha256`,
 whose digest each campaign record carries as `superseded_campaign`.

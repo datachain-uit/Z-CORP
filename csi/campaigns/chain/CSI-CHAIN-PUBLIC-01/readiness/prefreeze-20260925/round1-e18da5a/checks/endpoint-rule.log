@@ -1,0 +1,14 @@
+PASS live ws://rpc.example.org -> refuse (endpoint_not_https)
+PASS live wss://rpc.example.org -> refuse (endpoint_not_https)
+PASS live wss://sepolia.era.zksync.dev/ws -> refuse (endpoint_not_https)
+PASS live http://rpc.example.org -> refuse (endpoint_not_https)
+PASS live https://127.0.0.1:8545 -> refuse (endpoint_loopback_live)
+PASS live https://localhost:8545 -> refuse (endpoint_loopback_live)
+PASS live https://[::1]:8545 -> refuse (endpoint_loopback_live)
+PASS live ftp://rpc.example.org -> refuse (endpoint_not_https)
+PASS live not a url -> refuse (bad_endpoint)
+PASS live https://sepolia.era.zksync.dev -> accept
+PASS live https://rpc.example.org/v2/abc -> accept
+PASS dry https://sepolia.era.zksync.dev -> refuse (endpoint_not_loopback_dry)
+PASS dry http://127.0.0.1:8545 -> accept
+ENDPOINT-RULE: all pass (13 cases)

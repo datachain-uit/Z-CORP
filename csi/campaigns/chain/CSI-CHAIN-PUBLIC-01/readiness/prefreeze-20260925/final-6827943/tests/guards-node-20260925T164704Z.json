@@ -1,0 +1,210 @@
+[
+  {
+    "name": "image record: a consistent index -> manifest -> config chain loads",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "name": "image record: tampered image_id -> image_record_inconsistent",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "name": "image record: tampered manifest_digest -> image_record_inconsistent",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "name": "image record: tampered config_digest -> image_record_inconsistent",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "name": "image record: tampered config blob -> image_record_inconsistent",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "name": "image record: tampered architecture -> image_record_inconsistent",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "name": "image record: tampered rootfs layers -> image_record_inconsistent",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "name": "image record: tampered archive sha256 format -> image_record_inconsistent",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "name": "image record: missing record -> image_record_missing",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "name": "image record: invalid JSON -> image_record_inconsistent",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "name": "live image guard: no wrapper identity -> image_unverified",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "name": "live image guard: identity of a non-frozen image (check != pass) -> image_unverified",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "name": "live image guard: image_id differs from the frozen record -> image_mismatch",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "name": "live image guard: manifest_digest differs from the frozen record -> image_mismatch",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "name": "live image guard: config_digest differs from the frozen record -> image_mismatch",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "name": "live image guard: archive_sha256 differs from the frozen record -> image_mismatch",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "name": "live image guard: architecture differs from the frozen record -> image_mismatch",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "name": "live image guard: platform differs from the frozen record -> image_mismatch",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "name": "live image guard: the exact frozen identity passes and is returned for run.json (index, manifest, config, archive, architecture, platform)",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "name": "the committed frozen image record (chainbench/adapters/public/ARCHIVE.json) verifies",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "name": "live setup without the wrapper's image identity -> image_unverified (exit 3), before the key is looked at",
+    "pass": true,
+    "detail": {
+      "status": 3,
+      "refusal": "image_unverified"
+    }
+  },
+  {
+    "name": "live session without the wrapper's image identity -> image_unverified (exit 3)",
+    "pass": true,
+    "detail": {
+      "status": 3,
+      "refusal": "image_unverified"
+    }
+  },
+  {
+    "name": "live finality collection without the wrapper's image identity -> image_unverified (exit 3)",
+    "pass": true,
+    "detail": {
+      "status": 3,
+      "refusal": "image_unverified"
+    }
+  },
+  {
+    "name": "live setup with an identity that differs from the frozen record -> image_mismatch (exit 3)",
+    "pass": true,
+    "detail": {
+      "refusal": "image_mismatch"
+    }
+  },
+  {
+    "name": "live setup with the exact frozen identity passes the image guard; the next guard refuses (no key configured; nothing sent)",
+    "pass": true,
+    "detail": {
+      "refusal": "no_key"
+    }
+  },
+  {
+    "name": "endpoint policy: the frozen primary -> primary",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "name": "endpoint policy: the frozen primary under another label -> endpoint_label_mismatch",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "name": "endpoint policy: the validated secondary without a recorded deviation -> secondary_without_deviation (no automatic fail-over)",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "name": "endpoint policy: the validated secondary with a recorded deviation -> secondary (deviation id recorded)",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "name": "endpoint policy: any other endpoint -> endpoint_not_frozen",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "name": "endpoint policy: no frozen primary -> endpoints_not_frozen",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "name": "derive VP12: frozen image recorded and re-verified after the run -> pass",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "name": "derive VP12: no post-flight image check -> fail",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "name": "derive VP12: failed post-flight image check -> fail",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "name": "derive VP12: another image -> fail",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "name": "derive VP13: frozen primary, rows carry it -> pass",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "name": "derive VP13: secondary without a recorded deviation -> fail",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "name": "derive VP13: secondary with a recorded deviation, rows carry it -> pass",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "name": "derive VP13: a row that does not carry the endpoint used -> fail",
+    "pass": true,
+    "detail": null
+  }
+]

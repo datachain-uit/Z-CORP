@@ -1,0 +1,60 @@
+[
+    {
+        "Id": "sha256:246e35a06b0e823697fd42c5297739e1c3ecca145d6869adbf19b094d9d8eb49",
+        "RepoTags": [
+            "chainbench-public:local"
+        ],
+        "RepoDigests": [
+            "chainbench-public@sha256:246e35a06b0e823697fd42c5297739e1c3ecca145d6869adbf19b094d9d8eb49"
+        ],
+        "Comment": "buildkit.dockerfile.v0",
+        "Created": "2026-09-25T15:41:52.093778921Z",
+        "Config": {
+            "Env": [
+                "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+                "NODE_VERSION=22.23.2",
+                "YARN_VERSION=1.22.22"
+            ],
+            "Entrypoint": [
+                "docker-entrypoint.sh"
+            ],
+            "Cmd": [
+                "node"
+            ],
+            "WorkingDir": "/repo/chainbench/adapters/public"
+        },
+        "Architecture": "arm64",
+        "Os": "linux",
+        "Size": 572804816,
+        "RootFS": {
+            "Type": "layers",
+            "Layers": [
+                "sha256:055ab12bd547e17a0630037f06a186cf405e3f61bb03a614562ca8f5ab52a8be",
+                "sha256:e76eb0057388650f06e5bc28f5b0a364f8eb4fe2b55c9fdbabffa88a60c8b238",
+                "sha256:33ad25791663a5be0877961fcfa1089118ff9a10aee4374cab4814d1041722f0",
+                "sha256:28a916d0b60318fad72490a42c71e7e7ed4e7280e00fde660fa45fb0b1001fb1",
+                "sha256:9d23ac4f6a5b69f957d056590b30b91a3e95580bbb99a8559e0f68d7dab6d767",
+                "sha256:28c86ca537aeb4e413ca7e85187165e8e149eda1381ac8978844de4fbdac128c",
+                "sha256:0a51f6ab74d7162ce71d70026b16f60d8f9992e8b34704ddbc364d13572fc538",
+                "sha256:b77289473d20195dab738406b5b8ab5909358b295605f0987ddc45d61b6d44be",
+                "sha256:f2b26e0f2d7e630f8b4a21cb5a05b204b3f7cc5aa6a83b118b4a79b13a7be71e"
+            ]
+        },
+        "Metadata": {
+            "LastTagTime": "2026-09-25T16:41:00.575207751Z"
+        },
+        "Descriptor": {
+            "mediaType": "application/vnd.oci.image.index.v1+json",
+            "digest": "sha256:246e35a06b0e823697fd42c5297739e1c3ecca145d6869adbf19b094d9d8eb49",
+            "size": 856
+        },
+        "Identity": {
+            "Build": [
+                {
+                    "Ref": "xi9r9vrqsotue310iexzpzgv7",
+                    "CreatedAt": "2026-09-25T16:41:00.58238171Z"
+                }
+            ]
+        }
+    }
+]

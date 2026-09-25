@@ -1,0 +1,35 @@
+== era-sepolia [candidate secondary (read-only compatibility)] (Alchemy host zksync-sepolia.g.alchemy.com)
+  ok   eth_chainId [chainId]
+  ok   web3_clientVersion [clientVersion]
+  ok   eth_blockNumber [blockNumber]
+  ok   eth_getBlockByNumber [latestBlock]
+  ok   eth_getBlockByNumber [blockByNumber]
+  ok   eth_gasPrice [gasPrice]
+  ok   eth_getBalance [balanceLatest]
+  ok   eth_getBalance [balanceAtBlock]
+  ok   eth_getTransactionCount [nonceLatest]
+  ok   eth_getTransactionCount [noncePending]
+  ok   eth_getCode [code]
+  ok   eth_call [call]
+  ok   eth_call [callAtBlock]
+  ok   eth_getTransactionReceipt [receiptUnknown]
+  ok   eth_getTransactionByHash [txUnknown]
+  miss eth_config [ethConfig] — http  HTTP 400
+  ok   zks_getProtocolVersion [protocolVersion]
+  ok   zks_getFeeParams [feeParams]
+  ok   zks_L1BatchNumber [l1BatchNumber]
+  ok   zks_getL1BatchDetails [l1BatchDetails]
+  ok   zks_getL1BatchDetails [l1BatchDetailsPrev]
+  ok   zks_getL1BatchDetails [l1BatchDetailsOld]
+  ok   zks_getBlockDetails [blockDetails]
+  ok   zks_getTransactionDetails [txDetailsUnknown]
+  ok   zks_estimateFee [estimateFeeCall]
+  ok   zks_estimateFee [estimateDeploy:Groth16LegacyVerifierDepth11]
+  ok   zks_estimateFee [estimateDeploy:CredentialManagerGroth16]
+  ok   zks_estimateFee [estimateDeploy:PlonkVerifierDepth11]
+  ok   zks_estimateFee [estimateDeploy:CredentialManagerPlonk]
+  miss chainbench_unknownMethod [errUnknownMethod] — http  HTTP 400
+  miss zks_estimateFee [errInsufficientFunds] — jsonrpc 3 insufficient funds for gas + value. balance: 0, fee: 0, value: 1
+  miss eth_call [errRevert] — jsonrpc 3 execution reverted
+COVERAGE era-sepolia [candidate secondary (read-only compatibility)]: 18/18 required methods; chain id 300; historical state true; unknown hash -> null true; protocol 29; finality fields true; fee estimates false; errors: errUnknownMethod=HTTP 400/-32600, errInsufficientFunds=jsonrpc/3, errRevert=jsonrpc/3 -> NOT COMPATIBLE: 
+RPC-PROBE: nothing was signed or sent; record build/chainbench/public/preflight/records/prefreeze-secondary-20260925T164103Z/rpc-compat-secondary.json

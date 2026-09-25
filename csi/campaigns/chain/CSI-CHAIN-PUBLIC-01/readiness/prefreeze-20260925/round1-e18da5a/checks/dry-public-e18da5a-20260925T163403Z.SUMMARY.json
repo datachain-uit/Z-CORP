@@ -1,0 +1,715 @@
+{
+  "kind": "engineering dry run (NOT scientific data)",
+  "dry_id": "dry-public-e18da5a-20260925T163403Z",
+  "commit": "e18da5ac7415de7c7ebbae244c827ab5dfc8d622",
+  "node": "v22.23.2",
+  "mode": "dry (mock endpoints on 127.0.0.1; ephemeral key; no public network; no test ETH)",
+  "signer_address_ephemeral": "0x39a8Cfe33418b32F6D1569A06760952D5f872548",
+  "image": {
+    "image_id": "sha256:7e23ea8113a279b1d38be9ebb7eb374408661e8bb064e475c72030ce853f3724",
+    "manifest_digest": "sha256:3a0cf3776167447ee37332fd5fc1756b2b6b253bcdf0f38d68bdabbe12fbdb0d",
+    "config_digest": "sha256:34381409de95cb54c90b06c63a04ecb34dff0b37bc386b15e0aa2d4ca5d825db",
+    "archive_sha256": "a492ad74c083f27b7261120453539aa2a4c1b7bdf9f21b033d44cfcc21ab4992",
+    "architecture": "arm64",
+    "platform": "linux/arm64",
+    "verified_by_wrapper": "pass",
+    "precheck_utc": "2026-09-25T16:34:02Z"
+  },
+  "updated_utc": "2026-09-25T16:35:10.539Z",
+  "last_steps": [
+    "units",
+    "refusals",
+    "normal",
+    "faults"
+  ],
+  "last_started_utc": "2026-09-25T16:34:03.063Z",
+  "results": [
+    {
+      "step": "units",
+      "expectation": "development accounts: first 20 of the reproducibility mnemonic + 10 legacy rich wallets are refused",
+      "pass": true,
+      "detail": {
+        "size": 30
+      }
+    },
+    {
+      "step": "units",
+      "expectation": "endpoint rule live http://127.0.0.1:8545 -> endpoint_not_https",
+      "pass": true,
+      "detail": "endpoint_not_https"
+    },
+    {
+      "step": "units",
+      "expectation": "endpoint rule live ws://rpc.example.org -> endpoint_not_https",
+      "pass": true,
+      "detail": "endpoint_not_https"
+    },
+    {
+      "step": "units",
+      "expectation": "endpoint rule live wss://rpc.example.org -> endpoint_not_https",
+      "pass": true,
+      "detail": "endpoint_not_https"
+    },
+    {
+      "step": "units",
+      "expectation": "endpoint rule live https://127.0.0.1:8545 -> endpoint_loopback_live",
+      "pass": true,
+      "detail": "endpoint_loopback_live"
+    },
+    {
+      "step": "units",
+      "expectation": "endpoint rule live https://localhost -> endpoint_loopback_live",
+      "pass": true,
+      "detail": "endpoint_loopback_live"
+    },
+    {
+      "step": "units",
+      "expectation": "endpoint rule live https://rpc.example.org -> ok",
+      "pass": true,
+      "detail": "ok"
+    },
+    {
+      "step": "units",
+      "expectation": "endpoint rule dry https://rpc.example.org -> endpoint_not_loopback_dry",
+      "pass": true,
+      "detail": "endpoint_not_loopback_dry"
+    },
+    {
+      "step": "units",
+      "expectation": "endpoint rule dry http://localhost:8545 -> endpoint_not_loopback_dry",
+      "pass": true,
+      "detail": "endpoint_not_loopback_dry"
+    },
+    {
+      "step": "units",
+      "expectation": "endpoint rule dry http://127.0.0.1:18545 -> ok",
+      "pass": true,
+      "detail": "ok"
+    },
+    {
+      "step": "units",
+      "expectation": "chain id 11155111 on the sepolia profile -> ok",
+      "pass": true,
+      "detail": "ok"
+    },
+    {
+      "step": "units",
+      "expectation": "chain id 300 on the era-sepolia profile -> ok",
+      "pass": true,
+      "detail": "ok"
+    },
+    {
+      "step": "units",
+      "expectation": "chain id 300 on the sepolia profile -> cross_network",
+      "pass": true,
+      "detail": "cross_network"
+    },
+    {
+      "step": "units",
+      "expectation": "chain id 11155111 on the era-sepolia profile -> cross_network",
+      "pass": true,
+      "detail": "cross_network"
+    },
+    {
+      "step": "units",
+      "expectation": "chain id 1 on the sepolia profile -> refused_chain_id",
+      "pass": true,
+      "detail": "refused_chain_id"
+    },
+    {
+      "step": "units",
+      "expectation": "chain id 324 on the era-sepolia profile -> refused_chain_id",
+      "pass": true,
+      "detail": "refused_chain_id"
+    },
+    {
+      "step": "units",
+      "expectation": "chain id 31337 on the sepolia profile -> refused_chain_id",
+      "pass": true,
+      "detail": "refused_chain_id"
+    },
+    {
+      "step": "units",
+      "expectation": "chain id 1337 on the sepolia profile -> refused_chain_id",
+      "pass": true,
+      "detail": "refused_chain_id"
+    },
+    {
+      "step": "units",
+      "expectation": "chain id 260 on the era-sepolia profile -> refused_chain_id",
+      "pass": true,
+      "detail": "refused_chain_id"
+    },
+    {
+      "step": "units",
+      "expectation": "chain id 270 on the era-sepolia profile -> refused_chain_id",
+      "pass": true,
+      "detail": "refused_chain_id"
+    },
+    {
+      "step": "units",
+      "expectation": "chain id 5 on the sepolia profile -> chain_id_mismatch",
+      "pass": true,
+      "detail": "chain_id_mismatch"
+    },
+    {
+      "step": "units",
+      "expectation": "schedule: 40 transactions (16 setup + 24 verification)",
+      "pass": true,
+      "detail": 40
+    },
+    {
+      "step": "units",
+      "expectation": "schedule: every session block alternates the backends and uses both frozen proofs of each backend",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "step": "units",
+      "expectation": "schedule: network order alternates across sessions",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "step": "units",
+      "expectation": "frozen inputs load and verify (INPUTS.sha256, IDENTITY.json)",
+      "pass": true,
+      "detail": {
+        "identity_checks": 43
+      }
+    },
+    {
+      "step": "units",
+      "expectation": "recorder refuses to write content that contains the signing key",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "step": "refusals",
+      "expectation": "no key configured -> refused (no_key)",
+      "pass": true,
+      "detail": {
+        "exit": 3,
+        "msg": "[REFUSED] no_key: no signing key configured (CHAINBENCH_PUBLIC_KEY_FILE or CHAINBENCH_PUBLIC_PRIVATE_KEY)"
+      }
+    },
+    {
+      "step": "refusals",
+      "expectation": "file and environment key together -> refused (two_key_sources)",
+      "pass": true,
+      "detail": {
+        "exit": 3,
+        "msg": "[REFUSED] two_key_sources: set either CHAINBENCH_PUBLIC_KEY_FILE or CHAINBENCH_PUBLIC_PRIVATE_KEY, not both"
+      }
+    },
+    {
+      "step": "refusals",
+      "expectation": "relative key path -> refused (key_file_not_absolute)",
+      "pass": true,
+      "detail": {
+        "exit": 3,
+        "msg": "[REFUSED] key_file_not_absolute: CHAINBENCH_PUBLIC_KEY_FILE must be an absolute path outside the repository"
+      }
+    },
+    {
+      "step": "refusals",
+      "expectation": "key file inside the repository -> refused (key_file_in_repository)",
+      "pass": true,
+      "detail": {
+        "exit": 3,
+        "msg": "[REFUSED] key_file_in_repository: the key file is inside the repository; keep it outside (it must never be committed)"
+      }
+    },
+    {
+      "step": "refusals",
+      "expectation": "group/world-readable key file -> refused (key_file_permissions)",
+      "pass": true,
+      "detail": {
+        "exit": 3,
+        "msg": "[REFUSED] key_file_permissions: the key file is readable by group or others; chmod 600 it"
+      }
+    },
+    {
+      "step": "refusals",
+      "expectation": "mnemonic instead of a key -> refused (mnemonic_refused)",
+      "pass": true,
+      "detail": {
+        "exit": 3,
+        "msg": "[REFUSED] mnemonic_refused: a mnemonic is not accepted; supply the dedicated account's raw private key"
+      }
+    },
+    {
+      "step": "refusals",
+      "expectation": "malformed key -> refused (key_format)",
+      "pass": true,
+      "detail": {
+        "exit": 3,
+        "msg": "[REFUSED] key_format: the key must be one 0x-prefixed 32-byte hex string"
+      }
+    },
+    {
+      "step": "refusals",
+      "expectation": "Hardhat/Anvil development account 0 -> refused (dev_account)",
+      "pass": true,
+      "detail": {
+        "exit": 3,
+        "msg": "[REFUSED] dev_account: the signer 0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266 is a known development account (account 0 of the development mnemonic in chainbench/adapters/eravm/lib/constants.js); a dedicated funded key is required"
+      }
+    },
+    {
+      "step": "refusals",
+      "expectation": "development key through the environment -> refused (dev_account)",
+      "pass": true,
+      "detail": {
+        "exit": 3,
+        "msg": "[REFUSED] dev_account: the signer 0x70997970C51812dc3A010C7d01b50e0d17dc79C8 is a known development account (account 1 of the development mnemonic in chainbench/adapters/eravm/lib/constants.js); a dedicated funded key is required"
+      }
+    },
+    {
+      "step": "refusals",
+      "expectation": "dry run pointed at a non-loopback endpoint -> refused (endpoint_not_loopback_dry)",
+      "pass": true,
+      "detail": {
+        "exit": 3,
+        "msg": "[REFUSED] endpoint_not_loopback_dry: the dry run accepts only http://127.0.0.1:<port> endpoints (never a public network)"
+      }
+    },
+    {
+      "step": "refusals",
+      "expectation": "live mode without --confirm -> refused (not_confirmed)",
+      "pass": true,
+      "detail": "[REFUSED] not_confirmed: live mode sends real transactions; repeat the target with --confirm setup-sepolia"
+    },
+    {
+      "step": "refusals",
+      "expectation": "no transaction reached any endpoint during the refusal cases",
+      "pass": true,
+      "detail": {
+        "sends": 0
+      }
+    },
+    {
+      "step": "refusals",
+      "expectation": "sepolia endpoint reporting chain id 31337 -> refused_chain_id; 8 rows unsent_preflight_failure; no eth_sendRawTransaction",
+      "pass": true,
+      "detail": {
+        "exit": 0,
+        "rows": 8,
+        "classes": [
+          "chain_check_refused_chain_id"
+        ]
+      }
+    },
+    {
+      "step": "refusals",
+      "expectation": "sepolia endpoint reporting chain id 300 -> cross_network; 8 rows unsent_preflight_failure; no eth_sendRawTransaction",
+      "pass": true,
+      "detail": {
+        "exit": 0,
+        "rows": 8,
+        "classes": [
+          "chain_check_cross_network"
+        ]
+      }
+    },
+    {
+      "step": "refusals",
+      "expectation": "sepolia endpoint reporting chain id 1 -> refused_chain_id; 8 rows unsent_preflight_failure; no eth_sendRawTransaction",
+      "pass": true,
+      "detail": {
+        "exit": 0,
+        "rows": 8,
+        "classes": [
+          "chain_check_refused_chain_id"
+        ]
+      }
+    },
+    {
+      "step": "refusals",
+      "expectation": "sepolia endpoint reporting chain id 5 -> chain_id_mismatch; 8 rows unsent_preflight_failure; no eth_sendRawTransaction",
+      "pass": true,
+      "detail": {
+        "exit": 0,
+        "rows": 8,
+        "classes": [
+          "chain_check_chain_id_mismatch"
+        ]
+      }
+    },
+    {
+      "step": "refusals",
+      "expectation": "era-sepolia endpoint reporting chain id 260 -> refused_chain_id; 8 rows unsent_preflight_failure; no eth_sendRawTransaction",
+      "pass": true,
+      "detail": {
+        "exit": 0,
+        "rows": 8,
+        "classes": [
+          "chain_check_refused_chain_id"
+        ]
+      }
+    },
+    {
+      "step": "refusals",
+      "expectation": "era-sepolia endpoint reporting chain id 11155111 -> cross_network; 8 rows unsent_preflight_failure; no eth_sendRawTransaction",
+      "pass": true,
+      "detail": {
+        "exit": 0,
+        "rows": 8,
+        "classes": [
+          "chain_check_cross_network"
+        ]
+      }
+    },
+    {
+      "step": "refusals",
+      "expectation": "era-sepolia endpoint reporting chain id 324 -> refused_chain_id; 8 rows unsent_preflight_failure; no eth_sendRawTransaction",
+      "pass": true,
+      "detail": {
+        "exit": 0,
+        "rows": 8,
+        "classes": [
+          "chain_check_refused_chain_id"
+        ]
+      }
+    },
+    {
+      "step": "normal",
+      "expectation": "setup --network sepolia: exit 0, 8 rows, all confirmed_success",
+      "pass": true,
+      "detail": {
+        "exit": 0,
+        "states": [],
+        "err": ""
+      }
+    },
+    {
+      "step": "normal",
+      "expectation": "sepolia setup: deployed code equals the frozen artifact, post-setup checks pass (verifier, owner, issuer, root)",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "step": "normal",
+      "expectation": "setup --network sepolia: RPC hash = locally computed hash; t0 <= t_hash <= t_receipt; latencies consistent",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "step": "normal",
+      "expectation": "setup --network sepolia: receipt fee = gasUsed x effectiveGasPrice = balance change at the inclusion block",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "step": "normal",
+      "expectation": "setup --network sepolia: Sepolia send policy (type 2, maxFee = 2*base + P, frozen gas limits) and EIP-1559 effective price",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "step": "normal",
+      "expectation": "setup --network era-sepolia: exit 0, 8 rows, all confirmed_success",
+      "pass": true,
+      "detail": {
+        "exit": 0,
+        "states": [],
+        "err": ""
+      }
+    },
+    {
+      "step": "normal",
+      "expectation": "era-sepolia setup: deployed code equals the frozen artifact, post-setup checks pass (verifier, owner, issuer, root)",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "step": "normal",
+      "expectation": "setup --network era-sepolia: RPC hash = locally computed hash; t0 <= t_hash <= t_receipt; latencies consistent",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "step": "normal",
+      "expectation": "setup --network era-sepolia: receipt fee = gasUsed x effectiveGasPrice = balance change at the inclusion block",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "step": "normal",
+      "expectation": "setup --network era-sepolia: Era send policy (type 113, zks_estimateFee values unchanged), batch number and details fee recorded",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "step": "normal",
+      "expectation": "session --session S1: exit 0, 8 rows, all confirmed_success",
+      "pass": true,
+      "detail": {
+        "exit": 0,
+        "states": [],
+        "err": ""
+      }
+    },
+    {
+      "step": "normal",
+      "expectation": "session --session S1: RPC hash = locally computed hash; t0 <= t_hash <= t_receipt; latencies consistent",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "step": "normal",
+      "expectation": "session --session S1: receipt fee = gasUsed x effectiveGasPrice = balance change at the inclusion block",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "step": "normal",
+      "expectation": "session --session S1: Sepolia send policy (type 2, maxFee = 2*base + P, frozen gas limits) and EIP-1559 effective price",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "step": "normal",
+      "expectation": "session --session S1: Era send policy (type 113, zks_estimateFee values unchanged), batch number and details fee recorded",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "step": "normal",
+      "expectation": "session --session S1: verification calldata = the frozen controlled-study calldata (both backends)",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "step": "normal",
+      "expectation": "session --session S1: read-only prechecks (verifyCredential eth_call) pass before sending",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "step": "normal",
+      "expectation": "session --session S1: pre- and post-block network observations recorded",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "step": "normal",
+      "expectation": "session --session S2: exit 0, 8 rows, all confirmed_success",
+      "pass": true,
+      "detail": {
+        "exit": 0,
+        "states": [],
+        "err": ""
+      }
+    },
+    {
+      "step": "normal",
+      "expectation": "session --session S2: RPC hash = locally computed hash; t0 <= t_hash <= t_receipt; latencies consistent",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "step": "normal",
+      "expectation": "session --session S2: receipt fee = gasUsed x effectiveGasPrice = balance change at the inclusion block",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "step": "normal",
+      "expectation": "session --session S2: Sepolia send policy (type 2, maxFee = 2*base + P, frozen gas limits) and EIP-1559 effective price",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "step": "normal",
+      "expectation": "session --session S2: Era send policy (type 113, zks_estimateFee values unchanged), batch number and details fee recorded",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "step": "normal",
+      "expectation": "session --session S2: verification calldata = the frozen controlled-study calldata (both backends)",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "step": "normal",
+      "expectation": "session --session S2: read-only prechecks (verifyCredential eth_call) pass before sending",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "step": "normal",
+      "expectation": "session --session S2: pre- and post-block network observations recorded",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "step": "normal",
+      "expectation": "session --session S3: exit 0, 8 rows, all confirmed_success",
+      "pass": true,
+      "detail": {
+        "exit": 0,
+        "states": [],
+        "err": ""
+      }
+    },
+    {
+      "step": "normal",
+      "expectation": "session --session S3: RPC hash = locally computed hash; t0 <= t_hash <= t_receipt; latencies consistent",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "step": "normal",
+      "expectation": "session --session S3: receipt fee = gasUsed x effectiveGasPrice = balance change at the inclusion block",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "step": "normal",
+      "expectation": "session --session S3: Sepolia send policy (type 2, maxFee = 2*base + P, frozen gas limits) and EIP-1559 effective price",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "step": "normal",
+      "expectation": "session --session S3: Era send policy (type 113, zks_estimateFee values unchanged), batch number and details fee recorded",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "step": "normal",
+      "expectation": "session --session S3: verification calldata = the frozen controlled-study calldata (both backends)",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "step": "normal",
+      "expectation": "session --session S3: read-only prechecks (verifyCredential eth_call) pass before sending",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "step": "normal",
+      "expectation": "session --session S3: pre- and post-block network observations recorded",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "step": "normal",
+      "expectation": "collect-era-finality: every Era transaction has an L1 batch with commit, prove and execute times (post hoc, separate from receipt latency)",
+      "pass": true,
+      "detail": {
+        "exit": 0,
+        "n": 20,
+        "err": ""
+      }
+    },
+    {
+      "step": "normal",
+      "expectation": "normal: derive_chain_public.py validation passes",
+      "pass": true,
+      "detail": {
+        "exit": 0,
+        "checks": "66/66",
+        "err": ""
+      }
+    },
+    {
+      "step": "faults",
+      "expectation": "fault root: sepolia setup confirmed",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "step": "faults",
+      "expectation": "fault root: era-sepolia setup confirmed",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "step": "faults",
+      "expectation": "Sepolia block: RPC error on send, revert, no receipt, halt after no receipt",
+      "pass": true,
+      "detail": [
+        "unsent_client_error/send_rpc_error",
+        "reverted/status_0",
+        "submitted_no_receipt/receipt_timeout",
+        "unsent_preflight_failure/halted_after_no_receipt"
+      ]
+    },
+    {
+      "step": "faults",
+      "expectation": "Era block: node insufficient funds, fee-estimate RPC error, send error with the transaction known to the node, balance below requirement",
+      "pass": true,
+      "detail": [
+        "unsent_insufficient_balance/node_insufficient_funds",
+        "unsent_client_error/fee_rpc_jsonrpc",
+        "confirmed_success/send_error_tx_known",
+        "unsent_insufficient_balance/balance_below_required"
+      ]
+    },
+    {
+      "step": "faults",
+      "expectation": "revert reason recovered by eth_call replay at the parent block",
+      "pass": true,
+      "detail": "Invalid proof"
+    },
+    {
+      "step": "faults",
+      "expectation": "receipt polling survives injected poll errors (counted, not hidden)",
+      "pass": true,
+      "detail": {
+        "polls": 3,
+        "poll_errors": 2
+      }
+    },
+    {
+      "step": "faults",
+      "expectation": "no-receipt transaction keeps its hash and t_hash; no t_receipt; never re-sent",
+      "pass": true,
+      "detail": {
+        "sends": 3
+      }
+    },
+    {
+      "step": "faults",
+      "expectation": "unsent operations have no hash and consumed no nonce",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "step": "faults",
+      "expectation": "faults: derive_chain_public.py validation passes",
+      "pass": true,
+      "detail": {
+        "exit": 0,
+        "checks": "40/40",
+        "err": ""
+      }
+    },
+    {
+      "step": "faults",
+      "expectation": "setup: code mismatch is detected; dependent Groth16 operations are not sent (dependency_missing); PLONK proceeds",
+      "pass": true,
+      "detail": [
+        "confirmed_success//0",
+        "unsent_preflight_failure/dependency_missing/",
+        "unsent_preflight_failure/dependency_missing/",
+        "unsent_preflight_failure/dependency_missing/"
+      ]
+    },
+    {
+      "step": "faults",
+      "expectation": "session without a verified setup: all 8 operations unsent_preflight_failure (setup_incomplete); nothing sent",
+      "pass": true,
+      "detail": {
+        "sends_during_session": 0
+      }
+    }
+  ],
+  "passed": 92,
+  "total": 92,
+  "all_pass": true
+}

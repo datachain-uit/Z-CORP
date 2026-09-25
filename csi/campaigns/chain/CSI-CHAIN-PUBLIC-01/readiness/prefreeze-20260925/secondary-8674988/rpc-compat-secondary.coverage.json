@@ -1,0 +1,116 @@
+{
+  "kind": "rpc-compatibility coverage, recomputed offline from a recorded probe",
+  "tool": "chainbench/adapters/public/tools/rpc_compat_public.js --rescore",
+  "source": "build/chainbench/public/preflight/records/prefreeze-secondary-20260925T164103Z/rpc-compat-secondary.json",
+  "source_sha256": "c06feade6cbcc4abce46689620acb043e0c8214baf55c247d90b0c217a7cc6e2",
+  "recorded_coverage_superseded": [
+    {
+      "network": "era-sepolia",
+      "compatible": false
+    }
+  ],
+  "networks": [
+    {
+      "network": "era-sepolia",
+      "role": "candidate secondary (read-only compatibility)",
+      "endpoint": {
+        "label": "Alchemy",
+        "host": "zksync-sepolia.g.alchemy.com",
+        "scheme": "https",
+        "url_sha256": "7d4cec0f512d9dc2768cff439d28c12a1d4cfcf3ba088dca288a7317d3ff1921",
+        "url": null
+      },
+      "stopped": null,
+      "coverage": {
+        "required_methods": [
+          "eth_chainId",
+          "web3_clientVersion",
+          "eth_blockNumber",
+          "eth_getBlockByNumber",
+          "eth_gasPrice",
+          "eth_getBalance",
+          "eth_getTransactionCount",
+          "eth_getCode",
+          "eth_call",
+          "eth_getTransactionReceipt",
+          "eth_getTransactionByHash",
+          "zks_estimateFee",
+          "zks_getProtocolVersion",
+          "zks_getFeeParams",
+          "zks_L1BatchNumber",
+          "zks_getL1BatchDetails",
+          "zks_getBlockDetails",
+          "zks_getTransactionDetails"
+        ],
+        "methods_ok": [
+          "eth_chainId",
+          "web3_clientVersion",
+          "eth_blockNumber",
+          "eth_getBlockByNumber",
+          "eth_gasPrice",
+          "eth_getBalance",
+          "eth_getTransactionCount",
+          "eth_getCode",
+          "eth_call",
+          "eth_getTransactionReceipt",
+          "eth_getTransactionByHash",
+          "zks_estimateFee",
+          "zks_getProtocolVersion",
+          "zks_getFeeParams",
+          "zks_L1BatchNumber",
+          "zks_getL1BatchDetails",
+          "zks_getBlockDetails",
+          "zks_getTransactionDetails"
+        ],
+        "missing": [],
+        "chain_id": 300,
+        "historical_state": true,
+        "unknown_hash_returns_null": true,
+        "protocol_version": 29,
+        "finality_fields": {
+          "committedAt": true,
+          "provenAt": true,
+          "executedAt": true,
+          "commitTxHash": true,
+          "proveTxHash": true,
+          "executeTxHash": true,
+          "commitChainId": true,
+          "status": true
+        },
+        "finality_fields_complete": true,
+        "fee_estimates_ok": true,
+        "error_transport": [
+          {
+            "case": "errUnknownMethod",
+            "method": "chainbench_unknownMethod",
+            "returned_error": true,
+            "http_status": 400,
+            "error_kind": "http",
+            "jsonrpc_code": -32600,
+            "jsonrpc_message": "Unsupported method: chainbench_unknownMethod on ZKSYNC_SEPOLIA"
+          },
+          {
+            "case": "errInsufficientFunds",
+            "method": "zks_estimateFee",
+            "returned_error": true,
+            "http_status": null,
+            "error_kind": "jsonrpc",
+            "jsonrpc_code": 3,
+            "jsonrpc_message": "insufficient funds for gas + value. balance: 0, fee: 0, value: 1"
+          },
+          {
+            "case": "errRevert",
+            "method": "eth_call",
+            "returned_error": true,
+            "http_status": null,
+            "error_kind": "jsonrpc",
+            "jsonrpc_code": 3,
+            "jsonrpc_message": "execution reverted"
+          }
+        ],
+        "errors_as_http_200_jsonrpc": false,
+        "compatible": true
+      }
+    }
+  ]
+}

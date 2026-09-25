@@ -1,0 +1,122 @@
+{
+  "image": {
+    "architecture": "arm64",
+    "archive_sha256": "d8cbdd0f8a49ffb034bd154aa7943e4ad8c51030f5b8cd0fd36328663f14362c",
+    "config_digest": "sha256:34381409de95cb54c90b06c63a04ecb34dff0b37bc386b15e0aa2d4ca5d825db",
+    "image_id": "sha256:246e35a06b0e823697fd42c5297739e1c3ecca145d6869adbf19b094d9d8eb49",
+    "manifest_digest": "sha256:3a0cf3776167447ee37332fd5fc1756b2b6b253bcdf0f38d68bdabbe12fbdb0d",
+    "platform": "linux/arm64",
+    "precheck_utc": "2026-09-25T16:47:03Z",
+    "verified_by_wrapper": "pass"
+  },
+  "image_record": {
+    "architecture": "arm64",
+    "archive_sha256": "d8cbdd0f8a49ffb034bd154aa7943e4ad8c51030f5b8cd0fd36328663f14362c",
+    "config_digest": "sha256:34381409de95cb54c90b06c63a04ecb34dff0b37bc386b15e0aa2d4ca5d825db",
+    "image_id": "sha256:246e35a06b0e823697fd42c5297739e1c3ecca145d6869adbf19b094d9d8eb49",
+    "manifest_digest": "sha256:3a0cf3776167447ee37332fd5fc1756b2b6b253bcdf0f38d68bdabbe12fbdb0d",
+    "platform": "linux/arm64"
+  },
+  "kind": "doctor-public (engineering; not session evidence)",
+  "observations": {},
+  "offline": true,
+  "results": [
+    {
+      "check": "Node.js >= 22",
+      "detail": "v22.23.2",
+      "fix": "use the chainbench-public image or Node 22",
+      "status": "PASS"
+    },
+    {
+      "check": "npm dependencies = package-lock.json (the only runtime dependencies)",
+      "detail": "{\"ethers\":\"6.13.5\",\"zksync-ethers\":\"6.21.2\"}",
+      "fix": "npm ci --ignore-scripts in chainbench/adapters/public (or use the image)",
+      "status": "PASS"
+    },
+    {
+      "check": "dependency graph: 10 packages (ethers, zksync-ethers and their dependencies)",
+      "detail": "10 packages",
+      "fix": "",
+      "status": "PASS"
+    },
+    {
+      "check": "RPC path: node:https/http only (no WebSocket, no ethers provider, no fetch/undici)",
+      "detail": "",
+      "fix": "",
+      "status": "PASS"
+    },
+    {
+      "check": "frozen public image record (ARCHIVE.json: index -> manifest -> config chain verified)",
+      "detail": "image sha256:246e35a06b0e… linux/arm64; archive sha256 d8cbdd0f8a49ffb0…",
+      "fix": "",
+      "status": "PASS"
+    },
+    {
+      "check": "image used by this doctor = the frozen public image",
+      "detail": "sha256:246e35a06b0e823697fd42c5297739e1c3ecca145d6869adbf19b094d9d8eb49",
+      "fix": "",
+      "status": "PASS"
+    },
+    {
+      "check": "frozen primary endpoints in the binding",
+      "detail": "sepolia: Alchemy (eth-sepolia.g.alchemy.com); era-sepolia: ZKsync Era Sepolia official public RPC (sepolia.era.zksync.dev); validated secondary Alchemy (zksync-sepolia.g.alchemy.com), deviation only",
+      "fix": "author input: endpoints.frozen in the binding (protocol section 17)",
+      "status": "PASS"
+    },
+    {
+      "check": "protocol present",
+      "detail": "csi/protocols/chain/CHAIN-PUBLIC-PROTOCOL-v1.md (sha256 51db3707331f72c3…)",
+      "fix": "",
+      "status": "PASS"
+    },
+    {
+      "check": "frozen inputs (INPUTS.sha256, IDENTITY.json)",
+      "detail": "43 identity checks; manifest 14cbed1bac6a22d7…",
+      "fix": "",
+      "status": "PASS"
+    },
+    {
+      "check": "schedule",
+      "detail": "40 transactions (16 setup, 24 verification in 3 sessions)",
+      "fix": "",
+      "status": "PASS"
+    },
+    {
+      "check": "session start times frozen in the binding",
+      "detail": "S1 2026-09-29T02:35:00Z; S2 2026-09-29T11:35:00Z; S3 2026-09-30T07:05:00Z",
+      "fix": "author input: set scheduled_start_utc for S1-S3 (at least two calendar days) and commit before session 1",
+      "status": "PASS"
+    },
+    {
+      "check": "tracked paths clean",
+      "detail": "yes",
+      "fix": "live runs refuse a dirty tree",
+      "status": "PASS"
+    },
+    {
+      "check": "signing key",
+      "detail": "none configured (reviewer mode: validation and derivation need no key)",
+      "fix": "for live runs set CHAINBENCH_PUBLIC_KEY_FILE",
+      "status": "WARN"
+    },
+    {
+      "check": "Ethereum Sepolia endpoint",
+      "detail": "not configured (CHAINBENCH_PUBLIC_RPC_SEPOLIA)",
+      "fix": "author input: set CHAINBENCH_PUBLIC_RPC_SEPOLIA and CHAINBENCH_PUBLIC_RPC_LABEL_SEPOLIA",
+      "status": "WARN"
+    },
+    {
+      "check": "ZKsync Era Sepolia endpoint (https)",
+      "detail": "sepolia.era.zksync.dev host sepolia.era.zksync.dev",
+      "fix": "",
+      "status": "PASS"
+    },
+    {
+      "check": "ZKsync Era Sepolia endpoint = frozen primary",
+      "detail": "ZKsync Era Sepolia official public RPC (primary)",
+      "fix": "live runs use the frozen primary; a secondary only under a recorded deviation",
+      "status": "PASS"
+    }
+  ],
+  "signer_address": null
+}

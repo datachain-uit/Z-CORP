@@ -1,0 +1,192 @@
+{
+  "kind": "chainbench-public image inventory (pre-flight engineering record)",
+  "node": "v22.23.2",
+  "npm": "10.9.8",
+  "arch": "arm64",
+  "uname_m": "aarch64",
+  "os_release": "Debian GNU/Linux 12 (bookworm)",
+  "glibc": "ldd (Debian GLIBC 2.36-9+deb12u14) 2.36",
+  "git": "git version 2.39.5",
+  "python3": "Python 3.11.2",
+  "git_system_config": "safe.directory=*",
+  "image_files": {
+    "package.json": "7a889d7ba4fedf56ad6f1c252d78ffc273572b643afbaa7c5decba0494c048f3",
+    "package-lock.json": "8b172dc5330372883135cb618b1078a50273b753d94160cd972c66e7d4771c20"
+  },
+  "npm_packages_txt": "ethers 6.13.5\nzksync-ethers 6.21.2",
+  "apt_packages_txt": "git 1:2.39.5-0+deb12u3\npython3 3.11.2-1+b1\npython3-minimal 3.11.2-1+b1",
+  "installed_packages": [
+    {
+      "path": "node_modules/@adraffy/ens-normalize",
+      "name": "@adraffy/ens-normalize",
+      "version": "1.10.1",
+      "install_hooks": [],
+      "binding_gyp": false,
+      "gypfile": false,
+      "bin": null
+    },
+    {
+      "path": "node_modules/@noble/curves",
+      "name": "@noble/curves",
+      "version": "1.2.0",
+      "install_hooks": [],
+      "binding_gyp": false,
+      "gypfile": false,
+      "bin": null
+    },
+    {
+      "path": "node_modules/@noble/hashes",
+      "name": "@noble/hashes",
+      "version": "1.3.2",
+      "install_hooks": [],
+      "binding_gyp": false,
+      "gypfile": false,
+      "bin": null
+    },
+    {
+      "path": "node_modules/@types/node",
+      "name": "@types/node",
+      "version": "22.7.5",
+      "install_hooks": [],
+      "binding_gyp": false,
+      "gypfile": false,
+      "bin": null
+    },
+    {
+      "path": "node_modules/aes-js",
+      "name": "aes-js",
+      "version": "4.0.0-beta.5",
+      "install_hooks": [],
+      "binding_gyp": false,
+      "gypfile": false,
+      "bin": null
+    },
+    {
+      "path": "node_modules/ethers",
+      "name": "ethers",
+      "version": "6.13.5",
+      "install_hooks": [],
+      "binding_gyp": false,
+      "gypfile": false,
+      "bin": null
+    },
+    {
+      "path": "node_modules/tslib",
+      "name": "tslib",
+      "version": "2.7.0",
+      "install_hooks": [],
+      "binding_gyp": false,
+      "gypfile": false,
+      "bin": null
+    },
+    {
+      "path": "node_modules/undici-types",
+      "name": "undici-types",
+      "version": "6.19.8",
+      "install_hooks": [],
+      "binding_gyp": false,
+      "gypfile": false,
+      "bin": null
+    },
+    {
+      "path": "node_modules/ws",
+      "name": "ws",
+      "version": "8.17.1",
+      "install_hooks": [],
+      "binding_gyp": false,
+      "gypfile": false,
+      "bin": null
+    },
+    {
+      "path": "node_modules/zksync-ethers",
+      "name": "zksync-ethers",
+      "version": "6.21.2",
+      "install_hooks": [],
+      "binding_gyp": false,
+      "gypfile": false,
+      "bin": null
+    }
+  ],
+  "lock_packages": [
+    {
+      "path": "node_modules/@adraffy/ens-normalize",
+      "version": "1.10.1",
+      "integrity": "sha512-96Z2IP3mYmF1Xg2cDm8f1gWGf/HUVedQ3FMifV4kG/PQ4yEP51xDtRAEfhVNt5f/uzpNkZHwWQuUcu6D6K+Ekw==",
+      "hasInstallScript": false
+    },
+    {
+      "path": "node_modules/@noble/curves",
+      "version": "1.2.0",
+      "integrity": "sha512-oYclrNgRaM9SsBUBVbb8M6DTV7ZHRTKugureoYEncY5c65HOmRzvSiTE3y5CYaPYJA/GVkrhXEoF0M3Ya9PMnw==",
+      "hasInstallScript": false
+    },
+    {
+      "path": "node_modules/@noble/hashes",
+      "version": "1.3.2",
+      "integrity": "sha512-MVC8EAQp7MvEcm30KWENFjgR+Mkmf+D189XJTkFIlwohU5hcBbn1ZkKq7KVTi2Hme3PMGF390DaL52beVrIihQ==",
+      "hasInstallScript": false
+    },
+    {
+      "path": "node_modules/@types/node",
+      "version": "22.7.5",
+      "integrity": "sha512-jML7s2NAzMWc//QSJ1a3prpk78cOPchGvXJsC3C6R6PSMoooztvRVQEz89gmBTBY1SPMaqo5teB4uNHPdetShQ==",
+      "hasInstallScript": false
+    },
+    {
+      "path": "node_modules/aes-js",
+      "version": "4.0.0-beta.5",
+      "integrity": "sha512-G965FqalsNyrPqgEGON7nIx1e/OVENSgiEIzyC63haUMuvNnwIgIjMs52hlTCKhkBny7A2ORNlfY9Zu+jmGk1Q==",
+      "hasInstallScript": false
+    },
+    {
+      "path": "node_modules/ethers",
+      "version": "6.13.5",
+      "integrity": "sha512-+knKNieu5EKRThQJWwqaJ10a6HE9sSehGeqWN65//wE7j47ZpFhKAnHB/JJFibwwg61I/koxaPsXbXpD/skNOQ==",
+      "hasInstallScript": false
+    },
+    {
+      "path": "node_modules/tslib",
+      "version": "2.7.0",
+      "integrity": "sha512-gLXCKdN1/j47AiHiOkJN69hJmcbGTHI0ImLmbYLHykhgeN0jVGola9yVjFgzCUklsZQMW55o+dW7IXv3RCXDzA==",
+      "hasInstallScript": false
+    },
+    {
+      "path": "node_modules/undici-types",
+      "version": "6.19.8",
+      "integrity": "sha512-ve2KP6f/JnbPBFyobGHuerC9g1FYGn/F8n1LWTwNxCEzd6IfqTwUQcNXgEtmmQ6DlRrC1hrSrBnCZPokRrDHjw==",
+      "hasInstallScript": false
+    },
+    {
+      "path": "node_modules/ws",
+      "version": "8.17.1",
+      "integrity": "sha512-6XQFvXTkbfUOZOKKILFG1PDK2NDQs4azKQl26T0YS5CxqWLgXajbPZ+h4gZekJyRqFU8pvnbAbbs/3TgRPy+GQ==",
+      "hasInstallScript": false
+    },
+    {
+      "path": "node_modules/zksync-ethers",
+      "version": "6.21.2",
+      "integrity": "sha512-YYDb/9lN334QggcLMCJhB50SGQ3QQNo2E5XSY1UgU8r8uDiJOqp89FTgZgXOIwUxamE+GoOpNfOYglT+TVh+tg==",
+      "hasInstallScript": false
+    }
+  ],
+  "node_modules_bin": [],
+  "global_npm": "{\n  \"name\": \"lib\",\n  \"dependencies\": {\n    \"corepack\": {\n      \"version\": \"0.34.6\",\n      \"overridden\": false\n    },\n    \"npm\": {\n      \"version\": \"10.9.8\",\n      \"overridden\": false\n    }\n  }\n}",
+  "usr_local_bin": [
+    "corepack",
+    "docker-entrypoint.sh",
+    "node",
+    "nodejs",
+    "npm",
+    "npx",
+    "yarn",
+    "yarnpkg"
+  ],
+  "opt": [
+    "chainbench",
+    "yarn-v1.22.22"
+  ],
+  "hardhat_paths": "",
+  "solc_like_paths": "",
+  "dpkg_count": "127",
+  "whoami": "uid=0(root) gid=0(root) groups=0(root)"
+}

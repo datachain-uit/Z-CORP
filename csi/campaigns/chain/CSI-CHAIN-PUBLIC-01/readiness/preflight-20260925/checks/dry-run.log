@@ -1,0 +1,93 @@
+PASS [units] development accounts: first 20 of the reproducibility mnemonic + 10 legacy rich wallets are refused — {"size":30}
+PASS [units] endpoint rule live http://127.0.0.1:8545 -> endpoint_not_https — "endpoint_not_https"
+PASS [units] endpoint rule live ws://rpc.example.org -> endpoint_not_https — "endpoint_not_https"
+PASS [units] endpoint rule live wss://rpc.example.org -> endpoint_not_https — "endpoint_not_https"
+PASS [units] endpoint rule live https://127.0.0.1:8545 -> endpoint_loopback_live — "endpoint_loopback_live"
+PASS [units] endpoint rule live https://localhost -> endpoint_loopback_live — "endpoint_loopback_live"
+PASS [units] endpoint rule live https://rpc.example.org -> ok — "ok"
+PASS [units] endpoint rule dry https://rpc.example.org -> endpoint_not_loopback_dry — "endpoint_not_loopback_dry"
+PASS [units] endpoint rule dry http://localhost:8545 -> endpoint_not_loopback_dry — "endpoint_not_loopback_dry"
+PASS [units] endpoint rule dry http://127.0.0.1:18545 -> ok — "ok"
+PASS [units] chain id 11155111 on the sepolia profile -> ok — "ok"
+PASS [units] chain id 300 on the era-sepolia profile -> ok — "ok"
+PASS [units] chain id 300 on the sepolia profile -> cross_network — "cross_network"
+PASS [units] chain id 11155111 on the era-sepolia profile -> cross_network — "cross_network"
+PASS [units] chain id 1 on the sepolia profile -> refused_chain_id — "refused_chain_id"
+PASS [units] chain id 324 on the era-sepolia profile -> refused_chain_id — "refused_chain_id"
+PASS [units] chain id 31337 on the sepolia profile -> refused_chain_id — "refused_chain_id"
+PASS [units] chain id 1337 on the sepolia profile -> refused_chain_id — "refused_chain_id"
+PASS [units] chain id 260 on the era-sepolia profile -> refused_chain_id — "refused_chain_id"
+PASS [units] chain id 270 on the era-sepolia profile -> refused_chain_id — "refused_chain_id"
+PASS [units] chain id 5 on the sepolia profile -> chain_id_mismatch — "chain_id_mismatch"
+PASS [units] schedule: 40 transactions (16 setup + 24 verification) — 40
+PASS [units] schedule: every session block alternates the backends and uses both frozen proofs of each backend
+PASS [units] schedule: network order alternates across sessions
+PASS [units] frozen inputs load and verify (INPUTS.sha256, IDENTITY.json) — {"identity_checks":43}
+PASS [units] recorder refuses to write content that contains the signing key
+PASS [refusals] no key configured -> refused (no_key) — {"exit":3,"msg":"[REFUSED] no_key: no signing key configured (CHAINBENCH_PUBLIC_KEY_FILE or CHAINBENCH_PUBLIC_PRIVATE_KEY)"}
+PASS [refusals] file and environment key together -> refused (two_key_sources) — {"exit":3,"msg":"[REFUSED] two_key_sources: set either CHAINBENCH_PUBLIC_KEY_FILE or CHAINBENCH_PUBLIC_PRIVATE_KEY, not both"}
+PASS [refusals] relative key path -> refused (key_file_not_absolute) — {"exit":3,"msg":"[REFUSED] key_file_not_absolute: CHAINBENCH_PUBLIC_KEY_FILE must be an absolute path outside the repository"}
+PASS [refusals] key file inside the repository -> refused (key_file_in_repository) — {"exit":3,"msg":"[REFUSED] key_file_in_repository: the key file is inside the repository; keep it outside (it must never be committed)"}
+PASS [refusals] group/world-readable key file -> refused (key_file_permissions) — {"exit":3,"msg":"[REFUSED] key_file_permissions: the key file is readable by group or others; chmod 600 it"}
+PASS [refusals] mnemonic instead of a key -> refused (mnemonic_refused) — {"exit":3,"msg":"[REFUSED] mnemonic_refused: a mnemonic is not accepted; supply the dedicated account's raw private key"}
+PASS [refusals] malformed key -> refused (key_format) — {"exit":3,"msg":"[REFUSED] key_format: the key must be one 0x-prefixed 32-byte hex string"}
+PASS [refusals] Hardhat/Anvil development account 0 -> refused (dev_account) — {"exit":3,"msg":"[REFUSED] dev_account: the signer 0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266 is a known development account (account 0 of the development mnemo
+PASS [refusals] development key through the environment -> refused (dev_account) — {"exit":3,"msg":"[REFUSED] dev_account: the signer 0x70997970C51812dc3A010C7d01b50e0d17dc79C8 is a known development account (account 1 of the development mnemo
+PASS [refusals] dry run pointed at a non-loopback endpoint -> refused (endpoint_not_loopback_dry) — {"exit":3,"msg":"[REFUSED] endpoint_not_loopback_dry: the dry run accepts only http://127.0.0.1:<port> endpoints (never a public network)"}
+PASS [refusals] live mode without --confirm -> refused (not_confirmed) — "[REFUSED] not_confirmed: live mode sends real transactions; repeat the target with --confirm setup-sepolia"
+PASS [refusals] no transaction reached any endpoint during the refusal cases — {"sends":0}
+PASS [refusals] sepolia endpoint reporting chain id 31337 -> refused_chain_id; 8 rows unsent_preflight_failure; no eth_sendRawTransaction — {"exit":0,"rows":8,"classes":["chain_check_refused_chain_id"]}
+PASS [refusals] sepolia endpoint reporting chain id 300 -> cross_network; 8 rows unsent_preflight_failure; no eth_sendRawTransaction — {"exit":0,"rows":8,"classes":["chain_check_cross_network"]}
+PASS [refusals] sepolia endpoint reporting chain id 1 -> refused_chain_id; 8 rows unsent_preflight_failure; no eth_sendRawTransaction — {"exit":0,"rows":8,"classes":["chain_check_refused_chain_id"]}
+PASS [refusals] sepolia endpoint reporting chain id 5 -> chain_id_mismatch; 8 rows unsent_preflight_failure; no eth_sendRawTransaction — {"exit":0,"rows":8,"classes":["chain_check_chain_id_mismatch"]}
+PASS [refusals] era-sepolia endpoint reporting chain id 260 -> refused_chain_id; 8 rows unsent_preflight_failure; no eth_sendRawTransaction — {"exit":0,"rows":8,"classes":["chain_check_refused_chain_id"]}
+PASS [refusals] era-sepolia endpoint reporting chain id 11155111 -> cross_network; 8 rows unsent_preflight_failure; no eth_sendRawTransaction — {"exit":0,"rows":8,"classes":["chain_check_cross_network"]}
+PASS [refusals] era-sepolia endpoint reporting chain id 324 -> refused_chain_id; 8 rows unsent_preflight_failure; no eth_sendRawTransaction — {"exit":0,"rows":8,"classes":["chain_check_refused_chain_id"]}
+PASS [normal] setup --network sepolia: exit 0, 8 rows, all confirmed_success — {"exit":0,"states":[],"err":""}
+PASS [normal] sepolia setup: deployed code equals the frozen artifact, post-setup checks pass (verifier, owner, issuer, root) — []
+PASS [normal] setup --network sepolia: RPC hash = locally computed hash; t0 <= t_hash <= t_receipt; latencies consistent
+PASS [normal] setup --network sepolia: receipt fee = gasUsed x effectiveGasPrice = balance change at the inclusion block
+PASS [normal] setup --network sepolia: Sepolia send policy (type 2, maxFee = 2*base + P, frozen gas limits) and EIP-1559 effective price
+PASS [normal] setup --network era-sepolia: exit 0, 8 rows, all confirmed_success — {"exit":0,"states":[],"err":""}
+PASS [normal] era-sepolia setup: deployed code equals the frozen artifact, post-setup checks pass (verifier, owner, issuer, root) — []
+PASS [normal] setup --network era-sepolia: RPC hash = locally computed hash; t0 <= t_hash <= t_receipt; latencies consistent
+PASS [normal] setup --network era-sepolia: receipt fee = gasUsed x effectiveGasPrice = balance change at the inclusion block
+PASS [normal] setup --network era-sepolia: Era send policy (type 113, zks_estimateFee values unchanged), batch number and details fee recorded
+PASS [normal] session --session S1: exit 0, 8 rows, all confirmed_success — {"exit":0,"states":[],"err":""}
+PASS [normal] session --session S1: RPC hash = locally computed hash; t0 <= t_hash <= t_receipt; latencies consistent
+PASS [normal] session --session S1: receipt fee = gasUsed x effectiveGasPrice = balance change at the inclusion block
+PASS [normal] session --session S1: Sepolia send policy (type 2, maxFee = 2*base + P, frozen gas limits) and EIP-1559 effective price
+PASS [normal] session --session S1: Era send policy (type 113, zks_estimateFee values unchanged), batch number and details fee recorded
+PASS [normal] session --session S1: verification calldata = the frozen controlled-study calldata (both backends)
+PASS [normal] session --session S1: read-only prechecks (verifyCredential eth_call) pass before sending
+PASS [normal] session --session S1: pre- and post-block network observations recorded
+PASS [normal] session --session S2: exit 0, 8 rows, all confirmed_success — {"exit":0,"states":[],"err":""}
+PASS [normal] session --session S2: RPC hash = locally computed hash; t0 <= t_hash <= t_receipt; latencies consistent
+PASS [normal] session --session S2: receipt fee = gasUsed x effectiveGasPrice = balance change at the inclusion block
+PASS [normal] session --session S2: Sepolia send policy (type 2, maxFee = 2*base + P, frozen gas limits) and EIP-1559 effective price
+PASS [normal] session --session S2: Era send policy (type 113, zks_estimateFee values unchanged), batch number and details fee recorded
+PASS [normal] session --session S2: verification calldata = the frozen controlled-study calldata (both backends)
+PASS [normal] session --session S2: read-only prechecks (verifyCredential eth_call) pass before sending
+PASS [normal] session --session S2: pre- and post-block network observations recorded
+PASS [normal] session --session S3: exit 0, 8 rows, all confirmed_success — {"exit":0,"states":[],"err":""}
+PASS [normal] session --session S3: RPC hash = locally computed hash; t0 <= t_hash <= t_receipt; latencies consistent
+PASS [normal] session --session S3: receipt fee = gasUsed x effectiveGasPrice = balance change at the inclusion block
+PASS [normal] session --session S3: Sepolia send policy (type 2, maxFee = 2*base + P, frozen gas limits) and EIP-1559 effective price
+PASS [normal] session --session S3: Era send policy (type 113, zks_estimateFee values unchanged), batch number and details fee recorded
+PASS [normal] session --session S3: verification calldata = the frozen controlled-study calldata (both backends)
+PASS [normal] session --session S3: read-only prechecks (verifyCredential eth_call) pass before sending
+PASS [normal] session --session S3: pre- and post-block network observations recorded
+PASS [normal] collect-era-finality: every Era transaction has an L1 batch with commit, prove and execute times (post hoc, separate from receipt latency) — {"exit":0,"n":20,"err":""}
+PASS [normal] normal: derive_chain_public.py validation passes — {"exit":0,"checks":"66/66","err":""}
+PASS [faults] fault root: sepolia setup confirmed
+PASS [faults] fault root: era-sepolia setup confirmed
+PASS [faults] Sepolia block: RPC error on send, revert, no receipt, halt after no receipt — ["unsent_client_error/send_rpc_error","reverted/status_0","submitted_no_receipt/receipt_timeout","unsent_preflight_failure/halted_after_no_receipt"]
+PASS [faults] Era block: node insufficient funds, fee-estimate RPC error, send error with the transaction known to the node, balance below requirement — ["unsent_insufficient_balance/node_insufficient_funds","unsent_client_error/fee_rpc_jsonrpc","confirmed_success/send_error_tx_known","unsent_insufficient_balanc
+PASS [faults] revert reason recovered by eth_call replay at the parent block — "Invalid proof"
+PASS [faults] receipt polling survives injected poll errors (counted, not hidden) — {"polls":3,"poll_errors":2}
+PASS [faults] no-receipt transaction keeps its hash and t_hash; no t_receipt; never re-sent — {"sends":3}
+PASS [faults] unsent operations have no hash and consumed no nonce
+PASS [faults] faults: derive_chain_public.py validation passes — {"exit":0,"checks":"40/40","err":""}
+PASS [faults] setup: code mismatch is detected; dependent Groth16 operations are not sent (dependency_missing); PLONK proceeds — ["confirmed_success//0","unsent_preflight_failure/dependency_missing/","unsent_preflight_failure/dependency_missing/","unsent_preflight_failure/dependency_missi
+PASS [faults] session without a verified setup: all 8 operations unsent_preflight_failure (setup_incomplete); nothing sent — {"sends_during_session":0}
+DRY-RUN-PUBLIC dry-public-0c10900-20260925T154158Z: 92/92 expectations pass (steps units, refusals, normal, faults) -> build/chainbench/public/dry-run/dry-public-0c10900-20260925T154158Z

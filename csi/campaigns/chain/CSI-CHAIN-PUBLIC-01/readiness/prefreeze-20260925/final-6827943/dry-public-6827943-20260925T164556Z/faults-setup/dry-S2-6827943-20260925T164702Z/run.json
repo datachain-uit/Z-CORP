@@ -1,0 +1,233 @@
+{
+  "binding": "chainbench/workloads/zcorp/campaigns/CSI-CHAIN-PUBLIC-01.json",
+  "binding_sha256": "3c68ea07687a94cf10b3be78a191add4d74d66f0f37c33b08b8968faea69a6ea",
+  "blocks": [
+    {
+      "block_id": "S2-ERA",
+      "deployments_file": "DEPLOYMENTS/era-sepolia.json",
+      "deployments_sha256": null,
+      "halted": "setup_incomplete",
+      "network": "era-sepolia",
+      "observation_post": "ff1f3dec8174fcae",
+      "observation_pre": "05b435a392abdfea",
+      "refusal": null
+    },
+    {
+      "block_id": "S2-SEP",
+      "deployments_file": "DEPLOYMENTS/sepolia.json",
+      "deployments_sha256": null,
+      "halted": "setup_incomplete",
+      "network": "sepolia",
+      "observation_post": "0cf4c38e457b076c",
+      "observation_pre": "c0e559d98e8c4c41",
+      "refusal": null
+    }
+  ],
+  "campaign_id": "CSI-CHAIN-PUBLIC-01",
+  "deviation": null,
+  "endpoints": {
+    "era-sepolia": {
+      "host": "127.0.0.1:42725",
+      "label": "dry-run mock (Era-like)",
+      "scheme": "http",
+      "url": null,
+      "url_sha256": "d4496377dad58b8712acf38be3941cecc5ba42d1809348ea9e21d833f099d687"
+    },
+    "sepolia": {
+      "host": "127.0.0.1:43479",
+      "label": "dry-run mock (Ethereum-like)",
+      "scheme": "http",
+      "url": null,
+      "url_sha256": "b1964fc1146db97928910edee5d9d26f1234fc58dd639676ef1e6fbd810c687c"
+    }
+  },
+  "fee_policy": {
+    "common": {
+      "balance_rule": "the transaction is sent only if the latest balance >= gasLimit * maxFeePerGas; otherwise unsent_insufficient_balance",
+      "no_replacement": "a transaction is never replaced, re-priced, accelerated or re-sent; nonces are sequential and a nonce is never reused",
+      "no_retry": "no operation is retried inside a session; a failed or unsent operation stays in the record in its original state"
+    },
+    "era-sepolia": {
+      "estimate_gas_per_pubdata": 50000,
+      "rule": "zks_estimateFee on the exact transaction (from, to, data, value 0, eip712Meta.gasPerPubdata 50000 and, for deployments, the factory dependency); gasLimit, maxFeePerGas, maxPriorityFeePerGas and gasPerPubdata are the returned values, unchanged; eth_gasPrice and zks_getFeeParams are recorded beside them",
+      "tx_type": 113
+    },
+    "sepolia": {
+      "base_fee_source": "eth_getBlockByNumber('latest', false).baseFeePerGas, read immediately before signing",
+      "gas_limit": {
+        "add_root": 300000,
+        "deploy_manager": 6000000,
+        "deploy_verifier": 6000000,
+        "set_issuer": 300000,
+        "verify_credential": 1000000
+      },
+      "gas_limit_rule": "the fixed gas limits of the controlled L1 study (CHAIN-PROTOCOL-v1, chainbench/lib/constants.js GAS_LIMIT); on Ethereum the paid fee depends on gasUsed, not on the limit",
+      "max_fee_rule": "maxFeePerGas = 2 * baseFeePerGas of the latest block read at preparation + P",
+      "max_priority_fee_per_gas_wei": 1000000000,
+      "priority_fee_rule": "fixed constant P = max_priority_fee_per_gas_wei (author input, frozen before session 1)",
+      "tx_type": 2
+    }
+  },
+  "finished_utc": "2026-09-25T16:47:02.841Z",
+  "harness_commit": "68279431a6588c1aed7cc27d754de4b4a462e5b6",
+  "image": null,
+  "inputs_dir": "csi/campaigns/chain/CSI-CHAIN-PUBLIC-01/inputs",
+  "inputs_manifest_sha256": "14cbed1bac6a22d7015380ac3615bc5fd95892ef1d6d4c457ff66a2a910c84ab",
+  "key_source": "file",
+  "lockfile_sha256": "8b172dc5330372883135cb618b1078a50273b753d94160cd972c66e7d4771c20",
+  "mode": "dry",
+  "node": "v22.23.2",
+  "packages": {
+    "ethers": "6.13.5",
+    "zksync-ethers": "6.21.2"
+  },
+  "phase": "session",
+  "process_origin_utc": "2026-09-25T16:47:02.640Z",
+  "protocol": "csi/protocols/chain/CHAIN-PUBLIC-PROTOCOL-v1.md",
+  "protocol_sha256": "51db3707331f72c30fea99f485979d6d5141a5e2c7bcc585d822066aaa15bb35",
+  "rows": 8,
+  "run_id": "dry-S2-6827943-20260925T164702Z",
+  "schedule": [
+    {
+      "network": "era-sepolia",
+      "ops": [
+        {
+          "backend": "groth16",
+          "block_id": "S2-ERA",
+          "block_position": 1,
+          "depth": 11,
+          "network": "era-sepolia",
+          "op": "verify_credential",
+          "pair_id": "S2-ERA-P1",
+          "phase": "verification",
+          "proof_id": "G16-d11-p1",
+          "schedule_id": "S2-ERA-1",
+          "seed_byte": 122,
+          "session_id": "S2"
+        },
+        {
+          "backend": "plonk",
+          "block_id": "S2-ERA",
+          "block_position": 2,
+          "depth": 11,
+          "network": "era-sepolia",
+          "op": "verify_credential",
+          "pair_id": "S2-ERA-P1",
+          "phase": "verification",
+          "proof_id": "PLK-d11-p0",
+          "schedule_id": "S2-ERA-2",
+          "seed_byte": 122,
+          "session_id": "S2"
+        },
+        {
+          "backend": "groth16",
+          "block_id": "S2-ERA",
+          "block_position": 3,
+          "depth": 11,
+          "network": "era-sepolia",
+          "op": "verify_credential",
+          "pair_id": "S2-ERA-P2",
+          "phase": "verification",
+          "proof_id": "G16-d11-p0",
+          "schedule_id": "S2-ERA-3",
+          "seed_byte": 122,
+          "session_id": "S2"
+        },
+        {
+          "backend": "plonk",
+          "block_id": "S2-ERA",
+          "block_position": 4,
+          "depth": 11,
+          "network": "era-sepolia",
+          "op": "verify_credential",
+          "pair_id": "S2-ERA-P2",
+          "phase": "verification",
+          "proof_id": "PLK-d11-p1",
+          "schedule_id": "S2-ERA-4",
+          "seed_byte": 122,
+          "session_id": "S2"
+        }
+      ]
+    },
+    {
+      "network": "sepolia",
+      "ops": [
+        {
+          "backend": "groth16",
+          "block_id": "S2-SEP",
+          "block_position": 1,
+          "depth": 11,
+          "network": "sepolia",
+          "op": "verify_credential",
+          "pair_id": "S2-SEP-P1",
+          "phase": "verification",
+          "proof_id": "G16-d11-p1",
+          "schedule_id": "S2-SEP-1",
+          "seed_byte": 18,
+          "session_id": "S2"
+        },
+        {
+          "backend": "plonk",
+          "block_id": "S2-SEP",
+          "block_position": 2,
+          "depth": 11,
+          "network": "sepolia",
+          "op": "verify_credential",
+          "pair_id": "S2-SEP-P1",
+          "phase": "verification",
+          "proof_id": "PLK-d11-p0",
+          "schedule_id": "S2-SEP-2",
+          "seed_byte": 18,
+          "session_id": "S2"
+        },
+        {
+          "backend": "groth16",
+          "block_id": "S2-SEP",
+          "block_position": 3,
+          "depth": 11,
+          "network": "sepolia",
+          "op": "verify_credential",
+          "pair_id": "S2-SEP-P2",
+          "phase": "verification",
+          "proof_id": "G16-d11-p0",
+          "schedule_id": "S2-SEP-3",
+          "seed_byte": 18,
+          "session_id": "S2"
+        },
+        {
+          "backend": "plonk",
+          "block_id": "S2-SEP",
+          "block_position": 4,
+          "depth": 11,
+          "network": "sepolia",
+          "op": "verify_credential",
+          "pair_id": "S2-SEP-P2",
+          "phase": "verification",
+          "proof_id": "PLK-d11-p1",
+          "schedule_id": "S2-SEP-4",
+          "seed_byte": 18,
+          "session_id": "S2"
+        }
+      ]
+    }
+  ],
+  "scheduled_start_utc": "2026-09-29T11:35:00Z",
+  "signer_address": "0x05532f4E5817a94f109a213B92b2E08F714b4205",
+  "start_offset_minutes": -5447.95,
+  "started_utc": "2026-09-25T16:47:02.819Z",
+  "states": {
+    "unsent_preflight_failure": 8
+  },
+  "target": "S2",
+  "timing": {
+    "era-sepolia": {
+      "poll_interval_ms": 500,
+      "receipt_timeout_s": 20
+    },
+    "sepolia": {
+      "poll_interval_ms": 500,
+      "receipt_timeout_s": 20
+    }
+  },
+  "tracked_paths_dirty": []
+}

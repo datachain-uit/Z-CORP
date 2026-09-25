@@ -1,0 +1,6 @@
+audited 10 packages in 2s
+
+10 packages have verified registry signatures
+
+3 packages have verified attestations
+

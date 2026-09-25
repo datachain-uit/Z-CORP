@@ -1,0 +1,156 @@
+{
+  "calls": [
+    {
+      "http_status": 200,
+      "method": "eth_chainId",
+      "ms": 3.148,
+      "name": "chainId",
+      "ok": true,
+      "params": [],
+      "response_raw": "{\"jsonrpc\":\"2.0\",\"id\":1,\"result\":\"0xaa36a7\"}",
+      "response_sha256": "87736a36920a1f2877bb0104fa79f9b3e6edf758c45fb517d71f55f9899ea119",
+      "t_request_utc": "2026-09-25T16:46:24.627Z",
+      "t_response_utc": "2026-09-25T16:46:24.631Z"
+    },
+    {
+      "http_status": 200,
+      "method": "web3_clientVersion",
+      "ms": 1.018,
+      "name": "clientVersion",
+      "ok": true,
+      "params": [],
+      "response_raw": "{\"jsonrpc\":\"2.0\",\"id\":2,\"result\":\"chainbench-mock/evm\"}",
+      "response_sha256": "17aa6d96fbcb7a25dc28d2cb0a327e9103a96fc0af53f980f6fa6d436f38c2ab",
+      "t_request_utc": "2026-09-25T16:46:24.631Z",
+      "t_response_utc": "2026-09-25T16:46:24.632Z"
+    },
+    {
+      "http_status": 200,
+      "method": "eth_getBlockByNumber",
+      "ms": 0.334,
+      "name": "latestBlock",
+      "ok": true,
+      "params": [
+        "latest",
+        false
+      ],
+      "response_raw": "{\"jsonrpc\":\"2.0\",\"id\":3,\"result\":{\"number\":\"0x19\",\"hash\":\"0xdd00fc33c9abc11e3fe5ec75714845a784a893386bae2c60da7f51b7eb1a99c8\",\"timestamp\":\"0x6ab6a560\",\"baseFeePerGas\":\"0x59682f00\",\"gasLimit\":\"0x3938700\",\"transactions\":[\"0xd89e5815bb5effac70091c4a0c7643f64dc597566412da7353f803b2f63079c7\"]}}",
+      "response_sha256": "79df6b1dc77dccbed2ac18e5720279656f31af4d12b033b7e38969c3c3dd9112",
+      "t_request_utc": "2026-09-25T16:46:24.632Z",
+      "t_response_utc": "2026-09-25T16:46:24.632Z"
+    },
+    {
+      "http_status": 200,
+      "method": "eth_gasPrice",
+      "ms": 0.225,
+      "name": "gasPrice",
+      "ok": true,
+      "params": [],
+      "response_raw": "{\"jsonrpc\":\"2.0\",\"id\":4,\"result\":\"0x59682f00\"}",
+      "response_sha256": "c3568f9efdb6400d3df779ec468c17563ec6ef2276735757ce69c7524c7f4552",
+      "t_request_utc": "2026-09-25T16:46:24.633Z",
+      "t_response_utc": "2026-09-25T16:46:24.633Z"
+    },
+    {
+      "http_status": 200,
+      "method": "eth_maxPriorityFeePerGas",
+      "ms": 0.221,
+      "name": "maxPriorityFeePerGas",
+      "ok": true,
+      "params": [],
+      "response_raw": "{\"jsonrpc\":\"2.0\",\"id\":5,\"result\":\"0x3b9aca00\"}",
+      "response_sha256": "f74bf9b07cc6134b21d88c8ea4f0cf3e58356f5f5c1a80370c3025cb809850c8",
+      "t_request_utc": "2026-09-25T16:46:24.633Z",
+      "t_response_utc": "2026-09-25T16:46:24.633Z"
+    },
+    {
+      "http_status": 200,
+      "method": "eth_feeHistory",
+      "ms": 0.201,
+      "name": "feeHistory",
+      "ok": true,
+      "params": [
+        "0x5",
+        "latest",
+        [
+          10,
+          50,
+          90
+        ]
+      ],
+      "response_raw": "{\"jsonrpc\":\"2.0\",\"id\":6,\"result\":{\"oldestBlock\":\"0x15\",\"baseFeePerGas\":[\"0x59682f00\",\"0x59682f00\",\"0x59682f00\",\"0x59682f00\",\"0x59682f00\",\"0x59682f00\"],\"gasUsedRatio\":[0.5,0.5,0.5,0.5,0.5],\"reward\":[[\"0x3b9aca00\",\"0x3b9aca00\",\"0x77359400\"],[\"0x3b9aca00\",\"0x3b9aca00\",\"0x77359400\"],[\"0x3b9aca00\",\"0x3b9aca00\",\"0x77359400\"],[\"0x3b9aca00\",\"0x3b9aca00\",\"0x77359400\"],[\"0x3b9aca00\",\"0x3b9aca00\",\"0x77359400\"]]}}",
+      "response_sha256": "3556291b85c50716d2d2bd4b8d7fd1bffab5e889d8fba2aacf20066383f8daab",
+      "t_request_utc": "2026-09-25T16:46:24.633Z",
+      "t_response_utc": "2026-09-25T16:46:24.633Z"
+    },
+    {
+      "http_status": 200,
+      "method": "eth_getBalance",
+      "ms": 0.198,
+      "name": "balance",
+      "ok": true,
+      "params": [
+        "0x05532f4E5817a94f109a213B92b2E08F714b4205",
+        "latest"
+      ],
+      "response_raw": "{\"jsonrpc\":\"2.0\",\"id\":7,\"result\":\"0x8a9afeee2988d100\"}",
+      "response_sha256": "33b29e5b00104c06f43b3ffd527efc981cbcb895ab97d896b0f24f306c03571b",
+      "t_request_utc": "2026-09-25T16:46:24.633Z",
+      "t_response_utc": "2026-09-25T16:46:24.634Z"
+    },
+    {
+      "http_status": 200,
+      "method": "eth_getTransactionCount",
+      "ms": 0.261,
+      "name": "nonceLatest",
+      "ok": true,
+      "params": [
+        "0x05532f4E5817a94f109a213B92b2E08F714b4205",
+        "latest"
+      ],
+      "response_raw": "{\"jsonrpc\":\"2.0\",\"id\":8,\"result\":\"0x10\"}",
+      "response_sha256": "ec007110d94da9813bbeb4ddada055823ca374cfe4f5e488e8309fc0f31e453b",
+      "t_request_utc": "2026-09-25T16:46:24.634Z",
+      "t_response_utc": "2026-09-25T16:46:24.634Z"
+    },
+    {
+      "http_status": 200,
+      "method": "eth_getTransactionCount",
+      "ms": 0.593,
+      "name": "noncePending",
+      "ok": true,
+      "params": [
+        "0x05532f4E5817a94f109a213B92b2E08F714b4205",
+        "pending"
+      ],
+      "response_raw": "{\"jsonrpc\":\"2.0\",\"id\":9,\"result\":\"0x10\"}",
+      "response_sha256": "db0c47c13d2512a599fd3136ed25984cd4a3965b0cc09b1d0c7ab47405b10480",
+      "t_request_utc": "2026-09-25T16:46:24.634Z",
+      "t_response_utc": "2026-09-25T16:46:24.634Z"
+    }
+  ],
+  "chain_id_expected": 11155111,
+  "endpoint": {
+    "host": "127.0.0.1:43623",
+    "label": "dry-run mock (Ethereum-like)",
+    "scheme": "http",
+    "url": null,
+    "url_sha256": "f18592de97543a308738f7c6474f7e7473c4fb9cf524fb760f4010b7156b398a"
+  },
+  "finished_utc": "2026-09-25T16:46:24.635Z",
+  "kind": "network-observation",
+  "label": "S3-SEP pre",
+  "network": "sepolia",
+  "observation_id": "f83c69e79ed61ae0",
+  "signer_address": "0x05532f4E5817a94f109a213B92b2E08F714b4205",
+  "started_utc": "2026-09-25T16:46:24.627Z",
+  "summary": {
+    "calls_failed": 0,
+    "calls_ok": 9,
+    "chain_id": 11155111,
+    "client_version": "chainbench-mock/evm",
+    "latest_base_fee_per_gas": "1500000000",
+    "latest_block": 25,
+    "latest_block_timestamp": 1790354784
+  }
+}

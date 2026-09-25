@@ -1,0 +1,54 @@
+{
+ "part": "manifests",
+ "at_utc": "2026-09-25T15:41:59Z",
+ "head": "0c1090064f4a93abd799b7c14089f99c86b59cc1",
+ "manifests": {
+  "L1 raw (SOURCE.sha256)": {
+   "manifest": "csi/campaigns/chain/CSI-CHAIN-LOCAL-01/SOURCE.sha256",
+   "manifest_sha256": "51e9db74a7a9f6d8f964bc2db399e1bbcc387113c1077118be1d12121f100c16",
+   "files_ok": 52,
+   "files_bad": 0,
+   "bad": []
+  },
+  "L2 public raw (SOURCE.sha256)": {
+   "manifest": "csi/campaigns/chain/CSI-CHAIN-LOCAL-01-L2/SOURCE.sha256",
+   "manifest_sha256": "a2a2807b9241583cfcf8cd72117f0b53815e547363aee71785c0d11fbe06bba7",
+   "files_ok": 70,
+   "files_bad": 0,
+   "bad": []
+  },
+  "CSI-PROVER-01 raw (SOURCE.sha256)": {
+   "manifest": "csi/campaigns/prover/CSI-PROVER-01/SOURCE.sha256",
+   "manifest_sha256": "482259f41ace9d53a40813e8d5c9caa310c5280b3012333b488700b31abebbfe",
+   "files_ok": 51,
+   "files_bad": 0,
+   "bad": []
+  },
+  "PS-01 (PROOFSET.sha256)": {
+   "manifest": "csi/campaigns/chain/CSI-CHAIN-LOCAL-01/inputs/proofset/PROOFSET.sha256",
+   "manifest_sha256": "55f42c19f477df44f88323abd0f2caf3c17535093df64345305f6261621d1990",
+   "files_ok": 128,
+   "files_bad": 0,
+   "bad": []
+  }
+ },
+ "acquisition_raw": {
+  "record": "csi/campaigns/chain/CSI-CHAIN-LOCAL-01-L2/ACQUISITION-RAW.json",
+  "record_sha256": "f102169b0a7772561371c8d45ef1a6b1f56f521d6c601ad9b9868cce2175eeaa",
+  "record_files": 70,
+  "archive": "csi/release/CSI-CHAIN-LOCAL-01-L2-acquisition/acquisition-raw-full-l2-e97b69f-20260925T132901Z.tar",
+  "archive_sha256": "4f39c48918121497373844e3a2b461c804267485df7c9ee17c6b3351ca2b1773",
+  "archive_sha256_expected": "4f39c48918121497373844e3a2b461c804267485df7c9ee17c6b3351ca2b1773",
+  "archive_bytes": 1587200,
+  "members": 70,
+  "members_matching_record": 70,
+  "members_not_matching": 0,
+  "manifest": {
+   "aggregate_rule": "sha256 of the manifest bytes",
+   "aggregate_sha256": "d891858a2b5461840ac7a5cff7af2cf7f9275f95dda70a0f7317c671ae25606f",
+   "bytes": 1537222,
+   "files": 70,
+   "format": "sha256sum lines '<sha256>  <repo-relative path>', sorted by path (the SOURCE.sha256 of the accepted record)"
+  }
+ }
+}

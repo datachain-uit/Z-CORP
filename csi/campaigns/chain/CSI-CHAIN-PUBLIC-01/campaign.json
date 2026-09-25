@@ -2,23 +2,121 @@
   "admin_id": "CSI-CHAIN-PUBLIC-01",
   "arm": "PUBLIC",
   "author_inputs_open": [
-    "session start times (S1-S3, at least two UTC days)",
-    "Sepolia endpoint and provider label",
-    "Era Sepolia endpoint and provider label",
-    "dedicated signing key and its address",
-    "funding on both networks",
-    "Sepolia priority fee P (default 1 gwei)",
-    "results directory date label",
-    "containerized dry-run-public and live read-only doctor-public on the campaign host; public baseline tag"
+    "dedicated signing key and its address (tools/new_public_key.sh, verify_public_key.sh)",
+    "funding on both networks, recorded by a read-only doctor-public with the key",
+    "results directory date label <D> (binding results_dir)",
+    "public baseline commit and annotated tag chain-public-baseline-<D>"
   ],
   "binding": {
     "path": "chainbench/workloads/zcorp/campaigns/CSI-CHAIN-PUBLIC-01.json",
-    "sha256": "9580119ad02f560c7ca9532fa17da9cea11c9743182c582cfa927b0b0882fc26"
+    "sha256": "3c68ea07687a94cf10b3be78a191add4d74d66f0f37c33b08b8968faea69a6ea"
   },
   "claim_boundary": "dated public-network case study: deployability, observed price and paid fee, request-to-hash and hash-to-receipt behaviour through named endpoints, public gasUsed as a dated observation, RPC/client failures, Era batch lifecycle post hoc; not latency in general, mainnet economics, reliability, superiority, EVM-vs-EraVM equivalence or causal backend latency",
   "dependency_audit": {
     "evidence": "csi/campaigns/chain/CSI-CHAIN-PUBLIC-01/notes/dependency-audit",
     "note": "csi/campaigns/chain/CSI-CHAIN-PUBLIC-01/notes/DEPENDENCY-AUDIT.md"
+  },
+  "endpoints": {
+    "fallback_policy": "CHAIN-PUBLIC-PROTOCOL-v1 section 3.3: setup and S1-S3 use the frozen primary; a validated secondary (read-only compatibility check of every JSON-RPC method the runner and the finality collector use) is a fallback only, usable only after a documented operational failure of the primary recorded as a protocol deviation named by CHAINBENCH_PUBLIC_DEVIATION, never because another provider appears cheaper or faster; no automatic fail-over, no duplicate transactions, no provider comparison; the live runner refuses any other endpoint, a secondary without a deviation id and a different label for a frozen URL; rows carry the label, host and URL sha256 actually used",
+    "frozen": {
+      "era-sepolia": {
+        "host": "sepolia.era.zksync.dev",
+        "label": "ZKsync Era Sepolia official public RPC",
+        "role": "primary",
+        "scheme": "https",
+        "url": "https://sepolia.era.zksync.dev",
+        "url_sha256": "8366bcd4a2dff06e774b1669d14489dcdeea53d8dbe92049cbf1f35ba8d2b23d",
+        "validated": "final pre-flight 2026-09-25T15:51:48Z: live read-only doctor-public (chain id 300, protocol 29) and RPC compatibility probe, every method the runner and the finality collector use (readiness/preflight-20260925)"
+      },
+      "sepolia": {
+        "host": "eth-sepolia.g.alchemy.com",
+        "label": "Alchemy",
+        "role": "primary",
+        "scheme": "https",
+        "url": null,
+        "url_sha256": "d020365e52fcb294a6f7da7658481c30fb2f4144d2cac3fdd97697cbe33dee10",
+        "validated": "final pre-flight 2026-09-25T15:51:48Z: live read-only doctor-public (chain id 11155111) and RPC compatibility probe, every method the runner uses (readiness/preflight-20260925)"
+      }
+    },
+    "secondary": {
+      "era-sepolia": {
+        "host": "zksync-sepolia.g.alchemy.com",
+        "in_schedule": false,
+        "label": "Alchemy",
+        "role": "validated fallback / read-only compatibility",
+        "scheme": "https",
+        "url": null,
+        "url_sha256": "7d4cec0f512d9dc2768cff439d28c12a1d4cfcf3ba088dca288a7317d3ff1921",
+        "validated": "pre-freeze 2026-09-25T16:41:32Z: read-only compatibility probe (tools/rpc_compat_public.js --secondary --errors), 18/18 required Era methods, chain id 300, protocol 29, historical state, finality fields; not used for any transaction; usable only under a recorded deviation (protocol section 3.3) (readiness/prefreeze-20260925)"
+      },
+      "sepolia": null
+    }
+  },
+  "engineering_records": {
+    "final_compare_native": {
+      "path": "csi/campaigns/chain/CSI-CHAIN-PUBLIC-01/readiness/prefreeze-20260925/final-6827943/compare-native-vs-final.json",
+      "sha256": "3c3ccc301ae22ba487dca8673f65bc94d1c29c471f64b16a4958285bb33f22bb"
+    },
+    "final_doctor_offline": {
+      "path": "csi/campaigns/chain/CSI-CHAIN-PUBLIC-01/readiness/prefreeze-20260925/final-6827943/doctor-offline-20260925T164703Z.json",
+      "sha256": "2619044c7fd7ff8ebecde373f8d2ef088a75bed23c199aa718f0bbe33794ec0a"
+    },
+    "final_guard_tests": {
+      "path": "csi/campaigns/chain/CSI-CHAIN-PUBLIC-01/readiness/prefreeze-20260925/final-6827943/tests/guards-node-20260925T164704Z.json",
+      "sha256": "12be79762f835a2bee4483718fdcd7356925c6c138c89820a74636f9150f87da"
+    },
+    "final_keyfile_tests_image": {
+      "path": "csi/campaigns/chain/CSI-CHAIN-PUBLIC-01/readiness/prefreeze-20260925/final-6827943/tests/keyfile-20260925T164704Z.txt",
+      "sha256": "c3c508f4db511a3192ddfb22aace3d2dc15f82543ac4036584e488c220801968"
+    },
+    "final_keyfile_tests_mac_bsd": {
+      "path": "csi/campaigns/chain/CSI-CHAIN-PUBLIC-01/readiness/prefreeze-20260925/final-6827943/test-keyfile-mac-host.log",
+      "sha256": "ce4fda89ed445e84690da36f15209c6892832f65f6ed2f796644c290445c0851"
+    },
+    "final_npm_audit": {
+      "path": "csi/campaigns/chain/CSI-CHAIN-PUBLIC-01/readiness/prefreeze-20260925/final-6827943/npm-audit.json",
+      "sha256": "f4df88563b9f9c58cd93db0e7737d34f90edb123db9226f8b9b7ebf1835b8373"
+    },
+    "final_wrapper_tests": {
+      "path": "csi/campaigns/chain/CSI-CHAIN-PUBLIC-01/readiness/prefreeze-20260925/final-6827943/test-wrapper-guards.log",
+      "sha256": "d9d06a6c89b80d94872ddd3e6151534807f65e63a27d264c9ef10c1fc2e96ff4"
+    },
+    "image_record_as_saved": {
+      "path": "csi/campaigns/chain/CSI-CHAIN-PUBLIC-01/readiness/prefreeze-20260925/image-8674988/ARCHIVE.json",
+      "sha256": "dc9df9ea0b5c3122c841ba00c7681b5c44799d7fb411abfe2a23ae57fc25203d"
+    },
+    "integrity_archives": {
+      "path": "csi/campaigns/chain/CSI-CHAIN-PUBLIC-01/readiness/prefreeze-20260925/integrity/integrity-archives.json",
+      "sha256": "aa10a2791c96ff6b740f4b158dfe199d84f4ada5875f7d160cffb18474209d40"
+    },
+    "integrity_git": {
+      "path": "csi/campaigns/chain/CSI-CHAIN-PUBLIC-01/readiness/prefreeze-20260925/integrity/integrity-git.json",
+      "sha256": "a0a5eccd98fdc7ce3cec7bf0c26cd595c91e1e09bef1757a03cee11dc0a3bb13"
+    },
+    "integrity_manifests": {
+      "path": "csi/campaigns/chain/CSI-CHAIN-PUBLIC-01/readiness/prefreeze-20260925/integrity/integrity-manifests.json",
+      "sha256": "cfcec6e21e9af72179d661148bf8367ca23d18b4c02cc923b13512474bebfd78"
+    },
+    "preflight_doctor_live": {
+      "path": "csi/campaigns/chain/CSI-CHAIN-PUBLIC-01/readiness/preflight-20260925/live/doctor-20260925T155152Z.json",
+      "sha256": "3cf8eb2a774bf7ce33f31741d6f666c2fab505c783c6185acc0b1ecfb1b6fe8e"
+    },
+    "preflight_interpretation": {
+      "path": "csi/campaigns/chain/CSI-CHAIN-PUBLIC-01/readiness/preflight-20260925/live/INTERPRETATION-preflight.md",
+      "sha256": "29b15b05563acd11ef861e28a8e7f2793924fe03d93daf7fe6ccb73efc0c49aa"
+    },
+    "preflight_rpc_probe": {
+      "path": "csi/campaigns/chain/CSI-CHAIN-PUBLIC-01/readiness/preflight-20260925/live/rpc-probe.json",
+      "sha256": "b16fa02710a8b5c4e78c16b2315c87a3630ccbc300a8dc43f328df1445a3d3b4"
+    },
+    "secondary_era_coverage": {
+      "path": "csi/campaigns/chain/CSI-CHAIN-PUBLIC-01/readiness/prefreeze-20260925/secondary-8674988/rpc-compat-secondary.coverage.json",
+      "sha256": "0f3a1664cf754440f2c14da440c374f892c5c7170adb47170101e1fa16a249dd"
+    },
+    "secondary_era_probe": {
+      "path": "csi/campaigns/chain/CSI-CHAIN-PUBLIC-01/readiness/prefreeze-20260925/secondary-8674988/rpc-compat-secondary.json",
+      "sha256": "c06feade6cbcc4abce46689620acb043e0c8214baf55c247d90b0c217a7cc6e2"
+    }
   },
   "experiment": "dated public-network case study (Ethereum Sepolia, ZKsync Era Sepolia)",
   "fee_policy": {
@@ -50,15 +148,72 @@
   },
   "harness": {
     "adapter": "chainbench/adapters/public",
-    "commit": "05c9bfe69d0547c11e94c0bf7bd06c568f272717",
+    "commit": "68279431a6588c1aed7cc27d754de4b4a462e5b6",
     "derivation": "scripts/analysis/derive_chain_public.py",
     "image_base": "node@sha256:48e4b67d85f87bd551df43704e24d252f56cc5f8e9718841aace50f19948f0f9",
     "lockfile_sha256": "8b172dc5330372883135cb618b1078a50273b753d94160cd972c66e7d4771c20",
+    "measurement_code_commit": "8674988f329d54f6b03b2d791e601f688c59b713",
+    "measurement_code_paths": [
+      "contracts",
+      "chainbench/core",
+      "chainbench/lib/constants.js",
+      "chainbench/adapters/eravm/lib/constants.js",
+      "chainbench/adapters/public/lib",
+      "chainbench/adapters/public/scripts/run_public.js",
+      "chainbench/adapters/public/scripts/doctor_public.js",
+      "chainbench/adapters/public/scripts/collect_era_finality.js",
+      "chainbench/adapters/public/scripts/dry_run_public.js",
+      "chainbench/adapters/public/scripts/mock_rpc.js",
+      "chainbench/adapters/public/scripts/check_public_inputs.py",
+      "chainbench/adapters/public/scripts/build_public_inputs.js",
+      "chainbench/adapters/public/tools/new_public_key.sh",
+      "chainbench/adapters/public/tools/verify_public_key.sh",
+      "chainbench/adapters/public/tools/image_record.py",
+      "chainbench/adapters/public/run-public.sh",
+      "chainbench/adapters/public/Dockerfile",
+      "chainbench/adapters/public/package.json",
+      "chainbench/adapters/public/package-lock.json",
+      "chainbench/adapters/public/pins.env",
+      "chainbench/workloads/zcorp/public",
+      "chainbench/run.sh",
+      "csi/protocols/chain/CHAIN-PUBLIC-PROTOCOL-v1.md",
+      "csi/campaigns/chain/CSI-CHAIN-PUBLIC-01/inputs",
+      "csi/campaigns/chain/CSI-CHAIN-LOCAL-01/inputs/proofset",
+      "scripts/analysis/derive_chain_public.py"
+    ],
     "procedure": "chainbench/workloads/zcorp/public/procedure.json",
     "runtime_packages": {
       "ethers": "6.13.5",
       "zksync-ethers": "6.21.2"
     }
+  },
+  "image": {
+    "architecture": "arm64",
+    "archive": "chainbench-public-arm64.oci.tar",
+    "archive_bytes": 130498560,
+    "archive_sha256": "d8cbdd0f8a49ffb034bd154aa7943e4ad8c51030f5b8cd0fd36328663f14362c",
+    "attestation_manifest_digest": "sha256:1520c4b0b65f4a17b56193c6c38a3bfde7ac5b74dd4357298586d42135ef7296",
+    "base_image": "node@sha256:48e4b67d85f87bd551df43704e24d252f56cc5f8e9718841aace50f19948f0f9",
+    "built_utc": "2026-09-25T16:41:00Z",
+    "config_digest": "sha256:34381409de95cb54c90b06c63a04ecb34dff0b37bc386b15e0aa2d4ca5d825db",
+    "docker_client": "29.8.0",
+    "docker_engine": "29.8.0",
+    "image_id": "sha256:246e35a06b0e823697fd42c5297739e1c3ecca145d6869adbf19b094d9d8eb49",
+    "manifest_digest": "sha256:3a0cf3776167447ee37332fd5fc1756b2b6b253bcdf0f38d68bdabbe12fbdb0d",
+    "platform": "linux/arm64",
+    "provenance": {
+      "predicate_type": "https://slsa.dev/provenance/v1",
+      "resolved_base": [
+        "pkg:docker/node?digest=sha256:48e4b67d85f87bd551df43704e24d252f56cc5f8e9718841aace50f19948f0f9&platform=linux%2Farm64"
+      ],
+      "vcs_revision": "8674988f329d54f6b03b2d791e601f688c59b713",
+      "vcs_source": "https://github.com/datachain-uit/Z-CORP.git"
+    },
+    "record": "chainbench/adapters/public/ARCHIVE.json",
+    "record_sha256": "dc9df9ea0b5c3122c841ba00c7681b5c44799d7fb411abfe2a23ae57fc25203d",
+    "rootfs_layers": 9,
+    "rule": "live commands run only in this image (CHAIN-PUBLIC-PROTOCOL-v1 section 13.1); verified before and after every live command",
+    "saved_utc": "2026-09-25T16:41:02Z"
   },
   "inputs": {
     "controlled_references": {
@@ -179,18 +334,18 @@
   "not_done": "no transaction sent, no key used, no test ether spent, no deployment on Sepolia or Era Sepolia; no July or zkUIT result included",
   "protocol": {
     "path": "csi/protocols/chain/CHAIN-PUBLIC-PROTOCOL-v1.md",
-    "sha256": "97e66ef5e0183250ba2d2cceddd252a1aa5bc91ee668e9e159ef4bb13f97fabe",
+    "sha256": "51db3707331f72c30fea99f485979d6d5141a5e2c7bcc585d822066aaa15bb35",
     "status": "draft for freeze at the public baseline tag"
   },
   "readiness": {
-    "commit": "05c9bfe69d0547c11e94c0bf7bd06c568f272717",
-    "dir": "csi/campaigns/chain/CSI-CHAIN-PUBLIC-01/readiness/dry-public-05c9bfe-20260925T151220Z",
-    "dry_run_id": "dry-public-05c9bfe-20260925T151220Z",
+    "commit": "68279431a6588c1aed7cc27d754de4b4a462e5b6",
+    "dir": "csi/campaigns/chain/CSI-CHAIN-PUBLIC-01/readiness/prefreeze-20260925/final-6827943/dry-public-6827943-20260925T164556Z",
+    "dry_run_id": "dry-public-6827943-20260925T164556Z",
     "evidence_status": "engineering; not scientific data",
     "expectations": "92/92",
     "mode": "dry (mock endpoints on 127.0.0.1; ephemeral key; no public network; no test ETH)",
     "node": "v22.23.2",
-    "summary_sha256": "9530c3dc0e199cd2f1afea9613246c609d51b0b514bbc64689643b2abf02c446"
+    "summary_sha256": "90a8257048300e1bab18183bc37eb41473aaa035475db0debad45541cc08e163"
   },
   "sessions": [
     {
@@ -199,7 +354,7 @@
         "sepolia",
         "era-sepolia"
       ],
-      "scheduled_start_utc": null
+      "scheduled_start_utc": "2026-09-29T02:35:00Z"
     },
     {
       "id": "S2",
@@ -207,7 +362,7 @@
         "era-sepolia",
         "sepolia"
       ],
-      "scheduled_start_utc": null
+      "scheduled_start_utc": "2026-09-29T11:35:00Z"
     },
     {
       "id": "S3",
@@ -215,7 +370,7 @@
         "sepolia",
         "era-sepolia"
       ],
-      "scheduled_start_utc": null
+      "scheduled_start_utc": "2026-09-30T07:05:00Z"
     }
   ],
   "stage": "harness, design and frozen inputs registered; engineering dry run passed; author inputs open (protocol section 17); no public transaction sent",

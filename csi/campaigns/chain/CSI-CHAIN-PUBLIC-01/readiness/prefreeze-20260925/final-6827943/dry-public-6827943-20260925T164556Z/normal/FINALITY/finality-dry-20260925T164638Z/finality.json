@@ -1,0 +1,1490 @@
+{
+  "batches": {
+    "10": {
+      "error": null,
+      "ok": true,
+      "response_raw": "{\"jsonrpc\":\"2.0\",\"id\":37,\"result\":{\"number\":10,\"timestamp\":1790354768,\"l1TxCount\":0,\"l2TxCount\":0,\"status\":\"verified\",\"commitTxHash\":\"0xbdd5c85a8e5e267febae8cbe46f3ef04d302a5ebd866a184fb630373db4befe2\",\"committedAt\":\"2026-09-25T16:46:10.291Z\",\"commitChainId\":11155111,\"proveTxHash\":\"0xe6e1abbeaabe25c22502d45f25226fbb3c13b5878c1a275bb705b26f31529f6e\",\"provenAt\":\"2026-09-25T16:46:12.291Z\",\"proveChainId\":11155111,\"executeTxHash\":\"0xd3b957dffe77168df3f99d50c841ec8eb4154fd51a74a30ad44eb567f994ee93\",\"executedAt\":\"2026-09-25T16:46:14.291Z\",\"executeChainId\":11155111,\"l1GasPrice\":1500000000,\"l2FairGasPrice\":25000000,\"fairPubdataPrice\":2000000000}}",
+      "response_sha256": "fa9e6015afd3128fcbb318804cc455b770b8559fe217c914dd36b0622f18f9d0",
+      "t_response_utc": "2026-09-25T16:46:38.909Z"
+    },
+    "11": {
+      "error": null,
+      "ok": true,
+      "response_raw": "{\"jsonrpc\":\"2.0\",\"id\":40,\"result\":{\"number\":11,\"timestamp\":1790354769,\"l1TxCount\":0,\"l2TxCount\":0,\"status\":\"verified\",\"commitTxHash\":\"0xc4e86c3215960e8b12995cb7a9a8f4bff0f0811de5a059ff7ef8cea6b4fcea4f\",\"committedAt\":\"2026-09-25T16:46:11.204Z\",\"commitChainId\":11155111,\"proveTxHash\":\"0x4cc3e926944c7c2612293571a151c234522a1ab36e371ea729831d5436679254\",\"provenAt\":\"2026-09-25T16:46:13.204Z\",\"proveChainId\":11155111,\"executeTxHash\":\"0x4b43c790db6b766bfa67d3e50aee43da9c6e5b491a29ddea68853f920978916d\",\"executedAt\":\"2026-09-25T16:46:15.204Z\",\"executeChainId\":11155111,\"l1GasPrice\":1500000000,\"l2FairGasPrice\":25000000,\"fairPubdataPrice\":2000000000}}",
+      "response_sha256": "75a2666f8049e76b511c097c45deb6c8ce1af90119457c307f6079f3603cef3e",
+      "t_response_utc": "2026-09-25T16:46:38.910Z"
+    },
+    "12": {
+      "error": null,
+      "ok": true,
+      "response_raw": "{\"jsonrpc\":\"2.0\",\"id\":45,\"result\":{\"number\":12,\"timestamp\":1790354770,\"l1TxCount\":0,\"l2TxCount\":0,\"status\":\"verified\",\"commitTxHash\":\"0x2cc17275507e89ecb7fa11806b3bd4775c19753e8bd8382a7f3291db35bacd2f\",\"committedAt\":\"2026-09-25T16:46:12.113Z\",\"commitChainId\":11155111,\"proveTxHash\":\"0x21bea4c46df91c656c82280a8bbaa09d00ee2461694959ee74055fd7bf6a748f\",\"provenAt\":\"2026-09-25T16:46:14.113Z\",\"proveChainId\":11155111,\"executeTxHash\":\"0x4f16b9bb75a0144549f24d2a30035283d45f88fd26d08d45a5a03d2f6fbb05d2\",\"executedAt\":\"2026-09-25T16:46:16.113Z\",\"executeChainId\":11155111,\"l1GasPrice\":1500000000,\"l2FairGasPrice\":25000000,\"fairPubdataPrice\":2000000000}}",
+      "response_sha256": "6acc4e2ea83f6db022248aee9f404968007027d631b3fa71cae2110109620499",
+      "t_response_utc": "2026-09-25T16:46:38.910Z"
+    },
+    "13": {
+      "error": null,
+      "ok": true,
+      "response_raw": "{\"jsonrpc\":\"2.0\",\"id\":50,\"result\":{\"number\":13,\"timestamp\":1790354771,\"l1TxCount\":0,\"l2TxCount\":0,\"status\":\"verified\",\"commitTxHash\":\"0x7282aaf25b91e4cdea0fd162c863543a7044ece90f6ee5d4fa6ac481d3850a40\",\"committedAt\":\"2026-09-25T16:46:13.025Z\",\"commitChainId\":11155111,\"proveTxHash\":\"0x8241dc943ae0a3652695ce16aa08ebf5e576537d43ce2b471b0f288958381ea7\",\"provenAt\":\"2026-09-25T16:46:15.025Z\",\"proveChainId\":11155111,\"executeTxHash\":\"0xb0fcf42d4c67644f1c7fb0510e05361c863693bc5ce97c3f4f757622bf8a42c2\",\"executedAt\":\"2026-09-25T16:46:17.025Z\",\"executeChainId\":11155111,\"l1GasPrice\":1500000000,\"l2FairGasPrice\":25000000,\"fairPubdataPrice\":2000000000}}",
+      "response_sha256": "9eb532740deafb8a1ce9db68c30c75f2f66d913bd695948a2fe26fd40cf13b9f",
+      "t_response_utc": "2026-09-25T16:46:38.911Z"
+    },
+    "14": {
+      "error": null,
+      "ok": true,
+      "response_raw": "{\"jsonrpc\":\"2.0\",\"id\":55,\"result\":{\"number\":14,\"timestamp\":1790354771,\"l1TxCount\":0,\"l2TxCount\":0,\"status\":\"verified\",\"commitTxHash\":\"0xd18c7581c8daec608fc4dfffbd5e0542aac4d24a728b6f6532fa39f16df3e0f9\",\"committedAt\":\"2026-09-25T16:46:13.941Z\",\"commitChainId\":11155111,\"proveTxHash\":\"0xe23ba24feb8154830d609b80a3af7e04426cd97e09510ccf7c2ac09870b01abb\",\"provenAt\":\"2026-09-25T16:46:15.941Z\",\"proveChainId\":11155111,\"executeTxHash\":\"0xdeb47bb92acace178a8d73f71337ec220b86514e8d39f81c6a84f82d663c5282\",\"executedAt\":\"2026-09-25T16:46:17.941Z\",\"executeChainId\":11155111,\"l1GasPrice\":1500000000,\"l2FairGasPrice\":25000000,\"fairPubdataPrice\":2000000000}}",
+      "response_sha256": "d25e4d78ebefcedecd8cd4f1a640edc62e72c39d8841d78c088040f52dc3beb2",
+      "t_response_utc": "2026-09-25T16:46:38.912Z"
+    },
+    "19": {
+      "error": null,
+      "ok": true,
+      "response_raw": "{\"jsonrpc\":\"2.0\",\"id\":4,\"result\":{\"number\":19,\"timestamp\":1790354776,\"l1TxCount\":0,\"l2TxCount\":0,\"status\":\"verified\",\"commitTxHash\":\"0x7932252405533641426addd6a5610fe69e0d288ca15d82a51136fb4254737d2d\",\"committedAt\":\"2026-09-25T16:46:18.504Z\",\"commitChainId\":11155111,\"proveTxHash\":\"0x6c18ce7392a91c9f665de03ace49657b2d3ef5d7402508db7b3ad4c482bedba4\",\"provenAt\":\"2026-09-25T16:46:20.504Z\",\"proveChainId\":11155111,\"executeTxHash\":\"0xe957da2da9f260083cc025ee4258c407d7f7d97bbe06f86befb905bc5ba4b744\",\"executedAt\":\"2026-09-25T16:46:22.504Z\",\"executeChainId\":11155111,\"l1GasPrice\":1500000000,\"l2FairGasPrice\":25000000,\"fairPubdataPrice\":2000000000}}",
+      "response_sha256": "d5a92d7952b22d3fda246d4d5829e9e38212d7febd2e80d88f2ef0f22e7c11c4",
+      "t_response_utc": "2026-09-25T16:46:38.901Z"
+    },
+    "20": {
+      "error": null,
+      "ok": true,
+      "response_raw": "{\"jsonrpc\":\"2.0\",\"id\":7,\"result\":{\"number\":20,\"timestamp\":1790354777,\"l1TxCount\":0,\"l2TxCount\":0,\"status\":\"verified\",\"commitTxHash\":\"0x2f845d62c02a04348d11a770aab1e0bd1aeba87553ae720743a58a1a1e054b51\",\"committedAt\":\"2026-09-25T16:46:19.411Z\",\"commitChainId\":11155111,\"proveTxHash\":\"0x106061fc5b71b9c438e2200f724c6ca96f7712c7dcaa2d58a35316bf0bad2cfb\",\"provenAt\":\"2026-09-25T16:46:21.411Z\",\"proveChainId\":11155111,\"executeTxHash\":\"0x9e217cfa58c17267d7a9aedda7ff854eb100e533f8f70ed907069916eed3977b\",\"executedAt\":\"2026-09-25T16:46:23.411Z\",\"executeChainId\":11155111,\"l1GasPrice\":1500000000,\"l2FairGasPrice\":25000000,\"fairPubdataPrice\":2000000000}}",
+      "response_sha256": "dbd6dc1b574d6168226f29a0871a6cfca7fad66f195f0a3116f0804c2a95baab",
+      "t_response_utc": "2026-09-25T16:46:38.903Z"
+    },
+    "21": {
+      "error": null,
+      "ok": true,
+      "response_raw": "{\"jsonrpc\":\"2.0\",\"id\":10,\"result\":{\"number\":21,\"timestamp\":1790354778,\"l1TxCount\":0,\"l2TxCount\":0,\"status\":\"verified\",\"commitTxHash\":\"0x02b20c3feae1c30d4dab09f420cc81350fbec87c900e0e01c0b63179b373820d\",\"committedAt\":\"2026-09-25T16:46:20.319Z\",\"commitChainId\":11155111,\"proveTxHash\":\"0xe84f9c53bbf012d9ae10eef42075855f2e8ee4b01c1e84b1ce9274f82d18ae5b\",\"provenAt\":\"2026-09-25T16:46:22.319Z\",\"proveChainId\":11155111,\"executeTxHash\":\"0xbc9773376eb3032dd45889d32b8f52892baed652650639b1ebdc2f517a47ac75\",\"executedAt\":\"2026-09-25T16:46:24.319Z\",\"executeChainId\":11155111,\"l1GasPrice\":1500000000,\"l2FairGasPrice\":25000000,\"fairPubdataPrice\":2000000000}}",
+      "response_sha256": "12a156f641b97d9837654019665a6d5c2ea7cf6d688fccc4bd6ce8642f48b304",
+      "t_response_utc": "2026-09-25T16:46:38.905Z"
+    },
+    "22": {
+      "error": null,
+      "ok": true,
+      "response_raw": "{\"jsonrpc\":\"2.0\",\"id\":15,\"result\":{\"number\":22,\"timestamp\":1790354779,\"l1TxCount\":0,\"l2TxCount\":0,\"status\":\"verified\",\"commitTxHash\":\"0xd4dcf605fabc8925397caca62762a8eecafa050f1781118692cd7e1b4e5bde37\",\"committedAt\":\"2026-09-25T16:46:21.225Z\",\"commitChainId\":11155111,\"proveTxHash\":\"0x61623370de5211c8a34aa2e994c207130d79e652f2ac57762311a29515197f80\",\"provenAt\":\"2026-09-25T16:46:23.225Z\",\"proveChainId\":11155111,\"executeTxHash\":\"0x59263dfc495850f1e60efb33fdab1bf3b30b06798509ef6385c7d70e11a92524\",\"executedAt\":\"2026-09-25T16:46:25.225Z\",\"executeChainId\":11155111,\"l1GasPrice\":1500000000,\"l2FairGasPrice\":25000000,\"fairPubdataPrice\":2000000000}}",
+      "response_sha256": "95605926ea578df83494494285aaf99df28f93433942df64acca44586437e23b",
+      "t_response_utc": "2026-09-25T16:46:38.906Z"
+    },
+    "23": {
+      "error": null,
+      "ok": true,
+      "response_raw": "{\"jsonrpc\":\"2.0\",\"id\":18,\"result\":{\"number\":23,\"timestamp\":1790354780,\"l1TxCount\":0,\"l2TxCount\":0,\"status\":\"verified\",\"commitTxHash\":\"0xb15374475cd9e656d12b0cd5542d08fabea72df1f6045135753863c37dda4105\",\"committedAt\":\"2026-09-25T16:46:22.133Z\",\"commitChainId\":11155111,\"proveTxHash\":\"0x10b7cbbffca69be4264da280d9dad89c973477410b475f0b09577ffe894f18c9\",\"provenAt\":\"2026-09-25T16:46:24.133Z\",\"proveChainId\":11155111,\"executeTxHash\":\"0x9d37180acae775ab3a63b425af5557f1cadf12cc9d26bbc19589ca23533e70ce\",\"executedAt\":\"2026-09-25T16:46:26.133Z\",\"executeChainId\":11155111,\"l1GasPrice\":1500000000,\"l2FairGasPrice\":25000000,\"fairPubdataPrice\":2000000000}}",
+      "response_sha256": "19440b764511395bb1df7aed9376d9657b4e5c28b17cb28d84d6366a51900c23",
+      "t_response_utc": "2026-09-25T16:46:38.906Z"
+    },
+    "24": {
+      "error": null,
+      "ok": true,
+      "response_raw": "{\"jsonrpc\":\"2.0\",\"id\":23,\"result\":{\"number\":24,\"timestamp\":1790354781,\"l1TxCount\":0,\"l2TxCount\":0,\"status\":\"verified\",\"commitTxHash\":\"0x0bc9b12df7c6929494f3217be16601f0e3711f65078b196e9115745be481ac35\",\"committedAt\":\"2026-09-25T16:46:23.040Z\",\"commitChainId\":11155111,\"proveTxHash\":\"0x948f5be70401f556ae2653d4148983c2af580d409dab0cdf5c8b79c423123bc9\",\"provenAt\":\"2026-09-25T16:46:25.040Z\",\"proveChainId\":11155111,\"executeTxHash\":\"0xd380d3e4908456556b32d1b009722e9de491744b54943d7c1ada536612ec9211\",\"executedAt\":\"2026-09-25T16:46:27.040Z\",\"executeChainId\":11155111,\"l1GasPrice\":1500000000,\"l2FairGasPrice\":25000000,\"fairPubdataPrice\":2000000000}}",
+      "response_sha256": "d2845f1d5469bd88d60cc7d75ae944069f1471c335f2023e6a0a7bd4dca4f0d4",
+      "t_response_utc": "2026-09-25T16:46:38.907Z"
+    },
+    "33": {
+      "error": null,
+      "ok": true,
+      "response_raw": "{\"jsonrpc\":\"2.0\",\"id\":26,\"result\":{\"number\":33,\"timestamp\":1790354789,\"l1TxCount\":0,\"l2TxCount\":0,\"status\":\"verified\",\"commitTxHash\":\"0x007f12816afd74f9721fa276fb8fb2aabed019e3a3f273159edcb51b1bbe72b3\",\"committedAt\":\"2026-09-25T16:46:31.214Z\",\"commitChainId\":11155111,\"proveTxHash\":\"0x04b8d33f6e92185b6574f5033f03c5353cb66aa1c280acb340cfb0cf75ec87cd\",\"provenAt\":\"2026-09-25T16:46:33.214Z\",\"proveChainId\":11155111,\"executeTxHash\":\"0x9c2e6069fc5f3d9c10d1ba0050e9eaf89279f127f33059f4982cf4d57f760226\",\"executedAt\":\"2026-09-25T16:46:35.214Z\",\"executeChainId\":11155111,\"l1GasPrice\":1500000000,\"l2FairGasPrice\":25000000,\"fairPubdataPrice\":2000000000}}",
+      "response_sha256": "ffa60c4e58720bbf9647d715dd8cf1842a596202cca57641e6424b03cdc7c609",
+      "t_response_utc": "2026-09-25T16:46:38.907Z"
+    },
+    "34": {
+      "error": null,
+      "ok": true,
+      "response_raw": "{\"jsonrpc\":\"2.0\",\"id\":29,\"result\":{\"number\":34,\"timestamp\":1790354790,\"l1TxCount\":0,\"l2TxCount\":0,\"status\":\"verified\",\"commitTxHash\":\"0x6cb6250014def7ecb9e203eb8b47487b6d51c3354ddf8ba95de640e511f5417b\",\"committedAt\":\"2026-09-25T16:46:32.125Z\",\"commitChainId\":11155111,\"proveTxHash\":\"0xefc2cc8b299402e829658aaca0aab53f8973d79bc856907abbee7f7f2289db6c\",\"provenAt\":\"2026-09-25T16:46:34.125Z\",\"proveChainId\":11155111,\"executeTxHash\":\"0x49774c6449a911466fe88c619848c25a65cc35331911c45e982f1be5b27ac36d\",\"executedAt\":\"2026-09-25T16:46:36.125Z\",\"executeChainId\":11155111,\"l1GasPrice\":1500000000,\"l2FairGasPrice\":25000000,\"fairPubdataPrice\":2000000000}}",
+      "response_sha256": "622ef894f76b46d761acd2341b247cc9b1d139e346c8d1b2f1dbaaf6d0a88ef6",
+      "t_response_utc": "2026-09-25T16:46:38.908Z"
+    },
+    "35": {
+      "error": null,
+      "ok": true,
+      "response_raw": "{\"jsonrpc\":\"2.0\",\"id\":34,\"result\":{\"number\":35,\"timestamp\":1790354791,\"l1TxCount\":0,\"l2TxCount\":0,\"status\":\"verified\",\"commitTxHash\":\"0x65eb325863ef53c8a32af203d769bb4519e05bc8b802d30da30a2d9fd7e2d847\",\"committedAt\":\"2026-09-25T16:46:33.036Z\",\"commitChainId\":11155111,\"proveTxHash\":\"0x75b0572d44e5975aa8c71de2cac62b16962ca4baaf2f4d217c86ec3a955cca4f\",\"provenAt\":\"2026-09-25T16:46:35.036Z\",\"proveChainId\":11155111,\"executeTxHash\":\"0xfd86137bbe19c2308d7791085abe7581d330092f39e491742a074fe3cf3a4ed3\",\"executedAt\":\"2026-09-25T16:46:37.036Z\",\"executeChainId\":11155111,\"l1GasPrice\":1500000000,\"l2FairGasPrice\":25000000,\"fairPubdataPrice\":2000000000}}",
+      "response_sha256": "59421f21a4ff10c10a2e7c5c3807f96ed460926eb97601cd807fd73a8d8f75a8",
+      "t_response_utc": "2026-09-25T16:46:38.909Z"
+    }
+  },
+  "collection_id": "finality-dry-20260925T164638Z",
+  "deviation": null,
+  "endpoint": {
+    "host": "127.0.0.1:34911",
+    "label": "dry-run mock (Era-like)",
+    "scheme": "http",
+    "url": null,
+    "url_sha256": "18816df0acf5206996833e1e79dc15edc5d047fb3ac0901d9638b22ca3398a9f"
+  },
+  "finished_utc": "2026-09-25T16:46:38.912Z",
+  "image": null,
+  "kind": "era-batch-lifecycle",
+  "mode": "dry",
+  "note": "post-hoc read-only observation; receipt latency and batch lifecycle are separate quantities; nothing here changes a transaction row",
+  "runs": [
+    "build/chainbench/public/dry-run/dry-public-6827943-20260925T164556Z/normal/dry-S1-6827943-20260925T164612Z",
+    "build/chainbench/public/dry-run/dry-public-6827943-20260925T164556Z/normal/dry-S2-6827943-20260925T164618Z",
+    "build/chainbench/public/dry-run/dry-public-6827943-20260925T164556Z/normal/dry-S3-6827943-20260925T164624Z",
+    "build/chainbench/public/dry-run/dry-public-6827943-20260925T164556Z/normal/dry-setup-era-sepolia-6827943-20260925T164607Z",
+    "build/chainbench/public/dry-run/dry-public-6827943-20260925T164556Z/normal/dry-setup-sepolia-6827943-20260925T164559Z"
+  ],
+  "started_utc": "2026-09-25T16:46:38.894Z",
+  "transactions": [
+    {
+      "backend": "plonk",
+      "batch_status": "verified",
+      "commit_chain_id": 11155111,
+      "commit_tx_hash": "0x7932252405533641426addd6a5610fe69e0d288ca15d82a51136fb4254737d2d",
+      "committed_at": "2026-09-25T16:46:18.504Z",
+      "execute_chain_id": 11155111,
+      "execute_tx_hash": "0xe957da2da9f260083cc025ee4258c407d7f7d97bbe06f86befb905bc5ba4b744",
+      "executed_at": "2026-09-25T16:46:22.504Z",
+      "l1_batch_number": 19,
+      "op": "verify_credential",
+      "proof_id": "PLK-d11-p0",
+      "prove_tx_hash": "0x6c18ce7392a91c9f665de03ace49657b2d3ef5d7402508db7b3ad4c482bedba4",
+      "proven_at": "2026-09-25T16:46:20.504Z",
+      "raw": {
+        "receipt": {
+          "ok": true,
+          "response_raw": "{\"jsonrpc\":\"2.0\",\"id\":2,\"result\":{\"transactionHash\":\"0x0b88e6d7ec2a14b385041af27e1654c42f6cfe37f8d66d16b63e0b56de2492a8\",\"blockNumber\":\"0x39\",\"blockHash\":\"0xbe60c59faa9c0b76bca4e3cba4c9674855cc332c8c6e0c4ca148e9f86b7d9d38\",\"transactionIndex\":\"0x0\",\"from\":\"0x05532f4E5817a94f109a213B92b2E08F714b4205\",\"to\":\"0xA1B93a71d74cd2062172e9dBD434DF3B3212ab4B\",\"status\":\"0x1\",\"gasUsed\":\"0x6ef07\",\"cumulativeGasUsed\":\"0x6ef07\",\"effectiveGasPrice\":\"0x17d7840\",\"contractAddress\":null,\"logs\":[],\"type\":\"0x71\",\"l1BatchNumber\":\"0x13\",\"l1BatchTxIndex\":\"0x0\"}}",
+          "result": {
+            "blockHash": "0xbe60c59faa9c0b76bca4e3cba4c9674855cc332c8c6e0c4ca148e9f86b7d9d38",
+            "blockNumber": "0x39",
+            "contractAddress": null,
+            "cumulativeGasUsed": "0x6ef07",
+            "effectiveGasPrice": "0x17d7840",
+            "from": "0x05532f4E5817a94f109a213B92b2E08F714b4205",
+            "gasUsed": "0x6ef07",
+            "l1BatchNumber": "0x13",
+            "l1BatchTxIndex": "0x0",
+            "logs": [],
+            "status": "0x1",
+            "to": "0xA1B93a71d74cd2062172e9dBD434DF3B3212ab4B",
+            "transactionHash": "0x0b88e6d7ec2a14b385041af27e1654c42f6cfe37f8d66d16b63e0b56de2492a8",
+            "transactionIndex": "0x0",
+            "type": "0x71"
+          },
+          "t_response_utc": "2026-09-25T16:46:38.900Z"
+        },
+        "tx_details": {
+          "ok": true,
+          "response_raw": "{\"jsonrpc\":\"2.0\",\"id\":3,\"result\":{\"isL1Originated\":false,\"status\":\"included\",\"fee\":\"0xa54ff3209c0\",\"gasPerPubdata\":\"0x50\",\"initiatorAddress\":\"0x05532f4E5817a94f109a213B92b2E08F714b4205\",\"receivedAt\":\"2026-09-25T16:46:16.403Z\",\"ethCommitTxHash\":null,\"ethProveTxHash\":null,\"ethExecuteTxHash\":null}}",
+          "result": {
+            "ethCommitTxHash": null,
+            "ethExecuteTxHash": null,
+            "ethProveTxHash": null,
+            "fee": "0xa54ff3209c0",
+            "gasPerPubdata": "0x50",
+            "initiatorAddress": "0x05532f4E5817a94f109a213B92b2E08F714b4205",
+            "isL1Originated": false,
+            "receivedAt": "2026-09-25T16:46:16.403Z",
+            "status": "included"
+          },
+          "t_response_utc": "2026-09-25T16:46:38.901Z"
+        }
+      },
+      "receipt_now": "present",
+      "receipt_to_commit_s": 1.597,
+      "receipt_to_execute_s": 5.597,
+      "receipt_to_prove_s": 3.597,
+      "row_state": "confirmed_success",
+      "run_id": "dry-S1-6827943-20260925T164612Z",
+      "schedule_id": "S1-ERA-1",
+      "session_id": "S1",
+      "t_receipt_utc": "2026-09-25T16:46:16.907Z",
+      "tx_details_status": "included",
+      "tx_hash": "0x0b88e6d7ec2a14b385041af27e1654c42f6cfe37f8d66d16b63e0b56de2492a8"
+    },
+    {
+      "backend": "groth16",
+      "batch_status": "verified",
+      "commit_chain_id": 11155111,
+      "commit_tx_hash": "0x2f845d62c02a04348d11a770aab1e0bd1aeba87553ae720743a58a1a1e054b51",
+      "committed_at": "2026-09-25T16:46:19.411Z",
+      "execute_chain_id": 11155111,
+      "execute_tx_hash": "0x9e217cfa58c17267d7a9aedda7ff854eb100e533f8f70ed907069916eed3977b",
+      "executed_at": "2026-09-25T16:46:23.411Z",
+      "l1_batch_number": 20,
+      "op": "verify_credential",
+      "proof_id": "G16-d11-p0",
+      "prove_tx_hash": "0x106061fc5b71b9c438e2200f724c6ca96f7712c7dcaa2d58a35316bf0bad2cfb",
+      "proven_at": "2026-09-25T16:46:21.411Z",
+      "raw": {
+        "receipt": {
+          "ok": true,
+          "response_raw": "{\"jsonrpc\":\"2.0\",\"id\":5,\"result\":{\"transactionHash\":\"0x3f3d9645e77e49e9b01db66377e07da5bc1ee7eea69d10884258cbef443c77c5\",\"blockNumber\":\"0x3b\",\"blockHash\":\"0x473b06e623e1ebd2749a0e0987de70147c3e2b831a3116ad09944e5602c84f24\",\"transactionIndex\":\"0x0\",\"from\":\"0x05532f4E5817a94f109a213B92b2E08F714b4205\",\"to\":\"0xc2247022C38a59152864310597F9e008cc183dFA\",\"status\":\"0x1\",\"gasUsed\":\"0x6e89c\",\"cumulativeGasUsed\":\"0x6e89c\",\"effectiveGasPrice\":\"0x17d7840\",\"contractAddress\":null,\"logs\":[],\"type\":\"0x71\",\"l1BatchNumber\":\"0x14\",\"l1BatchTxIndex\":\"0x0\"}}",
+          "result": {
+            "blockHash": "0x473b06e623e1ebd2749a0e0987de70147c3e2b831a3116ad09944e5602c84f24",
+            "blockNumber": "0x3b",
+            "contractAddress": null,
+            "cumulativeGasUsed": "0x6e89c",
+            "effectiveGasPrice": "0x17d7840",
+            "from": "0x05532f4E5817a94f109a213B92b2E08F714b4205",
+            "gasUsed": "0x6e89c",
+            "l1BatchNumber": "0x14",
+            "l1BatchTxIndex": "0x0",
+            "logs": [],
+            "status": "0x1",
+            "to": "0xc2247022C38a59152864310597F9e008cc183dFA",
+            "transactionHash": "0x3f3d9645e77e49e9b01db66377e07da5bc1ee7eea69d10884258cbef443c77c5",
+            "transactionIndex": "0x0",
+            "type": "0x71"
+          },
+          "t_response_utc": "2026-09-25T16:46:38.902Z"
+        },
+        "tx_details": {
+          "ok": true,
+          "response_raw": "{\"jsonrpc\":\"2.0\",\"id\":6,\"result\":{\"isL1Originated\":false,\"status\":\"included\",\"fee\":\"0xa4b6eef4700\",\"gasPerPubdata\":\"0x50\",\"initiatorAddress\":\"0x05532f4E5817a94f109a213B92b2E08F714b4205\",\"receivedAt\":\"2026-09-25T16:46:16.922Z\",\"ethCommitTxHash\":null,\"ethProveTxHash\":null,\"ethExecuteTxHash\":null}}",
+          "result": {
+            "ethCommitTxHash": null,
+            "ethExecuteTxHash": null,
+            "ethProveTxHash": null,
+            "fee": "0xa4b6eef4700",
+            "gasPerPubdata": "0x50",
+            "initiatorAddress": "0x05532f4E5817a94f109a213B92b2E08F714b4205",
+            "isL1Originated": false,
+            "receivedAt": "2026-09-25T16:46:16.922Z",
+            "status": "included"
+          },
+          "t_response_utc": "2026-09-25T16:46:38.902Z"
+        }
+      },
+      "receipt_now": "present",
+      "receipt_to_commit_s": 1.985,
+      "receipt_to_execute_s": 5.985,
+      "receipt_to_prove_s": 3.985,
+      "row_state": "confirmed_success",
+      "run_id": "dry-S1-6827943-20260925T164612Z",
+      "schedule_id": "S1-ERA-2",
+      "session_id": "S1",
+      "t_receipt_utc": "2026-09-25T16:46:17.426Z",
+      "tx_details_status": "included",
+      "tx_hash": "0x3f3d9645e77e49e9b01db66377e07da5bc1ee7eea69d10884258cbef443c77c5"
+    },
+    {
+      "backend": "plonk",
+      "batch_status": "verified",
+      "commit_chain_id": 11155111,
+      "commit_tx_hash": "0x02b20c3feae1c30d4dab09f420cc81350fbec87c900e0e01c0b63179b373820d",
+      "committed_at": "2026-09-25T16:46:20.319Z",
+      "execute_chain_id": 11155111,
+      "execute_tx_hash": "0xbc9773376eb3032dd45889d32b8f52892baed652650639b1ebdc2f517a47ac75",
+      "executed_at": "2026-09-25T16:46:24.319Z",
+      "l1_batch_number": 21,
+      "op": "verify_credential",
+      "proof_id": "PLK-d11-p1",
+      "prove_tx_hash": "0xe84f9c53bbf012d9ae10eef42075855f2e8ee4b01c1e84b1ce9274f82d18ae5b",
+      "proven_at": "2026-09-25T16:46:22.319Z",
+      "raw": {
+        "receipt": {
+          "ok": true,
+          "response_raw": "{\"jsonrpc\":\"2.0\",\"id\":8,\"result\":{\"transactionHash\":\"0xd0988b65641ba946925e11706ec131d9d1c22b2cc8a8549faff91ef7d2cfd681\",\"blockNumber\":\"0x3d\",\"blockHash\":\"0x84097b478b44dd997e23c69397609ed6fc4b52e75897919271067359c6209ba2\",\"transactionIndex\":\"0x0\",\"from\":\"0x05532f4E5817a94f109a213B92b2E08F714b4205\",\"to\":\"0xA1B93a71d74cd2062172e9dBD434DF3B3212ab4B\",\"status\":\"0x1\",\"gasUsed\":\"0x6eeb9\",\"cumulativeGasUsed\":\"0x6eeb9\",\"effectiveGasPrice\":\"0x17d7840\",\"contractAddress\":null,\"logs\":[],\"type\":\"0x71\",\"l1BatchNumber\":\"0x15\",\"l1BatchTxIndex\":\"0x0\"}}",
+          "result": {
+            "blockHash": "0x84097b478b44dd997e23c69397609ed6fc4b52e75897919271067359c6209ba2",
+            "blockNumber": "0x3d",
+            "contractAddress": null,
+            "cumulativeGasUsed": "0x6eeb9",
+            "effectiveGasPrice": "0x17d7840",
+            "from": "0x05532f4E5817a94f109a213B92b2E08F714b4205",
+            "gasUsed": "0x6eeb9",
+            "l1BatchNumber": "0x15",
+            "l1BatchTxIndex": "0x0",
+            "logs": [],
+            "status": "0x1",
+            "to": "0xA1B93a71d74cd2062172e9dBD434DF3B3212ab4B",
+            "transactionHash": "0xd0988b65641ba946925e11706ec131d9d1c22b2cc8a8549faff91ef7d2cfd681",
+            "transactionIndex": "0x0",
+            "type": "0x71"
+          },
+          "t_response_utc": "2026-09-25T16:46:38.903Z"
+        },
+        "tx_details": {
+          "ok": true,
+          "response_raw": "{\"jsonrpc\":\"2.0\",\"id\":9,\"result\":{\"isL1Originated\":false,\"status\":\"included\",\"fee\":\"0xa548af76640\",\"gasPerPubdata\":\"0x50\",\"initiatorAddress\":\"0x05532f4E5817a94f109a213B92b2E08F714b4205\",\"receivedAt\":\"2026-09-25T16:46:17.438Z\",\"ethCommitTxHash\":null,\"ethProveTxHash\":null,\"ethExecuteTxHash\":null}}",
+          "result": {
+            "ethCommitTxHash": null,
+            "ethExecuteTxHash": null,
+            "ethProveTxHash": null,
+            "fee": "0xa548af76640",
+            "gasPerPubdata": "0x50",
+            "initiatorAddress": "0x05532f4E5817a94f109a213B92b2E08F714b4205",
+            "isL1Originated": false,
+            "receivedAt": "2026-09-25T16:46:17.438Z",
+            "status": "included"
+          },
+          "t_response_utc": "2026-09-25T16:46:38.904Z"
+        }
+      },
+      "receipt_now": "present",
+      "receipt_to_commit_s": 2.374,
+      "receipt_to_execute_s": 6.374,
+      "receipt_to_prove_s": 4.374,
+      "row_state": "confirmed_success",
+      "run_id": "dry-S1-6827943-20260925T164612Z",
+      "schedule_id": "S1-ERA-3",
+      "session_id": "S1",
+      "t_receipt_utc": "2026-09-25T16:46:17.945Z",
+      "tx_details_status": "included",
+      "tx_hash": "0xd0988b65641ba946925e11706ec131d9d1c22b2cc8a8549faff91ef7d2cfd681"
+    },
+    {
+      "backend": "groth16",
+      "batch_status": "verified",
+      "commit_chain_id": 11155111,
+      "commit_tx_hash": "0x02b20c3feae1c30d4dab09f420cc81350fbec87c900e0e01c0b63179b373820d",
+      "committed_at": "2026-09-25T16:46:20.319Z",
+      "execute_chain_id": 11155111,
+      "execute_tx_hash": "0xbc9773376eb3032dd45889d32b8f52892baed652650639b1ebdc2f517a47ac75",
+      "executed_at": "2026-09-25T16:46:24.319Z",
+      "l1_batch_number": 21,
+      "op": "verify_credential",
+      "proof_id": "G16-d11-p1",
+      "prove_tx_hash": "0xe84f9c53bbf012d9ae10eef42075855f2e8ee4b01c1e84b1ce9274f82d18ae5b",
+      "proven_at": "2026-09-25T16:46:22.319Z",
+      "raw": {
+        "receipt": {
+          "ok": true,
+          "response_raw": "{\"jsonrpc\":\"2.0\",\"id\":11,\"result\":{\"transactionHash\":\"0xcbe2d9b5bc72fa1edc799e0f53dd93d805af8984419f34891c089beeef99ab49\",\"blockNumber\":\"0x3e\",\"blockHash\":\"0xcd8d841c41eaa860cf25c9df61e14b069dd07a8d7f6271137524027d7ddcf145\",\"transactionIndex\":\"0x0\",\"from\":\"0x05532f4E5817a94f109a213B92b2E08F714b4205\",\"to\":\"0xc2247022C38a59152864310597F9e008cc183dFA\",\"status\":\"0x1\",\"gasUsed\":\"0x6e89c\",\"cumulativeGasUsed\":\"0x6e89c\",\"effectiveGasPrice\":\"0x17d7840\",\"contractAddress\":null,\"logs\":[],\"type\":\"0x71\",\"l1BatchNumber\":\"0x15\",\"l1BatchTxIndex\":\"0x0\"}}",
+          "result": {
+            "blockHash": "0xcd8d841c41eaa860cf25c9df61e14b069dd07a8d7f6271137524027d7ddcf145",
+            "blockNumber": "0x3e",
+            "contractAddress": null,
+            "cumulativeGasUsed": "0x6e89c",
+            "effectiveGasPrice": "0x17d7840",
+            "from": "0x05532f4E5817a94f109a213B92b2E08F714b4205",
+            "gasUsed": "0x6e89c",
+            "l1BatchNumber": "0x15",
+            "l1BatchTxIndex": "0x0",
+            "logs": [],
+            "status": "0x1",
+            "to": "0xc2247022C38a59152864310597F9e008cc183dFA",
+            "transactionHash": "0xcbe2d9b5bc72fa1edc799e0f53dd93d805af8984419f34891c089beeef99ab49",
+            "transactionIndex": "0x0",
+            "type": "0x71"
+          },
+          "t_response_utc": "2026-09-25T16:46:38.905Z"
+        },
+        "tx_details": {
+          "ok": true,
+          "response_raw": "{\"jsonrpc\":\"2.0\",\"id\":12,\"result\":{\"isL1Originated\":false,\"status\":\"included\",\"fee\":\"0xa4b6eef4700\",\"gasPerPubdata\":\"0x50\",\"initiatorAddress\":\"0x05532f4E5817a94f109a213B92b2E08F714b4205\",\"receivedAt\":\"2026-09-25T16:46:17.958Z\",\"ethCommitTxHash\":null,\"ethProveTxHash\":null,\"ethExecuteTxHash\":null}}",
+          "result": {
+            "ethCommitTxHash": null,
+            "ethExecuteTxHash": null,
+            "ethProveTxHash": null,
+            "fee": "0xa4b6eef4700",
+            "gasPerPubdata": "0x50",
+            "initiatorAddress": "0x05532f4E5817a94f109a213B92b2E08F714b4205",
+            "isL1Originated": false,
+            "receivedAt": "2026-09-25T16:46:17.958Z",
+            "status": "included"
+          },
+          "t_response_utc": "2026-09-25T16:46:38.905Z"
+        }
+      },
+      "receipt_now": "present",
+      "receipt_to_commit_s": 1.856,
+      "receipt_to_execute_s": 5.856,
+      "receipt_to_prove_s": 3.856,
+      "row_state": "confirmed_success",
+      "run_id": "dry-S1-6827943-20260925T164612Z",
+      "schedule_id": "S1-ERA-4",
+      "session_id": "S1",
+      "t_receipt_utc": "2026-09-25T16:46:18.463Z",
+      "tx_details_status": "included",
+      "tx_hash": "0xcbe2d9b5bc72fa1edc799e0f53dd93d805af8984419f34891c089beeef99ab49"
+    },
+    {
+      "backend": "groth16",
+      "batch_status": "verified",
+      "commit_chain_id": 11155111,
+      "commit_tx_hash": "0xd4dcf605fabc8925397caca62762a8eecafa050f1781118692cd7e1b4e5bde37",
+      "committed_at": "2026-09-25T16:46:21.225Z",
+      "execute_chain_id": 11155111,
+      "execute_tx_hash": "0x59263dfc495850f1e60efb33fdab1bf3b30b06798509ef6385c7d70e11a92524",
+      "executed_at": "2026-09-25T16:46:25.225Z",
+      "l1_batch_number": 22,
+      "op": "verify_credential",
+      "proof_id": "G16-d11-p1",
+      "prove_tx_hash": "0x61623370de5211c8a34aa2e994c207130d79e652f2ac57762311a29515197f80",
+      "proven_at": "2026-09-25T16:46:23.225Z",
+      "raw": {
+        "receipt": {
+          "ok": true,
+          "response_raw": "{\"jsonrpc\":\"2.0\",\"id\":13,\"result\":{\"transactionHash\":\"0xffb79fc0f729fe3d2296b60d0f617dff9a743b4ec1baebdb13e3d154fb25cb6b\",\"blockNumber\":\"0x41\",\"blockHash\":\"0x2a7d9ed0a7bc290acae46e2b8b6aa11cf56eebfc2838031cf8eb836864dd9710\",\"transactionIndex\":\"0x0\",\"from\":\"0x05532f4E5817a94f109a213B92b2E08F714b4205\",\"to\":\"0xc2247022C38a59152864310597F9e008cc183dFA\",\"status\":\"0x1\",\"gasUsed\":\"0x6e89c\",\"cumulativeGasUsed\":\"0x6e89c\",\"effectiveGasPrice\":\"0x17d7840\",\"contractAddress\":null,\"logs\":[],\"type\":\"0x71\",\"l1BatchNumber\":\"0x16\",\"l1BatchTxIndex\":\"0x0\"}}",
+          "result": {
+            "blockHash": "0x2a7d9ed0a7bc290acae46e2b8b6aa11cf56eebfc2838031cf8eb836864dd9710",
+            "blockNumber": "0x41",
+            "contractAddress": null,
+            "cumulativeGasUsed": "0x6e89c",
+            "effectiveGasPrice": "0x17d7840",
+            "from": "0x05532f4E5817a94f109a213B92b2E08F714b4205",
+            "gasUsed": "0x6e89c",
+            "l1BatchNumber": "0x16",
+            "l1BatchTxIndex": "0x0",
+            "logs": [],
+            "status": "0x1",
+            "to": "0xc2247022C38a59152864310597F9e008cc183dFA",
+            "transactionHash": "0xffb79fc0f729fe3d2296b60d0f617dff9a743b4ec1baebdb13e3d154fb25cb6b",
+            "transactionIndex": "0x0",
+            "type": "0x71"
+          },
+          "t_response_utc": "2026-09-25T16:46:38.905Z"
+        },
+        "tx_details": {
+          "ok": true,
+          "response_raw": "{\"jsonrpc\":\"2.0\",\"id\":14,\"result\":{\"isL1Originated\":false,\"status\":\"included\",\"fee\":\"0xa4b6eef4700\",\"gasPerPubdata\":\"0x50\",\"initiatorAddress\":\"0x05532f4E5817a94f109a213B92b2E08F714b4205\",\"receivedAt\":\"2026-09-25T16:46:18.716Z\",\"ethCommitTxHash\":null,\"ethProveTxHash\":null,\"ethExecuteTxHash\":null}}",
+          "result": {
+            "ethCommitTxHash": null,
+            "ethExecuteTxHash": null,
+            "ethProveTxHash": null,
+            "fee": "0xa4b6eef4700",
+            "gasPerPubdata": "0x50",
+            "initiatorAddress": "0x05532f4E5817a94f109a213B92b2E08F714b4205",
+            "isL1Originated": false,
+            "receivedAt": "2026-09-25T16:46:18.716Z",
+            "status": "included"
+          },
+          "t_response_utc": "2026-09-25T16:46:38.906Z"
+        }
+      },
+      "receipt_now": "present",
+      "receipt_to_commit_s": 2.003,
+      "receipt_to_execute_s": 6.003,
+      "receipt_to_prove_s": 4.003,
+      "row_state": "confirmed_success",
+      "run_id": "dry-S2-6827943-20260925T164618Z",
+      "schedule_id": "S2-ERA-1",
+      "session_id": "S2",
+      "t_receipt_utc": "2026-09-25T16:46:19.222Z",
+      "tx_details_status": "included",
+      "tx_hash": "0xffb79fc0f729fe3d2296b60d0f617dff9a743b4ec1baebdb13e3d154fb25cb6b"
+    },
+    {
+      "backend": "plonk",
+      "batch_status": "verified",
+      "commit_chain_id": 11155111,
+      "commit_tx_hash": "0xb15374475cd9e656d12b0cd5542d08fabea72df1f6045135753863c37dda4105",
+      "committed_at": "2026-09-25T16:46:22.133Z",
+      "execute_chain_id": 11155111,
+      "execute_tx_hash": "0x9d37180acae775ab3a63b425af5557f1cadf12cc9d26bbc19589ca23533e70ce",
+      "executed_at": "2026-09-25T16:46:26.133Z",
+      "l1_batch_number": 23,
+      "op": "verify_credential",
+      "proof_id": "PLK-d11-p0",
+      "prove_tx_hash": "0x10b7cbbffca69be4264da280d9dad89c973477410b475f0b09577ffe894f18c9",
+      "proven_at": "2026-09-25T16:46:24.133Z",
+      "raw": {
+        "receipt": {
+          "ok": true,
+          "response_raw": "{\"jsonrpc\":\"2.0\",\"id\":16,\"result\":{\"transactionHash\":\"0x336e3265983ae8bfb8988add43fd17b88076e5fe5357eecb0318858970ebf05a\",\"blockNumber\":\"0x43\",\"blockHash\":\"0x8214f6ceccc6163e897a330886e0f6f49a3a73a7a683498799eea492784b6310\",\"transactionIndex\":\"0x0\",\"from\":\"0x05532f4E5817a94f109a213B92b2E08F714b4205\",\"to\":\"0xA1B93a71d74cd2062172e9dBD434DF3B3212ab4B\",\"status\":\"0x1\",\"gasUsed\":\"0x6ef07\",\"cumulativeGasUsed\":\"0x6ef07\",\"effectiveGasPrice\":\"0x17d7840\",\"contractAddress\":null,\"logs\":[],\"type\":\"0x71\",\"l1BatchNumber\":\"0x17\",\"l1BatchTxIndex\":\"0x0\"}}",
+          "result": {
+            "blockHash": "0x8214f6ceccc6163e897a330886e0f6f49a3a73a7a683498799eea492784b6310",
+            "blockNumber": "0x43",
+            "contractAddress": null,
+            "cumulativeGasUsed": "0x6ef07",
+            "effectiveGasPrice": "0x17d7840",
+            "from": "0x05532f4E5817a94f109a213B92b2E08F714b4205",
+            "gasUsed": "0x6ef07",
+            "l1BatchNumber": "0x17",
+            "l1BatchTxIndex": "0x0",
+            "logs": [],
+            "status": "0x1",
+            "to": "0xA1B93a71d74cd2062172e9dBD434DF3B3212ab4B",
+            "transactionHash": "0x336e3265983ae8bfb8988add43fd17b88076e5fe5357eecb0318858970ebf05a",
+            "transactionIndex": "0x0",
+            "type": "0x71"
+          },
+          "t_response_utc": "2026-09-25T16:46:38.906Z"
+        },
+        "tx_details": {
+          "ok": true,
+          "response_raw": "{\"jsonrpc\":\"2.0\",\"id\":17,\"result\":{\"isL1Originated\":false,\"status\":\"included\",\"fee\":\"0xa54ff3209c0\",\"gasPerPubdata\":\"0x50\",\"initiatorAddress\":\"0x05532f4E5817a94f109a213B92b2E08F714b4205\",\"receivedAt\":\"2026-09-25T16:46:19.239Z\",\"ethCommitTxHash\":null,\"ethProveTxHash\":null,\"ethExecuteTxHash\":null}}",
+          "result": {
+            "ethCommitTxHash": null,
+            "ethExecuteTxHash": null,
+            "ethProveTxHash": null,
+            "fee": "0xa54ff3209c0",
+            "gasPerPubdata": "0x50",
+            "initiatorAddress": "0x05532f4E5817a94f109a213B92b2E08F714b4205",
+            "isL1Originated": false,
+            "receivedAt": "2026-09-25T16:46:19.239Z",
+            "status": "included"
+          },
+          "t_response_utc": "2026-09-25T16:46:38.906Z"
+        }
+      },
+      "receipt_now": "present",
+      "receipt_to_commit_s": 2.386,
+      "receipt_to_execute_s": 6.386,
+      "receipt_to_prove_s": 4.386,
+      "row_state": "confirmed_success",
+      "run_id": "dry-S2-6827943-20260925T164618Z",
+      "schedule_id": "S2-ERA-2",
+      "session_id": "S2",
+      "t_receipt_utc": "2026-09-25T16:46:19.747Z",
+      "tx_details_status": "included",
+      "tx_hash": "0x336e3265983ae8bfb8988add43fd17b88076e5fe5357eecb0318858970ebf05a"
+    },
+    {
+      "backend": "groth16",
+      "batch_status": "verified",
+      "commit_chain_id": 11155111,
+      "commit_tx_hash": "0xb15374475cd9e656d12b0cd5542d08fabea72df1f6045135753863c37dda4105",
+      "committed_at": "2026-09-25T16:46:22.133Z",
+      "execute_chain_id": 11155111,
+      "execute_tx_hash": "0x9d37180acae775ab3a63b425af5557f1cadf12cc9d26bbc19589ca23533e70ce",
+      "executed_at": "2026-09-25T16:46:26.133Z",
+      "l1_batch_number": 23,
+      "op": "verify_credential",
+      "proof_id": "G16-d11-p0",
+      "prove_tx_hash": "0x10b7cbbffca69be4264da280d9dad89c973477410b475f0b09577ffe894f18c9",
+      "proven_at": "2026-09-25T16:46:24.133Z",
+      "raw": {
+        "receipt": {
+          "ok": true,
+          "response_raw": "{\"jsonrpc\":\"2.0\",\"id\":19,\"result\":{\"transactionHash\":\"0x975baba7dccbfe9989e6d4dd3fd4dd23f250ecc34af3d2f8a310e738ecf90000\",\"blockNumber\":\"0x44\",\"blockHash\":\"0x7199ed75c8d08c99bfb0d1bca535e41afba35512f3662eee657e38f7f0392aae\",\"transactionIndex\":\"0x0\",\"from\":\"0x05532f4E5817a94f109a213B92b2E08F714b4205\",\"to\":\"0xc2247022C38a59152864310597F9e008cc183dFA\",\"status\":\"0x1\",\"gasUsed\":\"0x6e89c\",\"cumulativeGasUsed\":\"0x6e89c\",\"effectiveGasPrice\":\"0x17d7840\",\"contractAddress\":null,\"logs\":[],\"type\":\"0x71\",\"l1BatchNumber\":\"0x17\",\"l1BatchTxIndex\":\"0x0\"}}",
+          "result": {
+            "blockHash": "0x7199ed75c8d08c99bfb0d1bca535e41afba35512f3662eee657e38f7f0392aae",
+            "blockNumber": "0x44",
+            "contractAddress": null,
+            "cumulativeGasUsed": "0x6e89c",
+            "effectiveGasPrice": "0x17d7840",
+            "from": "0x05532f4E5817a94f109a213B92b2E08F714b4205",
+            "gasUsed": "0x6e89c",
+            "l1BatchNumber": "0x17",
+            "l1BatchTxIndex": "0x0",
+            "logs": [],
+            "status": "0x1",
+            "to": "0xc2247022C38a59152864310597F9e008cc183dFA",
+            "transactionHash": "0x975baba7dccbfe9989e6d4dd3fd4dd23f250ecc34af3d2f8a310e738ecf90000",
+            "transactionIndex": "0x0",
+            "type": "0x71"
+          },
+          "t_response_utc": "2026-09-25T16:46:38.906Z"
+        },
+        "tx_details": {
+          "ok": true,
+          "response_raw": "{\"jsonrpc\":\"2.0\",\"id\":20,\"result\":{\"isL1Originated\":false,\"status\":\"included\",\"fee\":\"0xa4b6eef4700\",\"gasPerPubdata\":\"0x50\",\"initiatorAddress\":\"0x05532f4E5817a94f109a213B92b2E08F714b4205\",\"receivedAt\":\"2026-09-25T16:46:19.762Z\",\"ethCommitTxHash\":null,\"ethProveTxHash\":null,\"ethExecuteTxHash\":null}}",
+          "result": {
+            "ethCommitTxHash": null,
+            "ethExecuteTxHash": null,
+            "ethProveTxHash": null,
+            "fee": "0xa4b6eef4700",
+            "gasPerPubdata": "0x50",
+            "initiatorAddress": "0x05532f4E5817a94f109a213B92b2E08F714b4205",
+            "isL1Originated": false,
+            "receivedAt": "2026-09-25T16:46:19.762Z",
+            "status": "included"
+          },
+          "t_response_utc": "2026-09-25T16:46:38.907Z"
+        }
+      },
+      "receipt_now": "present",
+      "receipt_to_commit_s": 1.862,
+      "receipt_to_execute_s": 5.862,
+      "receipt_to_prove_s": 3.862,
+      "row_state": "confirmed_success",
+      "run_id": "dry-S2-6827943-20260925T164618Z",
+      "schedule_id": "S2-ERA-3",
+      "session_id": "S2",
+      "t_receipt_utc": "2026-09-25T16:46:20.271Z",
+      "tx_details_status": "included",
+      "tx_hash": "0x975baba7dccbfe9989e6d4dd3fd4dd23f250ecc34af3d2f8a310e738ecf90000"
+    },
+    {
+      "backend": "plonk",
+      "batch_status": "verified",
+      "commit_chain_id": 11155111,
+      "commit_tx_hash": "0x0bc9b12df7c6929494f3217be16601f0e3711f65078b196e9115745be481ac35",
+      "committed_at": "2026-09-25T16:46:23.040Z",
+      "execute_chain_id": 11155111,
+      "execute_tx_hash": "0xd380d3e4908456556b32d1b009722e9de491744b54943d7c1ada536612ec9211",
+      "executed_at": "2026-09-25T16:46:27.040Z",
+      "l1_batch_number": 24,
+      "op": "verify_credential",
+      "proof_id": "PLK-d11-p1",
+      "prove_tx_hash": "0x948f5be70401f556ae2653d4148983c2af580d409dab0cdf5c8b79c423123bc9",
+      "proven_at": "2026-09-25T16:46:25.040Z",
+      "raw": {
+        "receipt": {
+          "ok": true,
+          "response_raw": "{\"jsonrpc\":\"2.0\",\"id\":21,\"result\":{\"transactionHash\":\"0x24f398cc2b66e73d7ec0873e8293a37fd7511032c84de3f8ced4b4eb5214f03b\",\"blockNumber\":\"0x46\",\"blockHash\":\"0xfddb5981e7df679577770d87817ab3b100113831782d0dba7ff29296ffb5dbd5\",\"transactionIndex\":\"0x0\",\"from\":\"0x05532f4E5817a94f109a213B92b2E08F714b4205\",\"to\":\"0xA1B93a71d74cd2062172e9dBD434DF3B3212ab4B\",\"status\":\"0x1\",\"gasUsed\":\"0x6eeb9\",\"cumulativeGasUsed\":\"0x6eeb9\",\"effectiveGasPrice\":\"0x17d7840\",\"contractAddress\":null,\"logs\":[],\"type\":\"0x71\",\"l1BatchNumber\":\"0x18\",\"l1BatchTxIndex\":\"0x0\"}}",
+          "result": {
+            "blockHash": "0xfddb5981e7df679577770d87817ab3b100113831782d0dba7ff29296ffb5dbd5",
+            "blockNumber": "0x46",
+            "contractAddress": null,
+            "cumulativeGasUsed": "0x6eeb9",
+            "effectiveGasPrice": "0x17d7840",
+            "from": "0x05532f4E5817a94f109a213B92b2E08F714b4205",
+            "gasUsed": "0x6eeb9",
+            "l1BatchNumber": "0x18",
+            "l1BatchTxIndex": "0x0",
+            "logs": [],
+            "status": "0x1",
+            "to": "0xA1B93a71d74cd2062172e9dBD434DF3B3212ab4B",
+            "transactionHash": "0x24f398cc2b66e73d7ec0873e8293a37fd7511032c84de3f8ced4b4eb5214f03b",
+            "transactionIndex": "0x0",
+            "type": "0x71"
+          },
+          "t_response_utc": "2026-09-25T16:46:38.907Z"
+        },
+        "tx_details": {
+          "ok": true,
+          "response_raw": "{\"jsonrpc\":\"2.0\",\"id\":22,\"result\":{\"isL1Originated\":false,\"status\":\"included\",\"fee\":\"0xa548af76640\",\"gasPerPubdata\":\"0x50\",\"initiatorAddress\":\"0x05532f4E5817a94f109a213B92b2E08F714b4205\",\"receivedAt\":\"2026-09-25T16:46:20.284Z\",\"ethCommitTxHash\":null,\"ethProveTxHash\":null,\"ethExecuteTxHash\":null}}",
+          "result": {
+            "ethCommitTxHash": null,
+            "ethExecuteTxHash": null,
+            "ethProveTxHash": null,
+            "fee": "0xa548af76640",
+            "gasPerPubdata": "0x50",
+            "initiatorAddress": "0x05532f4E5817a94f109a213B92b2E08F714b4205",
+            "isL1Originated": false,
+            "receivedAt": "2026-09-25T16:46:20.284Z",
+            "status": "included"
+          },
+          "t_response_utc": "2026-09-25T16:46:38.907Z"
+        }
+      },
+      "receipt_now": "present",
+      "receipt_to_commit_s": 2.251,
+      "receipt_to_execute_s": 6.251,
+      "receipt_to_prove_s": 4.251,
+      "row_state": "confirmed_success",
+      "run_id": "dry-S2-6827943-20260925T164618Z",
+      "schedule_id": "S2-ERA-4",
+      "session_id": "S2",
+      "t_receipt_utc": "2026-09-25T16:46:20.789Z",
+      "tx_details_status": "included",
+      "tx_hash": "0x24f398cc2b66e73d7ec0873e8293a37fd7511032c84de3f8ced4b4eb5214f03b"
+    },
+    {
+      "backend": "groth16",
+      "batch_status": "verified",
+      "commit_chain_id": 11155111,
+      "commit_tx_hash": "0x007f12816afd74f9721fa276fb8fb2aabed019e3a3f273159edcb51b1bbe72b3",
+      "committed_at": "2026-09-25T16:46:31.214Z",
+      "execute_chain_id": 11155111,
+      "execute_tx_hash": "0x9c2e6069fc5f3d9c10d1ba0050e9eaf89279f127f33059f4982cf4d57f760226",
+      "executed_at": "2026-09-25T16:46:35.214Z",
+      "l1_batch_number": 33,
+      "op": "verify_credential",
+      "proof_id": "G16-d11-p1",
+      "prove_tx_hash": "0x04b8d33f6e92185b6574f5033f03c5353cb66aa1c280acb340cfb0cf75ec87cd",
+      "proven_at": "2026-09-25T16:46:33.214Z",
+      "raw": {
+        "receipt": {
+          "ok": true,
+          "response_raw": "{\"jsonrpc\":\"2.0\",\"id\":24,\"result\":{\"transactionHash\":\"0xf7b583d40cb35cc1fde78a417f3a2e28976b5f2256c88310fcd271a7defd45e4\",\"blockNumber\":\"0x62\",\"blockHash\":\"0xede9f9226faf08d6e6de7db20e3f0fadd8e170aa3a6b4604589f426da3940a7b\",\"transactionIndex\":\"0x0\",\"from\":\"0x05532f4E5817a94f109a213B92b2E08F714b4205\",\"to\":\"0xc2247022C38a59152864310597F9e008cc183dFA\",\"status\":\"0x1\",\"gasUsed\":\"0x6e89c\",\"cumulativeGasUsed\":\"0x6e89c\",\"effectiveGasPrice\":\"0x17d7840\",\"contractAddress\":null,\"logs\":[],\"type\":\"0x71\",\"l1BatchNumber\":\"0x21\",\"l1BatchTxIndex\":\"0x0\"}}",
+          "result": {
+            "blockHash": "0xede9f9226faf08d6e6de7db20e3f0fadd8e170aa3a6b4604589f426da3940a7b",
+            "blockNumber": "0x62",
+            "contractAddress": null,
+            "cumulativeGasUsed": "0x6e89c",
+            "effectiveGasPrice": "0x17d7840",
+            "from": "0x05532f4E5817a94f109a213B92b2E08F714b4205",
+            "gasUsed": "0x6e89c",
+            "l1BatchNumber": "0x21",
+            "l1BatchTxIndex": "0x0",
+            "logs": [],
+            "status": "0x1",
+            "to": "0xc2247022C38a59152864310597F9e008cc183dFA",
+            "transactionHash": "0xf7b583d40cb35cc1fde78a417f3a2e28976b5f2256c88310fcd271a7defd45e4",
+            "transactionIndex": "0x0",
+            "type": "0x71"
+          },
+          "t_response_utc": "2026-09-25T16:46:38.907Z"
+        },
+        "tx_details": {
+          "ok": true,
+          "response_raw": "{\"jsonrpc\":\"2.0\",\"id\":25,\"result\":{\"isL1Originated\":false,\"status\":\"included\",\"fee\":\"0xa4b6eef4700\",\"gasPerPubdata\":\"0x50\",\"initiatorAddress\":\"0x05532f4E5817a94f109a213B92b2E08F714b4205\",\"receivedAt\":\"2026-09-25T16:46:28.750Z\",\"ethCommitTxHash\":null,\"ethProveTxHash\":null,\"ethExecuteTxHash\":null}}",
+          "result": {
+            "ethCommitTxHash": null,
+            "ethExecuteTxHash": null,
+            "ethProveTxHash": null,
+            "fee": "0xa4b6eef4700",
+            "gasPerPubdata": "0x50",
+            "initiatorAddress": "0x05532f4E5817a94f109a213B92b2E08F714b4205",
+            "isL1Originated": false,
+            "receivedAt": "2026-09-25T16:46:28.750Z",
+            "status": "included"
+          },
+          "t_response_utc": "2026-09-25T16:46:38.907Z"
+        }
+      },
+      "receipt_now": "present",
+      "receipt_to_commit_s": 1.958,
+      "receipt_to_execute_s": 5.958,
+      "receipt_to_prove_s": 3.958,
+      "row_state": "confirmed_success",
+      "run_id": "dry-S3-6827943-20260925T164624Z",
+      "schedule_id": "S3-ERA-1",
+      "session_id": "S3",
+      "t_receipt_utc": "2026-09-25T16:46:29.256Z",
+      "tx_details_status": "included",
+      "tx_hash": "0xf7b583d40cb35cc1fde78a417f3a2e28976b5f2256c88310fcd271a7defd45e4"
+    },
+    {
+      "backend": "plonk",
+      "batch_status": "verified",
+      "commit_chain_id": 11155111,
+      "commit_tx_hash": "0x6cb6250014def7ecb9e203eb8b47487b6d51c3354ddf8ba95de640e511f5417b",
+      "committed_at": "2026-09-25T16:46:32.125Z",
+      "execute_chain_id": 11155111,
+      "execute_tx_hash": "0x49774c6449a911466fe88c619848c25a65cc35331911c45e982f1be5b27ac36d",
+      "executed_at": "2026-09-25T16:46:36.125Z",
+      "l1_batch_number": 34,
+      "op": "verify_credential",
+      "proof_id": "PLK-d11-p0",
+      "prove_tx_hash": "0xefc2cc8b299402e829658aaca0aab53f8973d79bc856907abbee7f7f2289db6c",
+      "proven_at": "2026-09-25T16:46:34.125Z",
+      "raw": {
+        "receipt": {
+          "ok": true,
+          "response_raw": "{\"jsonrpc\":\"2.0\",\"id\":27,\"result\":{\"transactionHash\":\"0x394d8389610c80f8915d75bd793481d4aa6c05c6f7c10f7c256492863e7858d4\",\"blockNumber\":\"0x64\",\"blockHash\":\"0xdd51e32c6ac7ce8cd5ed241de45eb6bace9bc4a940504806b5dd53f01ab8d818\",\"transactionIndex\":\"0x0\",\"from\":\"0x05532f4E5817a94f109a213B92b2E08F714b4205\",\"to\":\"0xA1B93a71d74cd2062172e9dBD434DF3B3212ab4B\",\"status\":\"0x1\",\"gasUsed\":\"0x6ef07\",\"cumulativeGasUsed\":\"0x6ef07\",\"effectiveGasPrice\":\"0x17d7840\",\"contractAddress\":null,\"logs\":[],\"type\":\"0x71\",\"l1BatchNumber\":\"0x22\",\"l1BatchTxIndex\":\"0x0\"}}",
+          "result": {
+            "blockHash": "0xdd51e32c6ac7ce8cd5ed241de45eb6bace9bc4a940504806b5dd53f01ab8d818",
+            "blockNumber": "0x64",
+            "contractAddress": null,
+            "cumulativeGasUsed": "0x6ef07",
+            "effectiveGasPrice": "0x17d7840",
+            "from": "0x05532f4E5817a94f109a213B92b2E08F714b4205",
+            "gasUsed": "0x6ef07",
+            "l1BatchNumber": "0x22",
+            "l1BatchTxIndex": "0x0",
+            "logs": [],
+            "status": "0x1",
+            "to": "0xA1B93a71d74cd2062172e9dBD434DF3B3212ab4B",
+            "transactionHash": "0x394d8389610c80f8915d75bd793481d4aa6c05c6f7c10f7c256492863e7858d4",
+            "transactionIndex": "0x0",
+            "type": "0x71"
+          },
+          "t_response_utc": "2026-09-25T16:46:38.908Z"
+        },
+        "tx_details": {
+          "ok": true,
+          "response_raw": "{\"jsonrpc\":\"2.0\",\"id\":28,\"result\":{\"isL1Originated\":false,\"status\":\"included\",\"fee\":\"0xa54ff3209c0\",\"gasPerPubdata\":\"0x50\",\"initiatorAddress\":\"0x05532f4E5817a94f109a213B92b2E08F714b4205\",\"receivedAt\":\"2026-09-25T16:46:29.270Z\",\"ethCommitTxHash\":null,\"ethProveTxHash\":null,\"ethExecuteTxHash\":null}}",
+          "result": {
+            "ethCommitTxHash": null,
+            "ethExecuteTxHash": null,
+            "ethProveTxHash": null,
+            "fee": "0xa54ff3209c0",
+            "gasPerPubdata": "0x50",
+            "initiatorAddress": "0x05532f4E5817a94f109a213B92b2E08F714b4205",
+            "isL1Originated": false,
+            "receivedAt": "2026-09-25T16:46:29.270Z",
+            "status": "included"
+          },
+          "t_response_utc": "2026-09-25T16:46:38.908Z"
+        }
+      },
+      "receipt_now": "present",
+      "receipt_to_commit_s": 2.347,
+      "receipt_to_execute_s": 6.347,
+      "receipt_to_prove_s": 4.347,
+      "row_state": "confirmed_success",
+      "run_id": "dry-S3-6827943-20260925T164624Z",
+      "schedule_id": "S3-ERA-2",
+      "session_id": "S3",
+      "t_receipt_utc": "2026-09-25T16:46:29.778Z",
+      "tx_details_status": "included",
+      "tx_hash": "0x394d8389610c80f8915d75bd793481d4aa6c05c6f7c10f7c256492863e7858d4"
+    },
+    {
+      "backend": "groth16",
+      "batch_status": "verified",
+      "commit_chain_id": 11155111,
+      "commit_tx_hash": "0x6cb6250014def7ecb9e203eb8b47487b6d51c3354ddf8ba95de640e511f5417b",
+      "committed_at": "2026-09-25T16:46:32.125Z",
+      "execute_chain_id": 11155111,
+      "execute_tx_hash": "0x49774c6449a911466fe88c619848c25a65cc35331911c45e982f1be5b27ac36d",
+      "executed_at": "2026-09-25T16:46:36.125Z",
+      "l1_batch_number": 34,
+      "op": "verify_credential",
+      "proof_id": "G16-d11-p0",
+      "prove_tx_hash": "0xefc2cc8b299402e829658aaca0aab53f8973d79bc856907abbee7f7f2289db6c",
+      "proven_at": "2026-09-25T16:46:34.125Z",
+      "raw": {
+        "receipt": {
+          "ok": true,
+          "response_raw": "{\"jsonrpc\":\"2.0\",\"id\":30,\"result\":{\"transactionHash\":\"0xf483233b938a14356d2283b778cca77abf82abf453e987f47e63cbaba80f3a91\",\"blockNumber\":\"0x65\",\"blockHash\":\"0x226e5bde1129abd5568d5db99feb5ef88db4339c61d1db1937fcb975decce7a6\",\"transactionIndex\":\"0x0\",\"from\":\"0x05532f4E5817a94f109a213B92b2E08F714b4205\",\"to\":\"0xc2247022C38a59152864310597F9e008cc183dFA\",\"status\":\"0x1\",\"gasUsed\":\"0x6e89c\",\"cumulativeGasUsed\":\"0x6e89c\",\"effectiveGasPrice\":\"0x17d7840\",\"contractAddress\":null,\"logs\":[],\"type\":\"0x71\",\"l1BatchNumber\":\"0x22\",\"l1BatchTxIndex\":\"0x0\"}}",
+          "result": {
+            "blockHash": "0x226e5bde1129abd5568d5db99feb5ef88db4339c61d1db1937fcb975decce7a6",
+            "blockNumber": "0x65",
+            "contractAddress": null,
+            "cumulativeGasUsed": "0x6e89c",
+            "effectiveGasPrice": "0x17d7840",
+            "from": "0x05532f4E5817a94f109a213B92b2E08F714b4205",
+            "gasUsed": "0x6e89c",
+            "l1BatchNumber": "0x22",
+            "l1BatchTxIndex": "0x0",
+            "logs": [],
+            "status": "0x1",
+            "to": "0xc2247022C38a59152864310597F9e008cc183dFA",
+            "transactionHash": "0xf483233b938a14356d2283b778cca77abf82abf453e987f47e63cbaba80f3a91",
+            "transactionIndex": "0x0",
+            "type": "0x71"
+          },
+          "t_response_utc": "2026-09-25T16:46:38.908Z"
+        },
+        "tx_details": {
+          "ok": true,
+          "response_raw": "{\"jsonrpc\":\"2.0\",\"id\":31,\"result\":{\"isL1Originated\":false,\"status\":\"included\",\"fee\":\"0xa4b6eef4700\",\"gasPerPubdata\":\"0x50\",\"initiatorAddress\":\"0x05532f4E5817a94f109a213B92b2E08F714b4205\",\"receivedAt\":\"2026-09-25T16:46:29.792Z\",\"ethCommitTxHash\":null,\"ethProveTxHash\":null,\"ethExecuteTxHash\":null}}",
+          "result": {
+            "ethCommitTxHash": null,
+            "ethExecuteTxHash": null,
+            "ethProveTxHash": null,
+            "fee": "0xa4b6eef4700",
+            "gasPerPubdata": "0x50",
+            "initiatorAddress": "0x05532f4E5817a94f109a213B92b2E08F714b4205",
+            "isL1Originated": false,
+            "receivedAt": "2026-09-25T16:46:29.792Z",
+            "status": "included"
+          },
+          "t_response_utc": "2026-09-25T16:46:38.908Z"
+        }
+      },
+      "receipt_now": "present",
+      "receipt_to_commit_s": 1.828,
+      "receipt_to_execute_s": 5.828,
+      "receipt_to_prove_s": 3.828,
+      "row_state": "confirmed_success",
+      "run_id": "dry-S3-6827943-20260925T164624Z",
+      "schedule_id": "S3-ERA-3",
+      "session_id": "S3",
+      "t_receipt_utc": "2026-09-25T16:46:30.297Z",
+      "tx_details_status": "included",
+      "tx_hash": "0xf483233b938a14356d2283b778cca77abf82abf453e987f47e63cbaba80f3a91"
+    },
+    {
+      "backend": "plonk",
+      "batch_status": "verified",
+      "commit_chain_id": 11155111,
+      "commit_tx_hash": "0x65eb325863ef53c8a32af203d769bb4519e05bc8b802d30da30a2d9fd7e2d847",
+      "committed_at": "2026-09-25T16:46:33.036Z",
+      "execute_chain_id": 11155111,
+      "execute_tx_hash": "0xfd86137bbe19c2308d7791085abe7581d330092f39e491742a074fe3cf3a4ed3",
+      "executed_at": "2026-09-25T16:46:37.036Z",
+      "l1_batch_number": 35,
+      "op": "verify_credential",
+      "proof_id": "PLK-d11-p1",
+      "prove_tx_hash": "0x75b0572d44e5975aa8c71de2cac62b16962ca4baaf2f4d217c86ec3a955cca4f",
+      "proven_at": "2026-09-25T16:46:35.036Z",
+      "raw": {
+        "receipt": {
+          "ok": true,
+          "response_raw": "{\"jsonrpc\":\"2.0\",\"id\":32,\"result\":{\"transactionHash\":\"0x5732b61185e0aae2c8cf0e49ea8fcaa5b6ee52471b6c0bca6f8881550d9af229\",\"blockNumber\":\"0x67\",\"blockHash\":\"0x6134cf1dae43d88cb17309fdde95994b50e517b27c134de22132199ddd437ffd\",\"transactionIndex\":\"0x0\",\"from\":\"0x05532f4E5817a94f109a213B92b2E08F714b4205\",\"to\":\"0xA1B93a71d74cd2062172e9dBD434DF3B3212ab4B\",\"status\":\"0x1\",\"gasUsed\":\"0x6eeb9\",\"cumulativeGasUsed\":\"0x6eeb9\",\"effectiveGasPrice\":\"0x17d7840\",\"contractAddress\":null,\"logs\":[],\"type\":\"0x71\",\"l1BatchNumber\":\"0x23\",\"l1BatchTxIndex\":\"0x0\"}}",
+          "result": {
+            "blockHash": "0x6134cf1dae43d88cb17309fdde95994b50e517b27c134de22132199ddd437ffd",
+            "blockNumber": "0x67",
+            "contractAddress": null,
+            "cumulativeGasUsed": "0x6eeb9",
+            "effectiveGasPrice": "0x17d7840",
+            "from": "0x05532f4E5817a94f109a213B92b2E08F714b4205",
+            "gasUsed": "0x6eeb9",
+            "l1BatchNumber": "0x23",
+            "l1BatchTxIndex": "0x0",
+            "logs": [],
+            "status": "0x1",
+            "to": "0xA1B93a71d74cd2062172e9dBD434DF3B3212ab4B",
+            "transactionHash": "0x5732b61185e0aae2c8cf0e49ea8fcaa5b6ee52471b6c0bca6f8881550d9af229",
+            "transactionIndex": "0x0",
+            "type": "0x71"
+          },
+          "t_response_utc": "2026-09-25T16:46:38.908Z"
+        },
+        "tx_details": {
+          "ok": true,
+          "response_raw": "{\"jsonrpc\":\"2.0\",\"id\":33,\"result\":{\"isL1Originated\":false,\"status\":\"included\",\"fee\":\"0xa548af76640\",\"gasPerPubdata\":\"0x50\",\"initiatorAddress\":\"0x05532f4E5817a94f109a213B92b2E08F714b4205\",\"receivedAt\":\"2026-09-25T16:46:30.311Z\",\"ethCommitTxHash\":null,\"ethProveTxHash\":null,\"ethExecuteTxHash\":null}}",
+          "result": {
+            "ethCommitTxHash": null,
+            "ethExecuteTxHash": null,
+            "ethProveTxHash": null,
+            "fee": "0xa548af76640",
+            "gasPerPubdata": "0x50",
+            "initiatorAddress": "0x05532f4E5817a94f109a213B92b2E08F714b4205",
+            "isL1Originated": false,
+            "receivedAt": "2026-09-25T16:46:30.311Z",
+            "status": "included"
+          },
+          "t_response_utc": "2026-09-25T16:46:38.909Z"
+        }
+      },
+      "receipt_now": "present",
+      "receipt_to_commit_s": 2.218,
+      "receipt_to_execute_s": 6.218,
+      "receipt_to_prove_s": 4.218,
+      "row_state": "confirmed_success",
+      "run_id": "dry-S3-6827943-20260925T164624Z",
+      "schedule_id": "S3-ERA-4",
+      "session_id": "S3",
+      "t_receipt_utc": "2026-09-25T16:46:30.818Z",
+      "tx_details_status": "included",
+      "tx_hash": "0x5732b61185e0aae2c8cf0e49ea8fcaa5b6ee52471b6c0bca6f8881550d9af229"
+    },
+    {
+      "backend": "groth16",
+      "batch_status": "verified",
+      "commit_chain_id": 11155111,
+      "commit_tx_hash": "0xbdd5c85a8e5e267febae8cbe46f3ef04d302a5ebd866a184fb630373db4befe2",
+      "committed_at": "2026-09-25T16:46:10.291Z",
+      "execute_chain_id": 11155111,
+      "execute_tx_hash": "0xd3b957dffe77168df3f99d50c841ec8eb4154fd51a74a30ad44eb567f994ee93",
+      "executed_at": "2026-09-25T16:46:14.291Z",
+      "l1_batch_number": 10,
+      "op": "deploy_verifier",
+      "proof_id": "",
+      "prove_tx_hash": "0xe6e1abbeaabe25c22502d45f25226fbb3c13b5878c1a275bb705b26f31529f6e",
+      "proven_at": "2026-09-25T16:46:12.291Z",
+      "raw": {
+        "receipt": {
+          "ok": true,
+          "response_raw": "{\"jsonrpc\":\"2.0\",\"id\":35,\"result\":{\"transactionHash\":\"0x09c8f6d8aadd68c30aaf770d8723e4b1f5e71e6518f042d9765c362d7b42c47c\",\"blockNumber\":\"0x1d\",\"blockHash\":\"0x95f9371cc8163ea343bdef1e71346ca7ad7ad27676973287d97444336c52a224\",\"transactionIndex\":\"0x0\",\"from\":\"0x05532f4E5817a94f109a213B92b2E08F714b4205\",\"to\":\"0x0000000000000000000000000000000000008006\",\"status\":\"0x1\",\"gasUsed\":\"0xb8d9a\",\"cumulativeGasUsed\":\"0xb8d9a\",\"effectiveGasPrice\":\"0x17d7840\",\"contractAddress\":\"0xd67A2cd26fC83B742efEDb4BfAa305d817b4bb4b\",\"logs\":[{\"address\":\"0x0000000000000000000000000000000000008006\",\"topics\":[\"0x290afdae231a3fc0bbae8b1af63698b0a1d79b21ad17df0342dfb952fe74f8e5\",\"0x00000000000000000000000005532f4e5817a94f109a213b92b2e08f714b4205\",\"0x0100005f89c4cefae9b82d938e5f49479fd773521ddfd615284396aa1bbb65c1\",\"0x000000000000000000000000d67a2cd26fc83b742efedb4bfaa305d817b4bb4b\"],\"data\":\"0x\"}],\"type\":\"0x71\",\"l1BatchNumber\":\"0xa\",\"l1BatchTxIndex\":\"0x0\"}}",
+          "result": {
+            "blockHash": "0x95f9371cc8163ea343bdef1e71346ca7ad7ad27676973287d97444336c52a224",
+            "blockNumber": "0x1d",
+            "contractAddress": "0xd67A2cd26fC83B742efEDb4BfAa305d817b4bb4b",
+            "cumulativeGasUsed": "0xb8d9a",
+            "effectiveGasPrice": "0x17d7840",
+            "from": "0x05532f4E5817a94f109a213B92b2E08F714b4205",
+            "gasUsed": "0xb8d9a",
+            "l1BatchNumber": "0xa",
+            "l1BatchTxIndex": "0x0",
+            "logs": [
+              {
+                "address": "0x0000000000000000000000000000000000008006",
+                "data": "0x",
+                "topics": [
+                  "0x290afdae231a3fc0bbae8b1af63698b0a1d79b21ad17df0342dfb952fe74f8e5",
+                  "0x00000000000000000000000005532f4e5817a94f109a213b92b2e08f714b4205",
+                  "0x0100005f89c4cefae9b82d938e5f49479fd773521ddfd615284396aa1bbb65c1",
+                  "0x000000000000000000000000d67a2cd26fc83b742efedb4bfaa305d817b4bb4b"
+                ]
+              }
+            ],
+            "status": "0x1",
+            "to": "0x0000000000000000000000000000000000008006",
+            "transactionHash": "0x09c8f6d8aadd68c30aaf770d8723e4b1f5e71e6518f042d9765c362d7b42c47c",
+            "transactionIndex": "0x0",
+            "type": "0x71"
+          },
+          "t_response_utc": "2026-09-25T16:46:38.909Z"
+        },
+        "tx_details": {
+          "ok": true,
+          "response_raw": "{\"jsonrpc\":\"2.0\",\"id\":36,\"result\":{\"isL1Originated\":false,\"status\":\"included\",\"fee\":\"0x11372b759680\",\"gasPerPubdata\":\"0x50\",\"initiatorAddress\":\"0x05532f4E5817a94f109a213B92b2E08F714b4205\",\"receivedAt\":\"2026-09-25T16:46:07.834Z\",\"ethCommitTxHash\":null,\"ethProveTxHash\":null,\"ethExecuteTxHash\":null}}",
+          "result": {
+            "ethCommitTxHash": null,
+            "ethExecuteTxHash": null,
+            "ethProveTxHash": null,
+            "fee": "0x11372b759680",
+            "gasPerPubdata": "0x50",
+            "initiatorAddress": "0x05532f4E5817a94f109a213B92b2E08F714b4205",
+            "isL1Originated": false,
+            "receivedAt": "2026-09-25T16:46:07.834Z",
+            "status": "included"
+          },
+          "t_response_utc": "2026-09-25T16:46:38.909Z"
+        }
+      },
+      "receipt_now": "present",
+      "receipt_to_commit_s": 1.95,
+      "receipt_to_execute_s": 5.95,
+      "receipt_to_prove_s": 3.95,
+      "row_state": "confirmed_success",
+      "run_id": "dry-setup-era-sepolia-6827943-20260925T164607Z",
+      "schedule_id": "SETUP-ERA-01",
+      "session_id": "SETUP",
+      "t_receipt_utc": "2026-09-25T16:46:08.341Z",
+      "tx_details_status": "included",
+      "tx_hash": "0x09c8f6d8aadd68c30aaf770d8723e4b1f5e71e6518f042d9765c362d7b42c47c"
+    },
+    {
+      "backend": "groth16",
+      "batch_status": "verified",
+      "commit_chain_id": 11155111,
+      "commit_tx_hash": "0xc4e86c3215960e8b12995cb7a9a8f4bff0f0811de5a059ff7ef8cea6b4fcea4f",
+      "committed_at": "2026-09-25T16:46:11.204Z",
+      "execute_chain_id": 11155111,
+      "execute_tx_hash": "0x4b43c790db6b766bfa67d3e50aee43da9c6e5b491a29ddea68853f920978916d",
+      "executed_at": "2026-09-25T16:46:15.204Z",
+      "l1_batch_number": 11,
+      "op": "deploy_manager",
+      "proof_id": "",
+      "prove_tx_hash": "0x4cc3e926944c7c2612293571a151c234522a1ab36e371ea729831d5436679254",
+      "proven_at": "2026-09-25T16:46:13.204Z",
+      "raw": {
+        "receipt": {
+          "ok": true,
+          "response_raw": "{\"jsonrpc\":\"2.0\",\"id\":38,\"result\":{\"transactionHash\":\"0x3b1a50d2d66a71138a7c175f2e17d3f37b770d998fe9f7292b302137b68cf224\",\"blockNumber\":\"0x1f\",\"blockHash\":\"0x5acae21b718b5b62586e97f97c61bcc0e5f24cebb83b23868495cce3065e9534\",\"transactionIndex\":\"0x0\",\"from\":\"0x05532f4E5817a94f109a213B92b2E08F714b4205\",\"to\":\"0x0000000000000000000000000000000000008006\",\"status\":\"0x1\",\"gasUsed\":\"0x11ba81\",\"cumulativeGasUsed\":\"0x11ba81\",\"effectiveGasPrice\":\"0x17d7840\",\"contractAddress\":\"0xc2247022C38a59152864310597F9e008cc183dFA\",\"logs\":[{\"address\":\"0x0000000000000000000000000000000000008006\",\"topics\":[\"0x290afdae231a3fc0bbae8b1af63698b0a1d79b21ad17df0342dfb952fe74f8e5\",\"0x00000000000000000000000005532f4e5817a94f109a213b92b2e08f714b4205\",\"0x010000d37155e3640948296be420258a2e1a98adb16b55738b817247e9fd54eb\",\"0x000000000000000000000000c2247022c38a59152864310597f9e008cc183dfa\"],\"data\":\"0x\"}],\"type\":\"0x71\",\"l1BatchNumber\":\"0xb\",\"l1BatchTxIndex\":\"0x0\"}}",
+          "result": {
+            "blockHash": "0x5acae21b718b5b62586e97f97c61bcc0e5f24cebb83b23868495cce3065e9534",
+            "blockNumber": "0x1f",
+            "contractAddress": "0xc2247022C38a59152864310597F9e008cc183dFA",
+            "cumulativeGasUsed": "0x11ba81",
+            "effectiveGasPrice": "0x17d7840",
+            "from": "0x05532f4E5817a94f109a213B92b2E08F714b4205",
+            "gasUsed": "0x11ba81",
+            "l1BatchNumber": "0xb",
+            "l1BatchTxIndex": "0x0",
+            "logs": [
+              {
+                "address": "0x0000000000000000000000000000000000008006",
+                "data": "0x",
+                "topics": [
+                  "0x290afdae231a3fc0bbae8b1af63698b0a1d79b21ad17df0342dfb952fe74f8e5",
+                  "0x00000000000000000000000005532f4e5817a94f109a213b92b2e08f714b4205",
+                  "0x010000d37155e3640948296be420258a2e1a98adb16b55738b817247e9fd54eb",
+                  "0x000000000000000000000000c2247022c38a59152864310597f9e008cc183dfa"
+                ]
+              }
+            ],
+            "status": "0x1",
+            "to": "0x0000000000000000000000000000000000008006",
+            "transactionHash": "0x3b1a50d2d66a71138a7c175f2e17d3f37b770d998fe9f7292b302137b68cf224",
+            "transactionIndex": "0x0",
+            "type": "0x71"
+          },
+          "t_response_utc": "2026-09-25T16:46:38.909Z"
+        },
+        "tx_details": {
+          "ok": true,
+          "response_raw": "{\"jsonrpc\":\"2.0\",\"id\":39,\"result\":{\"isL1Originated\":false,\"status\":\"included\",\"fee\":\"0x1a6ae5d81840\",\"gasPerPubdata\":\"0x50\",\"initiatorAddress\":\"0x05532f4E5817a94f109a213B92b2E08F714b4205\",\"receivedAt\":\"2026-09-25T16:46:08.365Z\",\"ethCommitTxHash\":null,\"ethProveTxHash\":null,\"ethExecuteTxHash\":null}}",
+          "result": {
+            "ethCommitTxHash": null,
+            "ethExecuteTxHash": null,
+            "ethProveTxHash": null,
+            "fee": "0x1a6ae5d81840",
+            "gasPerPubdata": "0x50",
+            "initiatorAddress": "0x05532f4E5817a94f109a213B92b2E08F714b4205",
+            "isL1Originated": false,
+            "receivedAt": "2026-09-25T16:46:08.365Z",
+            "status": "included"
+          },
+          "t_response_utc": "2026-09-25T16:46:38.909Z"
+        }
+      },
+      "receipt_now": "present",
+      "receipt_to_commit_s": 2.332,
+      "receipt_to_execute_s": 6.332,
+      "receipt_to_prove_s": 4.332,
+      "row_state": "confirmed_success",
+      "run_id": "dry-setup-era-sepolia-6827943-20260925T164607Z",
+      "schedule_id": "SETUP-ERA-02",
+      "session_id": "SETUP",
+      "t_receipt_utc": "2026-09-25T16:46:08.872Z",
+      "tx_details_status": "included",
+      "tx_hash": "0x3b1a50d2d66a71138a7c175f2e17d3f37b770d998fe9f7292b302137b68cf224"
+    },
+    {
+      "backend": "groth16",
+      "batch_status": "verified",
+      "commit_chain_id": 11155111,
+      "commit_tx_hash": "0xc4e86c3215960e8b12995cb7a9a8f4bff0f0811de5a059ff7ef8cea6b4fcea4f",
+      "committed_at": "2026-09-25T16:46:11.204Z",
+      "execute_chain_id": 11155111,
+      "execute_tx_hash": "0x4b43c790db6b766bfa67d3e50aee43da9c6e5b491a29ddea68853f920978916d",
+      "executed_at": "2026-09-25T16:46:15.204Z",
+      "l1_batch_number": 11,
+      "op": "set_issuer",
+      "proof_id": "",
+      "prove_tx_hash": "0x4cc3e926944c7c2612293571a151c234522a1ab36e371ea729831d5436679254",
+      "proven_at": "2026-09-25T16:46:13.204Z",
+      "raw": {
+        "receipt": {
+          "ok": true,
+          "response_raw": "{\"jsonrpc\":\"2.0\",\"id\":41,\"result\":{\"transactionHash\":\"0x9989be12ac3cf563848d8d0d2a74f3290d6e20feb5a7eb08b4e87a29caaf393b\",\"blockNumber\":\"0x20\",\"blockHash\":\"0x329dcf1e780e4989232ec74eedd486b4c45c88b50ca08222c697fe3ddbf0c0fa\",\"transactionIndex\":\"0x0\",\"from\":\"0x05532f4E5817a94f109a213B92b2E08F714b4205\",\"to\":\"0xc2247022C38a59152864310597F9e008cc183dFA\",\"status\":\"0x1\",\"gasUsed\":\"0x1f62d\",\"cumulativeGasUsed\":\"0x1f62d\",\"effectiveGasPrice\":\"0x17d7840\",\"contractAddress\":null,\"logs\":[],\"type\":\"0x71\",\"l1BatchNumber\":\"0xb\",\"l1BatchTxIndex\":\"0x0\"}}",
+          "result": {
+            "blockHash": "0x329dcf1e780e4989232ec74eedd486b4c45c88b50ca08222c697fe3ddbf0c0fa",
+            "blockNumber": "0x20",
+            "contractAddress": null,
+            "cumulativeGasUsed": "0x1f62d",
+            "effectiveGasPrice": "0x17d7840",
+            "from": "0x05532f4E5817a94f109a213B92b2E08F714b4205",
+            "gasUsed": "0x1f62d",
+            "l1BatchNumber": "0xb",
+            "l1BatchTxIndex": "0x0",
+            "logs": [],
+            "status": "0x1",
+            "to": "0xc2247022C38a59152864310597F9e008cc183dFA",
+            "transactionHash": "0x9989be12ac3cf563848d8d0d2a74f3290d6e20feb5a7eb08b4e87a29caaf393b",
+            "transactionIndex": "0x0",
+            "type": "0x71"
+          },
+          "t_response_utc": "2026-09-25T16:46:38.910Z"
+        },
+        "tx_details": {
+          "ok": true,
+          "response_raw": "{\"jsonrpc\":\"2.0\",\"id\":42,\"result\":{\"isL1Originated\":false,\"status\":\"included\",\"fee\":\"0x2ec4cdba340\",\"gasPerPubdata\":\"0x50\",\"initiatorAddress\":\"0x05532f4E5817a94f109a213B92b2E08F714b4205\",\"receivedAt\":\"2026-09-25T16:46:08.888Z\",\"ethCommitTxHash\":null,\"ethProveTxHash\":null,\"ethExecuteTxHash\":null}}",
+          "result": {
+            "ethCommitTxHash": null,
+            "ethExecuteTxHash": null,
+            "ethProveTxHash": null,
+            "fee": "0x2ec4cdba340",
+            "gasPerPubdata": "0x50",
+            "initiatorAddress": "0x05532f4E5817a94f109a213B92b2E08F714b4205",
+            "isL1Originated": false,
+            "receivedAt": "2026-09-25T16:46:08.888Z",
+            "status": "included"
+          },
+          "t_response_utc": "2026-09-25T16:46:38.910Z"
+        }
+      },
+      "receipt_now": "present",
+      "receipt_to_commit_s": 1.81,
+      "receipt_to_execute_s": 5.81,
+      "receipt_to_prove_s": 3.81,
+      "row_state": "confirmed_success",
+      "run_id": "dry-setup-era-sepolia-6827943-20260925T164607Z",
+      "schedule_id": "SETUP-ERA-03",
+      "session_id": "SETUP",
+      "t_receipt_utc": "2026-09-25T16:46:09.394Z",
+      "tx_details_status": "included",
+      "tx_hash": "0x9989be12ac3cf563848d8d0d2a74f3290d6e20feb5a7eb08b4e87a29caaf393b"
+    },
+    {
+      "backend": "groth16",
+      "batch_status": "verified",
+      "commit_chain_id": 11155111,
+      "commit_tx_hash": "0x2cc17275507e89ecb7fa11806b3bd4775c19753e8bd8382a7f3291db35bacd2f",
+      "committed_at": "2026-09-25T16:46:12.113Z",
+      "execute_chain_id": 11155111,
+      "execute_tx_hash": "0x4f16b9bb75a0144549f24d2a30035283d45f88fd26d08d45a5a03d2f6fbb05d2",
+      "executed_at": "2026-09-25T16:46:16.113Z",
+      "l1_batch_number": 12,
+      "op": "add_root",
+      "proof_id": "",
+      "prove_tx_hash": "0x21bea4c46df91c656c82280a8bbaa09d00ee2461694959ee74055fd7bf6a748f",
+      "proven_at": "2026-09-25T16:46:14.113Z",
+      "raw": {
+        "receipt": {
+          "ok": true,
+          "response_raw": "{\"jsonrpc\":\"2.0\",\"id\":43,\"result\":{\"transactionHash\":\"0xd18b26c1b3c9d7516ed39c61c222daccb08f24d7ed486262772076e4f6cd72d5\",\"blockNumber\":\"0x22\",\"blockHash\":\"0xc9f90591248e31f04c5448dcfdb67952ab34fc01865dac6467655a4b3890c598\",\"transactionIndex\":\"0x0\",\"from\":\"0x05532f4E5817a94f109a213B92b2E08F714b4205\",\"to\":\"0xc2247022C38a59152864310597F9e008cc183dFA\",\"status\":\"0x1\",\"gasUsed\":\"0x1f76d\",\"cumulativeGasUsed\":\"0x1f76d\",\"effectiveGasPrice\":\"0x17d7840\",\"contractAddress\":null,\"logs\":[],\"type\":\"0x71\",\"l1BatchNumber\":\"0xc\",\"l1BatchTxIndex\":\"0x0\"}}",
+          "result": {
+            "blockHash": "0xc9f90591248e31f04c5448dcfdb67952ab34fc01865dac6467655a4b3890c598",
+            "blockNumber": "0x22",
+            "contractAddress": null,
+            "cumulativeGasUsed": "0x1f76d",
+            "effectiveGasPrice": "0x17d7840",
+            "from": "0x05532f4E5817a94f109a213B92b2E08F714b4205",
+            "gasUsed": "0x1f76d",
+            "l1BatchNumber": "0xc",
+            "l1BatchTxIndex": "0x0",
+            "logs": [],
+            "status": "0x1",
+            "to": "0xc2247022C38a59152864310597F9e008cc183dFA",
+            "transactionHash": "0xd18b26c1b3c9d7516ed39c61c222daccb08f24d7ed486262772076e4f6cd72d5",
+            "transactionIndex": "0x0",
+            "type": "0x71"
+          },
+          "t_response_utc": "2026-09-25T16:46:38.910Z"
+        },
+        "tx_details": {
+          "ok": true,
+          "response_raw": "{\"jsonrpc\":\"2.0\",\"id\":44,\"result\":{\"isL1Originated\":false,\"status\":\"included\",\"fee\":\"0x2ee29b1f340\",\"gasPerPubdata\":\"0x50\",\"initiatorAddress\":\"0x05532f4E5817a94f109a213B92b2E08F714b4205\",\"receivedAt\":\"2026-09-25T16:46:09.408Z\",\"ethCommitTxHash\":null,\"ethProveTxHash\":null,\"ethExecuteTxHash\":null}}",
+          "result": {
+            "ethCommitTxHash": null,
+            "ethExecuteTxHash": null,
+            "ethProveTxHash": null,
+            "fee": "0x2ee29b1f340",
+            "gasPerPubdata": "0x50",
+            "initiatorAddress": "0x05532f4E5817a94f109a213B92b2E08F714b4205",
+            "isL1Originated": false,
+            "receivedAt": "2026-09-25T16:46:09.408Z",
+            "status": "included"
+          },
+          "t_response_utc": "2026-09-25T16:46:38.910Z"
+        }
+      },
+      "receipt_now": "present",
+      "receipt_to_commit_s": 2.197,
+      "receipt_to_execute_s": 6.197,
+      "receipt_to_prove_s": 4.197,
+      "row_state": "confirmed_success",
+      "run_id": "dry-setup-era-sepolia-6827943-20260925T164607Z",
+      "schedule_id": "SETUP-ERA-04",
+      "session_id": "SETUP",
+      "t_receipt_utc": "2026-09-25T16:46:09.916Z",
+      "tx_details_status": "included",
+      "tx_hash": "0xd18b26c1b3c9d7516ed39c61c222daccb08f24d7ed486262772076e4f6cd72d5"
+    },
+    {
+      "backend": "plonk",
+      "batch_status": "verified",
+      "commit_chain_id": 11155111,
+      "commit_tx_hash": "0x2cc17275507e89ecb7fa11806b3bd4775c19753e8bd8382a7f3291db35bacd2f",
+      "committed_at": "2026-09-25T16:46:12.113Z",
+      "execute_chain_id": 11155111,
+      "execute_tx_hash": "0x4f16b9bb75a0144549f24d2a30035283d45f88fd26d08d45a5a03d2f6fbb05d2",
+      "executed_at": "2026-09-25T16:46:16.113Z",
+      "l1_batch_number": 12,
+      "op": "deploy_verifier",
+      "proof_id": "",
+      "prove_tx_hash": "0x21bea4c46df91c656c82280a8bbaa09d00ee2461694959ee74055fd7bf6a748f",
+      "proven_at": "2026-09-25T16:46:14.113Z",
+      "raw": {
+        "receipt": {
+          "ok": true,
+          "response_raw": "{\"jsonrpc\":\"2.0\",\"id\":46,\"result\":{\"transactionHash\":\"0x71f4bf4b8dd431018407829355cbc313c259e74e6358a5f91b4c4f4e72256e99\",\"blockNumber\":\"0x24\",\"blockHash\":\"0x05bfe7fdf17afa9b9c57f77fac65be7b10982483de5246990f3b1f53f0d427b9\",\"transactionIndex\":\"0x0\",\"from\":\"0x05532f4E5817a94f109a213B92b2E08F714b4205\",\"to\":\"0x0000000000000000000000000000000000008006\",\"status\":\"0x1\",\"gasUsed\":\"0x4abd70\",\"cumulativeGasUsed\":\"0x4abd70\",\"effectiveGasPrice\":\"0x17d7840\",\"contractAddress\":\"0x14dA370D6aA904a863f72335B59A1538D3527A7C\",\"logs\":[{\"address\":\"0x0000000000000000000000000000000000008006\",\"topics\":[\"0x290afdae231a3fc0bbae8b1af63698b0a1d79b21ad17df0342dfb952fe74f8e5\",\"0x00000000000000000000000005532f4e5817a94f109a213b92b2e08f714b4205\",\"0x0100052778196cbbed42200c01f2280655dacb2e92a94516f3d56c93d48e4b62\",\"0x00000000000000000000000014da370d6aa904a863f72335b59a1538d3527a7c\"],\"data\":\"0x\"}],\"type\":\"0x71\",\"l1BatchNumber\":\"0xc\",\"l1BatchTxIndex\":\"0x0\"}}",
+          "result": {
+            "blockHash": "0x05bfe7fdf17afa9b9c57f77fac65be7b10982483de5246990f3b1f53f0d427b9",
+            "blockNumber": "0x24",
+            "contractAddress": "0x14dA370D6aA904a863f72335B59A1538D3527A7C",
+            "cumulativeGasUsed": "0x4abd70",
+            "effectiveGasPrice": "0x17d7840",
+            "from": "0x05532f4E5817a94f109a213B92b2E08F714b4205",
+            "gasUsed": "0x4abd70",
+            "l1BatchNumber": "0xc",
+            "l1BatchTxIndex": "0x0",
+            "logs": [
+              {
+                "address": "0x0000000000000000000000000000000000008006",
+                "data": "0x",
+                "topics": [
+                  "0x290afdae231a3fc0bbae8b1af63698b0a1d79b21ad17df0342dfb952fe74f8e5",
+                  "0x00000000000000000000000005532f4e5817a94f109a213b92b2e08f714b4205",
+                  "0x0100052778196cbbed42200c01f2280655dacb2e92a94516f3d56c93d48e4b62",
+                  "0x00000000000000000000000014da370d6aa904a863f72335b59a1538d3527a7c"
+                ]
+              }
+            ],
+            "status": "0x1",
+            "to": "0x0000000000000000000000000000000000008006",
+            "transactionHash": "0x71f4bf4b8dd431018407829355cbc313c259e74e6358a5f91b4c4f4e72256e99",
+            "transactionIndex": "0x0",
+            "type": "0x71"
+          },
+          "t_response_utc": "2026-09-25T16:46:38.910Z"
+        },
+        "tx_details": {
+          "ok": true,
+          "response_raw": "{\"jsonrpc\":\"2.0\",\"id\":47,\"result\":{\"isL1Originated\":false,\"status\":\"included\",\"fee\":\"0x6f5f0b2bdc00\",\"gasPerPubdata\":\"0x50\",\"initiatorAddress\":\"0x05532f4E5817a94f109a213B92b2E08F714b4205\",\"receivedAt\":\"2026-09-25T16:46:09.961Z\",\"ethCommitTxHash\":null,\"ethProveTxHash\":null,\"ethExecuteTxHash\":null}}",
+          "result": {
+            "ethCommitTxHash": null,
+            "ethExecuteTxHash": null,
+            "ethProveTxHash": null,
+            "fee": "0x6f5f0b2bdc00",
+            "gasPerPubdata": "0x50",
+            "initiatorAddress": "0x05532f4E5817a94f109a213B92b2E08F714b4205",
+            "isL1Originated": false,
+            "receivedAt": "2026-09-25T16:46:09.961Z",
+            "status": "included"
+          },
+          "t_response_utc": "2026-09-25T16:46:38.910Z"
+        }
+      },
+      "receipt_now": "present",
+      "receipt_to_commit_s": 1.649,
+      "receipt_to_execute_s": 5.649,
+      "receipt_to_prove_s": 3.649,
+      "row_state": "confirmed_success",
+      "run_id": "dry-setup-era-sepolia-6827943-20260925T164607Z",
+      "schedule_id": "SETUP-ERA-05",
+      "session_id": "SETUP",
+      "t_receipt_utc": "2026-09-25T16:46:10.464Z",
+      "tx_details_status": "included",
+      "tx_hash": "0x71f4bf4b8dd431018407829355cbc313c259e74e6358a5f91b4c4f4e72256e99"
+    },
+    {
+      "backend": "plonk",
+      "batch_status": "verified",
+      "commit_chain_id": 11155111,
+      "commit_tx_hash": "0x7282aaf25b91e4cdea0fd162c863543a7044ece90f6ee5d4fa6ac481d3850a40",
+      "committed_at": "2026-09-25T16:46:13.025Z",
+      "execute_chain_id": 11155111,
+      "execute_tx_hash": "0xb0fcf42d4c67644f1c7fb0510e05361c863693bc5ce97c3f4f757622bf8a42c2",
+      "executed_at": "2026-09-25T16:46:17.025Z",
+      "l1_batch_number": 13,
+      "op": "deploy_manager",
+      "proof_id": "",
+      "prove_tx_hash": "0x8241dc943ae0a3652695ce16aa08ebf5e576537d43ce2b471b0f288958381ea7",
+      "proven_at": "2026-09-25T16:46:15.025Z",
+      "raw": {
+        "receipt": {
+          "ok": true,
+          "response_raw": "{\"jsonrpc\":\"2.0\",\"id\":48,\"result\":{\"transactionHash\":\"0xcd707d50910aa40fea02b3e442680b7ca13523d67575b9fdbbe6bfac0003e5ca\",\"blockNumber\":\"0x26\",\"blockHash\":\"0xfde33a11cc2caadac80dd1dc8b2cef3b8d2720f611bd8e9faf6a2d65bea7dcb9\",\"transactionIndex\":\"0x0\",\"from\":\"0x05532f4E5817a94f109a213B92b2E08F714b4205\",\"to\":\"0x0000000000000000000000000000000000008006\",\"status\":\"0x1\",\"gasUsed\":\"0x11603b\",\"cumulativeGasUsed\":\"0x11603b\",\"effectiveGasPrice\":\"0x17d7840\",\"contractAddress\":\"0xA1B93a71d74cd2062172e9dBD434DF3B3212ab4B\",\"logs\":[{\"address\":\"0x0000000000000000000000000000000000008006\",\"topics\":[\"0x290afdae231a3fc0bbae8b1af63698b0a1d79b21ad17df0342dfb952fe74f8e5\",\"0x00000000000000000000000005532f4e5817a94f109a213b92b2e08f714b4205\",\"0x010000cf8ad512f1d77f4733ef95b69a7329a5310824ac0599410635c1c0ebcf\",\"0x000000000000000000000000a1b93a71d74cd2062172e9dbd434df3b3212ab4b\"],\"data\":\"0x\"}],\"type\":\"0x71\",\"l1BatchNumber\":\"0xd\",\"l1BatchTxIndex\":\"0x0\"}}",
+          "result": {
+            "blockHash": "0xfde33a11cc2caadac80dd1dc8b2cef3b8d2720f611bd8e9faf6a2d65bea7dcb9",
+            "blockNumber": "0x26",
+            "contractAddress": "0xA1B93a71d74cd2062172e9dBD434DF3B3212ab4B",
+            "cumulativeGasUsed": "0x11603b",
+            "effectiveGasPrice": "0x17d7840",
+            "from": "0x05532f4E5817a94f109a213B92b2E08F714b4205",
+            "gasUsed": "0x11603b",
+            "l1BatchNumber": "0xd",
+            "l1BatchTxIndex": "0x0",
+            "logs": [
+              {
+                "address": "0x0000000000000000000000000000000000008006",
+                "data": "0x",
+                "topics": [
+                  "0x290afdae231a3fc0bbae8b1af63698b0a1d79b21ad17df0342dfb952fe74f8e5",
+                  "0x00000000000000000000000005532f4e5817a94f109a213b92b2e08f714b4205",
+                  "0x010000cf8ad512f1d77f4733ef95b69a7329a5310824ac0599410635c1c0ebcf",
+                  "0x000000000000000000000000a1b93a71d74cd2062172e9dbd434df3b3212ab4b"
+                ]
+              }
+            ],
+            "status": "0x1",
+            "to": "0x0000000000000000000000000000000000008006",
+            "transactionHash": "0xcd707d50910aa40fea02b3e442680b7ca13523d67575b9fdbbe6bfac0003e5ca",
+            "transactionIndex": "0x0",
+            "type": "0x71"
+          },
+          "t_response_utc": "2026-09-25T16:46:38.911Z"
+        },
+        "tx_details": {
+          "ok": true,
+          "response_raw": "{\"jsonrpc\":\"2.0\",\"id\":49,\"result\":{\"isL1Originated\":false,\"status\":\"included\",\"fee\":\"0x19e46142b6c0\",\"gasPerPubdata\":\"0x50\",\"initiatorAddress\":\"0x05532f4E5817a94f109a213B92b2E08F714b4205\",\"receivedAt\":\"2026-09-25T16:46:10.483Z\",\"ethCommitTxHash\":null,\"ethProveTxHash\":null,\"ethExecuteTxHash\":null}}",
+          "result": {
+            "ethCommitTxHash": null,
+            "ethExecuteTxHash": null,
+            "ethProveTxHash": null,
+            "fee": "0x19e46142b6c0",
+            "gasPerPubdata": "0x50",
+            "initiatorAddress": "0x05532f4E5817a94f109a213B92b2E08F714b4205",
+            "isL1Originated": false,
+            "receivedAt": "2026-09-25T16:46:10.483Z",
+            "status": "included"
+          },
+          "t_response_utc": "2026-09-25T16:46:38.911Z"
+        }
+      },
+      "receipt_now": "present",
+      "receipt_to_commit_s": 2.037,
+      "receipt_to_execute_s": 6.037,
+      "receipt_to_prove_s": 4.037,
+      "row_state": "confirmed_success",
+      "run_id": "dry-setup-era-sepolia-6827943-20260925T164607Z",
+      "schedule_id": "SETUP-ERA-06",
+      "session_id": "SETUP",
+      "t_receipt_utc": "2026-09-25T16:46:10.988Z",
+      "tx_details_status": "included",
+      "tx_hash": "0xcd707d50910aa40fea02b3e442680b7ca13523d67575b9fdbbe6bfac0003e5ca"
+    },
+    {
+      "backend": "plonk",
+      "batch_status": "verified",
+      "commit_chain_id": 11155111,
+      "commit_tx_hash": "0x7282aaf25b91e4cdea0fd162c863543a7044ece90f6ee5d4fa6ac481d3850a40",
+      "committed_at": "2026-09-25T16:46:13.025Z",
+      "execute_chain_id": 11155111,
+      "execute_tx_hash": "0xb0fcf42d4c67644f1c7fb0510e05361c863693bc5ce97c3f4f757622bf8a42c2",
+      "executed_at": "2026-09-25T16:46:17.025Z",
+      "l1_batch_number": 13,
+      "op": "set_issuer",
+      "proof_id": "",
+      "prove_tx_hash": "0x8241dc943ae0a3652695ce16aa08ebf5e576537d43ce2b471b0f288958381ea7",
+      "proven_at": "2026-09-25T16:46:15.025Z",
+      "raw": {
+        "receipt": {
+          "ok": true,
+          "response_raw": "{\"jsonrpc\":\"2.0\",\"id\":51,\"result\":{\"transactionHash\":\"0x9f48e20a014cfe60bb4b03792f21adba925043cdd41fd42c02137100ccbc8585\",\"blockNumber\":\"0x27\",\"blockHash\":\"0x385bff5ae24f0587064e2a0fd101fe1e7a051d7a70d9a9436c157f8ac00fdfda\",\"transactionIndex\":\"0x0\",\"from\":\"0x05532f4E5817a94f109a213B92b2E08F714b4205\",\"to\":\"0xA1B93a71d74cd2062172e9dBD434DF3B3212ab4B\",\"status\":\"0x1\",\"gasUsed\":\"0x1f61d\",\"cumulativeGasUsed\":\"0x1f61d\",\"effectiveGasPrice\":\"0x17d7840\",\"contractAddress\":null,\"logs\":[],\"type\":\"0x71\",\"l1BatchNumber\":\"0xd\",\"l1BatchTxIndex\":\"0x0\"}}",
+          "result": {
+            "blockHash": "0x385bff5ae24f0587064e2a0fd101fe1e7a051d7a70d9a9436c157f8ac00fdfda",
+            "blockNumber": "0x27",
+            "contractAddress": null,
+            "cumulativeGasUsed": "0x1f61d",
+            "effectiveGasPrice": "0x17d7840",
+            "from": "0x05532f4E5817a94f109a213B92b2E08F714b4205",
+            "gasUsed": "0x1f61d",
+            "l1BatchNumber": "0xd",
+            "l1BatchTxIndex": "0x0",
+            "logs": [],
+            "status": "0x1",
+            "to": "0xA1B93a71d74cd2062172e9dBD434DF3B3212ab4B",
+            "transactionHash": "0x9f48e20a014cfe60bb4b03792f21adba925043cdd41fd42c02137100ccbc8585",
+            "transactionIndex": "0x0",
+            "type": "0x71"
+          },
+          "t_response_utc": "2026-09-25T16:46:38.911Z"
+        },
+        "tx_details": {
+          "ok": true,
+          "response_raw": "{\"jsonrpc\":\"2.0\",\"id\":52,\"result\":{\"isL1Originated\":false,\"status\":\"included\",\"fee\":\"0x2ec35041f40\",\"gasPerPubdata\":\"0x50\",\"initiatorAddress\":\"0x05532f4E5817a94f109a213B92b2E08F714b4205\",\"receivedAt\":\"2026-09-25T16:46:11.002Z\",\"ethCommitTxHash\":null,\"ethProveTxHash\":null,\"ethExecuteTxHash\":null}}",
+          "result": {
+            "ethCommitTxHash": null,
+            "ethExecuteTxHash": null,
+            "ethProveTxHash": null,
+            "fee": "0x2ec35041f40",
+            "gasPerPubdata": "0x50",
+            "initiatorAddress": "0x05532f4E5817a94f109a213B92b2E08F714b4205",
+            "isL1Originated": false,
+            "receivedAt": "2026-09-25T16:46:11.002Z",
+            "status": "included"
+          },
+          "t_response_utc": "2026-09-25T16:46:38.911Z"
+        }
+      },
+      "receipt_now": "present",
+      "receipt_to_commit_s": 1.515,
+      "receipt_to_execute_s": 5.515,
+      "receipt_to_prove_s": 3.515,
+      "row_state": "confirmed_success",
+      "run_id": "dry-setup-era-sepolia-6827943-20260925T164607Z",
+      "schedule_id": "SETUP-ERA-07",
+      "session_id": "SETUP",
+      "t_receipt_utc": "2026-09-25T16:46:11.510Z",
+      "tx_details_status": "included",
+      "tx_hash": "0x9f48e20a014cfe60bb4b03792f21adba925043cdd41fd42c02137100ccbc8585"
+    },
+    {
+      "backend": "plonk",
+      "batch_status": "verified",
+      "commit_chain_id": 11155111,
+      "commit_tx_hash": "0xd18c7581c8daec608fc4dfffbd5e0542aac4d24a728b6f6532fa39f16df3e0f9",
+      "committed_at": "2026-09-25T16:46:13.941Z",
+      "execute_chain_id": 11155111,
+      "execute_tx_hash": "0xdeb47bb92acace178a8d73f71337ec220b86514e8d39f81c6a84f82d663c5282",
+      "executed_at": "2026-09-25T16:46:17.941Z",
+      "l1_batch_number": 14,
+      "op": "add_root",
+      "proof_id": "",
+      "prove_tx_hash": "0xe23ba24feb8154830d609b80a3af7e04426cd97e09510ccf7c2ac09870b01abb",
+      "proven_at": "2026-09-25T16:46:15.941Z",
+      "raw": {
+        "receipt": {
+          "ok": true,
+          "response_raw": "{\"jsonrpc\":\"2.0\",\"id\":53,\"result\":{\"transactionHash\":\"0x233fac911188317c018cc43c9650d1d794727c96bc99add29ebabcb66f47fbb4\",\"blockNumber\":\"0x29\",\"blockHash\":\"0x98d225f68d5105fc0295bd08819e5f6c283d87b6780551df645d6c91d41f9e22\",\"transactionIndex\":\"0x0\",\"from\":\"0x05532f4E5817a94f109a213B92b2E08F714b4205\",\"to\":\"0xA1B93a71d74cd2062172e9dBD434DF3B3212ab4B\",\"status\":\"0x1\",\"gasUsed\":\"0x1f75d\",\"cumulativeGasUsed\":\"0x1f75d\",\"effectiveGasPrice\":\"0x17d7840\",\"contractAddress\":null,\"logs\":[],\"type\":\"0x71\",\"l1BatchNumber\":\"0xe\",\"l1BatchTxIndex\":\"0x0\"}}",
+          "result": {
+            "blockHash": "0x98d225f68d5105fc0295bd08819e5f6c283d87b6780551df645d6c91d41f9e22",
+            "blockNumber": "0x29",
+            "contractAddress": null,
+            "cumulativeGasUsed": "0x1f75d",
+            "effectiveGasPrice": "0x17d7840",
+            "from": "0x05532f4E5817a94f109a213B92b2E08F714b4205",
+            "gasUsed": "0x1f75d",
+            "l1BatchNumber": "0xe",
+            "l1BatchTxIndex": "0x0",
+            "logs": [],
+            "status": "0x1",
+            "to": "0xA1B93a71d74cd2062172e9dBD434DF3B3212ab4B",
+            "transactionHash": "0x233fac911188317c018cc43c9650d1d794727c96bc99add29ebabcb66f47fbb4",
+            "transactionIndex": "0x0",
+            "type": "0x71"
+          },
+          "t_response_utc": "2026-09-25T16:46:38.911Z"
+        },
+        "tx_details": {
+          "ok": true,
+          "response_raw": "{\"jsonrpc\":\"2.0\",\"id\":54,\"result\":{\"isL1Originated\":false,\"status\":\"included\",\"fee\":\"0x2ee11da6f40\",\"gasPerPubdata\":\"0x50\",\"initiatorAddress\":\"0x05532f4E5817a94f109a213B92b2E08F714b4205\",\"receivedAt\":\"2026-09-25T16:46:11.524Z\",\"ethCommitTxHash\":null,\"ethProveTxHash\":null,\"ethExecuteTxHash\":null}}",
+          "result": {
+            "ethCommitTxHash": null,
+            "ethExecuteTxHash": null,
+            "ethProveTxHash": null,
+            "fee": "0x2ee11da6f40",
+            "gasPerPubdata": "0x50",
+            "initiatorAddress": "0x05532f4E5817a94f109a213B92b2E08F714b4205",
+            "isL1Originated": false,
+            "receivedAt": "2026-09-25T16:46:11.524Z",
+            "status": "included"
+          },
+          "t_response_utc": "2026-09-25T16:46:38.912Z"
+        }
+      },
+      "receipt_now": "present",
+      "receipt_to_commit_s": 1.914,
+      "receipt_to_execute_s": 5.914,
+      "receipt_to_prove_s": 3.914,
+      "row_state": "confirmed_success",
+      "run_id": "dry-setup-era-sepolia-6827943-20260925T164607Z",
+      "schedule_id": "SETUP-ERA-08",
+      "session_id": "SETUP",
+      "t_receipt_utc": "2026-09-25T16:46:12.027Z",
+      "tx_details_status": "included",
+      "tx_hash": "0x233fac911188317c018cc43c9650d1d794727c96bc99add29ebabcb66f47fbb4"
+    }
+  ]
+}

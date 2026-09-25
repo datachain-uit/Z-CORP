@@ -1,0 +1,21 @@
+schedule_id,backend,op,proof_id,public_gas_used,controlled_l1_gas_used,difference,note
+S1-SEP-1,plonk,verify_credential,PLK-d11-p0,300026,300026,0,same calldata as the controlled study
+S1-SEP-2,groth16,verify_credential,G16-d11-p1,223958,223958,0,same calldata as the controlled study
+S1-SEP-3,plonk,verify_credential,PLK-d11-p1,299880,299880,0,same calldata as the controlled study
+S1-SEP-4,groth16,verify_credential,G16-d11-p0,223946,223946,0,same calldata as the controlled study
+S2-SEP-1,groth16,verify_credential,G16-d11-p1,223958,223958,0,same calldata as the controlled study
+S2-SEP-2,plonk,verify_credential,PLK-d11-p0,300026,300026,0,same calldata as the controlled study
+S2-SEP-3,groth16,verify_credential,G16-d11-p0,223946,223946,0,same calldata as the controlled study
+S2-SEP-4,plonk,verify_credential,PLK-d11-p1,299880,299880,0,same calldata as the controlled study
+S3-SEP-1,plonk,verify_credential,PLK-d11-p0,300026,300026,0,same calldata as the controlled study
+S3-SEP-2,groth16,verify_credential,G16-d11-p0,223946,223946,0,same calldata as the controlled study
+S3-SEP-3,plonk,verify_credential,PLK-d11-p1,299880,299880,0,same calldata as the controlled study
+S3-SEP-4,groth16,verify_credential,G16-d11-p1,223958,223958,0,same calldata as the controlled study
+SETUP-SEP-01,groth16,deploy_verifier,,349628,349628,0,calldata contains the public signer or verifier address
+SETUP-SEP-02,groth16,deploy_manager,,565248,565248,0,calldata contains the public signer or verifier address
+SETUP-SEP-03,groth16,set_issuer,,47900,47900,0,calldata contains the public signer or verifier address
+SETUP-SEP-04,groth16,add_root,,47334,47334,0,same calldata as the controlled study
+SETUP-SEP-05,plonk,deploy_verifier,,1226937,1226937,0,calldata contains the public signer or verifier address
+SETUP-SEP-06,plonk,deploy_manager,,541930,541930,0,calldata contains the public signer or verifier address
+SETUP-SEP-07,plonk,set_issuer,,47900,47900,0,calldata contains the public signer or verifier address
+SETUP-SEP-08,plonk,add_root,,47334,47334,0,same calldata as the controlled study

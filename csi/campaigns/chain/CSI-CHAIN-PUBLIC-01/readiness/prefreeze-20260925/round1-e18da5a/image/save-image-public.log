@@ -1,0 +1,2 @@
+docker save chainbench-public:local (sha256:7e23ea8113a279b1d38be9ebb7eb374408661e8bb064e475c72030ce853f3724) -> build/chainbench/public/release/image/chainbench-public-arm64.oci.tar
+[PASS] frozen public image record written: chainbench/adapters/public/ARCHIVE.json (image sha256:7e23ea8113a279b1d38be9ebb7eb374408661e8bb064e475c72030ce853f3724, archive sha256 a492ad74c083f27b7261120453539aa2a4c1b7bdf9f21b033d44cfcc21ab4992); commit it

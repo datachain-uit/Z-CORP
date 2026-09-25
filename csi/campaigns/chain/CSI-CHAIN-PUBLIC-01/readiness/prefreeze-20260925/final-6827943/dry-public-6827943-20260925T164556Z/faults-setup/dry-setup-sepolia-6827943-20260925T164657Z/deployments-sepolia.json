@@ -1,0 +1,162 @@
+{
+  "all_ok": false,
+  "campaign_id": "CSI-CHAIN-PUBLIC-01",
+  "chain_id": 11155111,
+  "contracts": {
+    "plonk": {
+      "manager": "0x842651A4E8DaF0c772A7F050A54c6c7F88dFC060",
+      "verifier": "0xF9C8A6aC4dDAa850da44FbbFC4Cb059e90B0484B"
+    }
+  },
+  "network": "sepolia",
+  "post_setup_checks": [
+    {
+      "backend": "groth16",
+      "check": "manager_verifier",
+      "error": "not deployed",
+      "fn": "verifier",
+      "pass": false,
+      "to": null
+    },
+    {
+      "backend": "groth16",
+      "check": "manager_owner",
+      "error": "not deployed",
+      "fn": "owner",
+      "pass": false,
+      "to": null
+    },
+    {
+      "backend": "groth16",
+      "check": "signer_is_issuer",
+      "error": "not deployed",
+      "fn": "isIssuer",
+      "pass": false,
+      "to": null
+    },
+    {
+      "backend": "groth16",
+      "check": "root_is_valid",
+      "error": "not deployed",
+      "fn": "isValidRoot",
+      "pass": false,
+      "to": null
+    },
+    {
+      "backend": "plonk",
+      "check": "manager_verifier",
+      "expected": "0xF9C8A6aC4dDAa850da44FbbFC4Cb059e90B0484B",
+      "fn": "verifier",
+      "got": "0xF9C8A6aC4dDAa850da44FbbFC4Cb059e90B0484B",
+      "pass": true,
+      "proof_id": "",
+      "to": "0x842651A4E8DaF0c772A7F050A54c6c7F88dFC060"
+    },
+    {
+      "backend": "plonk",
+      "check": "manager_owner",
+      "expected": "0x05532f4E5817a94f109a213B92b2E08F714b4205",
+      "fn": "owner",
+      "got": "0x05532f4E5817a94f109a213B92b2E08F714b4205",
+      "pass": true,
+      "proof_id": "",
+      "to": "0x842651A4E8DaF0c772A7F050A54c6c7F88dFC060"
+    },
+    {
+      "backend": "plonk",
+      "check": "signer_is_issuer",
+      "expected": "true",
+      "fn": "isIssuer",
+      "got": "true",
+      "pass": true,
+      "proof_id": "",
+      "to": "0x842651A4E8DaF0c772A7F050A54c6c7F88dFC060"
+    },
+    {
+      "backend": "plonk",
+      "check": "root_is_valid",
+      "expected": "true",
+      "fn": "isValidRoot",
+      "got": "true",
+      "pass": true,
+      "proof_id": "",
+      "to": "0x842651A4E8DaF0c772A7F050A54c6c7F88dFC060"
+    }
+  ],
+  "setup_run_id": "dry-setup-sepolia-6827943-20260925T164657Z",
+  "signer_address": "0x05532f4E5817a94f109a213B92b2E08F714b4205",
+  "transactions": [
+    {
+      "backend": "groth16",
+      "contract_address": "0x3595cCfA6Ec287697C86FDCF8f8068e86F31FeF2",
+      "op": "deploy_verifier",
+      "runtime_matches_artifact": 0,
+      "schedule_id": "SETUP-SEP-01",
+      "state": "confirmed_success",
+      "tx_hash": "0xa93be084e72ac365b72334c23d9289cfd43b97a5e1d7b46877b7257649bdf556"
+    },
+    {
+      "backend": "groth16",
+      "contract_address": "",
+      "op": "deploy_manager",
+      "runtime_matches_artifact": "",
+      "schedule_id": "SETUP-SEP-02",
+      "state": "unsent_preflight_failure",
+      "tx_hash": ""
+    },
+    {
+      "backend": "groth16",
+      "contract_address": "",
+      "op": "set_issuer",
+      "runtime_matches_artifact": "",
+      "schedule_id": "SETUP-SEP-03",
+      "state": "unsent_preflight_failure",
+      "tx_hash": ""
+    },
+    {
+      "backend": "groth16",
+      "contract_address": "",
+      "op": "add_root",
+      "runtime_matches_artifact": "",
+      "schedule_id": "SETUP-SEP-04",
+      "state": "unsent_preflight_failure",
+      "tx_hash": ""
+    },
+    {
+      "backend": "plonk",
+      "contract_address": "0xF9C8A6aC4dDAa850da44FbbFC4Cb059e90B0484B",
+      "op": "deploy_verifier",
+      "runtime_matches_artifact": 1,
+      "schedule_id": "SETUP-SEP-05",
+      "state": "confirmed_success",
+      "tx_hash": "0x2839b6fa89bb93d73df18a711814d2f63987f23c087427ce55b9c1db87b9198e"
+    },
+    {
+      "backend": "plonk",
+      "contract_address": "0x842651A4E8DaF0c772A7F050A54c6c7F88dFC060",
+      "op": "deploy_manager",
+      "runtime_matches_artifact": 1,
+      "schedule_id": "SETUP-SEP-06",
+      "state": "confirmed_success",
+      "tx_hash": "0x679bf0d95be3c3982f83bd3434dfc6a462c379c72dd81005fe462fec74da4a8d"
+    },
+    {
+      "backend": "plonk",
+      "contract_address": "",
+      "op": "set_issuer",
+      "runtime_matches_artifact": "",
+      "schedule_id": "SETUP-SEP-07",
+      "state": "confirmed_success",
+      "tx_hash": "0x1d7b657d9844a8d53291397ef0db2774adb1eaf60aeaeca06368e38f2966f151"
+    },
+    {
+      "backend": "plonk",
+      "contract_address": "",
+      "op": "add_root",
+      "runtime_matches_artifact": "",
+      "schedule_id": "SETUP-SEP-08",
+      "state": "confirmed_success",
+      "tx_hash": "0x83072d66e6dea2997f01712d631c11a361bd63713cf5f550875c2b2c1b4695f5"
+    }
+  ]
+}

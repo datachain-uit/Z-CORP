@@ -1,0 +1,82 @@
+[
+  {
+    "backend": "groth16",
+    "check": "manager_verifier",
+    "expected": "0xd67A2cd26fC83B742efEDb4BfAa305d817b4bb4b",
+    "fn": "verifier",
+    "got": "0xd67A2cd26fC83B742efEDb4BfAa305d817b4bb4b",
+    "pass": true,
+    "proof_id": "",
+    "to": "0xc2247022C38a59152864310597F9e008cc183dFA"
+  },
+  {
+    "backend": "groth16",
+    "check": "manager_owner",
+    "expected": "0x05532f4E5817a94f109a213B92b2E08F714b4205",
+    "fn": "owner",
+    "got": "0x05532f4E5817a94f109a213B92b2E08F714b4205",
+    "pass": true,
+    "proof_id": "",
+    "to": "0xc2247022C38a59152864310597F9e008cc183dFA"
+  },
+  {
+    "backend": "groth16",
+    "check": "signer_is_issuer",
+    "expected": "true",
+    "fn": "isIssuer",
+    "got": "true",
+    "pass": true,
+    "proof_id": "",
+    "to": "0xc2247022C38a59152864310597F9e008cc183dFA"
+  },
+  {
+    "backend": "groth16",
+    "check": "root_is_valid",
+    "expected": "true",
+    "fn": "isValidRoot",
+    "got": "true",
+    "pass": true,
+    "proof_id": "",
+    "to": "0xc2247022C38a59152864310597F9e008cc183dFA"
+  },
+  {
+    "backend": "plonk",
+    "check": "manager_verifier",
+    "expected": "0x14dA370D6aA904a863f72335B59A1538D3527A7C",
+    "fn": "verifier",
+    "got": "0x14dA370D6aA904a863f72335B59A1538D3527A7C",
+    "pass": true,
+    "proof_id": "",
+    "to": "0xA1B93a71d74cd2062172e9dBD434DF3B3212ab4B"
+  },
+  {
+    "backend": "plonk",
+    "check": "manager_owner",
+    "expected": "0x05532f4E5817a94f109a213B92b2E08F714b4205",
+    "fn": "owner",
+    "got": "0x05532f4E5817a94f109a213B92b2E08F714b4205",
+    "pass": true,
+    "proof_id": "",
+    "to": "0xA1B93a71d74cd2062172e9dBD434DF3B3212ab4B"
+  },
+  {
+    "backend": "plonk",
+    "check": "signer_is_issuer",
+    "expected": "true",
+    "fn": "isIssuer",
+    "got": "true",
+    "pass": true,
+    "proof_id": "",
+    "to": "0xA1B93a71d74cd2062172e9dBD434DF3B3212ab4B"
+  },
+  {
+    "backend": "plonk",
+    "check": "root_is_valid",
+    "expected": "true",
+    "fn": "isValidRoot",
+    "got": "true",
+    "pass": true,
+    "proof_id": "",
+    "to": "0xA1B93a71d74cd2062172e9dBD434DF3B3212ab4B"
+  }
+]

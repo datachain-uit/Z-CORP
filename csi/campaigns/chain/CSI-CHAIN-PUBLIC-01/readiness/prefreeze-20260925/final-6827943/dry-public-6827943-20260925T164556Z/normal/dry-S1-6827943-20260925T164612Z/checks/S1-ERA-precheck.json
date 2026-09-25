@@ -1,0 +1,42 @@
+[
+  {
+    "backend": "plonk",
+    "check": "precheck_verify_credential",
+    "expected": "true",
+    "fn": "verifyCredential",
+    "got": "true",
+    "pass": true,
+    "proof_id": "PLK-d11-p0",
+    "to": "0xA1B93a71d74cd2062172e9dBD434DF3B3212ab4B"
+  },
+  {
+    "backend": "groth16",
+    "check": "precheck_verify_credential",
+    "expected": "true",
+    "fn": "verifyCredential",
+    "got": "true",
+    "pass": true,
+    "proof_id": "G16-d11-p0",
+    "to": "0xc2247022C38a59152864310597F9e008cc183dFA"
+  },
+  {
+    "backend": "plonk",
+    "check": "precheck_verify_credential",
+    "expected": "true",
+    "fn": "verifyCredential",
+    "got": "true",
+    "pass": true,
+    "proof_id": "PLK-d11-p1",
+    "to": "0xA1B93a71d74cd2062172e9dBD434DF3B3212ab4B"
+  },
+  {
+    "backend": "groth16",
+    "check": "precheck_verify_credential",
+    "expected": "true",
+    "fn": "verifyCredential",
+    "got": "true",
+    "pass": true,
+    "proof_id": "G16-d11-p1",
+    "to": "0xc2247022C38a59152864310597F9e008cc183dFA"
+  }
+]

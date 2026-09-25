@@ -1,0 +1,5 @@
+[PASS] frozen public image present: sha256:7e23ea8113a279b1d38be9ebb7eb374408661e8bb064e475c72030ce853f3724 (linux/arm64)
+       manifest sha256:3a0cf3776167447ee37332fd5fc1756b2b6b253bcdf0f38d68bdabbe12fbdb0d
+       config   sha256:34381409de95cb54c90b06c63a04ecb34dff0b37bc386b15e0aa2d4ca5d825db
+       archive  sha256 a492ad74c083f27b7261120453539aa2a4c1b7bdf9f21b033d44cfcc21ab4992
+[PASS] selected image (image.env) = the frozen image

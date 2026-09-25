@@ -1,0 +1,28 @@
+[PASS] INPUTS.sha256 covers every input file and verifies — []
+[PASS] IDENTITY.json: all builder identity checks pass — 43/43
+[PASS] EVM CredentialManagerGroth16: init/runtime bytecode = frozen L1 build manifest (runs a, b) — 0x3fa88dab92b4daae5449537045ac5d6e143ea11f41fcdff2d37adb5523454ace
+[PASS] EVM CredentialManagerGroth16: ABI digest = L1 and L2 manifests; source unchanged — 0d13ed4e78e33a86
+[PASS] EVM CredentialManagerPlonk: init/runtime bytecode = frozen L1 build manifest (runs a, b) — 0x81cfa580fc010d5bf437f4e25120ed772a570f64d5503726e6beb874892ec653
+[PASS] EVM CredentialManagerPlonk: ABI digest = L1 and L2 manifests; source unchanged — 02ae80126e26bacd
+[PASS] EVM Groth16LegacyVerifierDepth11: init/runtime bytecode = frozen L1 build manifest (runs a, b) — 0x1660e5c0187e477090c96776978c5c58afcac37df9cc19705e8395f2a690cefa
+[PASS] EVM Groth16LegacyVerifierDepth11: ABI digest = L1 and L2 manifests; source unchanged — 5460f8721d9f16e9
+[PASS] EVM PlonkVerifierDepth11: init/runtime bytecode = frozen L1 build manifest (runs a, b) — 0xb1839425094b9d5cc3e24cf8a9c779b46cb934c81145bd3eb8bace410ac95e03
+[PASS] EVM PlonkVerifierDepth11: ABI digest = L1 and L2 manifests; source unchanged — 2e2d99234e3a2d03
+[PASS] EraVM CredentialManagerGroth16: bytecode sha256 and hash = frozen L2 build manifest — 0x010000d37155e3640948296be420258a2e1a98adb16b55738b817247e9fd54eb
+[PASS] EraVM CredentialManagerGroth16: ABI digest = L1 and L2 manifests; source unchanged — 0d13ed4e78e33a86
+[PASS] EraVM CredentialManagerPlonk: bytecode sha256 and hash = frozen L2 build manifest — 0x010000cf8ad512f1d77f4733ef95b69a7329a5310824ac0599410635c1c0ebcf
+[PASS] EraVM CredentialManagerPlonk: ABI digest = L1 and L2 manifests; source unchanged — 02ae80126e26bacd
+[PASS] EraVM Groth16LegacyVerifierDepth11: bytecode sha256 and hash = frozen L2 build manifest — 0x0100005f89c4cefae9b82d938e5f49479fd773521ddfd615284396aa1bbb65c1
+[PASS] EraVM Groth16LegacyVerifierDepth11: ABI digest = L1 and L2 manifests; source unchanged — 5460f8721d9f16e9
+[PASS] EraVM PlonkVerifierDepth11: bytecode sha256 and hash = frozen L2 build manifest — 0x0100052778196cbbed42200c01f2280655dacb2e92a94516f3d56c93d48e4b62
+[PASS] EraVM PlonkVerifierDepth11: ABI digest = L1 and L2 manifests; source unchanged — 2e2d99234e3a2d03
+[PASS] G16-d11-p0: PS-01 proof and public files match PROOFSET.csv
+[PASS] G16-d11-p0: calldata = selector + ABI words of the stored arguments; sha256 = controlled L1 and L2 raw rows (4 rows) — ca9621b912a5f11c
+[PASS] G16-d11-p1: PS-01 proof and public files match PROOFSET.csv
+[PASS] G16-d11-p1: calldata = selector + ABI words of the stored arguments; sha256 = controlled L1 and L2 raw rows (4 rows) — 639c80471b559309
+[PASS] PLK-d11-p0: PS-01 proof and public files match PROOFSET.csv
+[PASS] PLK-d11-p0: calldata = selector + ABI words of the stored arguments; sha256 = controlled L1 and L2 raw rows (4 rows) — 2b47235792217a37
+[PASS] PLK-d11-p1: PS-01 proof and public files match PROOFSET.csv
+[PASS] PLK-d11-p1: calldata = selector + ABI words of the stored arguments; sha256 = controlled L1 and L2 raw rows (4 rows) — a298ee5b1ea8679a
+[PASS] addRoot calldata sha256 = every controlled depth-11 L1 and L2 add_root row — 8 rows
+CHECK-PUBLIC-INPUTS: 27/27 checks pass

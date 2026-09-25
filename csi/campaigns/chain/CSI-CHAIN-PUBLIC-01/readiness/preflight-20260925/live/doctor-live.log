@@ -1,0 +1,19 @@
+[PASS] Node.js >= 22 — v22.23.2
+[PASS] npm dependencies = package-lock.json (the only runtime dependencies) — {"ethers":"6.13.5","zksync-ethers":"6.21.2"}
+[PASS] dependency graph: 10 packages (ethers, zksync-ethers and their dependencies) — 10 packages
+[PASS] RPC path: node:https/http only (no WebSocket, no ethers provider, no fetch/undici)
+[PASS] protocol present — csi/protocols/chain/CHAIN-PUBLIC-PROTOCOL-v1.md (sha256 97e66ef5e0183250…)
+[PASS] frozen inputs (INPUTS.sha256, IDENTITY.json) — 43 identity checks; manifest 14cbed1bac6a22d7…
+[PASS] schedule — 40 transactions (16 setup, 24 verification in 3 sessions)
+[WARN] session start times frozen in the binding — not yet set: S1, S2, S3
+       Fix: author input: set scheduled_start_utc for S1-S3 (at least two calendar days) and commit before session 1
+[PASS] tracked paths clean — yes
+[WARN] signing key — none configured (reviewer mode: validation and derivation need no key)
+       Fix: for live runs set CHAINBENCH_PUBLIC_KEY_FILE
+[PASS] Ethereum Sepolia endpoint (https) — Alchemy host eth-sepolia.g.alchemy.com (URL recorded as sha256 only)
+[PASS] Ethereum Sepolia: chain id — 11155111
+[PASS] Ethereum Sepolia: read-only observation — client reth/v1.10.2-8e3b5e6/x86_64-unknown-linux-gnu; block 11780234; base fee 985679444; 6 calls ok, 0 failed
+[PASS] ZKsync Era Sepolia endpoint (https) — sepolia.era.zksync.dev host sepolia.era.zksync.dev
+[PASS] ZKsync Era Sepolia: chain id — 300
+[PASS] ZKsync Era Sepolia: read-only observation — client zkSync/v2.0; block 8562327; base fee 25000000; 10 calls ok, 0 failed
+DOCTOR-PUBLIC: no FAIL (2 WARN); nothing was signed or sent; report build/chainbench/public/doctor/doctor-20260925T155152Z.json

@@ -1,0 +1,12 @@
+PASS verify-image-public: the loaded and selected image is the frozen image sha256:246e35a06b0e823697fd42c5297739e1c3ecca145d6869adbf19b094d9d8eb49
+PASS run-public-setup with another selected image -> refused before the key and the prompt
+PASS run-public-session with another selected image -> refused
+PASS collect-era-finality with another selected image -> refused
+PASS run-public-setup natively (CHAINBENCH_PUBLIC_NATIVE=1) -> refused
+PASS frozen image verified first, then the missing key file is refused (key_file_missing); no prompt
+PASS 0644 key file -> key_file_permissions (this host's stat)
+PASS 0600 key in a 0755 directory -> key_dir_unprotected
+PASS symbolic link as key file -> key_file_symlink
+PASS frozen image + acceptable key file: stops at the confirmation prompt (stdin closed), nothing sent
+PASS IMAGE-LEDGER.jsonl records every pre-flight image check (8, of which 3 refusals; the native refusal precedes Docker)
+WRAPPER-GUARD-TESTS 20260925T164708Z: 11/11 pass (frozen image sha256:246e35a06b0e823697fd42c5297739e1c3ecca145d6869adbf19b094d9d8eb49); ledger lines moved to build/chainbench/public/tests/

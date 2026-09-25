@@ -1,0 +1,45 @@
+PASS [real stat (gnu)] valid 0600 key in a 0700 directory -> pass
+PASS [real stat (gnu)] valid 0400 key -> pass
+PASS [real stat (gnu)] 0644 key -> key_file_permissions
+PASS [real stat (gnu)] 0640 key -> key_file_permissions
+PASS [real stat (gnu)] 0700 key -> key_file_permissions
+PASS [real stat (gnu)] relative path -> key_file_not_absolute
+PASS [real stat (gnu)] symbolic link to a valid key -> key_file_symlink
+PASS [real stat (gnu)] a directory -> key_file_not_regular
+PASS [real stat (gnu)] missing file -> key_file_missing
+PASS [real stat (gnu)] key inside the repository -> key_file_in_repository
+PASS [real stat (gnu)] directory 0755 -> key_dir_unprotected
+PASS [real stat (gnu)] directory 0750 -> key_dir_unprotected
+PASS [real stat (gnu)] directory 0711 -> key_dir_unprotected
+PASS [gnu shim] valid 0600 key in a 0700 directory -> pass
+PASS [gnu shim] valid 0400 key -> pass
+PASS [gnu shim] 0644 key -> key_file_permissions
+PASS [gnu shim] 0640 key -> key_file_permissions
+PASS [gnu shim] 0700 key -> key_file_permissions
+PASS [gnu shim] relative path -> key_file_not_absolute
+PASS [gnu shim] symbolic link to a valid key -> key_file_symlink
+PASS [gnu shim] a directory -> key_file_not_regular
+PASS [gnu shim] missing file -> key_file_missing
+PASS [gnu shim] key inside the repository -> key_file_in_repository
+PASS [gnu shim] directory 0755 -> key_dir_unprotected
+PASS [gnu shim] directory 0750 -> key_dir_unprotected
+PASS [gnu shim] directory 0711 -> key_dir_unprotected
+PASS [bsd shim] valid 0600 key in a 0700 directory -> pass
+PASS [bsd shim] valid 0400 key -> pass
+PASS [bsd shim] 0644 key -> key_file_permissions
+PASS [bsd shim] 0640 key -> key_file_permissions
+PASS [bsd shim] 0700 key -> key_file_permissions
+PASS [bsd shim] relative path -> key_file_not_absolute
+PASS [bsd shim] symbolic link to a valid key -> key_file_symlink
+PASS [bsd shim] a directory -> key_file_not_regular
+PASS [bsd shim] missing file -> key_file_missing
+PASS [bsd shim] key inside the repository -> key_file_in_repository
+PASS [bsd shim] directory 0755 -> key_dir_unprotected
+PASS [bsd shim] directory 0750 -> key_dir_unprotected
+PASS [bsd shim] directory 0711 -> key_dir_unprotected
+PASS [gnu shim] cb_file_mode reads 600 (GNU form tried first)
+PASS [gnu shim] the old run-public.sh form (stat -f first) mis-reads a 0600 file (defect reproduced)
+PASS [bsd shim] cb_file_mode reads 600 (BSD fallback)
+PASS [owner shim] key owned by another uid -> key_file_owner
+PASS [broken shim] unparsable stat output -> key_file_stat (fails closed)
+KEYFILE-TESTS: 44/44 pass (real stat: gnu)

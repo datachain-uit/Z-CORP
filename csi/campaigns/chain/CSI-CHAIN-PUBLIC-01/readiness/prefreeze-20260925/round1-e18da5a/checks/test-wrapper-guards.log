@@ -1,0 +1,12 @@
+PASS verify-image-public: the loaded and selected image is the frozen image sha256:7e23ea8113a279b1d38be9ebb7eb374408661e8bb064e475c72030ce853f3724
+PASS run-public-setup with another selected image -> refused before the key and the prompt
+PASS run-public-session with another selected image -> refused
+PASS collect-era-finality with another selected image -> refused
+PASS run-public-setup natively (CHAINBENCH_PUBLIC_NATIVE=1) -> refused
+PASS frozen image verified first, then the missing key file is refused (key_file_missing); no prompt
+PASS 0644 key file -> key_file_permissions (this host's stat)
+PASS 0600 key in a 0755 directory -> key_dir_unprotected
+PASS symbolic link as key file -> key_file_symlink
+PASS frozen image + acceptable key file: stops at the confirmation prompt (stdin closed), nothing sent
+FAIL ledger (8 pre, 3 refused)
+WRAPPER-GUARD-TESTS 20260925T163515Z: 10/11 pass (frozen image sha256:7e23ea8113a279b1d38be9ebb7eb374408661e8bb064e475c72030ce853f3724); ledger lines moved to build/chainbench/public/tests/

@@ -1,0 +1,19 @@
+[PASS] Node.js >= 22 — v22.23.2
+[PASS] npm dependencies = package-lock.json (the only runtime dependencies) — {"ethers":"6.13.5","zksync-ethers":"6.21.2"}
+[PASS] dependency graph: 10 packages (ethers, zksync-ethers and their dependencies) — 10 packages
+[PASS] RPC path: node:https/http only (no WebSocket, no ethers provider, no fetch/undici)
+[PASS] frozen public image record (ARCHIVE.json: index -> manifest -> config chain verified) — image sha256:246e35a06b0e… linux/arm64; archive sha256 d8cbdd0f8a49ffb0…
+[PASS] image used by this doctor = the frozen public image — sha256:246e35a06b0e823697fd42c5297739e1c3ecca145d6869adbf19b094d9d8eb49
+[PASS] frozen primary endpoints in the binding — sepolia: Alchemy (eth-sepolia.g.alchemy.com); era-sepolia: ZKsync Era Sepolia official public RPC (sepolia.era.zksync.dev); validated secondary Alchemy (zksync-sepolia.g.alchemy.com), deviation only
+[PASS] protocol present — csi/protocols/chain/CHAIN-PUBLIC-PROTOCOL-v1.md (sha256 51db3707331f72c3…)
+[PASS] frozen inputs (INPUTS.sha256, IDENTITY.json) — 43 identity checks; manifest 14cbed1bac6a22d7…
+[PASS] schedule — 40 transactions (16 setup, 24 verification in 3 sessions)
+[PASS] session start times frozen in the binding — S1 2026-09-29T02:35:00Z; S2 2026-09-29T11:35:00Z; S3 2026-09-30T07:05:00Z
+[PASS] tracked paths clean — yes
+[WARN] signing key — none configured (reviewer mode: validation and derivation need no key)
+       Fix: for live runs set CHAINBENCH_PUBLIC_KEY_FILE
+[WARN] Ethereum Sepolia endpoint — not configured (CHAINBENCH_PUBLIC_RPC_SEPOLIA)
+       Fix: author input: set CHAINBENCH_PUBLIC_RPC_SEPOLIA and CHAINBENCH_PUBLIC_RPC_LABEL_SEPOLIA
+[PASS] ZKsync Era Sepolia endpoint (https) — sepolia.era.zksync.dev host sepolia.era.zksync.dev
+[PASS] ZKsync Era Sepolia endpoint = frozen primary — ZKsync Era Sepolia official public RPC (primary)
+DOCTOR-PUBLIC: no FAIL (2 WARN); nothing was signed or sent; report build/chainbench/public/doctor/doctor-20260925T164703Z.json

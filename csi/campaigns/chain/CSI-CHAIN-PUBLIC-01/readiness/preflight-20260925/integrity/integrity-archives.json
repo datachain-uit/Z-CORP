@@ -1,0 +1,28 @@
+{
+ "part": "archives",
+ "at_utc": "2026-09-25T15:42:05Z",
+ "head": "0c1090064f4a93abd799b7c14089f99c86b59cc1",
+ "releases": {
+  "CSI-PROVER-01": {
+   "manifest": "csi/release/CSI-PROVER-01/RELEASE.sha256",
+   "manifest_sha256": "cd7aa9ce58f2b53bdcc8fd976f1d9420d3b49e14df7a142d6ed2e92ed425cc32",
+   "files_ok": 6,
+   "files_bad": 0,
+   "bad": []
+  },
+  "CSI-CHAIN-LOCAL-01": {
+   "manifest": "csi/release/CSI-CHAIN-LOCAL-01/RELEASE.sha256",
+   "manifest_sha256": "e48699708e34c0ec05fe7a6dbf707d9bcc6aeabc603531d7f3b632bc4e7e42f6",
+   "files_ok": 17,
+   "files_bad": 0,
+   "bad": []
+  },
+  "CSI-CHAIN-LOCAL-01-L2": {
+   "manifest": "csi/release/CSI-CHAIN-LOCAL-01-L2/RELEASE.sha256",
+   "manifest_sha256": "dedb503a5e0323acf4c3179bdd8277ac87863a14788f718150f0b0496ce2c2f7",
+   "files_ok": 7,
+   "files_bad": 0,
+   "bad": []
+  }
+ }
+}

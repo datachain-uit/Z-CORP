@@ -1,0 +1,40 @@
+PASS image record: a consistent index -> manifest -> config chain loads
+PASS image record: tampered image_id -> image_record_inconsistent
+PASS image record: tampered manifest_digest -> image_record_inconsistent
+PASS image record: tampered config_digest -> image_record_inconsistent
+PASS image record: tampered config blob -> image_record_inconsistent
+PASS image record: tampered architecture -> image_record_inconsistent
+PASS image record: tampered rootfs layers -> image_record_inconsistent
+PASS image record: tampered archive sha256 format -> image_record_inconsistent
+PASS image record: missing record -> image_record_missing
+PASS image record: invalid JSON -> image_record_inconsistent
+PASS live image guard: no wrapper identity -> image_unverified
+PASS live image guard: identity of a non-frozen image (check != pass) -> image_unverified
+PASS live image guard: image_id differs from the frozen record -> image_mismatch
+PASS live image guard: manifest_digest differs from the frozen record -> image_mismatch
+PASS live image guard: config_digest differs from the frozen record -> image_mismatch
+PASS live image guard: archive_sha256 differs from the frozen record -> image_mismatch
+PASS live image guard: architecture differs from the frozen record -> image_mismatch
+PASS live image guard: platform differs from the frozen record -> image_mismatch
+PASS live image guard: the exact frozen identity passes and is returned for run.json (index, manifest, config, archive, architecture, platform)
+PASS the committed frozen image record (chainbench/adapters/public/ARCHIVE.json) verifies
+PASS live setup without the wrapper's image identity -> image_unverified (exit 3), before the key is looked at
+PASS live session without the wrapper's image identity -> image_unverified (exit 3)
+PASS live finality collection without the wrapper's image identity -> image_unverified (exit 3)
+PASS live setup with an identity that differs from the frozen record -> image_mismatch (exit 3)
+PASS live setup with the exact frozen identity passes the image guard; the next guard refuses (no key configured; nothing sent)
+PASS endpoint policy: the frozen primary -> primary
+PASS endpoint policy: the frozen primary under another label -> endpoint_label_mismatch
+PASS endpoint policy: the validated secondary without a recorded deviation -> secondary_without_deviation (no automatic fail-over)
+PASS endpoint policy: the validated secondary with a recorded deviation -> secondary (deviation id recorded)
+PASS endpoint policy: any other endpoint -> endpoint_not_frozen
+PASS endpoint policy: no frozen primary -> endpoints_not_frozen
+PASS derive VP12: frozen image recorded and re-verified after the run -> pass
+PASS derive VP12: no post-flight image check -> fail
+PASS derive VP12: failed post-flight image check -> fail
+PASS derive VP12: another image -> fail
+PASS derive VP13: frozen primary, rows carry it -> pass
+PASS derive VP13: secondary without a recorded deviation -> fail
+PASS derive VP13: secondary with a recorded deviation, rows carry it -> pass
+PASS derive VP13: a row that does not carry the endpoint used -> fail
+GUARD-TESTS (node): 39/39 pass

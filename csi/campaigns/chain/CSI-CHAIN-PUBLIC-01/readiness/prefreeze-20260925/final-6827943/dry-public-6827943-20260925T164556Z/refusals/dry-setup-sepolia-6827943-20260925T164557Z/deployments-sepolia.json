@@ -1,0 +1,84 @@
+{
+  "all_ok": false,
+  "campaign_id": "CSI-CHAIN-PUBLIC-01",
+  "chain_id": 11155111,
+  "contracts": {},
+  "network": "sepolia",
+  "post_setup_checks": null,
+  "setup_run_id": "dry-setup-sepolia-6827943-20260925T164557Z",
+  "signer_address": "0x05532f4E5817a94f109a213B92b2E08F714b4205",
+  "transactions": [
+    {
+      "backend": "groth16",
+      "contract_address": "",
+      "op": "deploy_verifier",
+      "runtime_matches_artifact": "",
+      "schedule_id": "SETUP-SEP-01",
+      "state": "unsent_preflight_failure",
+      "tx_hash": ""
+    },
+    {
+      "backend": "groth16",
+      "contract_address": "",
+      "op": "deploy_manager",
+      "runtime_matches_artifact": "",
+      "schedule_id": "SETUP-SEP-02",
+      "state": "unsent_preflight_failure",
+      "tx_hash": ""
+    },
+    {
+      "backend": "groth16",
+      "contract_address": "",
+      "op": "set_issuer",
+      "runtime_matches_artifact": "",
+      "schedule_id": "SETUP-SEP-03",
+      "state": "unsent_preflight_failure",
+      "tx_hash": ""
+    },
+    {
+      "backend": "groth16",
+      "contract_address": "",
+      "op": "add_root",
+      "runtime_matches_artifact": "",
+      "schedule_id": "SETUP-SEP-04",
+      "state": "unsent_preflight_failure",
+      "tx_hash": ""
+    },
+    {
+      "backend": "plonk",
+      "contract_address": "",
+      "op": "deploy_verifier",
+      "runtime_matches_artifact": "",
+      "schedule_id": "SETUP-SEP-05",
+      "state": "unsent_preflight_failure",
+      "tx_hash": ""
+    },
+    {
+      "backend": "plonk",
+      "contract_address": "",
+      "op": "deploy_manager",
+      "runtime_matches_artifact": "",
+      "schedule_id": "SETUP-SEP-06",
+      "state": "unsent_preflight_failure",
+      "tx_hash": ""
+    },
+    {
+      "backend": "plonk",
+      "contract_address": "",
+      "op": "set_issuer",
+      "runtime_matches_artifact": "",
+      "schedule_id": "SETUP-SEP-07",
+      "state": "unsent_preflight_failure",
+      "tx_hash": ""
+    },
+    {
+      "backend": "plonk",
+      "contract_address": "",
+      "op": "add_root",
+      "runtime_matches_artifact": "",
+      "schedule_id": "SETUP-SEP-08",
+      "state": "unsent_preflight_failure",
+      "tx_hash": ""
+    }
+  ]
+}

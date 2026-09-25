@@ -1,0 +1,174 @@
+{
+  "all_ok": true,
+  "campaign_id": "CSI-CHAIN-PUBLIC-01",
+  "chain_id": 11155111,
+  "contracts": {
+    "groth16": {
+      "manager": "0xF9C8A6aC4dDAa850da44FbbFC4Cb059e90B0484B",
+      "verifier": "0x3595cCfA6Ec287697C86FDCF8f8068e86F31FeF2"
+    },
+    "plonk": {
+      "manager": "0x301f8EfBA0C5e51d6fbBc8528C121F9272099098",
+      "verifier": "0x2aCf22bf6E9059758254b898c22Bc53440976eB0"
+    }
+  },
+  "network": "sepolia",
+  "post_setup_checks": [
+    {
+      "backend": "groth16",
+      "check": "manager_verifier",
+      "expected": "0x3595cCfA6Ec287697C86FDCF8f8068e86F31FeF2",
+      "fn": "verifier",
+      "got": "0x3595cCfA6Ec287697C86FDCF8f8068e86F31FeF2",
+      "pass": true,
+      "proof_id": "",
+      "to": "0xF9C8A6aC4dDAa850da44FbbFC4Cb059e90B0484B"
+    },
+    {
+      "backend": "groth16",
+      "check": "manager_owner",
+      "expected": "0x05532f4E5817a94f109a213B92b2E08F714b4205",
+      "fn": "owner",
+      "got": "0x05532f4E5817a94f109a213B92b2E08F714b4205",
+      "pass": true,
+      "proof_id": "",
+      "to": "0xF9C8A6aC4dDAa850da44FbbFC4Cb059e90B0484B"
+    },
+    {
+      "backend": "groth16",
+      "check": "signer_is_issuer",
+      "expected": "true",
+      "fn": "isIssuer",
+      "got": "true",
+      "pass": true,
+      "proof_id": "",
+      "to": "0xF9C8A6aC4dDAa850da44FbbFC4Cb059e90B0484B"
+    },
+    {
+      "backend": "groth16",
+      "check": "root_is_valid",
+      "expected": "true",
+      "fn": "isValidRoot",
+      "got": "true",
+      "pass": true,
+      "proof_id": "",
+      "to": "0xF9C8A6aC4dDAa850da44FbbFC4Cb059e90B0484B"
+    },
+    {
+      "backend": "plonk",
+      "check": "manager_verifier",
+      "expected": "0x2aCf22bf6E9059758254b898c22Bc53440976eB0",
+      "fn": "verifier",
+      "got": "0x2aCf22bf6E9059758254b898c22Bc53440976eB0",
+      "pass": true,
+      "proof_id": "",
+      "to": "0x301f8EfBA0C5e51d6fbBc8528C121F9272099098"
+    },
+    {
+      "backend": "plonk",
+      "check": "manager_owner",
+      "expected": "0x05532f4E5817a94f109a213B92b2E08F714b4205",
+      "fn": "owner",
+      "got": "0x05532f4E5817a94f109a213B92b2E08F714b4205",
+      "pass": true,
+      "proof_id": "",
+      "to": "0x301f8EfBA0C5e51d6fbBc8528C121F9272099098"
+    },
+    {
+      "backend": "plonk",
+      "check": "signer_is_issuer",
+      "expected": "true",
+      "fn": "isIssuer",
+      "got": "true",
+      "pass": true,
+      "proof_id": "",
+      "to": "0x301f8EfBA0C5e51d6fbBc8528C121F9272099098"
+    },
+    {
+      "backend": "plonk",
+      "check": "root_is_valid",
+      "expected": "true",
+      "fn": "isValidRoot",
+      "got": "true",
+      "pass": true,
+      "proof_id": "",
+      "to": "0x301f8EfBA0C5e51d6fbBc8528C121F9272099098"
+    }
+  ],
+  "setup_run_id": "dry-setup-sepolia-6827943-20260925T164639Z",
+  "signer_address": "0x05532f4E5817a94f109a213B92b2E08F714b4205",
+  "transactions": [
+    {
+      "backend": "groth16",
+      "contract_address": "0x3595cCfA6Ec287697C86FDCF8f8068e86F31FeF2",
+      "op": "deploy_verifier",
+      "runtime_matches_artifact": 1,
+      "schedule_id": "SETUP-SEP-01",
+      "state": "confirmed_success",
+      "tx_hash": "0xa93be084e72ac365b72334c23d9289cfd43b97a5e1d7b46877b7257649bdf556"
+    },
+    {
+      "backend": "groth16",
+      "contract_address": "0xF9C8A6aC4dDAa850da44FbbFC4Cb059e90B0484B",
+      "op": "deploy_manager",
+      "runtime_matches_artifact": 1,
+      "schedule_id": "SETUP-SEP-02",
+      "state": "confirmed_success",
+      "tx_hash": "0xd87611947d972ce0fb713d5cf5390f45c274093910d606fe9d8bec3c966385b6"
+    },
+    {
+      "backend": "groth16",
+      "contract_address": "",
+      "op": "set_issuer",
+      "runtime_matches_artifact": "",
+      "schedule_id": "SETUP-SEP-03",
+      "state": "confirmed_success",
+      "tx_hash": "0xd65975b3488086f7324ff6fbdbccd15160a77accd39e8f70b48bf7bfe26cacb6"
+    },
+    {
+      "backend": "groth16",
+      "contract_address": "",
+      "op": "add_root",
+      "runtime_matches_artifact": "",
+      "schedule_id": "SETUP-SEP-04",
+      "state": "confirmed_success",
+      "tx_hash": "0xd92958e932bf566439cae21f7b2f564ddee1f207ead069803d631304b2a8e1ec"
+    },
+    {
+      "backend": "plonk",
+      "contract_address": "0x2aCf22bf6E9059758254b898c22Bc53440976eB0",
+      "op": "deploy_verifier",
+      "runtime_matches_artifact": 1,
+      "schedule_id": "SETUP-SEP-05",
+      "state": "confirmed_success",
+      "tx_hash": "0xdff194bce9f373747a33822cfbb49dca0db2c2fdde264af617be5a17cfaebfb7"
+    },
+    {
+      "backend": "plonk",
+      "contract_address": "0x301f8EfBA0C5e51d6fbBc8528C121F9272099098",
+      "op": "deploy_manager",
+      "runtime_matches_artifact": 1,
+      "schedule_id": "SETUP-SEP-06",
+      "state": "confirmed_success",
+      "tx_hash": "0xf5c366162c675737fbf4d6da39955ebe52aab84fc296cb190df2d75e5a1e6e77"
+    },
+    {
+      "backend": "plonk",
+      "contract_address": "",
+      "op": "set_issuer",
+      "runtime_matches_artifact": "",
+      "schedule_id": "SETUP-SEP-07",
+      "state": "confirmed_success",
+      "tx_hash": "0xa8d386d92966cd0df48b4877465915d3d85630004d22dc87332c6bfaeec0ce15"
+    },
+    {
+      "backend": "plonk",
+      "contract_address": "",
+      "op": "add_root",
+      "runtime_matches_artifact": "",
+      "schedule_id": "SETUP-SEP-08",
+      "state": "confirmed_success",
+      "tx_hash": "0x5429a9f932f281bbc0a82ae4d0994283fdbcbb08d439ed3119e6708ac8cd8ca7"
+    }
+  ]
+}

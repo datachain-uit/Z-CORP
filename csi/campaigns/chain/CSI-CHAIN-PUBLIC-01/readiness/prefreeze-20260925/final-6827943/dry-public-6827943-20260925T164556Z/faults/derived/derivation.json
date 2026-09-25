@@ -1,0 +1,43 @@
+{
+  "boundary": "descriptive, dated; no significance test; no EVM-vs-EraVM comparison; receipt latency is not finality",
+  "inputs_sha256": {
+    "build/chainbench/public/dry-run/dry-public-6827943-20260925T164556Z/faults/dry-S1-6827943-20260925T164651Z/checks/S1-ERA-precheck.json": "f3145836698ce74d25e2af1b8a69692f01ff6158c1accf8397accdb075a9e386",
+    "build/chainbench/public/dry-run/dry-public-6827943-20260925T164556Z/faults/dry-S1-6827943-20260925T164651Z/checks/S1-SEP-precheck.json": "779f8a0634831141dda95e2f1fbe1a2d169c783ce1b67323a54fe12b8c9744f1",
+    "build/chainbench/public/dry-run/dry-public-6827943-20260925T164556Z/faults/dry-S1-6827943-20260925T164651Z/observations/S1-ERA-post.json": "d7ee6dd7b9bebcd55ccae4eef3c27dd6ff04f8e389f0242db350624b273ca7ed",
+    "build/chainbench/public/dry-run/dry-public-6827943-20260925T164556Z/faults/dry-S1-6827943-20260925T164651Z/observations/S1-ERA-pre.json": "078d5d964225ea5802908e188d95854645842e61ff12e5b42e04fb1555c9471b",
+    "build/chainbench/public/dry-run/dry-public-6827943-20260925T164556Z/faults/dry-S1-6827943-20260925T164651Z/observations/S1-SEP-post.json": "3fbb57cf986df1d67c665b64e5a60055e6b669a9b9ca35859ae8d406073c1a44",
+    "build/chainbench/public/dry-run/dry-public-6827943-20260925T164556Z/faults/dry-S1-6827943-20260925T164651Z/observations/S1-SEP-pre.json": "6929504d673b5da658692218797ca44c74e8a075f36f4d5ed8ab4a55736e248c",
+    "build/chainbench/public/dry-run/dry-public-6827943-20260925T164556Z/faults/dry-S1-6827943-20260925T164651Z/rpc-log.jsonl": "47ff75fe55fe66db8cd2713ab17a49dfe01177ec300b184dd7519718f74a4879",
+    "build/chainbench/public/dry-run/dry-public-6827943-20260925T164556Z/faults/dry-S1-6827943-20260925T164651Z/run.json": "e1159497b7a1e6e75ecd25fb5f0c6bdb6cae0be2fac39f689fd68208a42f2b82",
+    "build/chainbench/public/dry-run/dry-public-6827943-20260925T164556Z/faults/dry-S1-6827943-20260925T164651Z/tx.csv": "11c2569cdc5f7e6ec7002537bef5ced982aa936d79db7416488f22d4a11f3977",
+    "build/chainbench/public/dry-run/dry-public-6827943-20260925T164556Z/faults/dry-S1-6827943-20260925T164651Z/tx.jsonl": "0102e03bccc86aca348ca9d8eb46f20812c50775aa78519a48017282c09160b0",
+    "build/chainbench/public/dry-run/dry-public-6827943-20260925T164556Z/faults/dry-setup-era-sepolia-6827943-20260925T164647Z/checks/SETUP-ERA-postcheck.json": "8f8ab211bc80ce69b9a6330e5616ec8782ade822f99b9d5b2abaa139efd3d69c",
+    "build/chainbench/public/dry-run/dry-public-6827943-20260925T164556Z/faults/dry-setup-era-sepolia-6827943-20260925T164647Z/deployments-era-sepolia.json": "66254a765554c520b1af8df1ad434e63aeac9495dccbe994790ff109ade97551",
+    "build/chainbench/public/dry-run/dry-public-6827943-20260925T164556Z/faults/dry-setup-era-sepolia-6827943-20260925T164647Z/observations/SETUP-ERA-post.json": "4f4ae67f1d85cfede3818315b304ba0238da3832065e77626b3b426901880197",
+    "build/chainbench/public/dry-run/dry-public-6827943-20260925T164556Z/faults/dry-setup-era-sepolia-6827943-20260925T164647Z/observations/SETUP-ERA-pre.json": "4d0829212631f1a91bb9363ee44c0b83a0b58653c60db54a15e4ee6cb306798e",
+    "build/chainbench/public/dry-run/dry-public-6827943-20260925T164556Z/faults/dry-setup-era-sepolia-6827943-20260925T164647Z/rpc-log.jsonl": "882f24b45fb29ce1110e032d2fa957eed7e4b3023a10e3b5ff4d720578553f30",
+    "build/chainbench/public/dry-run/dry-public-6827943-20260925T164556Z/faults/dry-setup-era-sepolia-6827943-20260925T164647Z/run.json": "0de33c92606b38cde6785124dee5e7551138d14e5b2a0e41c74fbba758058eee",
+    "build/chainbench/public/dry-run/dry-public-6827943-20260925T164556Z/faults/dry-setup-era-sepolia-6827943-20260925T164647Z/tx.csv": "cfa6df2208fe69dd395247e67bb11c1d0f8e86309470b42f5c8a728b1447a532",
+    "build/chainbench/public/dry-run/dry-public-6827943-20260925T164556Z/faults/dry-setup-era-sepolia-6827943-20260925T164647Z/tx.jsonl": "cef12204d4e328ecc19cfd95cbcd8891f14f9d59e576ef11b3ac40c3c3398143",
+    "build/chainbench/public/dry-run/dry-public-6827943-20260925T164556Z/faults/dry-setup-sepolia-6827943-20260925T164639Z/checks/SETUP-SEP-postcheck.json": "9cf56534c5be35bc7171c26c0fea13210ff9c926d90767a116d97a03031a5b5f",
+    "build/chainbench/public/dry-run/dry-public-6827943-20260925T164556Z/faults/dry-setup-sepolia-6827943-20260925T164639Z/deployments-sepolia.json": "14ec3708d37bc682f2f9d1db9f1d28716e26019b3ff3f18d3161efc85c52d897",
+    "build/chainbench/public/dry-run/dry-public-6827943-20260925T164556Z/faults/dry-setup-sepolia-6827943-20260925T164639Z/observations/SETUP-SEP-post.json": "276e2b593bc478c69c1cb948a15104b46e7efe79a43734b64d0d11542f5bd1e7",
+    "build/chainbench/public/dry-run/dry-public-6827943-20260925T164556Z/faults/dry-setup-sepolia-6827943-20260925T164639Z/observations/SETUP-SEP-pre.json": "8e34a50069cd08e2d20092d7e0c0cb19f66506739a0aece794bb3d7eda48c036",
+    "build/chainbench/public/dry-run/dry-public-6827943-20260925T164556Z/faults/dry-setup-sepolia-6827943-20260925T164639Z/rpc-log.jsonl": "d5981a074bb0d1f45100403df5cbea1b27df8b7a31083e2cd4828d94c86e437c",
+    "build/chainbench/public/dry-run/dry-public-6827943-20260925T164556Z/faults/dry-setup-sepolia-6827943-20260925T164639Z/run.json": "e7d44253b199dbd79d194e574cb1502f0b81b46b7a3372389c8059b4f88cf26e",
+    "build/chainbench/public/dry-run/dry-public-6827943-20260925T164556Z/faults/dry-setup-sepolia-6827943-20260925T164639Z/tx.csv": "877acf0ec24764c2a71f5543b8d36699d5feafbbc4184991b07da4a443f0b707",
+    "build/chainbench/public/dry-run/dry-public-6827943-20260925T164556Z/faults/dry-setup-sepolia-6827943-20260925T164639Z/tx.jsonl": "6dfda70eb1c398b6fb92cf082a3fdaf43d9ae570693183ba9ffcf25648a05b5f"
+  },
+  "mode": "dry",
+  "outputs_sha256": {
+    "era_batch_lifecycle.csv": "e1c9c350867a5b198ee1705f6865271996ae6ac37e83e9ddfee7dfaaceb47f76",
+    "public_gas_vs_controlled_l1.csv": "4438029743c0df6bd5706fef0da8a9c850c553b22f953c4244545681b446f6bc",
+    "public_ops.csv": "cae5f5e66b3d359d03af1f6b9e617acc13ce45ba04d3ec27bca3db848b3820ec",
+    "public_sessions.csv": "3647ff1267be30299eeaf1d9a88fc3d40f8325df5016e1122154dd4a1e6b463a",
+    "public_summary.csv": "55cd4a7f7924a5b8ab949391d96f0bdf3aa1c49e35148458482524a5a7707cc5",
+    "validation.json": "292c4db8b7cfda74fc19af7d660bf2247d66b2f51fcb2471a36d8851b68b55b0"
+  },
+  "tool": "scripts/analysis/derive_chain_public.py",
+  "tool_sha256": "6e754875b9c0fe7317c179359f989ed9685fef32bed9cd672b9bc4cb3c970bbd",
+  "units": "gas; wei of test ether (no monetary value); ms; s"
+}

@@ -1,0 +1,174 @@
+{
+  "all_ok": true,
+  "campaign_id": "CSI-CHAIN-PUBLIC-01",
+  "chain_id": 300,
+  "contracts": {
+    "groth16": {
+      "manager": "0xc2247022C38a59152864310597F9e008cc183dFA",
+      "verifier": "0xd67A2cd26fC83B742efEDb4BfAa305d817b4bb4b"
+    },
+    "plonk": {
+      "manager": "0xA1B93a71d74cd2062172e9dBD434DF3B3212ab4B",
+      "verifier": "0x14dA370D6aA904a863f72335B59A1538D3527A7C"
+    }
+  },
+  "network": "era-sepolia",
+  "post_setup_checks": [
+    {
+      "backend": "groth16",
+      "check": "manager_verifier",
+      "expected": "0xd67A2cd26fC83B742efEDb4BfAa305d817b4bb4b",
+      "fn": "verifier",
+      "got": "0xd67A2cd26fC83B742efEDb4BfAa305d817b4bb4b",
+      "pass": true,
+      "proof_id": "",
+      "to": "0xc2247022C38a59152864310597F9e008cc183dFA"
+    },
+    {
+      "backend": "groth16",
+      "check": "manager_owner",
+      "expected": "0x05532f4E5817a94f109a213B92b2E08F714b4205",
+      "fn": "owner",
+      "got": "0x05532f4E5817a94f109a213B92b2E08F714b4205",
+      "pass": true,
+      "proof_id": "",
+      "to": "0xc2247022C38a59152864310597F9e008cc183dFA"
+    },
+    {
+      "backend": "groth16",
+      "check": "signer_is_issuer",
+      "expected": "true",
+      "fn": "isIssuer",
+      "got": "true",
+      "pass": true,
+      "proof_id": "",
+      "to": "0xc2247022C38a59152864310597F9e008cc183dFA"
+    },
+    {
+      "backend": "groth16",
+      "check": "root_is_valid",
+      "expected": "true",
+      "fn": "isValidRoot",
+      "got": "true",
+      "pass": true,
+      "proof_id": "",
+      "to": "0xc2247022C38a59152864310597F9e008cc183dFA"
+    },
+    {
+      "backend": "plonk",
+      "check": "manager_verifier",
+      "expected": "0x14dA370D6aA904a863f72335B59A1538D3527A7C",
+      "fn": "verifier",
+      "got": "0x14dA370D6aA904a863f72335B59A1538D3527A7C",
+      "pass": true,
+      "proof_id": "",
+      "to": "0xA1B93a71d74cd2062172e9dBD434DF3B3212ab4B"
+    },
+    {
+      "backend": "plonk",
+      "check": "manager_owner",
+      "expected": "0x05532f4E5817a94f109a213B92b2E08F714b4205",
+      "fn": "owner",
+      "got": "0x05532f4E5817a94f109a213B92b2E08F714b4205",
+      "pass": true,
+      "proof_id": "",
+      "to": "0xA1B93a71d74cd2062172e9dBD434DF3B3212ab4B"
+    },
+    {
+      "backend": "plonk",
+      "check": "signer_is_issuer",
+      "expected": "true",
+      "fn": "isIssuer",
+      "got": "true",
+      "pass": true,
+      "proof_id": "",
+      "to": "0xA1B93a71d74cd2062172e9dBD434DF3B3212ab4B"
+    },
+    {
+      "backend": "plonk",
+      "check": "root_is_valid",
+      "expected": "true",
+      "fn": "isValidRoot",
+      "got": "true",
+      "pass": true,
+      "proof_id": "",
+      "to": "0xA1B93a71d74cd2062172e9dBD434DF3B3212ab4B"
+    }
+  ],
+  "setup_run_id": "dry-setup-era-sepolia-6827943-20260925T164607Z",
+  "signer_address": "0x05532f4E5817a94f109a213B92b2E08F714b4205",
+  "transactions": [
+    {
+      "backend": "groth16",
+      "contract_address": "0xd67A2cd26fC83B742efEDb4BfAa305d817b4bb4b",
+      "op": "deploy_verifier",
+      "runtime_matches_artifact": 1,
+      "schedule_id": "SETUP-ERA-01",
+      "state": "confirmed_success",
+      "tx_hash": "0x09c8f6d8aadd68c30aaf770d8723e4b1f5e71e6518f042d9765c362d7b42c47c"
+    },
+    {
+      "backend": "groth16",
+      "contract_address": "0xc2247022C38a59152864310597F9e008cc183dFA",
+      "op": "deploy_manager",
+      "runtime_matches_artifact": 1,
+      "schedule_id": "SETUP-ERA-02",
+      "state": "confirmed_success",
+      "tx_hash": "0x3b1a50d2d66a71138a7c175f2e17d3f37b770d998fe9f7292b302137b68cf224"
+    },
+    {
+      "backend": "groth16",
+      "contract_address": "",
+      "op": "set_issuer",
+      "runtime_matches_artifact": "",
+      "schedule_id": "SETUP-ERA-03",
+      "state": "confirmed_success",
+      "tx_hash": "0x9989be12ac3cf563848d8d0d2a74f3290d6e20feb5a7eb08b4e87a29caaf393b"
+    },
+    {
+      "backend": "groth16",
+      "contract_address": "",
+      "op": "add_root",
+      "runtime_matches_artifact": "",
+      "schedule_id": "SETUP-ERA-04",
+      "state": "confirmed_success",
+      "tx_hash": "0xd18b26c1b3c9d7516ed39c61c222daccb08f24d7ed486262772076e4f6cd72d5"
+    },
+    {
+      "backend": "plonk",
+      "contract_address": "0x14dA370D6aA904a863f72335B59A1538D3527A7C",
+      "op": "deploy_verifier",
+      "runtime_matches_artifact": 1,
+      "schedule_id": "SETUP-ERA-05",
+      "state": "confirmed_success",
+      "tx_hash": "0x71f4bf4b8dd431018407829355cbc313c259e74e6358a5f91b4c4f4e72256e99"
+    },
+    {
+      "backend": "plonk",
+      "contract_address": "0xA1B93a71d74cd2062172e9dBD434DF3B3212ab4B",
+      "op": "deploy_manager",
+      "runtime_matches_artifact": 1,
+      "schedule_id": "SETUP-ERA-06",
+      "state": "confirmed_success",
+      "tx_hash": "0xcd707d50910aa40fea02b3e442680b7ca13523d67575b9fdbbe6bfac0003e5ca"
+    },
+    {
+      "backend": "plonk",
+      "contract_address": "",
+      "op": "set_issuer",
+      "runtime_matches_artifact": "",
+      "schedule_id": "SETUP-ERA-07",
+      "state": "confirmed_success",
+      "tx_hash": "0x9f48e20a014cfe60bb4b03792f21adba925043cdd41fd42c02137100ccbc8585"
+    },
+    {
+      "backend": "plonk",
+      "contract_address": "",
+      "op": "add_root",
+      "runtime_matches_artifact": "",
+      "schedule_id": "SETUP-ERA-08",
+      "state": "confirmed_success",
+      "tx_hash": "0x233fac911188317c018cc43c9650d1d794727c96bc99add29ebabcb66f47fbb4"
+    }
+  ]
+}
