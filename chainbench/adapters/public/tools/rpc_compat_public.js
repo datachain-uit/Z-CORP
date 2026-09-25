@@ -11,6 +11,8 @@
 // --errors adds read-only error-transport probes (an unknown method, an insufficient-funds simulation from the keyless
 // probe address, a reverting eth_call) and records how the endpoint returns JSON-RPC errors (HTTP status, code, message):
 // the runner's client treats any non-200 response as an HTTP error.
+//   node rpc_compat_public.js --rescore <record.json> --out <coverage.json>   recompute the coverage of a recorded probe
+//   offline from its raw calls (no network; the record is not modified).
 const fs = require('fs');
 const path = require('path');
 const crypto = require('crypto');
@@ -164,7 +166,7 @@ function coverage(res, prof) {
     const old = get('l1BatchDetailsOld') || get('l1BatchDetailsPrev');
     out.finality_fields = old ? Object.fromEntries(fields.map((f) => [f, old[f] !== undefined && old[f] !== null])) : null;
     out.finality_fields_complete = !!old && fields.every((f) => old[f] !== undefined && old[f] !== null);
-    const est = res.calls.filter((x) => x.method === 'zks_estimateFee');
+    const est = res.calls.filter((x) => x.method === 'zks_estimateFee' && !x.expected_error);
     out.fee_estimates_ok = est.length > 0 && est.every((x) => x.ok);
   }
   const errs = res.calls.filter((x) => x.expected_error);
@@ -180,6 +182,16 @@ function coverage(res, prof) {
   return out;
 }
 async function main() {
+  if (argv.includes('--rescore')) {
+    const src = path.resolve(argv[argv.indexOf('--rescore') + 1]);
+    const rec = JSON.parse(fs.readFileSync(src, 'utf8'));
+    const cov = rec.networks.map((r) => ({ network: r.network, role: r.role, endpoint: r.endpoint, stopped: r.stopped, coverage: r.stopped ? null : coverage(r, profile(B, r.network)) }));
+    const body = { kind: 'rpc-compatibility coverage, recomputed offline from a recorded probe', tool: 'chainbench/adapters/public/tools/rpc_compat_public.js --rescore',
+      source: path.relative(REPO, src), source_sha256: sha(fs.readFileSync(src)), recorded_coverage_superseded: rec.networks.map((r) => ({ network: r.network, compatible: r.coverage ? r.coverage.compatible : null })), networks: cov };
+    if (OUT) fs.writeFileSync(OUT, JSON.stringify(body, null, 2) + '\n');
+    for (const r of cov) if (r.coverage) console.log(`COVERAGE ${r.network} [${r.role}]: ${r.coverage.methods_ok.length}/${r.coverage.required_methods.length} required methods; fee estimates ${r.coverage.fee_estimates_ok}; finality fields ${r.coverage.finality_fields_complete}; historical state ${r.coverage.historical_state} -> ${r.coverage.compatible ? 'COMPATIBLE' : 'NOT COMPATIBLE: ' + r.coverage.missing.join(', ')}`);
+    return;
+  }
   const started = new Date().toISOString();
   const nets = [];
   for (const net of NETS) nets.push(await probeNetwork(net));
