@@ -1,6 +1,6 @@
 bd461cbaa7f74fc067d43807e6454a6e400ec79bee64c4c2a0ce9ba1656e8aec  scripts/analysis/derive_prover.py  # git blob 87210128f999b84aac27701a1d636e9a6fd2629c (committed)
 83d2ac71d6afd5273903344225490918cac0b34d2a379f5cc1dc676b453a7996  scripts/analysis/compare_completion_report.py  # git blob da26a2873c9134fe0cee3a05a2ae635a2c67b3b3 (committed)
 d2e89e27db20187c4ec6002d0e0b70a762f4b586411c88451ca28df991ae964c  scripts/analysis/input_stage_diagnostic.js  # git blob 986001d9b100c731059213af176ebd60dcd6442c (committed)
-3f1b4e86c70bf529592fdc4181ad278f7edd3aa4e074bd0b7723c9dd2565a4f9  scripts/release/build_csi_bundle.py  # git blob 6ec816907aa65778b96d4b74176483b5d9608ed6 (committed)
+54a51180a0ea5d7b3cebfafe5c3f815f42cf82eb6ace0781e8b084ba3e54807a  scripts/release/build_csi_bundle.py  # git blob 287d410e66390591a0542a17e2b4b1eb8bf4e475 (committed)
 7b67e2df643d07c3cf025cfa2e6423253a6c987b87953b118780fd254f00d691  scripts/release/make_precorrection_manifest.py  # git blob 31f9702d9dc14081b96748b6de8ded1c130ec612 (committed)
 49827d70d7d2c652064c41ae073a31d9a51e61aefd34eb2f7a41eb8d5e0e5112  scripts/release/save_image.sh  # git blob 4fed08d4a45648672e8a958a9512dc80311743da (committed)
