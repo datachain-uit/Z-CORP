@@ -5,6 +5,10 @@ set -euo pipefail
 cd "$(dirname "$0")/.."
 cmd=${1:-}; shift || true
 wscript() { node core/workload.js "$1"; }
+case "$cmd" in compare|smoke-check|head) ;; *)
+  # node_modules comes from the image (anonymous volume populated from the image at container start).
+  [ -f node_modules/hardhat/package.json ] || { echo "chainbench (in container): node_modules is missing or empty; the image volume was not populated. Rebuild with ./chainbench/run.sh build-image." >&2; exit 90; } ;;
+esac
 case "$cmd" in
   identity)       exec node docker/identity.js "$@" ;;
   doctor)         exec node doctor/doctor.js "$@" ;;
