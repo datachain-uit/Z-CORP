@@ -24,7 +24,9 @@ Chain campaigns (experiment dir `chain`, e.g. CSI-CHAIN-LOCAL-01) are registered
 from a source campaign here: their records (campaign.json, notes) are produced by chainbench/, their inputs are frozen
 under csi/campaigns/chain/<admin_id>/inputs/ (checked here against their manifests), and this script adds
   code/chain/<admin_id>.KIT.sha256        the chain campaign's code at its registered commit
-and attributes their files correctly in provenance/SNAPSHOTS.csv. Prover outputs are unaffected.
+and attributes their files correctly in provenance/SNAPSHOTS.csv. Prover outputs are unaffected. The local-EraVM arm is a
+separate chain entry (CSI-CHAIN-LOCAL-01-L2, experiment "controlled on-chain verification (local EraVM)"): its image
+record, derivation (derive_chain_l2.py), inputs (the L1 entry's PS-01) and attribution are its own (CHAIN_KIND).
 Standard library only.
 """
 import argparse
@@ -47,9 +49,18 @@ CAMPAIGN_PATHS = ['bench', 'scripts/setup', 'circuits', 'contracts', 'test', 'AR
 ANALYSIS_CODE = ['scripts/analysis/derive_prover.py', 'scripts/analysis/compare_completion_report.py',
                  'scripts/analysis/input_stage_diagnostic.js', 'scripts/release/build_csi_bundle.py',
                  'scripts/release/make_precorrection_manifest.py', 'scripts/release/save_image.sh',
-                 'scripts/release/chain_image_record.py', 'scripts/analysis/derive_chain_l1.py', 'scripts/analysis/verify_chain_proofset.js']
+                 'scripts/release/chain_image_record.py', 'scripts/analysis/derive_chain_l1.py', 'scripts/analysis/verify_chain_proofset.js',
+                 'scripts/analysis/derive_chain_l2.py', 'scripts/release/chain_image_record_l2.py']
 SUPERSEDED = 'results/PRECORRECTION-2026-07.sha256'
-EXPERIMENT_DIR = {'controlled prover scaling': 'prover', 'controlled on-chain verification (local L1)': 'chain'}
+EXPERIMENT_DIR = {'controlled prover scaling': 'prover', 'controlled on-chain verification (local L1)': 'chain',
+                  'controlled on-chain verification (local EraVM)': 'chain'}
+# Per chain arm: frozen image record, derivation, frozen inputs (the L2 arm reuses the L1 entry's PS-01), attribution.
+L1_EXP, L2_EXP = 'controlled on-chain verification (local L1)', 'controlled on-chain verification (local EraVM)'
+CHAIN_KIND = {
+    L1_EXP: {'archive': 'chainbench/docker/ARCHIVE.json', 'derive': 'scripts/analysis/derive_chain_l1.py', 'derive_args': [], 'inputs': None},
+    L2_EXP: {'archive': 'chainbench/adapters/eravm/ARCHIVE.json', 'derive': 'scripts/analysis/derive_chain_l2.py', 'derive_args': ['--plan', 'full'],
+             'inputs': f'{CSI}/campaigns/chain/CSI-CHAIN-LOCAL-01/inputs'},
+}
 CHAIN_PATHS = ['chainbench', 'contracts', 'scripts/setup/generate_input_depth.js', 'scripts/setup/paths.js', 'ARTIFACTS.sha256']
 CHAIN_PREFIXES = (f'{CSI}/protocols/chain/', f'{CSI}/campaigns/chain/', f'{CSI}/code/chain/')
 
@@ -258,7 +269,8 @@ def build_chain_campaign(row, plan, tmpdir):
                 raise Abort(f"{admin}: tag {row['baseline_tag']} -> {tag_commit}, registry commit {row['commit']}")
         elif rec.get('harness', {}).get('commit') != row['commit']:
             raise Abort(f"{admin}: {rec_rel} harness commit {rec.get('harness', {}).get('commit')} but registry has {row['commit']}")
-    ps = f'{base}/inputs/proofset'
+    kind = CHAIN_KIND[row['experiment']]
+    ps = f"{kind['inputs'] or base + '/inputs'}/proofset"
     if os.path.exists(os.path.join(REPO, ps, 'PROOFSET.sha256')):
         for ln in rd(f'{ps}/PROOFSET.sha256').decode().splitlines():
             h, f = ln.split(None, 1)
@@ -277,18 +289,18 @@ def build_chain_campaign(row, plan, tmpdir):
         proto = git('show', f"{row['commit']}:{row['protocol_path']}")
         if not rd(row['protocol_path']).startswith(proto):
             raise Abort(f"{admin}: {row['protocol_path']} was edited after the campaign commit (only appended amendments are allowed)")
-        arc = json.loads(git('show', f"{row['commit']}:chainbench/docker/ARCHIVE.json"))
+        arc = json.loads(git('show', f"{row['commit']}:{kind['archive']}"))
         dtmp = os.path.join(tmpdir, admin, 'derived')
-        cmd = [sys.executable, os.path.join(REPO, 'scripts/analysis/derive_chain_l1.py'), '--campaign', os.path.join(REPO, src), '--out', dtmp,
+        cmd = [sys.executable, os.path.join(REPO, kind['derive']), '--campaign', os.path.join(REPO, src), '--out', dtmp,
                '--repo', REPO, '--expect-campaign-id', row['campaign_id'], '--expect-commit', row['commit'], '--expect-tag', row['baseline_tag'],
-               '--expect-image-id', arc['image_id'], '--expect-protocol-sha256', sha(proto)]
+               '--expect-image-id', arc['image_id'], '--expect-protocol-sha256', sha(proto), *kind['derive_args']]
         r = subprocess.run(cmd, capture_output=True)
         if r.returncode:
-            raise Abort(f'{admin}: derive_chain_l1.py failed: {r.stderr.decode().strip()}')
+            raise Abort(f"{admin}: {os.path.basename(kind['derive'])} failed: {r.stderr.decode().strip()}")
         for fn in sorted(os.listdir(dtmp)):
             plan.put(f'{base}/derived/{fn}', open(os.path.join(dtmp, fn), 'rb').read())
     plan.put(f'{CSI}/code/chain/{admin}.KIT.sha256', tree_manifest(row['commit'], CHAIN_PATHS))
-    return {'row': row, 'base': base, 'scientific': scientific, 'src': src}
+    return {'row': row, 'base': base, 'scientific': scientific, 'src': src, 'kind': kind}
 
 
 def det_tar(path, src):
@@ -329,18 +341,37 @@ def build_chain_release(ctx):
     det_tar(os.path.join(rdir, f"campaign-{ctx['row']['campaign_id']}.tar"), src)
     with open(os.path.join(rdir, f'code-{commit[:7]}.tar'), 'wb') as f:
         f.write(git('archive', '--format=tar', f'--prefix=zcorp-{commit[:7]}/', commit, '--', *CHAIN_PATHS,
-                    'csi/protocols/chain', f"{CSI}/campaigns/chain/{admin}/inputs"))
+                    'csi/protocols/chain', ctx['kind']['inputs'] or f"{CSI}/campaigns/chain/{admin}/inputs"))
     release_manifest(rdir)
     print(f'release: {rdir}')
 
 
+def chain_attribution_l2(rel, crow):
+    """CSI-CHAIN-LOCAL-01-L2, the local-EraVM arm (CHAIN-PROTOCOL-v1 section 16, A6, A7)."""
+    if f"/release/{crow['admin_id']}/" in rel:
+        if rel.endswith('/IMAGE-ARCHIVE.json'):
+            return 'generated', 'scripts/release/chain_image_record_l2.py <- the frozen docker save archive'
+        if rel.endswith('RELEASE.sha256'):
+            return 'generated', 'scripts/release/build_csi_bundle.py --release'
+        return 'record', 'chainbench/run.sh save-image-l2 --frozen (campaign host; copied unchanged)'
+    if rel.startswith(f'{CSI}/code/chain/'):
+        return 'generated', 'scripts/release/build_csi_bundle.py'
+    if '/observation/' in rel and not rel.endswith('.md'):
+        return 'record', 'chainbench/adapters/eravm/observe-public.sh (read-only JSON-RPC to ZKsync Era Sepolia, campaign host)'
+    if '/readiness/' in rel:
+        return 'record', 'chainbench/run.sh author-l2 (campaign host; copied run records; not scientific data)'
+    if rel.endswith('/campaign.json') or rel.endswith('/VALIDATION.md'):
+        return 'generated', 'chainbench/workloads/zcorp/record_campaign_l2.py'
+    if rel.endswith('/SOURCE.sha256'):
+        return 'generated', crow['source_path']
+    if '/derived/' in rel:
+        return 'generated', f"scripts/analysis/derive_chain_l2.py <- {crow['source_path']}"
+    return 'hand-written', '-'
+
+
 def chain_attribution(rel, crow):
-    if f"/{crow['admin_id']}/l2/" in rel:  # local-EraVM arm (CHAIN-PROTOCOL-v1 section 16, A6): readiness records, no scientific data
-        if '/l2/observation/' in rel and not rel.endswith('.md'):
-            return 'record', 'chainbench/adapters/eravm/observe-public.sh (read-only JSON-RPC to ZKsync Era Sepolia, campaign host)'
-        if '/l2/readiness/' in rel:
-            return 'record', 'chainbench/run.sh author-l2 (campaign host; copied run records; not scientific data)'
-        return 'hand-written', '-'
+    if crow['experiment'] == L2_EXP:
+        return chain_attribution_l2(rel, crow)
     if f"/release/{crow['admin_id']}/" in rel:
         if rel.endswith('/IMAGE-ARCHIVE.json'):
             return 'generated', 'scripts/release/chain_image_record.py <- the docker save archives (campaign host)'
@@ -456,7 +487,8 @@ def main():
                 if crow is None:
                     raise Abort(f'{rel}: chain file but no chain campaign is registered')
                 kind, source = chain_attribution(rel, crow)
-                snap.append({'artifact': rel, 'kind': kind, 'source': source, 'campaign_id': crow['campaign_id'], 'commit': crow['commit'],
+                cid_col = crow['campaign_id'] if crow['campaign_id'] not in ('', '-') else f"{crow['admin_id']} (pre-run)"
+                snap.append({'artifact': rel, 'kind': kind, 'source': source, 'campaign_id': cid_col, 'commit': crow['commit'],
                              'baseline_tag': crow['baseline_tag'], 'protocol_version': crow['protocol_version'],
                              'image_manifest': '-', 'image_config': '-', 'sha256': sha(data)})
                 continue

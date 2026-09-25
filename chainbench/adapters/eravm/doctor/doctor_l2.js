@@ -116,6 +116,8 @@ function rec(level, what, detail = '', fix = '') {
   const out = arg('--out');
   const fails = results.filter((r) => r.level === 'FAIL').length;
   const res = { schema: 'chainbench-doctor-l2/1', at_utc: C.nowUtc(), pass: fails === 0, fails, warns: results.filter((r) => r.level === 'WARN').length, results,
+    head, binding: path.relative(C.CHAINBENCH, W.bindingFile), evidence_id: W.campaign.evidence_id || null,
+    protocol_sha256: fs.existsSync(proto) ? C.sha256File(proto) : null,
     image_id: process.env.CHAINBENCH_IMAGE_ID || null, host: process.env.CHAINBENCH_HOST_JSON ? JSON.parse(process.env.CHAINBENCH_HOST_JSON) : null, network_isolation: ni };
   if (out) C.writeJson(out, res);
   console.log(fails ? `DOCTOR-L2 (in container): ${fails} check(s) failed.` : 'DOCTOR-L2 (in container): all checks passed.');

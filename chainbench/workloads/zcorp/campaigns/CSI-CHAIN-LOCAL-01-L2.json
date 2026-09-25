@@ -1,20 +1,24 @@
 {
   "campaign_id": "CSI-CHAIN-LOCAL-01",
   "arm": "L2-EraVM",
-  "arm_note": "Local EraVM arm of CSI-CHAIN-LOCAL-01 (CHAIN-PROTOCOL-v1 section 15.1 amendment A6 and section 16). It has its own binding, image, lockfile, output roots and baseline tag. The L1 arm (binding CSI-CHAIN-LOCAL-01.json) is frozen at chain-l1-baseline-20260925 and is not changed by this arm; L1 is reproduced from that tag.",
+  "evidence_id": "CSI-CHAIN-LOCAL-01-L2",
+  "arm_note": "Local EraVM arm of CSI-CHAIN-LOCAL-01 (CHAIN-PROTOCOL-v1 sections 15.1 and 16, amendments A6 and A7). Its evidence entry is CSI-CHAIN-LOCAL-01-L2 (csi/campaign-index.csv), with its own binding, image, lockfile, output roots, baseline tag, raw data and derived results. The L1 arm (binding CSI-CHAIN-LOCAL-01.json, evidence entry CSI-CHAIN-LOCAL-01) is frozen at chain-l1-baseline-20260925 and is not changed by this arm; L1 is reproduced from that tag. campaign_id names the study; every raw row also carries arm = L2-EraVM.",
   "venue": "CSI",
   "admin_record": {
-    "admin_id": "CSI-CHAIN-LOCAL-01",
+    "admin_id": "CSI-CHAIN-LOCAL-01-L2",
     "experiment": "controlled on-chain verification (local EraVM)",
     "registry": "csi/campaign-index.csv",
-    "notes_dir": "csi/campaigns/chain/CSI-CHAIN-LOCAL-01/l2/notes"
+    "notes_dir": "csi/campaigns/chain/CSI-CHAIN-LOCAL-01-L2/notes"
   },
   "campaign_dir": "csi/campaigns/chain/CSI-CHAIN-LOCAL-01",
-  "l2_dir": "csi/campaigns/chain/CSI-CHAIN-LOCAL-01/l2",
+  "evidence_dir": "csi/campaigns/chain/CSI-CHAIN-LOCAL-01-L2",
   "protocol": "csi/protocols/chain/CHAIN-PROTOCOL-v1.md",
-  "protocol_amendment": "A6 (sections 15.1 and 16)",
+  "protocol_amendment": "A6 and A7 (sections 15.1 and 16)",
   "proofset_dir": "csi/campaigns/chain/CSI-CHAIN-LOCAL-01/inputs/proofset",
-  "live_observation": "csi/campaigns/chain/CSI-CHAIN-LOCAL-01/l2/observation/20260925T121116Z",
+  "live_observation": "csi/campaigns/chain/CSI-CHAIN-LOCAL-01-L2/observation/20260925T121116Z",
+  "release_dir": "csi/release/CSI-CHAIN-LOCAL-01-L2",
+  "derivation": "scripts/analysis/derive_chain_l2.py",
+  "results_dir": "results/chain-local-l2-20260925",
   "compatibility_class": "B",
   "tracked_paths": [
     "contracts",
@@ -66,10 +70,13 @@
   "commit_semantics": {
     "measurement_code_commit": "the commit at which the packaged L2 dry run validated the EraVM measurement implementation; measurement_code_paths must be byte-identical between it and baseline_commit",
     "baseline_commit": "the commit of the annotated L2 baseline tag (chain-l2-baseline-*); the scientific L2 runs are launched from it with a clean tree",
-    "registry_commit": "the L1 row of csi/campaign-index.csv is unchanged; an L2 registry entry is added only when the scientific L2 run exists"
+    "registry_commit": "the L1 row of csi/campaign-index.csv is unchanged; the CSI-CHAIN-LOCAL-01-L2 row carries the measurement-code commit while ready and the baseline commit once the scientific L2 run is registered"
   },
   "baseline_tag_prefix": "chain-l2-baseline-",
-  "image_records": ["chainbench/adapters/eravm/IMAGE.json", "chainbench/adapters/eravm/ARCHIVE.json"],
+  "image_records": [
+    "chainbench/adapters/eravm/IMAGE.json",
+    "chainbench/adapters/eravm/ARCHIVE.json"
+  ],
   "out_roots": {
     "smoke": "build/chainbench/l2/smoke",
     "dry": "build/chainbench/l2/dry-run",
@@ -78,6 +85,6 @@
   "smoke_reference": "workloads/zcorp/smoke-reference-l2.csv",
   "reference_dry_run": {
     "l2": "build/chainbench/l2/dry-run/dry-l2-3e0f6c8-20260925T125852Z",
-    "note": "accepted packaged L2 dry run at 3e0f6c8 with the archived image (raw data on the author's machine only; git-ignored; records in csi/campaigns/chain/CSI-CHAIN-LOCAL-01/l2/readiness/)"
+    "note": "accepted packaged L2 dry run at 3e0f6c8 with the archived image (raw data on the author's machine only; git-ignored; records in csi/campaigns/chain/CSI-CHAIN-LOCAL-01-L2/readiness/)"
   }
 }

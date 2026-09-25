@@ -1,0 +1,123 @@
+{
+  "arm": "L2-EraVM (the local EraVM arm of CSI-CHAIN-LOCAL-01)",
+  "campaign": "CSI-CHAIN-LOCAL-01-L2",
+  "check_failures": [],
+  "checks_pass": true,
+  "images": [
+    {
+      "archive": {
+        "bytes": 205223936,
+        "copied_from": "build/chainbench/l2/release/image/chainbench-l2-arm64.oci.tar",
+        "file": "csi/release/CSI-CHAIN-LOCAL-01-L2/image/chainbench-l2-arm64.oci.tar",
+        "files_in_layers": {
+          "anvil_zksync": {
+            "bytes": 65399296,
+            "layer": "sha256:043c7789e279bf66594028dcbd94891d9a707ad60d8644e730c1ef6880c9f748",
+            "path": "/opt/eravm/bin/anvil-zksync",
+            "sha256": "565ea5418561937d704c5ef0b2fcea1cb01cd2338e45fdd32ac0516395938216"
+          },
+          "era_solc": {
+            "bytes": 13797048,
+            "layer": "sha256:043c7789e279bf66594028dcbd94891d9a707ad60d8644e730c1ef6880c9f748",
+            "path": "/opt/eravm/bin/solc",
+            "sha256": "d98d1068b3bff4679a32585ea75febbf75b004a2870a3e2ebf191550f36950b2"
+          },
+          "npm_lockfile": {
+            "bytes": 19339,
+            "layer": "sha256:9393d7780a13c9b82d6482bc8aab4b222ebba8f07e5a23b43f6643f359d749f1",
+            "path": "/repo/chainbench/package-lock.json",
+            "sha256": "2987f02e0807e9b354a1d90742bac4b71a565e43a478d1fbaf247ec6174f7f81"
+          },
+          "zksolc": {
+            "bytes": 40312176,
+            "layer": "sha256:043c7789e279bf66594028dcbd94891d9a707ad60d8644e730c1ef6880c9f748",
+            "path": "/opt/eravm/bin/zksolc",
+            "sha256": "ee4f02f8614ef320fc95d2f15c69678bb1781f9526df78fb35a906180c998b44"
+          }
+        },
+        "manifests": [
+          {
+            "config": "sha256:7e493be0eb0ada3c67632945f6dc09f3539e90437b646b7c3c46df5d5943b031",
+            "digest": "sha256:8fcbb13213eb615e2d6244188a868250d82ce30dcff4e15bf7326311b29b0a73",
+            "env": [
+              "CHAINBENCH_ANVIL_ZKSYNC_BIN=/opt/eravm/bin/anvil-zksync",
+              "CHAINBENCH_ERA_SOLC_BIN=/opt/eravm/bin/solc",
+              "CHAINBENCH_ZKSOLC_BIN=/opt/eravm/bin/zksolc",
+              "NODE_VERSION=22.23.2"
+            ],
+            "kind": "image",
+            "labels": {
+              "io.chainbench.base-image": "node@sha256:48e4b67d85f87bd551df43704e24d252f56cc5f8e9718841aace50f19948f0f9",
+              "io.chainbench.eravm-arch": "arm64",
+              "org.opencontainers.image.description": "anvil-zksync 0.6.11 + zksolc 1.5.15 + era-solc 0.8.20-1.0.2 (sha256-pinned) + npm deps for deterministic local EraVM measurement; no workload code inside",
+              "org.opencontainers.image.title": "chainbench local EraVM toolchain"
+            },
+            "layers": 10,
+            "platform": "linux/arm64"
+          },
+          {
+            "config": "sha256:44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+            "digest": "sha256:aa48da5634ca5073f98cb1890389e946d4426fd63091cfd4a49e8c1c481767c4",
+            "kind": "attestation-manifest",
+            "platform": "unknown/unknown"
+          }
+        ],
+        "rebuilt": false,
+        "ref_name": "docker.io/library/chainbench-l2:local",
+        "sha256": "8790cf4d90c8380aa348c76b7feeacd973f2a99169c719a2b8288fb2421db2e5",
+        "top_digest": "sha256:255d0dacac2629988c339d311630e3efa99b6153478378570a63ad1b9a7491cc",
+        "top_media_type": "application/vnd.oci.image.index.v1+json",
+        "versioned": false
+      },
+      "base_image": "node@sha256:48e4b67d85f87bd551df43704e24d252f56cc5f8e9718841aace50f19948f0f9",
+      "binaries_sha256": {
+        "anvil_zksync": "565ea5418561937d704c5ef0b2fcea1cb01cd2338e45fdd32ac0516395938216",
+        "era_solc": "d98d1068b3bff4679a32585ea75febbf75b004a2870a3e2ebf191550f36950b2",
+        "zksolc": "ee4f02f8614ef320fc95d2f15c69678bb1781f9526df78fb35a906180c998b44"
+      },
+      "docker": "29.8.0",
+      "host_record": "csi/release/CSI-CHAIN-LOCAL-01-L2/IMAGE-ARCHIVE.arm64.json",
+      "host_record_sha256": "1cee5db9c4a751cd272ba1e10288313fc2bc334e939d11eb54fd3a3b50968b27",
+      "image_id": "sha256:255d0dacac2629988c339d311630e3efa99b6153478378570a63ad1b9a7491cc",
+      "image_ref": "chainbench-l2:local",
+      "platform": "linux/arm64",
+      "role": "scientific",
+      "saved_utc": "2026-09-25T12:59:15Z",
+      "toolchain": {
+        "anvil_zksync": {
+          "sha256": "565ea5418561937d704c5ef0b2fcea1cb01cd2338e45fdd32ac0516395938216",
+          "version": "anvil-zksync 0.6.11"
+        },
+        "era_solc": {
+          "sha256": "d98d1068b3bff4679a32585ea75febbf75b004a2870a3e2ebf191550f36950b2",
+          "version": "Version: 0.8.20+commit.3b523ea3.Linux.clang | ZKsync: 0.8.20-1.0.2"
+        },
+        "lockfile_sha256": "2987f02e0807e9b354a1d90742bac4b71a565e43a478d1fbaf247ec6174f7f81",
+        "package_json_sha256": "4ba06381255e13abeea2797325d03101bcf1e772f88459f9c976e2b48bcbd09e",
+        "packages": {
+          "@openzeppelin/contracts": "4.9.0",
+          "ethers": "6.13.5",
+          "ffjavascript": "0.3.1",
+          "snarkjs": "0.7.5",
+          "zksync-ethers": "6.21.2"
+        },
+        "runtime": {
+          "arch": "arm64",
+          "libc": "glibc 2.36",
+          "node": "v22.23.2",
+          "npm": "10.9.8"
+        },
+        "zksolc": {
+          "sha256": "ee4f02f8614ef320fc95d2f15c69678bb1781f9526df78fb35a906180c998b44",
+          "version": "Solidity compiler for ZKsync v1.5.15 (LLVM build fa0fc0bc9caa7884f9f485735b537cb1ac441fe7)"
+        }
+      },
+      "versions": {
+        "anvil_zksync": "anvil-zksync 0.6.11",
+        "era_solc": "Version: 0.8.20+commit.3b523ea3.Linux.clang | ZKsync: 0.8.20-1.0.2",
+        "zksolc": "Solidity compiler for ZKsync v1.5.15 (LLVM build fa0fc0bc9caa7884f9f485735b537cb1ac441fe7)"
+      }
+    }
+  ],
+  "rule": "the scientific L2 campaign runs only in this archived linux/arm64 image (chainbench/adapters/eravm/ARCHIVE.json; full-local-l2 refuses any other image); the image is never rebuilt for the campaign"
+}

@@ -43,6 +43,7 @@ bash scripts/release/save_image.sh                     # campaign host only: doc
 |---|---|---|---|---|
 | CSI-PROVER-01 | controlled prover scaling | validated | pending | `results/postcorr-20260925/` (`campaign-20260925T060607Z`, tag `rerun-baseline-20260925`, commit `dc13ddd`, protocol v3) |
 | CSI-CHAIN-LOCAL-01 | controlled on-chain verification (local L1) | validated | no | `results/chain-local-l1-20260925/` (`full-71a5854-20260925T115726Z`: EDR runs a and b and the geth replay; tag `chain-l1-baseline-20260925`, baseline commit `71a5854`, measurement code `fbe3794`, protocol `protocols/chain/CHAIN-PROTOCOL-v1.md` with A1–A5). Validation: `campaigns/chain/CSI-CHAIN-LOCAL-01/VALIDATION.md`. Reviewer entry point: `chainbench/README.md`. |
+| CSI-CHAIN-LOCAL-01-L2 | controlled on-chain verification (local EraVM) | ready | no | The local-EraVM arm of CSI-CHAIN-LOCAL-01, a separate evidence entry (protocol §16, A6 and A7; class B, protocol v29). Baseline tag `chain-l2-baseline-20260925`, measurement code `3e0f6c8`. Records: `campaigns/chain/CSI-CHAIN-LOCAL-01-L2/campaign.json`; archived image: `release/CSI-CHAIN-LOCAL-01-L2/`; reviewer entry point: `chainbench/adapters/eravm/README.md`. |
 
 ### Chain campaigns (`campaigns/chain/`)
 
@@ -50,7 +51,7 @@ Chain campaigns are registered in the same `campaign-index.csv`. Their layout di
 
 | Path | What it is | How it is made |
 |---|---|---|
-| `protocols/chain/CHAIN-PROTOCOL-v1.md` | The protocol. The L1 arm is frozen; the local-EraVM arm is pending. Pre-run amendments are logged in its §15. | Hand-written, committed (not a snapshot) |
+| `protocols/chain/CHAIN-PROTOCOL-v1.md` | The protocol. The L1 arm is frozen; the local-EraVM arm is frozen by A6 and A7 (§15.1, §16), appended after the L1 run. Amendments are logged in its §15. | Hand-written, committed (not a snapshot) |
 | `campaigns/chain/CSI-CHAIN-LOCAL-01/inputs/proofset/` | The frozen proof set PS-01: 64 proofs and their manifest | `chainbench/scripts/gen_proofset.js`, once, never regenerated |
 | `campaigns/chain/CSI-CHAIN-LOCAL-01/inputs/plonk-verifiers.provenance.json` | Provenance checks for `contracts/chain/PlonkVerifierDepth*.sol` | `chainbench/scripts/export_plonk_verifiers.js` |
 | `campaigns/chain/CSI-CHAIN-LOCAL-01/campaign.json` | Registration, identities (protocol, harness commit, container image, lockfile, compiler, EDR and geth binaries, proof set) and the validation state | `chainbench/workloads/zcorp/record_campaign.py` (reads the campaign binding) |
@@ -64,6 +65,14 @@ Chain campaigns are registered in the same `campaign-index.csv`. Their layout di
 - **Raw run data** is written to `build/campaigns/chain/<run_id>/` (git-ignored). The accepted scientific campaign was moved unchanged (52 files, byte-identical) to the tracked `results/chain-local-l1-20260925/`. That directory is its only source of truth, frozen by `campaigns/chain/CSI-CHAIN-LOCAL-01/SOURCE.sha256`.
 - **Derived outputs** (`campaigns/chain/CSI-CHAIN-LOCAL-01/derived/`) are generated from it by `scripts/analysis/derive_chain_l1.py`, through `build_csi_bundle.py`; `--check` regenerates them byte for byte.
 - **Release** (`release/CSI-CHAIN-LOCAL-01/`, for the Zenodo deposit): the deterministic raw-campaign tar, the code tar at the baseline commit, and the `docker save` archives. `RELEASE.sha256` is versioned; the tars are not.
+
+**Local-EraVM arm, CSI-CHAIN-LOCAL-01-L2.** A separate evidence entry with its own records directory
+(`campaigns/chain/CSI-CHAIN-LOCAL-01-L2/`: `campaign.json`, the read-only live observation and classification, readiness records,
+notes), code manifest (`code/chain/CSI-CHAIN-LOCAL-01-L2.KIT.sha256`), release directory (`release/CSI-CHAIN-LOCAL-01-L2/`: the
+archived scientific image and `IMAGE-ARCHIVE.json`, written by `scripts/release/chain_image_record_l2.py`) and derivation
+(`scripts/analysis/derive_chain_l2.py`, fixed before the run). Raw run data are written to `build/campaigns/chain-l2/`; the
+accepted scientific campaign is moved unchanged to `results/chain-local-l2-20260925/` and frozen by the entry's `SOURCE.sha256`.
+It reuses the frozen proof set PS-01 of CSI-CHAIN-LOCAL-01; no L1 file is changed by it.
 
 The pre-correction July 2026 files are superseded; their provenance is `results/PRECORRECTION-2026-07.sha256`,
 whose digest each campaign record carries as `superseded_campaign`.

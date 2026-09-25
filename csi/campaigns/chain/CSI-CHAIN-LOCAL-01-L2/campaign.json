@@ -1,0 +1,257 @@
+{
+  "admin_id": "CSI-CHAIN-LOCAL-01-L2",
+  "arm": "L2-EraVM",
+  "baseline": {
+    "image_records": [
+      "chainbench/adapters/eravm/IMAGE.json",
+      "chainbench/adapters/eravm/ARCHIVE.json"
+    ],
+    "measurement_paths": [
+      "contracts",
+      "chainbench",
+      ":(exclude)chainbench/docker",
+      ":(exclude)chainbench/adapters/eravm/IMAGE.json",
+      ":(exclude)chainbench/adapters/eravm/ARCHIVE.json",
+      ":(exclude)chainbench/README.md",
+      ":(exclude)chainbench/adapters/eravm/README.md",
+      "csi/protocols/chain",
+      "csi/campaigns/chain/CSI-CHAIN-LOCAL-01/inputs",
+      "ARTIFACTS.sha256"
+    ],
+    "tag": "chain-l2-baseline-20260925",
+    "tagged_commit": "the commit that adds this record (git rev-parse chain-l2-baseline-20260925^{commit}); scientific run.json commit must equal it"
+  },
+  "classification": {
+    "class": "B (bounded)",
+    "live_observation": {
+      "dir": "csi/campaigns/chain/CSI-CHAIN-LOCAL-01-L2/observation/20260925T121116Z",
+      "endpoint": "https://sepolia.era.zksync.dev (ZKsync Era Sepolia official public RPC)",
+      "live_base_system_contracts": {
+        "bootloader": "0x01000911c4db4fe62c98e180cfa7e9b3a22fb15f505905d4bf36192f481551e6",
+        "default_aa": "0x010005f73e7c299ed73db937843643bdc276cbc2cc8596287e1e0cf3afc60252",
+        "evm_emulator": "0x01000d8bae37b82f311186426184866498b357f41d7a02ced11f3e3fbfbacd63"
+      },
+      "live_protocol": 29,
+      "method": "12 read-only JSON-RPC calls; no transaction, key or account",
+      "sha256sums_sha256": "65c296836ac7031006addf278ea8732bb35e30bb84326e143eaf2d66923f818c",
+      "utc": "2026-09-25T12:11:16Z..12:11:25Z"
+    },
+    "local": {
+      "bootloader": "0x0100092f045c41c21bd08a9c6fa909fa6a8b446e3f6cd9f08356352a3195a40c",
+      "default_aa": "0x010005f74935e95e527d18ea9bfc82906fb20903a5683c528ee7af404e9bd531",
+      "evm_emulator": null,
+      "node": "anvil-zksync 0.6.11 (offline, built-in v29 system contracts)",
+      "protocol_version": 29
+    },
+    "record": "csi/campaigns/chain/CSI-CHAIN-LOCAL-01-L2/observation/CLASSIFICATION.md",
+    "record_sha256": "6dc8e39cd16a380f761edc91386cb3f3a72198b82dbd79a4888d1eb6661aa5f9"
+  },
+  "commits": {
+    "baseline_commit_meaning": "the commit of the annotated L2 baseline tag (chain-l2-baseline-*); the scientific L2 runs are launched from it with a clean tree",
+    "changed_after_measurement_code_commit_outside_measurement_code": [
+      "chainbench/adapters/eravm/doctor/doctor_l2.js",
+      "chainbench/adapters/eravm/run-l2.sh",
+      "chainbench/workloads/zcorp/campaigns/CSI-CHAIN-LOCAL-01-L2.json",
+      "chainbench/workloads/zcorp/smoke-reference-l2.csv",
+      "csi/protocols/chain/CHAIN-PROTOCOL-v1.md"
+    ],
+    "measurement_code_commit": "3e0f6c80b333fba1d6ddbacbeac80ee978c00487",
+    "measurement_code_commit_meaning": "the commit at which the packaged L2 dry run validated the EraVM measurement implementation; measurement_code_paths must be byte-identical between it and baseline_commit",
+    "measurement_code_paths": [
+      "contracts",
+      "csi/campaigns/chain/CSI-CHAIN-LOCAL-01/inputs",
+      "ARTIFACTS.sha256",
+      "chainbench/lib/common.js",
+      "chainbench/lib/rpc.js",
+      "chainbench/lib/constants.js",
+      "chainbench/lib/plan.js",
+      "chainbench/lib/profiles.js",
+      "chainbench/lib/proofset.js",
+      "chainbench/lib/ops.js",
+      "chainbench/core/workload.js",
+      "chainbench/core/netcheck.js",
+      "chainbench/workloads/zcorp/workload.json",
+      "chainbench/adapters/eravm/lib",
+      "chainbench/adapters/eravm/scripts",
+      "chainbench/adapters/eravm/package.json",
+      "chainbench/adapters/eravm/package-lock.json",
+      "chainbench/adapters/eravm/pins.env",
+      "chainbench/adapters/eravm/Dockerfile",
+      "chainbench/adapters/eravm/incontainer.sh"
+    ],
+    "measurement_code_unchanged_in_record_worktree": true,
+    "why_outside": "protocol amendment A7 (administrative), records, host orchestration (run-l2.sh image refusal, doctor record fields), release and analysis tooling; none is on the per-row measurement path"
+  },
+  "derivation": {
+    "fixed_before_the_scientific_run": true,
+    "tested_on": "readiness dry run dry-l2-3e0f6c8-20260925T125852Z (not scientific data)",
+    "tool": "scripts/analysis/derive_chain_l2.py",
+    "tool_sha256": "e1e10efcef18f6cf579611337f507e6d5d2395dbe09f1e052883d9a741386458"
+  },
+  "environment_label": "EraVM execution under protocol v29 (anvil-zksync 0.6.11 built-in v29 system contracts; bootloader and default-account hashes differ from live Era Sepolia; no EVM emulator; fixed local fee input)",
+  "experiment": "controlled on-chain verification (local EraVM)",
+  "fee_input": {
+    "base_fee": 45250000,
+    "fair_l2_gas_price": 45250000,
+    "fair_pubdata_price": 3784558330,
+    "gas_per_pubdata": 84,
+    "origin": "fixed by anvil-zksync 0.6.11 without a fork (protocol 16.2)"
+  },
+  "harness": {
+    "binding": "workloads/zcorp/campaigns/CSI-CHAIN-LOCAL-01-L2.json",
+    "commit": "3e0f6c80b333fba1d6ddbacbeac80ee978c00487",
+    "path": "chainbench/adapters/eravm",
+    "reviewer_entry_point": "chainbench/run.sh doctor-l2 | smoke-l2 | full-local-l2",
+    "reviewer_readme": "chainbench/adapters/eravm/README.md"
+  },
+  "image": {
+    "archive": "csi/release/CSI-CHAIN-LOCAL-01-L2/image/chainbench-l2-arm64.oci.tar",
+    "archive_bytes": 205223936,
+    "archive_record": "csi/release/CSI-CHAIN-LOCAL-01-L2/IMAGE-ARCHIVE.json",
+    "archive_record_sha256": "2f705871dacca34d2bb62b16a6dfd16c99881079f11a1e5e6ec038db7f8a8b59",
+    "archive_sha256": "8790cf4d90c8380aa348c76b7feeacd973f2a99169c719a2b8288fb2421db2e5",
+    "base_image": "node@sha256:48e4b67d85f87bd551df43704e24d252f56cc5f8e9718841aace50f19948f0f9",
+    "binaries_sha256_in_archive": {
+      "anvil_zksync": "565ea5418561937d704c5ef0b2fcea1cb01cd2338e45fdd32ac0516395938216",
+      "era_solc": "d98d1068b3bff4679a32585ea75febbf75b004a2870a3e2ebf191550f36950b2",
+      "zksolc": "ee4f02f8614ef320fc95d2f15c69678bb1781f9526df78fb35a906180c998b44"
+    },
+    "host_record": "chainbench/adapters/eravm/ARCHIVE.json",
+    "host_record_sha256": "1cee5db9c4a751cd272ba1e10288313fc2bc334e939d11eb54fd3a3b50968b27",
+    "identity_record": "chainbench/adapters/eravm/IMAGE.json",
+    "identity_record_sha256": "63e0c022f27eac594a008cb7875f06e07247e392634459f2fa3c384f3c8b10ab",
+    "image_id": "sha256:255d0dacac2629988c339d311630e3efa99b6153478378570a63ad1b9a7491cc",
+    "lockfile": "chainbench/adapters/eravm/package-lock.json",
+    "lockfile_sha256": "2987f02e0807e9b354a1d90742bac4b71a565e43a478d1fbaf247ec6174f7f81",
+    "pins": "chainbench/adapters/eravm/pins.env",
+    "pins_sha256": "a6b9b250ae66d8a654730f6119c2e6cfbb22787bd7e94d85384af19895361aff",
+    "platform": "linux/arm64",
+    "rebuilt": false,
+    "role": "scientific",
+    "rule": "full-local-l2 runs only in this archived linux/arm64 image (host check + pre/post-flight doctor --require-archived-image)",
+    "versions": {
+      "anvil_zksync": "anvil-zksync 0.6.11",
+      "era_solc": "Version: 0.8.20+commit.3b523ea3.Linux.clang | ZKsync: 0.8.20-1.0.2",
+      "zksolc": "Solidity compiler for ZKsync v1.5.15 (LLVM build fa0fc0bc9caa7884f9f485735b537cb1ac441fe7)"
+    }
+  },
+  "parent_entry": {
+    "admin_id": "CSI-CHAIN-LOCAL-01",
+    "baseline_tag": "chain-l1-baseline-20260925",
+    "status": "validated (L1 arm; unchanged)"
+  },
+  "plan": {
+    "cells": [
+      "primary-groth16-d5",
+      "primary-groth16-d10",
+      "primary-groth16-d11",
+      "primary-groth16-d15",
+      "primary-plonk-d5",
+      "primary-plonk-d10",
+      "primary-plonk-d11",
+      "primary-plonk-d15"
+    ],
+    "proofs": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ],
+    "rows_per_run": 288,
+    "runs": "a and b, each from scratch in a fresh container, a fresh EraVM node per cell, --network none",
+    "tx_per_run": 200
+  },
+  "proofset": {
+    "csv_sha256": "9f82f3830bad61d8824f2a40f6705701d5ec4fba41ef95d0d340bb65c77ae9c4",
+    "dir": "csi/campaigns/chain/CSI-CHAIN-LOCAL-01/inputs/proofset",
+    "files": 128,
+    "id": "PS-01",
+    "json_sha256": "5ba2b55016b344f4b2eb3185db5c94c3aca7b7188dcfd7baf20b970f215aac0b",
+    "k_per_cell": 8,
+    "owner": "CSI-CHAIN-LOCAL-01 (reused unchanged; never regenerated)",
+    "sha256_file_sha256": "55f42c19f477df44f88323abd0f2caf3c17535093df64345305f6261621d1990"
+  },
+  "protocol": {
+    "amendments": [
+      "A1",
+      "A2",
+      "A3",
+      "A4",
+      "A5",
+      "A6",
+      "A7"
+    ],
+    "l1_prefix_rule": "the protocol of the L1 campaign commit is a byte prefix of this file",
+    "l2_sections": "15.1 (A6), 16 (16.9: A7)",
+    "path": "csi/protocols/chain/CHAIN-PROTOCOL-v1.md",
+    "sha256": "46a4b9eaf8054a950d3b46add89632842b9fc5309bf16b3d835432f383651e46",
+    "version": "v1"
+  },
+  "readiness": {
+    "dry_run": {
+      "build_manifest_sha256": "60f5f73114ef0639b8036f2fa560dafd5f56f4dd0db9664a5544e164c2f1a504",
+      "evidence_status": "engineering; not scientific data",
+      "field_value_comparisons": 3960,
+      "id": "dry-l2-3e0f6c8-20260925T125852Z",
+      "identical": true,
+      "image_id": "sha256:255d0dacac2629988c339d311630e3efa99b6153478378570a63ad1b9a7491cc",
+      "plan": "dry (Groth16 d5, d11; PLONK d10, d11; p0, p1; all negative controls)",
+      "records": "csi/campaigns/chain/CSI-CHAIN-LOCAL-01-L2/readiness/dry-l2-3e0f6c8-20260925T125852Z",
+      "rows_per_run": 72,
+      "tx_per_run": 52,
+      "validation_rules": [
+        13,
+        13
+      ]
+    },
+    "measurement_code_commit": "3e0f6c80b333fba1d6ddbacbeac80ee978c00487",
+    "notes": "csi/campaigns/chain/CSI-CHAIN-LOCAL-01-L2/notes/READINESS-L2.md",
+    "portability": {
+      "identity": "csi/campaigns/chain/CSI-CHAIN-LOCAL-01-L2/readiness/image/identity-amd64.json",
+      "linux/amd64": "emulated doctor-l2 and smoke-l2 equal to the reference (not scientific data)"
+    },
+    "smoke": {
+      "smoke-l2-20260925T125836Z": {
+        "accepted_checks": true,
+        "arch": "arm64",
+        "image_id": "sha256:255d0dacac2629988c339d311630e3efa99b6153478378570a63ad1b9a7491cc",
+        "pass": true,
+        "reference_present": false,
+        "rows": 30
+      },
+      "smoke-l2-20260925T130025Z": {
+        "accepted_checks": true,
+        "arch": "arm64",
+        "image_id": "sha256:255d0dacac2629988c339d311630e3efa99b6153478378570a63ad1b9a7491cc",
+        "pass": true,
+        "reference_present": true,
+        "rows": 30
+      },
+      "smoke-l2-amd64-20260925T130006Z": {
+        "accepted_checks": true,
+        "arch": "x64",
+        "image_id": "sha256:4ea75defda4bdd363746955fc789fc479b21336d4224eced677eda16ded57942",
+        "pass": true,
+        "reference_present": true,
+        "rows": 30
+      }
+    },
+    "smoke_reference": "chainbench/workloads/zcorp/smoke-reference-l2.csv",
+    "smoke_reference_sha256": "86f55fe99dd5e6405c521da9f102067d88f647e6cdcc7170edac03015276dcc9"
+  },
+  "records": {
+    "code_manifest": "csi/code/chain/CSI-CHAIN-LOCAL-01-L2.KIT.sha256",
+    "dir": "csi/campaigns/chain/CSI-CHAIN-LOCAL-01-L2",
+    "release_dir": "csi/release/CSI-CHAIN-LOCAL-01-L2",
+    "results_dir": "results/chain-local-l2-20260925"
+  },
+  "stage": "ready: final freeze of the local-EraVM arm; scientific L2 run not started; baseline tag chain-l2-baseline-20260925 (to be created on the commit that adds this record)",
+  "status": "ready",
+  "study": "CSI-CHAIN-LOCAL-01",
+  "used_in_manuscript": "no",
+  "venue": "CSI"
+}

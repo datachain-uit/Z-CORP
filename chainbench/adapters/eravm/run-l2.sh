@@ -243,7 +243,15 @@ dry_run() {
   printf '%s\n' "$rid" >"$hout/LATEST"
 }
 full_local_l2() {
+  [ -z "$PLATFORM_OVERRIDE" ] || die "full-local-l2 runs only in the archived scientific image on its own platform." "Unset CHAINBENCH_PLATFORM."
   load_image
+  # The scientific campaign runs only in the archived image (chainbench/adapters/eravm/ARCHIVE.json); never a rebuilt one.
+  local want_id want_plat
+  want_id=$(json_get image_id "$AD/ARCHIVE.json"); want_plat=$(json_get platform "$AD/ARCHIVE.json")
+  [ -n "$want_id" ] && [ "$IMAGE_ID" = "$want_id" ] || die "The loaded image ($IMAGE_ID) is not the archived scientific L2 image (${want_id:-no ARCHIVE.json})." \
+    "Load the archive: ./chainbench/run.sh load-image-l2 csi/release/CSI-CHAIN-LOCAL-01-L2/image/chainbench-l2-arm64.oci.tar csi/release/CSI-CHAIN-LOCAL-01-L2/IMAGE-ARCHIVE.arm64.json"
+  [ "linux/$(docker_arch)" = "$want_plat" ] || die "This Docker engine is linux/$(docker_arch); the archived scientific image is $want_plat." "Run full-local-l2 on a $want_plat engine."
+  pass "archived scientific image in use: $IMAGE_ID ($want_plat)"
   say "chainbench full-local-l2: the frozen scientific L2 procedure (CHAIN-PROTOCOL-v1 section 16, amendment A6)"
   local rid; rid="full-l2-$(dkr -- head | tail -1)-$(utc)"
   local out=/repo/build/campaigns/chain-l2 hout="$REPO/build/campaigns/chain-l2"

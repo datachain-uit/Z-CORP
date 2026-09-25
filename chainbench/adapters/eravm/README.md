@@ -43,3 +43,18 @@ The fee input is fixed by anvil-zksync 0.6.11 itself: without a fork its fee mod
 `scripts/compare_l2.py`, `scripts/check_smoke_l2.py`, `scripts/summarize_l2.py`, `scripts/identity_l2.js`;
 `doctor/doctor_l2.js`; `Dockerfile`, `pins.env`, `incontainer.sh`, `run-l2.sh`; `observe-public.sh` (read-only live
 observation, run once on the campaign host, never during a measurement).
+
+## Evidence entry and scientific image
+
+The L2 arm is registered as its own CSI evidence entry, `CSI-CHAIN-LOCAL-01-L2` (records in
+`csi/campaigns/chain/CSI-CHAIN-LOCAL-01-L2/`, protocol amendment A7). `full-local-l2` runs only in the archived scientific
+image recorded in `ARCHIVE.json` (linux/arm64, image `sha256:255d0dac…91cc`); it refuses a rebuilt or other image and any
+emulated platform. To use the archive on a new machine:
+
+```
+./chainbench/run.sh load-image-l2 csi/release/CSI-CHAIN-LOCAL-01-L2/image/chainbench-l2-arm64.oci.tar csi/release/CSI-CHAIN-LOCAL-01-L2/IMAGE-ARCHIVE.arm64.json
+```
+
+The archive is not versioned (Zenodo deposit); its sha256 and the sha256 of the binaries inside it are in
+`csi/release/CSI-CHAIN-LOCAL-01-L2/IMAGE-ARCHIVE.json`. Derivations: `scripts/analysis/derive_chain_l2.py` (fixed before the
+scientific run; EraVM units only).
