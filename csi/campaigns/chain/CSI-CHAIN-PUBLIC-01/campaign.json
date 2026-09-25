@@ -1,0 +1,241 @@
+{
+  "admin_id": "CSI-CHAIN-PUBLIC-01",
+  "arm": "PUBLIC",
+  "author_inputs_open": [
+    "session start times (S1-S3, at least two UTC days)",
+    "Sepolia endpoint and provider label",
+    "Era Sepolia endpoint and provider label",
+    "dedicated signing key and its address",
+    "funding on both networks",
+    "Sepolia priority fee P (default 1 gwei)",
+    "results directory date label",
+    "containerized dry-run-public and live read-only doctor-public on the campaign host; public baseline tag"
+  ],
+  "binding": {
+    "path": "chainbench/workloads/zcorp/campaigns/CSI-CHAIN-PUBLIC-01.json",
+    "sha256": "9580119ad02f560c7ca9532fa17da9cea11c9743182c582cfa927b0b0882fc26"
+  },
+  "claim_boundary": "dated public-network case study: deployability, observed price and paid fee, request-to-hash and hash-to-receipt behaviour through named endpoints, public gasUsed as a dated observation, RPC/client failures, Era batch lifecycle post hoc; not latency in general, mainnet economics, reliability, superiority, EVM-vs-EraVM equivalence or causal backend latency",
+  "dependency_audit": {
+    "evidence": "csi/campaigns/chain/CSI-CHAIN-PUBLIC-01/notes/dependency-audit",
+    "note": "csi/campaigns/chain/CSI-CHAIN-PUBLIC-01/notes/DEPENDENCY-AUDIT.md"
+  },
+  "experiment": "dated public-network case study (Ethereum Sepolia, ZKsync Era Sepolia)",
+  "fee_policy": {
+    "common": {
+      "balance_rule": "the transaction is sent only if the latest balance >= gasLimit * maxFeePerGas; otherwise unsent_insufficient_balance",
+      "no_replacement": "a transaction is never replaced, re-priced, accelerated or re-sent; nonces are sequential and a nonce is never reused",
+      "no_retry": "no operation is retried inside a session; a failed or unsent operation stays in the record in its original state"
+    },
+    "era-sepolia": {
+      "estimate_gas_per_pubdata": 50000,
+      "rule": "zks_estimateFee on the exact transaction (from, to, data, value 0, eip712Meta.gasPerPubdata 50000 and, for deployments, the factory dependency); gasLimit, maxFeePerGas, maxPriorityFeePerGas and gasPerPubdata are the returned values, unchanged; eth_gasPrice and zks_getFeeParams are recorded beside them",
+      "tx_type": 113
+    },
+    "sepolia": {
+      "base_fee_source": "eth_getBlockByNumber('latest', false).baseFeePerGas, read immediately before signing",
+      "gas_limit": {
+        "add_root": 300000,
+        "deploy_manager": 6000000,
+        "deploy_verifier": 6000000,
+        "set_issuer": 300000,
+        "verify_credential": 1000000
+      },
+      "gas_limit_rule": "the fixed gas limits of the controlled L1 study (CHAIN-PROTOCOL-v1, chainbench/lib/constants.js GAS_LIMIT); on Ethereum the paid fee depends on gasUsed, not on the limit",
+      "max_fee_rule": "maxFeePerGas = 2 * baseFeePerGas of the latest block read at preparation + P",
+      "max_priority_fee_per_gas_wei": 1000000000,
+      "priority_fee_rule": "fixed constant P = max_priority_fee_per_gas_wei (author input, frozen before session 1)",
+      "tx_type": 2
+    }
+  },
+  "harness": {
+    "adapter": "chainbench/adapters/public",
+    "commit": "05c9bfe69d0547c11e94c0bf7bd06c568f272717",
+    "derivation": "scripts/analysis/derive_chain_public.py",
+    "image_base": "node@sha256:48e4b67d85f87bd551df43704e24d252f56cc5f8e9718841aace50f19948f0f9",
+    "lockfile_sha256": "8b172dc5330372883135cb618b1078a50273b753d94160cd972c66e7d4771c20",
+    "procedure": "chainbench/workloads/zcorp/public/procedure.json",
+    "runtime_packages": {
+      "ethers": "6.13.5",
+      "zksync-ethers": "6.21.2"
+    }
+  },
+  "inputs": {
+    "controlled_references": {
+      "l1": {
+        "admin_id": "CSI-CHAIN-LOCAL-01",
+        "baseline_tag": "chain-l1-baseline-20260925",
+        "build_manifest": "results/chain-local-l1-20260925/full-71a5854-20260925T115726Z-edr-a/build_manifest.primary.json",
+        "commit": "71a58545a6bc6873499928154827d7075bdb3440",
+        "ops": "results/chain-local-l1-20260925/full-71a5854-20260925T115726Z-edr-a/local_l1_ops.csv"
+      },
+      "l2": {
+        "admin_id": "CSI-CHAIN-LOCAL-01-L2",
+        "baseline_tag": "chain-l2-baseline-20260925",
+        "build_manifest": "results/chain-local-l2-20260925/full-l2-e97b69f-20260925T132901Z-a/build_manifest.eravm.json",
+        "commit": "e97b69f92b6f1b31bd89f8fa2ffda1792e79a119",
+        "ops": "results/chain-local-l2-20260925/full-l2-e97b69f-20260925T132901Z-a/local_l2_ops.csv"
+      }
+    },
+    "depth": 11,
+    "dir": "csi/campaigns/chain/CSI-CHAIN-PUBLIC-01/inputs",
+    "identity_checks": "43/43",
+    "manifest_sha256": "14cbed1bac6a22d7015380ac3615bc5fd95892ef1d6d4c457ff66a2a910c84ab",
+    "proofs": {
+      "groth16": [
+        "G16-d11-p0",
+        "G16-d11-p1"
+      ],
+      "plonk": [
+        "PLK-d11-p0",
+        "PLK-d11-p1"
+      ]
+    }
+  },
+  "matrix": {
+    "blocks": [
+      {
+        "network": "sepolia",
+        "order": [
+          "S1-SEP-1:PLK-d11-p0",
+          "S1-SEP-2:G16-d11-p1",
+          "S1-SEP-3:PLK-d11-p1",
+          "S1-SEP-4:G16-d11-p0"
+        ],
+        "session": "S1"
+      },
+      {
+        "network": "era-sepolia",
+        "order": [
+          "S1-ERA-1:PLK-d11-p0",
+          "S1-ERA-2:G16-d11-p0",
+          "S1-ERA-3:PLK-d11-p1",
+          "S1-ERA-4:G16-d11-p1"
+        ],
+        "session": "S1"
+      },
+      {
+        "network": "era-sepolia",
+        "order": [
+          "S2-ERA-1:G16-d11-p1",
+          "S2-ERA-2:PLK-d11-p0",
+          "S2-ERA-3:G16-d11-p0",
+          "S2-ERA-4:PLK-d11-p1"
+        ],
+        "session": "S2"
+      },
+      {
+        "network": "sepolia",
+        "order": [
+          "S2-SEP-1:G16-d11-p1",
+          "S2-SEP-2:PLK-d11-p0",
+          "S2-SEP-3:G16-d11-p0",
+          "S2-SEP-4:PLK-d11-p1"
+        ],
+        "session": "S2"
+      },
+      {
+        "network": "sepolia",
+        "order": [
+          "S3-SEP-1:PLK-d11-p0",
+          "S3-SEP-2:G16-d11-p0",
+          "S3-SEP-3:PLK-d11-p1",
+          "S3-SEP-4:G16-d11-p1"
+        ],
+        "session": "S3"
+      },
+      {
+        "network": "era-sepolia",
+        "order": [
+          "S3-ERA-1:G16-d11-p1",
+          "S3-ERA-2:PLK-d11-p0",
+          "S3-ERA-3:G16-d11-p0",
+          "S3-ERA-4:PLK-d11-p1"
+        ],
+        "session": "S3"
+      }
+    ],
+    "schedule_seed": "CSI-CHAIN-PUBLIC-01/CHAIN-PUBLIC-PROTOCOL-v1",
+    "setup": 16,
+    "total": 40,
+    "verification": 24
+  },
+  "networks": {
+    "era-sepolia": {
+      "chain_id": 300,
+      "kind": "eravm",
+      "label": "ZKsync Era Sepolia",
+      "native_unit": "Era Sepolia ETH (test ether, no monetary value)",
+      "short": "ERA"
+    },
+    "sepolia": {
+      "chain_id": 11155111,
+      "kind": "evm",
+      "label": "Ethereum Sepolia",
+      "native_unit": "Sepolia ETH (test ether, no monetary value)",
+      "short": "SEP"
+    }
+  },
+  "not_done": "no transaction sent, no key used, no test ether spent, no deployment on Sepolia or Era Sepolia; no July or zkUIT result included",
+  "protocol": {
+    "path": "csi/protocols/chain/CHAIN-PUBLIC-PROTOCOL-v1.md",
+    "sha256": "97e66ef5e0183250ba2d2cceddd252a1aa5bc91ee668e9e159ef4bb13f97fabe",
+    "status": "draft for freeze at the public baseline tag"
+  },
+  "readiness": {
+    "commit": "05c9bfe69d0547c11e94c0bf7bd06c568f272717",
+    "dir": "csi/campaigns/chain/CSI-CHAIN-PUBLIC-01/readiness/dry-public-05c9bfe-20260925T151220Z",
+    "dry_run_id": "dry-public-05c9bfe-20260925T151220Z",
+    "evidence_status": "engineering; not scientific data",
+    "expectations": "92/92",
+    "mode": "dry (mock endpoints on 127.0.0.1; ephemeral key; no public network; no test ETH)",
+    "node": "v22.23.2",
+    "summary_sha256": "9530c3dc0e199cd2f1afea9613246c609d51b0b514bbc64689643b2abf02c446"
+  },
+  "sessions": [
+    {
+      "id": "S1",
+      "network_order": [
+        "sepolia",
+        "era-sepolia"
+      ],
+      "scheduled_start_utc": null
+    },
+    {
+      "id": "S2",
+      "network_order": [
+        "era-sepolia",
+        "sepolia"
+      ],
+      "scheduled_start_utc": null
+    },
+    {
+      "id": "S3",
+      "network_order": [
+        "sepolia",
+        "era-sepolia"
+      ],
+      "scheduled_start_utc": null
+    }
+  ],
+  "stage": "harness, design and frozen inputs registered; engineering dry run passed; author inputs open (protocol section 17); no public transaction sent",
+  "states": [
+    "unsent_preflight_failure",
+    "unsent_client_error",
+    "unsent_insufficient_balance",
+    "submitted_no_receipt",
+    "reverted",
+    "confirmed_success"
+  ],
+  "status": "planned",
+  "timing": {
+    "clocks": "UTC wall clock (Date) and monotonic clock (process.hrtime.bigint) at t_prepare, t0, t_hash, t_receipt",
+    "poll_interval_ms": 1000,
+    "receipt_timeout_s": {
+      "era-sepolia": 600,
+      "sepolia": 900
+    },
+    "rpc_timeout_ms": 30000
+  },
+  "venue": "CSI"
+}

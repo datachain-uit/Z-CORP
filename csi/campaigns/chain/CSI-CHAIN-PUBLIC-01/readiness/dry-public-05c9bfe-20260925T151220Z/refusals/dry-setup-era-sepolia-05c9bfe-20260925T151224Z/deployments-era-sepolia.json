@@ -1,0 +1,84 @@
+{
+  "all_ok": false,
+  "campaign_id": "CSI-CHAIN-PUBLIC-01",
+  "chain_id": 300,
+  "contracts": {},
+  "network": "era-sepolia",
+  "post_setup_checks": null,
+  "setup_run_id": "dry-setup-era-sepolia-05c9bfe-20260925T151224Z",
+  "signer_address": "0x9ccbC7a11920693d86C8b7EF9E1594c445d9aa25",
+  "transactions": [
+    {
+      "backend": "groth16",
+      "contract_address": "",
+      "op": "deploy_verifier",
+      "runtime_matches_artifact": "",
+      "schedule_id": "SETUP-ERA-01",
+      "state": "unsent_preflight_failure",
+      "tx_hash": ""
+    },
+    {
+      "backend": "groth16",
+      "contract_address": "",
+      "op": "deploy_manager",
+      "runtime_matches_artifact": "",
+      "schedule_id": "SETUP-ERA-02",
+      "state": "unsent_preflight_failure",
+      "tx_hash": ""
+    },
+    {
+      "backend": "groth16",
+      "contract_address": "",
+      "op": "set_issuer",
+      "runtime_matches_artifact": "",
+      "schedule_id": "SETUP-ERA-03",
+      "state": "unsent_preflight_failure",
+      "tx_hash": ""
+    },
+    {
+      "backend": "groth16",
+      "contract_address": "",
+      "op": "add_root",
+      "runtime_matches_artifact": "",
+      "schedule_id": "SETUP-ERA-04",
+      "state": "unsent_preflight_failure",
+      "tx_hash": ""
+    },
+    {
+      "backend": "plonk",
+      "contract_address": "",
+      "op": "deploy_verifier",
+      "runtime_matches_artifact": "",
+      "schedule_id": "SETUP-ERA-05",
+      "state": "unsent_preflight_failure",
+      "tx_hash": ""
+    },
+    {
+      "backend": "plonk",
+      "contract_address": "",
+      "op": "deploy_manager",
+      "runtime_matches_artifact": "",
+      "schedule_id": "SETUP-ERA-06",
+      "state": "unsent_preflight_failure",
+      "tx_hash": ""
+    },
+    {
+      "backend": "plonk",
+      "contract_address": "",
+      "op": "set_issuer",
+      "runtime_matches_artifact": "",
+      "schedule_id": "SETUP-ERA-07",
+      "state": "unsent_preflight_failure",
+      "tx_hash": ""
+    },
+    {
+      "backend": "plonk",
+      "contract_address": "",
+      "op": "add_root",
+      "runtime_matches_artifact": "",
+      "schedule_id": "SETUP-ERA-08",
+      "state": "unsent_preflight_failure",
+      "tx_hash": ""
+    }
+  ]
+}

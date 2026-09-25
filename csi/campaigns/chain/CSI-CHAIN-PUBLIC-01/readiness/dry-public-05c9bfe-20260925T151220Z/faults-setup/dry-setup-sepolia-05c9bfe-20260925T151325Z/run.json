@@ -1,0 +1,198 @@
+{
+  "binding": "chainbench/workloads/zcorp/campaigns/CSI-CHAIN-PUBLIC-01.json",
+  "binding_sha256": "9580119ad02f560c7ca9532fa17da9cea11c9743182c582cfa927b0b0882fc26",
+  "blocks": [
+    {
+      "block_id": "SETUP-SEP",
+      "deployments_all_ok": false,
+      "halted": null,
+      "network": "sepolia",
+      "observation_post": "199d4b8b0947c8e0",
+      "observation_pre": "abea54d720012cf0",
+      "refusal": null
+    }
+  ],
+  "campaign_id": "CSI-CHAIN-PUBLIC-01",
+  "deviation": null,
+  "endpoints": {
+    "sepolia": {
+      "host": "127.0.0.1:43393",
+      "label": "dry-run mock (Ethereum-like)",
+      "scheme": "http",
+      "url": null,
+      "url_sha256": "33343d8f7c55afe4c27297e091c18b1aac98521b0cb111d87880e0643a5948cf"
+    }
+  },
+  "fee_policy": {
+    "common": {
+      "balance_rule": "the transaction is sent only if the latest balance >= gasLimit * maxFeePerGas; otherwise unsent_insufficient_balance",
+      "no_replacement": "a transaction is never replaced, re-priced, accelerated or re-sent; nonces are sequential and a nonce is never reused",
+      "no_retry": "no operation is retried inside a session; a failed or unsent operation stays in the record in its original state"
+    },
+    "era-sepolia": {
+      "estimate_gas_per_pubdata": 50000,
+      "rule": "zks_estimateFee on the exact transaction (from, to, data, value 0, eip712Meta.gasPerPubdata 50000 and, for deployments, the factory dependency); gasLimit, maxFeePerGas, maxPriorityFeePerGas and gasPerPubdata are the returned values, unchanged; eth_gasPrice and zks_getFeeParams are recorded beside them",
+      "tx_type": 113
+    },
+    "sepolia": {
+      "base_fee_source": "eth_getBlockByNumber('latest', false).baseFeePerGas, read immediately before signing",
+      "gas_limit": {
+        "add_root": 300000,
+        "deploy_manager": 6000000,
+        "deploy_verifier": 6000000,
+        "set_issuer": 300000,
+        "verify_credential": 1000000
+      },
+      "gas_limit_rule": "the fixed gas limits of the controlled L1 study (CHAIN-PROTOCOL-v1, chainbench/lib/constants.js GAS_LIMIT); on Ethereum the paid fee depends on gasUsed, not on the limit",
+      "max_fee_rule": "maxFeePerGas = 2 * baseFeePerGas of the latest block read at preparation + P",
+      "max_priority_fee_per_gas_wei": 1000000000,
+      "priority_fee_rule": "fixed constant P = max_priority_fee_per_gas_wei (author input, frozen before session 1)",
+      "tx_type": 2
+    }
+  },
+  "finished_utc": "2026-09-25T15:13:30.198Z",
+  "harness_commit": "05c9bfe69d0547c11e94c0bf7bd06c568f272717",
+  "inputs_dir": "csi/campaigns/chain/CSI-CHAIN-PUBLIC-01/inputs",
+  "inputs_manifest_sha256": "14cbed1bac6a22d7015380ac3615bc5fd95892ef1d6d4c457ff66a2a910c84ab",
+  "key_source": "file",
+  "lockfile_sha256": "8b172dc5330372883135cb618b1078a50273b753d94160cd972c66e7d4771c20",
+  "mode": "dry",
+  "node": "v22.23.2",
+  "packages": {
+    "ethers": "6.13.5",
+    "zksync-ethers": "6.21.2"
+  },
+  "phase": "setup",
+  "process_origin_utc": "2026-09-25T15:13:24.724Z",
+  "protocol": "csi/protocols/chain/CHAIN-PUBLIC-PROTOCOL-v1.md",
+  "protocol_sha256": "97e66ef5e0183250ba2d2cceddd252a1aa5bc91ee668e9e159ef4bb13f97fabe",
+  "rows": 8,
+  "run_id": "dry-setup-sepolia-05c9bfe-20260925T151325Z",
+  "schedule": [
+    {
+      "network": "sepolia",
+      "ops": [
+        {
+          "backend": "groth16",
+          "block_id": "SETUP-SEP",
+          "block_position": 1,
+          "depth": 11,
+          "network": "sepolia",
+          "op": "deploy_verifier",
+          "pair_id": "",
+          "phase": "setup",
+          "proof_id": "",
+          "schedule_id": "SETUP-SEP-01",
+          "session_id": "SETUP"
+        },
+        {
+          "backend": "groth16",
+          "block_id": "SETUP-SEP",
+          "block_position": 2,
+          "depth": 11,
+          "network": "sepolia",
+          "op": "deploy_manager",
+          "pair_id": "",
+          "phase": "setup",
+          "proof_id": "",
+          "schedule_id": "SETUP-SEP-02",
+          "session_id": "SETUP"
+        },
+        {
+          "backend": "groth16",
+          "block_id": "SETUP-SEP",
+          "block_position": 3,
+          "depth": 11,
+          "network": "sepolia",
+          "op": "set_issuer",
+          "pair_id": "",
+          "phase": "setup",
+          "proof_id": "",
+          "schedule_id": "SETUP-SEP-03",
+          "session_id": "SETUP"
+        },
+        {
+          "backend": "groth16",
+          "block_id": "SETUP-SEP",
+          "block_position": 4,
+          "depth": 11,
+          "network": "sepolia",
+          "op": "add_root",
+          "pair_id": "",
+          "phase": "setup",
+          "proof_id": "",
+          "schedule_id": "SETUP-SEP-04",
+          "session_id": "SETUP"
+        },
+        {
+          "backend": "plonk",
+          "block_id": "SETUP-SEP",
+          "block_position": 5,
+          "depth": 11,
+          "network": "sepolia",
+          "op": "deploy_verifier",
+          "pair_id": "",
+          "phase": "setup",
+          "proof_id": "",
+          "schedule_id": "SETUP-SEP-05",
+          "session_id": "SETUP"
+        },
+        {
+          "backend": "plonk",
+          "block_id": "SETUP-SEP",
+          "block_position": 6,
+          "depth": 11,
+          "network": "sepolia",
+          "op": "deploy_manager",
+          "pair_id": "",
+          "phase": "setup",
+          "proof_id": "",
+          "schedule_id": "SETUP-SEP-06",
+          "session_id": "SETUP"
+        },
+        {
+          "backend": "plonk",
+          "block_id": "SETUP-SEP",
+          "block_position": 7,
+          "depth": 11,
+          "network": "sepolia",
+          "op": "set_issuer",
+          "pair_id": "",
+          "phase": "setup",
+          "proof_id": "",
+          "schedule_id": "SETUP-SEP-07",
+          "session_id": "SETUP"
+        },
+        {
+          "backend": "plonk",
+          "block_id": "SETUP-SEP",
+          "block_position": 8,
+          "depth": 11,
+          "network": "sepolia",
+          "op": "add_root",
+          "pair_id": "",
+          "phase": "setup",
+          "proof_id": "",
+          "schedule_id": "SETUP-SEP-08",
+          "session_id": "SETUP"
+        }
+      ]
+    }
+  ],
+  "scheduled_start_utc": null,
+  "signer_address": "0x9ccbC7a11920693d86C8b7EF9E1594c445d9aa25",
+  "start_offset_minutes": null,
+  "started_utc": "2026-09-25T15:13:25.013Z",
+  "states": {
+    "confirmed_success": 5,
+    "unsent_preflight_failure": 3
+  },
+  "target": "sepolia",
+  "timing": {
+    "sepolia": {
+      "poll_interval_ms": 500,
+      "receipt_timeout_s": 20
+    }
+  },
+  "tracked_paths_dirty": []
+}

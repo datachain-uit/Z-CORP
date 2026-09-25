@@ -1,0 +1,43 @@
+{
+  "boundary": "descriptive, dated; no significance test; no EVM-vs-EraVM comparison; receipt latency is not finality",
+  "inputs_sha256": {
+    "build/chainbench/public/dry-run/dry-public-05c9bfe-20260925T151220Z/faults/dry-S1-05c9bfe-20260925T151318Z/checks/S1-ERA-precheck.json": "0d6eb3ff8c7fb60959d711d61c4b7ea87dd54c2d3c15f19aa924f0c1463ecfa4",
+    "build/chainbench/public/dry-run/dry-public-05c9bfe-20260925T151220Z/faults/dry-S1-05c9bfe-20260925T151318Z/checks/S1-SEP-precheck.json": "422945c9fb875a4fafc0882a28b7c4966eecc4615223f433e67f5b8f19e240f2",
+    "build/chainbench/public/dry-run/dry-public-05c9bfe-20260925T151220Z/faults/dry-S1-05c9bfe-20260925T151318Z/observations/S1-ERA-post.json": "ec56b8939f8b0311a66a81c2ee0b344a36f0ccecafadf2c0c6cf197dcc987485",
+    "build/chainbench/public/dry-run/dry-public-05c9bfe-20260925T151220Z/faults/dry-S1-05c9bfe-20260925T151318Z/observations/S1-ERA-pre.json": "e1f121de57e88904c14b5ff9cb324fce84d18df1bb41e8a6e4e50472bfd144ab",
+    "build/chainbench/public/dry-run/dry-public-05c9bfe-20260925T151220Z/faults/dry-S1-05c9bfe-20260925T151318Z/observations/S1-SEP-post.json": "93357949d13936da8c4cfb742aa3900223b4c5ffaa9110668f92d8968cc77053",
+    "build/chainbench/public/dry-run/dry-public-05c9bfe-20260925T151220Z/faults/dry-S1-05c9bfe-20260925T151318Z/observations/S1-SEP-pre.json": "ff040c0a5ae6befb1f65f50362cc3804a01606d2147c54ac1fdd880f7f74be55",
+    "build/chainbench/public/dry-run/dry-public-05c9bfe-20260925T151220Z/faults/dry-S1-05c9bfe-20260925T151318Z/rpc-log.jsonl": "7c18aa75cd5f7e1cc0bdb25a2d159258800fbca68a9b431dda473d5397c97aa7",
+    "build/chainbench/public/dry-run/dry-public-05c9bfe-20260925T151220Z/faults/dry-S1-05c9bfe-20260925T151318Z/run.json": "1dc7f77cab87ccab2301a834e63425a837a9302c38c2932d2bd5dde50dd32917",
+    "build/chainbench/public/dry-run/dry-public-05c9bfe-20260925T151220Z/faults/dry-S1-05c9bfe-20260925T151318Z/tx.csv": "80850c155bfb438e49c7f2f54b909f7f81cc15be7cffa8a98ec47cd40620be37",
+    "build/chainbench/public/dry-run/dry-public-05c9bfe-20260925T151220Z/faults/dry-S1-05c9bfe-20260925T151318Z/tx.jsonl": "5e286fbf8494341ebe35db6c6e2d9e416803e4b26f2fb5152e821296ab2fa74a",
+    "build/chainbench/public/dry-run/dry-public-05c9bfe-20260925T151220Z/faults/dry-setup-era-sepolia-05c9bfe-20260925T151313Z/checks/SETUP-ERA-postcheck.json": "08ef5e0cb6e1aa54417e086165e1591c6491cf60979ec3f8f3fa49abba40a1f3",
+    "build/chainbench/public/dry-run/dry-public-05c9bfe-20260925T151220Z/faults/dry-setup-era-sepolia-05c9bfe-20260925T151313Z/deployments-era-sepolia.json": "4d5f3c3b2fd52d215df0d6e750f8c4d0adf27f8a24786f427b1c8999c49d7a4f",
+    "build/chainbench/public/dry-run/dry-public-05c9bfe-20260925T151220Z/faults/dry-setup-era-sepolia-05c9bfe-20260925T151313Z/observations/SETUP-ERA-post.json": "8e5e83a08e6d4adecdf9be6189ea588848fa79b52eaee5d68a9f8f4a032f108f",
+    "build/chainbench/public/dry-run/dry-public-05c9bfe-20260925T151220Z/faults/dry-setup-era-sepolia-05c9bfe-20260925T151313Z/observations/SETUP-ERA-pre.json": "81958fffe62d692a3f92f0194f6784fbb61773adef55718ca5d16c3c4b1fba46",
+    "build/chainbench/public/dry-run/dry-public-05c9bfe-20260925T151220Z/faults/dry-setup-era-sepolia-05c9bfe-20260925T151313Z/rpc-log.jsonl": "645ce615b1219c6a13b9e9ed909afba17cc9ba24316015eb55f3f52ae440e479",
+    "build/chainbench/public/dry-run/dry-public-05c9bfe-20260925T151220Z/faults/dry-setup-era-sepolia-05c9bfe-20260925T151313Z/run.json": "8d3eefc297da05bd39962eae43cc5c1b009911c15b124db13d1bd18fc102e608",
+    "build/chainbench/public/dry-run/dry-public-05c9bfe-20260925T151220Z/faults/dry-setup-era-sepolia-05c9bfe-20260925T151313Z/tx.csv": "db7b8bb3a2833c6893c984000c9fc51782497af01ff238b1dac67062406ddd8e",
+    "build/chainbench/public/dry-run/dry-public-05c9bfe-20260925T151220Z/faults/dry-setup-era-sepolia-05c9bfe-20260925T151313Z/tx.jsonl": "0dcd1573ee525f50bd326c224c3acaefa1adf19a1c2e23ab57994955bdfa287a",
+    "build/chainbench/public/dry-run/dry-public-05c9bfe-20260925T151220Z/faults/dry-setup-sepolia-05c9bfe-20260925T151305Z/checks/SETUP-SEP-postcheck.json": "ea1ecef541568d7a991199652785c3d6a2c36c6b1dc62b8e1d125dafdc26b95e",
+    "build/chainbench/public/dry-run/dry-public-05c9bfe-20260925T151220Z/faults/dry-setup-sepolia-05c9bfe-20260925T151305Z/deployments-sepolia.json": "077cdbb14538d999dc79dc10c2f692f9b427f9917695b5298606366c29fd37f8",
+    "build/chainbench/public/dry-run/dry-public-05c9bfe-20260925T151220Z/faults/dry-setup-sepolia-05c9bfe-20260925T151305Z/observations/SETUP-SEP-post.json": "b9183c79f6d0d158736901ca16d42eadf658b4efbfe010fa1f331689cd9887a6",
+    "build/chainbench/public/dry-run/dry-public-05c9bfe-20260925T151220Z/faults/dry-setup-sepolia-05c9bfe-20260925T151305Z/observations/SETUP-SEP-pre.json": "691ed8c577cb07ca4e3880f83dee253712309844075803a010fad95f81abc08e",
+    "build/chainbench/public/dry-run/dry-public-05c9bfe-20260925T151220Z/faults/dry-setup-sepolia-05c9bfe-20260925T151305Z/rpc-log.jsonl": "67ad63b52dc27ae379ad97aecc6f84f7de1470f59a253db77fb9336723772b58",
+    "build/chainbench/public/dry-run/dry-public-05c9bfe-20260925T151220Z/faults/dry-setup-sepolia-05c9bfe-20260925T151305Z/run.json": "75adc887b3a7ad8527eb21c488c87e4bda2dd22635da07eaa62ce8d46ce54246",
+    "build/chainbench/public/dry-run/dry-public-05c9bfe-20260925T151220Z/faults/dry-setup-sepolia-05c9bfe-20260925T151305Z/tx.csv": "9a764939e4feaa6baf8b99e1f46f49f1f7dc9fbcd2b4fc70b401128f193168fb",
+    "build/chainbench/public/dry-run/dry-public-05c9bfe-20260925T151220Z/faults/dry-setup-sepolia-05c9bfe-20260925T151305Z/tx.jsonl": "bbb87ea82cc1d02e85171ca5668e57051bf12eab806cad832e02d8a471655f40"
+  },
+  "mode": "dry",
+  "outputs_sha256": {
+    "era_batch_lifecycle.csv": "e1c9c350867a5b198ee1705f6865271996ae6ac37e83e9ddfee7dfaaceb47f76",
+    "public_gas_vs_controlled_l1.csv": "4438029743c0df6bd5706fef0da8a9c850c553b22f953c4244545681b446f6bc",
+    "public_ops.csv": "b4a5499999f850a4f19b3854bd1adc2b89c9f5239c2741c4cdcd1b076aeb30a6",
+    "public_sessions.csv": "9ec85bf79b1a14758c34e015f349c15c11803e3f6baed92232313ab29471eaac",
+    "public_summary.csv": "3af2b1dc3c57ab2db631415659ccecf5e13859c2848ae0bbd06fcb816ae509f4",
+    "validation.json": "01b30f3b7fc9734bee54dc882c0e544e7bc859a89a1985bbe48eafd10caeb929"
+  },
+  "tool": "scripts/analysis/derive_chain_public.py",
+  "tool_sha256": "ba260912fc098a81bd363956da12f98ae4bf406b5967392ab8947bc9abf70fa3",
+  "units": "gas; wei of test ether (no monetary value); ms; s"
+}

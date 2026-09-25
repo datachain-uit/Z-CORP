@@ -1,0 +1,80 @@
+{
+  "kind": "doctor-public (engineering; not session evidence)",
+  "observations": {},
+  "offline": true,
+  "results": [
+    {
+      "check": "Node.js >= 22",
+      "detail": "v22.23.2",
+      "fix": "use the chainbench-public image or Node 22",
+      "status": "PASS"
+    },
+    {
+      "check": "npm dependencies = package-lock.json (the only runtime dependencies)",
+      "detail": "{\"ethers\":\"6.13.5\",\"zksync-ethers\":\"6.21.2\"}",
+      "fix": "npm ci --ignore-scripts in chainbench/adapters/public (or use the image)",
+      "status": "PASS"
+    },
+    {
+      "check": "dependency graph: 10 packages (ethers, zksync-ethers and their dependencies)",
+      "detail": "10 packages",
+      "fix": "",
+      "status": "PASS"
+    },
+    {
+      "check": "RPC path: node:https/http only (no WebSocket, no ethers provider, no fetch/undici)",
+      "detail": "",
+      "fix": "",
+      "status": "PASS"
+    },
+    {
+      "check": "protocol present",
+      "detail": "csi/protocols/chain/CHAIN-PUBLIC-PROTOCOL-v1.md (sha256 97e66ef5e0183250…)",
+      "fix": "",
+      "status": "PASS"
+    },
+    {
+      "check": "frozen inputs (INPUTS.sha256, IDENTITY.json)",
+      "detail": "43 identity checks; manifest 14cbed1bac6a22d7…",
+      "fix": "",
+      "status": "PASS"
+    },
+    {
+      "check": "schedule",
+      "detail": "40 transactions (16 setup, 24 verification in 3 sessions)",
+      "fix": "",
+      "status": "PASS"
+    },
+    {
+      "check": "session start times frozen in the binding",
+      "detail": "not yet set: S1, S2, S3",
+      "fix": "author input: set scheduled_start_utc for S1-S3 (at least two calendar days) and commit before session 1",
+      "status": "WARN"
+    },
+    {
+      "check": "tracked paths clean",
+      "detail": "yes",
+      "fix": "live runs refuse a dirty tree",
+      "status": "PASS"
+    },
+    {
+      "check": "signing key",
+      "detail": "none configured (reviewer mode: validation and derivation need no key)",
+      "fix": "for live runs set CHAINBENCH_PUBLIC_KEY_FILE",
+      "status": "WARN"
+    },
+    {
+      "check": "Ethereum Sepolia endpoint",
+      "detail": "not configured (CHAINBENCH_PUBLIC_RPC_SEPOLIA)",
+      "fix": "author input: set CHAINBENCH_PUBLIC_RPC_SEPOLIA and CHAINBENCH_PUBLIC_RPC_LABEL_SEPOLIA",
+      "status": "WARN"
+    },
+    {
+      "check": "ZKsync Era Sepolia endpoint (https)",
+      "detail": "sepolia.era.zksync.dev host sepolia.era.zksync.dev",
+      "fix": "",
+      "status": "PASS"
+    }
+  ],
+  "signer_address": null
+}
