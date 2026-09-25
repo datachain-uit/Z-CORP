@@ -20,6 +20,11 @@ Workspace-wide:
   code/prover/KIT.sha256                   code the campaign ran (campaign paths at the campaign commit)
   code/analysis/ANALYSIS.sha256            derivation and release scripts used to build this workspace
   provenance/SNAPSHOTS.csv                 origin and sha256 of every file in csi/ (except itself and binaries)
+Chain campaigns (experiment dir `chain`, e.g. CSI-CHAIN-LOCAL-01) are registered in the same index but are not built
+from a source campaign here: their records (campaign.json, notes) are produced by chainbench/, their inputs are frozen
+under csi/campaigns/chain/<admin_id>/inputs/ (checked here against their manifests), and this script adds
+  code/chain/<admin_id>.KIT.sha256        the chain campaign's code at its registered commit
+and attributes their files correctly in provenance/SNAPSHOTS.csv. Prover outputs are unaffected.
 Standard library only.
 """
 import argparse
@@ -43,7 +48,9 @@ ANALYSIS_CODE = ['scripts/analysis/derive_prover.py', 'scripts/analysis/compare_
                  'scripts/analysis/input_stage_diagnostic.js', 'scripts/release/build_csi_bundle.py',
                  'scripts/release/make_precorrection_manifest.py', 'scripts/release/save_image.sh']
 SUPERSEDED = 'results/PRECORRECTION-2026-07.sha256'
-EXPERIMENT_DIR = {'controlled prover scaling': 'prover'}
+EXPERIMENT_DIR = {'controlled prover scaling': 'prover', 'controlled on-chain verification (local L1)': 'chain'}
+CHAIN_PATHS = ['chainbench', 'contracts', 'scripts/setup/generate_input_depth.js', 'scripts/setup/paths.js', 'ARTIFACTS.sha256']
+CHAIN_PREFIXES = (f'{CSI}/protocols/chain/', f'{CSI}/campaigns/chain/', f'{CSI}/code/chain/')
 
 
 class Abort(Exception):
@@ -224,6 +231,47 @@ def build_campaign(row, plan, tmpdir):
     return {'row': row, 'base': base, 'image': image, 'cj': cj}
 
 
+def build_chain_campaign(row, plan):
+    """Chain campaign: verify registry identities and frozen inputs; generate the code manifest."""
+    admin = row['admin_id']
+    base = f"{CSI}/campaigns/{EXPERIMENT_DIR[row['experiment']]}/{admin}"
+    git('rev-parse', row['commit'] + '^{commit}')
+    if not os.path.exists(os.path.join(REPO, row['protocol_path'])):
+        raise Abort(f"{admin}: protocol {row['protocol_path']} missing")
+    rec_rel = f'{base}/campaign.json'
+    if os.path.exists(os.path.join(REPO, rec_rel)):
+        rec = json.loads(rd(rec_rel))
+        for k in ('admin_id', 'status'):
+            if rec.get(k) != row[k]:
+                raise Abort(f'{admin}: {rec_rel} {k}={rec.get(k)} but registry has {row[k]}')
+        if rec.get('harness', {}).get('commit') != row['commit']:
+            raise Abort(f"{admin}: {rec_rel} harness commit {rec.get('harness', {}).get('commit')} but registry has {row['commit']}")
+    ps = f'{base}/inputs/proofset'
+    if os.path.exists(os.path.join(REPO, ps, 'PROOFSET.sha256')):
+        for ln in rd(f'{ps}/PROOFSET.sha256').decode().splitlines():
+            h, f = ln.split(None, 1)
+            if sha(rd(f'{ps}/{f.strip()}')) != h:
+                raise Abort(f'{admin}: frozen proof-set file changed: {ps}/{f.strip()}')
+    plan.put(f'{CSI}/code/chain/{admin}.KIT.sha256', tree_manifest(row['commit'], CHAIN_PATHS))
+    return {'row': row, 'base': base}
+
+
+def chain_attribution(rel, crow):
+    if '/inputs/proofset/' in rel:
+        return 'frozen input', 'chainbench/scripts/gen_proofset.js (proof set PS-01)'
+    if rel.endswith('plonk-verifiers.provenance.json'):
+        return 'generated', 'chainbench/scripts/export_plonk_verifiers.js'
+    if '/protocols/chain/' in rel:
+        return 'protocol', 'hand-written; frozen, amendments logged in its section 15'
+    if rel.startswith(f'{CSI}/code/chain/'):
+        return 'generated', 'scripts/release/build_csi_bundle.py'
+    if rel.endswith('/campaign.json'):
+        return 'generated', 'chainbench/scripts/record_campaign.py'
+    if '/derived/' in rel:
+        return 'generated', 'chainbench/scripts (summarize_l1.py, compare_runs.py)'
+    return 'hand-written', '-'
+
+
 def build_release(ctx):
     """Release archives (not versioned): campaign tar (deterministic) and code tar (git archive)."""
     admin, src, commit = ctx['row']['admin_id'], ctx['row']['source_path'], ctx['row']['commit']
@@ -263,8 +311,14 @@ def main():
     plan = Plan(a.check)
     tmpdir = tempfile.mkdtemp(prefix='csi-bundle-')
     try:
-        rows = list(csv.DictReader(io.StringIO(rd(INDEX).decode())))
+        allrows = list(csv.DictReader(io.StringIO(rd(INDEX).decode())))
+        for r in allrows:
+            if r['experiment'] not in EXPERIMENT_DIR:
+                raise Abort(f"{r['admin_id']}: unknown experiment {r['experiment']}")
+        rows = [r for r in allrows if EXPERIMENT_DIR[r['experiment']] == 'prover']
+        crows = [r for r in allrows if EXPERIMENT_DIR[r['experiment']] == 'chain']
         ctxs = [build_campaign(r, plan, tmpdir) for r in rows]
+        cctx = [build_chain_campaign(r, plan) for r in crows]
         if a.release and not a.check:
             for c in ctxs:
                 build_release(c)
@@ -293,6 +347,16 @@ def main():
             if rel == f'{CSI}/provenance/SNAPSHOTS.csv' or rel.endswith('.tar'):
                 continue
             data = plan.files.get(rel) or rd(rel)
+            if rel.startswith(CHAIN_PREFIXES):
+                owners = [c['row'] for c in cctx if rel.startswith(c['base'] + '/') or rel == f"{CSI}/code/chain/{c['row']['admin_id']}.KIT.sha256"]
+                crow = owners[0] if owners else (cctx[0]['row'] if cctx else None)
+                if crow is None:
+                    raise Abort(f'{rel}: chain file but no chain campaign is registered')
+                kind, source = chain_attribution(rel, crow)
+                snap.append({'artifact': rel, 'kind': kind, 'source': source, 'campaign_id': crow['campaign_id'], 'commit': crow['commit'],
+                             'baseline_tag': crow['baseline_tag'], 'protocol_version': crow['protocol_version'],
+                             'image_manifest': '-', 'image_config': '-', 'sha256': sha(data)})
+                continue
             if rel.endswith('SOURCE.sha256'):
                 kind, source = 'generated', prow['source_path']
             elif '/protocols/' in rel:

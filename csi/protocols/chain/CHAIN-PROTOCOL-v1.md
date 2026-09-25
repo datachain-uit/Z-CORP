@@ -339,6 +339,7 @@ A run is **accepted** only if every item below holds.
 - Built from source with Go 1.24.7, `CGO_ENABLED=0`, `-trimpath -buildvcs=false -ldflags "-s -w"` (plus the version stamp), for linux/arm64 and linux/amd64.
 - **Module integrity:** every downloaded module was verified by Go against geth's committed `go.sum`. The non-GitHub modules were served from a local file proxy built from their official GitHub mirrors, and each one's h1 hash was checked against `go.sum` before use.
 - The binary sha256 is recorded in `environment.json`.
+- **Build recipe:** `chainbench/geth/` (`build_geth.sh`, `mkproxy.py`, `SHA256SUMS`), with a fixed build directory, `/tmp/zcorp-geth-v1.16.9` (§15, A4).
 
 **Rules:**
 - `--dev` mode activates every fork through **Osaka** (`params.AllDevChainProtocolChanges`: `OsakaTime = 0`, no later fork).
@@ -408,3 +409,4 @@ All of the following were made **before** the L1 scientific run and before the e
 | A1 | 2026-09-25 | §7 | The geth `maxPriorityFeePerGas` becomes 1 gwei (it was 0). | geth's transaction pool rejects tips below its minimum ("gas tip cap 0, minimum needed 1"). Fee fields are bookkeeping only; `gasUsed` does not depend on them, as the cross-client comparison verifies. |
 | A2 | 2026-09-25 | §4 | Staging, artifacts and cache go into a fresh per-run directory, `chainbench/.work/<run_id>/`, instead of `chainbench/.stage/<profile>/`. | Every run is guaranteed to build from scratch, with no reuse or deletion of earlier builds. The source names in the metadata are unchanged (`contracts/…`). |
 | A3 | 2026-09-25 | §12 | A run is executed in steps (`init`, `build`, `envcheck`, `exec`, `finish`), and `exec` can resume per cell. | The execution environment of the campaign VM ends every process of a shell call after about 3 minutes. Cells are independent and each uses a fresh chain, so resuming at a cell boundary does not change any transaction. |
+| A4 | 2026-09-25 | §11 | The geth build recipe is committed at `chainbench/geth/`. It builds in a fixed directory, `/tmp/zcorp-geth-v1.16.9`, and the replay uses its output (sha256 in `SHA256SUMS`). | gnark-crypto's assembly include paths embed the absolute module-cache path in the binary despite `-trimpath`. Byte-identical rebuilds therefore need the same path; two from-scratch builds with the recipe gave identical binaries. |
