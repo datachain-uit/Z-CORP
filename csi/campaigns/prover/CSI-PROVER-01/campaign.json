@@ -44,7 +44,6 @@
     "archive": {
       "bytes": 95669248,
       "file": "csi/release/CSI-PROVER-01/image/zcorp-bench-campaign-20260925T060607Z.oci.tar",
-      "present_in_this_checkout": true,
       "record": "csi/release/CSI-PROVER-01/IMAGE-ARCHIVE.json",
       "sha256": "96af753619c0b172a1a563be687f646daf7c62231c953ca7d3a9cdfddde1884d",
       "versioned": false

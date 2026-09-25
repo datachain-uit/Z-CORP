@@ -187,7 +187,7 @@ def build_campaign(row, plan, tmpdir):
         if present and sha(open(tar_p, 'rb').read()) != rec['archive_sha256']:
             raise Abort(f'{admin}: {rec["archive"]} does not match archive_sha256 in {rec_rel}')
         image['archive'] = {'record': rec_rel, 'file': f"{CSI}/release/{admin}/{rec['archive']}", 'sha256': rec['archive_sha256'],
-                            'bytes': rec['archive_bytes'], 'present_in_this_checkout': present, 'versioned': False}
+                            'bytes': rec['archive_bytes'], 'versioned': False}
     else:
         image['archive'] = 'pending: run scripts/release/save_image.sh on the campaign host'
     # ---- protocol snapshot (byte-identical, from git at the campaign commit)
