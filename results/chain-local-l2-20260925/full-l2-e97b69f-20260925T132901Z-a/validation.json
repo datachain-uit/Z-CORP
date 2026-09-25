@@ -1,0 +1,80 @@
+{
+  "run_id": "full-l2-e97b69f-20260925T132901Z-a",
+  "plan": "full",
+  "pass": true,
+  "rules": 13,
+  "checks": [
+    {
+      "rule": "V1 CSV header = raw schema (56 columns)",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "rule": "V2 rows 288 = 288, tx rows 200 = 200",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "rule": "V3 cells in plan order",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "rule": "V4 every cell follows the section 7 operation sequence (op_seq 1..n)",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "rule": "V5 every row has its expected status / revert reason / return value (check_pass = 1)",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "rule": "V6 transaction type, gas limit, fee fields, chain id and protocol version as frozen",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "rule": "V7 fee accounting: one node record per transaction; pubdata_gas = pubdata_bytes x 84; receipt gasUsed reproduced exactly from computational_gas, pubdata_bytes and the fixed fee input",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "rule": "V8 deployed bytecode = compiled artifact (eth_getCode, versioned bytecode hash, size, one factory dependency)",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "rule": "V9 all 24 compiled contracts within the EraVM bytecode limit",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "rule": "V10 fresh chain per cell: nonces from 0, strictly increasing blocks, distinct transaction hashes",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "rule": "V11 anvil-zksync, zksolc and era-solc binaries = pins",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "rule": "V12 environment check passed (system contracts, protocol, fee-accounting probe)",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "rule": "V13 base system contracts = anvil-zksync 0.6.11 built-in protocol v29",
+      "pass": true,
+      "detail": ""
+    }
+  ],
+  "counts": {
+    "rows": 288,
+    "tx_rows": 200,
+    "call_rows": 88,
+    "cells": 8,
+    "proofs_per_cell": 8
+  }
+}

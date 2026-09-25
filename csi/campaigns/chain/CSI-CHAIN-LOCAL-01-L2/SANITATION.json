@@ -1,0 +1,431 @@
+{
+  "allowlist": [
+    "results/chain-local-l2-20260925/full-l2-e97b69f-20260925T132901Z-a/envcheck/anvil.stdout",
+    "results/chain-local-l2-20260925/full-l2-e97b69f-20260925T132901Z-a/nodes/primary-groth16-d10/anvil.stdout",
+    "results/chain-local-l2-20260925/full-l2-e97b69f-20260925T132901Z-a/nodes/primary-groth16-d11/anvil.stdout",
+    "results/chain-local-l2-20260925/full-l2-e97b69f-20260925T132901Z-a/nodes/primary-groth16-d15/anvil.stdout",
+    "results/chain-local-l2-20260925/full-l2-e97b69f-20260925T132901Z-a/nodes/primary-groth16-d5/anvil.stdout",
+    "results/chain-local-l2-20260925/full-l2-e97b69f-20260925T132901Z-a/nodes/primary-plonk-d10/anvil.stdout",
+    "results/chain-local-l2-20260925/full-l2-e97b69f-20260925T132901Z-a/nodes/primary-plonk-d11/anvil.stdout",
+    "results/chain-local-l2-20260925/full-l2-e97b69f-20260925T132901Z-a/nodes/primary-plonk-d15/anvil.stdout",
+    "results/chain-local-l2-20260925/full-l2-e97b69f-20260925T132901Z-a/nodes/primary-plonk-d5/anvil.stdout",
+    "results/chain-local-l2-20260925/full-l2-e97b69f-20260925T132901Z-b/envcheck/anvil.stdout",
+    "results/chain-local-l2-20260925/full-l2-e97b69f-20260925T132901Z-b/nodes/primary-groth16-d10/anvil.stdout",
+    "results/chain-local-l2-20260925/full-l2-e97b69f-20260925T132901Z-b/nodes/primary-groth16-d11/anvil.stdout",
+    "results/chain-local-l2-20260925/full-l2-e97b69f-20260925T132901Z-b/nodes/primary-groth16-d15/anvil.stdout",
+    "results/chain-local-l2-20260925/full-l2-e97b69f-20260925T132901Z-b/nodes/primary-groth16-d5/anvil.stdout",
+    "results/chain-local-l2-20260925/full-l2-e97b69f-20260925T132901Z-b/nodes/primary-plonk-d10/anvil.stdout",
+    "results/chain-local-l2-20260925/full-l2-e97b69f-20260925T132901Z-b/nodes/primary-plonk-d11/anvil.stdout",
+    "results/chain-local-l2-20260925/full-l2-e97b69f-20260925T132901Z-b/nodes/primary-plonk-d15/anvil.stdout",
+    "results/chain-local-l2-20260925/full-l2-e97b69f-20260925T132901Z-b/nodes/primary-plonk-d5/anvil.stdout"
+  ],
+  "banner_lines": [
+    25,
+    26,
+    32
+  ],
+  "campaign_id": "full-l2-e97b69f-20260925T132901Z",
+  "files": [
+    {
+      "changed_lines": [
+        {
+          "kind": "private key of development account (0)",
+          "line": 25
+        },
+        {
+          "kind": "private key of development account (1)",
+          "line": 26
+        },
+        {
+          "kind": "development mnemonic",
+          "line": 32
+        }
+      ],
+      "lines": 83,
+      "path": "results/chain-local-l2-20260925/full-l2-e97b69f-20260925T132901Z-a/envcheck/anvil.stdout",
+      "sha256_after": "f64fd39f8e68a6de283edac003e8270e40617503f2004a9680aa18ac4cde5b93",
+      "sha256_before": "cd3c1ad10305bc8788f0d386be97d3c837b2952ee8f59c12494865d7263747ad",
+      "state_before": "raw"
+    },
+    {
+      "changed_lines": [
+        {
+          "kind": "private key of development account (0)",
+          "line": 25
+        },
+        {
+          "kind": "private key of development account (1)",
+          "line": 26
+        },
+        {
+          "kind": "development mnemonic",
+          "line": 32
+        }
+      ],
+      "lines": 418,
+      "path": "results/chain-local-l2-20260925/full-l2-e97b69f-20260925T132901Z-a/nodes/primary-groth16-d10/anvil.stdout",
+      "sha256_after": "f045627b599681a9ce4eaab40c67990bf1c4371dd2c4988cd72279e1346d0113",
+      "sha256_before": "0915b3fbf6b02b59037a34c9649ac7770be8d88727bda1247bd4fcdd0e340ef4",
+      "state_before": "raw"
+    },
+    {
+      "changed_lines": [
+        {
+          "kind": "private key of development account (0)",
+          "line": 25
+        },
+        {
+          "kind": "private key of development account (1)",
+          "line": 26
+        },
+        {
+          "kind": "development mnemonic",
+          "line": 32
+        }
+      ],
+      "lines": 418,
+      "path": "results/chain-local-l2-20260925/full-l2-e97b69f-20260925T132901Z-a/nodes/primary-groth16-d11/anvil.stdout",
+      "sha256_after": "34a439508ff65912a025cf7d8a2c115c61fd62a4b0dd125c0c818382afc6f083",
+      "sha256_before": "08f6703dbc22229edb8c877c45d85e92f52eef25f79333d5bfaee9e26b956579",
+      "state_before": "raw"
+    },
+    {
+      "changed_lines": [
+        {
+          "kind": "private key of development account (0)",
+          "line": 25
+        },
+        {
+          "kind": "private key of development account (1)",
+          "line": 26
+        },
+        {
+          "kind": "development mnemonic",
+          "line": 32
+        }
+      ],
+      "lines": 418,
+      "path": "results/chain-local-l2-20260925/full-l2-e97b69f-20260925T132901Z-a/nodes/primary-groth16-d15/anvil.stdout",
+      "sha256_after": "dbdd51c6dfd3fd3f5cfaa135737b62387372d6aefcd6229b2905574e262ca86b",
+      "sha256_before": "35097d3b1ec70e25b7d876c9683317d1e2fe4d93a5be974b6dee9863655a6427",
+      "state_before": "raw"
+    },
+    {
+      "changed_lines": [
+        {
+          "kind": "private key of development account (0)",
+          "line": 25
+        },
+        {
+          "kind": "private key of development account (1)",
+          "line": 26
+        },
+        {
+          "kind": "development mnemonic",
+          "line": 32
+        }
+      ],
+      "lines": 418,
+      "path": "results/chain-local-l2-20260925/full-l2-e97b69f-20260925T132901Z-a/nodes/primary-groth16-d5/anvil.stdout",
+      "sha256_after": "14eb949a4e16c5cffb8a9594e65e38dacb7ff3dc02b1effee6dac590b1e065eb",
+      "sha256_before": "1e8bbd6dacbcb07828cf58dafe62e1f10392330e4d3f87b7a4d8c0548fbf1c81",
+      "state_before": "raw"
+    },
+    {
+      "changed_lines": [
+        {
+          "kind": "private key of development account (0)",
+          "line": 25
+        },
+        {
+          "kind": "private key of development account (1)",
+          "line": 26
+        },
+        {
+          "kind": "development mnemonic",
+          "line": 32
+        }
+      ],
+      "lines": 418,
+      "path": "results/chain-local-l2-20260925/full-l2-e97b69f-20260925T132901Z-a/nodes/primary-plonk-d10/anvil.stdout",
+      "sha256_after": "e1c1c1a1aa4b0b55d8989847df60edf4144d88f701f938e9c4f3d2492d171f92",
+      "sha256_before": "6d5e0636229742c7e8378c0d4a95c7d305686a28d2cf31919804d4a8e59919a7",
+      "state_before": "raw"
+    },
+    {
+      "changed_lines": [
+        {
+          "kind": "private key of development account (0)",
+          "line": 25
+        },
+        {
+          "kind": "private key of development account (1)",
+          "line": 26
+        },
+        {
+          "kind": "development mnemonic",
+          "line": 32
+        }
+      ],
+      "lines": 418,
+      "path": "results/chain-local-l2-20260925/full-l2-e97b69f-20260925T132901Z-a/nodes/primary-plonk-d11/anvil.stdout",
+      "sha256_after": "c3244a58fa41e9f49f0ed996ca08e50fb26fe9f7a63d6f58c050e23db294ac2b",
+      "sha256_before": "ed044f2269de92d78b1b2875acef08ad34c1180ec02986601eb7d21e90449048",
+      "state_before": "raw"
+    },
+    {
+      "changed_lines": [
+        {
+          "kind": "private key of development account (0)",
+          "line": 25
+        },
+        {
+          "kind": "private key of development account (1)",
+          "line": 26
+        },
+        {
+          "kind": "development mnemonic",
+          "line": 32
+        }
+      ],
+      "lines": 418,
+      "path": "results/chain-local-l2-20260925/full-l2-e97b69f-20260925T132901Z-a/nodes/primary-plonk-d15/anvil.stdout",
+      "sha256_after": "82fa0270be993a07c9e04e0b24b20f19dcaba58c9ea1386d23fc847ddb570a36",
+      "sha256_before": "ec9ef7462b3c44513ac0ffcc7d46ba2c6635fa8fb63661c069b9b5ca14c64d16",
+      "state_before": "raw"
+    },
+    {
+      "changed_lines": [
+        {
+          "kind": "private key of development account (0)",
+          "line": 25
+        },
+        {
+          "kind": "private key of development account (1)",
+          "line": 26
+        },
+        {
+          "kind": "development mnemonic",
+          "line": 32
+        }
+      ],
+      "lines": 418,
+      "path": "results/chain-local-l2-20260925/full-l2-e97b69f-20260925T132901Z-a/nodes/primary-plonk-d5/anvil.stdout",
+      "sha256_after": "711bdb3a3a63eef0e4312ad5aad8845a88d42e96a064041f1ea2b788cc26c9da",
+      "sha256_before": "ad152ac4364af6533bf1499e43715db21647b29b91b4601157e5d2d75809eccc",
+      "state_before": "raw"
+    },
+    {
+      "changed_lines": [
+        {
+          "kind": "private key of development account (0)",
+          "line": 25
+        },
+        {
+          "kind": "private key of development account (1)",
+          "line": 26
+        },
+        {
+          "kind": "development mnemonic",
+          "line": 32
+        }
+      ],
+      "lines": 83,
+      "path": "results/chain-local-l2-20260925/full-l2-e97b69f-20260925T132901Z-b/envcheck/anvil.stdout",
+      "sha256_after": "f64fd39f8e68a6de283edac003e8270e40617503f2004a9680aa18ac4cde5b93",
+      "sha256_before": "cd3c1ad10305bc8788f0d386be97d3c837b2952ee8f59c12494865d7263747ad",
+      "state_before": "raw"
+    },
+    {
+      "changed_lines": [
+        {
+          "kind": "private key of development account (0)",
+          "line": 25
+        },
+        {
+          "kind": "private key of development account (1)",
+          "line": 26
+        },
+        {
+          "kind": "development mnemonic",
+          "line": 32
+        }
+      ],
+      "lines": 418,
+      "path": "results/chain-local-l2-20260925/full-l2-e97b69f-20260925T132901Z-b/nodes/primary-groth16-d10/anvil.stdout",
+      "sha256_after": "f045627b599681a9ce4eaab40c67990bf1c4371dd2c4988cd72279e1346d0113",
+      "sha256_before": "0915b3fbf6b02b59037a34c9649ac7770be8d88727bda1247bd4fcdd0e340ef4",
+      "state_before": "raw"
+    },
+    {
+      "changed_lines": [
+        {
+          "kind": "private key of development account (0)",
+          "line": 25
+        },
+        {
+          "kind": "private key of development account (1)",
+          "line": 26
+        },
+        {
+          "kind": "development mnemonic",
+          "line": 32
+        }
+      ],
+      "lines": 418,
+      "path": "results/chain-local-l2-20260925/full-l2-e97b69f-20260925T132901Z-b/nodes/primary-groth16-d11/anvil.stdout",
+      "sha256_after": "34a439508ff65912a025cf7d8a2c115c61fd62a4b0dd125c0c818382afc6f083",
+      "sha256_before": "08f6703dbc22229edb8c877c45d85e92f52eef25f79333d5bfaee9e26b956579",
+      "state_before": "raw"
+    },
+    {
+      "changed_lines": [
+        {
+          "kind": "private key of development account (0)",
+          "line": 25
+        },
+        {
+          "kind": "private key of development account (1)",
+          "line": 26
+        },
+        {
+          "kind": "development mnemonic",
+          "line": 32
+        }
+      ],
+      "lines": 418,
+      "path": "results/chain-local-l2-20260925/full-l2-e97b69f-20260925T132901Z-b/nodes/primary-groth16-d15/anvil.stdout",
+      "sha256_after": "dbdd51c6dfd3fd3f5cfaa135737b62387372d6aefcd6229b2905574e262ca86b",
+      "sha256_before": "35097d3b1ec70e25b7d876c9683317d1e2fe4d93a5be974b6dee9863655a6427",
+      "state_before": "raw"
+    },
+    {
+      "changed_lines": [
+        {
+          "kind": "private key of development account (0)",
+          "line": 25
+        },
+        {
+          "kind": "private key of development account (1)",
+          "line": 26
+        },
+        {
+          "kind": "development mnemonic",
+          "line": 32
+        }
+      ],
+      "lines": 418,
+      "path": "results/chain-local-l2-20260925/full-l2-e97b69f-20260925T132901Z-b/nodes/primary-groth16-d5/anvil.stdout",
+      "sha256_after": "14eb949a4e16c5cffb8a9594e65e38dacb7ff3dc02b1effee6dac590b1e065eb",
+      "sha256_before": "1e8bbd6dacbcb07828cf58dafe62e1f10392330e4d3f87b7a4d8c0548fbf1c81",
+      "state_before": "raw"
+    },
+    {
+      "changed_lines": [
+        {
+          "kind": "private key of development account (0)",
+          "line": 25
+        },
+        {
+          "kind": "private key of development account (1)",
+          "line": 26
+        },
+        {
+          "kind": "development mnemonic",
+          "line": 32
+        }
+      ],
+      "lines": 418,
+      "path": "results/chain-local-l2-20260925/full-l2-e97b69f-20260925T132901Z-b/nodes/primary-plonk-d10/anvil.stdout",
+      "sha256_after": "e1c1c1a1aa4b0b55d8989847df60edf4144d88f701f938e9c4f3d2492d171f92",
+      "sha256_before": "6d5e0636229742c7e8378c0d4a95c7d305686a28d2cf31919804d4a8e59919a7",
+      "state_before": "raw"
+    },
+    {
+      "changed_lines": [
+        {
+          "kind": "private key of development account (0)",
+          "line": 25
+        },
+        {
+          "kind": "private key of development account (1)",
+          "line": 26
+        },
+        {
+          "kind": "development mnemonic",
+          "line": 32
+        }
+      ],
+      "lines": 418,
+      "path": "results/chain-local-l2-20260925/full-l2-e97b69f-20260925T132901Z-b/nodes/primary-plonk-d11/anvil.stdout",
+      "sha256_after": "c3244a58fa41e9f49f0ed996ca08e50fb26fe9f7a63d6f58c050e23db294ac2b",
+      "sha256_before": "ed044f2269de92d78b1b2875acef08ad34c1180ec02986601eb7d21e90449048",
+      "state_before": "raw"
+    },
+    {
+      "changed_lines": [
+        {
+          "kind": "private key of development account (0)",
+          "line": 25
+        },
+        {
+          "kind": "private key of development account (1)",
+          "line": 26
+        },
+        {
+          "kind": "development mnemonic",
+          "line": 32
+        }
+      ],
+      "lines": 418,
+      "path": "results/chain-local-l2-20260925/full-l2-e97b69f-20260925T132901Z-b/nodes/primary-plonk-d15/anvil.stdout",
+      "sha256_after": "82fa0270be993a07c9e04e0b24b20f19dcaba58c9ea1386d23fc847ddb570a36",
+      "sha256_before": "ec9ef7462b3c44513ac0ffcc7d46ba2c6635fa8fb63661c069b9b5ca14c64d16",
+      "state_before": "raw"
+    },
+    {
+      "changed_lines": [
+        {
+          "kind": "private key of development account (0)",
+          "line": 25
+        },
+        {
+          "kind": "private key of development account (1)",
+          "line": 26
+        },
+        {
+          "kind": "development mnemonic",
+          "line": 32
+        }
+      ],
+      "lines": 418,
+      "path": "results/chain-local-l2-20260925/full-l2-e97b69f-20260925T132901Z-b/nodes/primary-plonk-d5/anvil.stdout",
+      "sha256_after": "711bdb3a3a63eef0e4312ad5aad8845a88d42e96a064041f1ea2b788cc26c9da",
+      "sha256_before": "ad152ac4364af6533bf1499e43715db21647b29b91b4601157e5d2d75809eccc",
+      "state_before": "raw"
+    }
+  ],
+  "known_values": "sha256 of the lowercase 0x-prefixed private keys of accounts 0 and 1 and of the mnemonic (stored in the tool; no value stored)",
+  "marker": "[REDACTED: STANDARD PUBLIC DEVELOPMENT CREDENTIAL]",
+  "retained_configuration": [
+    {
+      "json_path": "node_options.args[18]",
+      "kind": "development mnemonic (anvil-zksync -m argument; node configuration)",
+      "path": "results/chain-local-l2-20260925/full-l2-e97b69f-20260925T132901Z-a/environment.json"
+    },
+    {
+      "json_path": "node_options.args[18]",
+      "kind": "development mnemonic (anvil-zksync -m argument; node configuration)",
+      "path": "results/chain-local-l2-20260925/full-l2-e97b69f-20260925T132901Z-b/environment.json"
+    }
+  ],
+  "retained_configuration_note": "the public development mnemonic remains as the value of the anvil-zksync \"-m\" argument in environment.json of runs a and b (frozen node configuration, read by validate_l2.py, compare_l2.py and derive_chain_l2.py), as it does in the measurement code (chainbench/lib/constants.js, chainbench/adapters/eravm/lib/constants.js) and the protocol; no private key remains",
+  "rule": "replace, in each allowlisted anvil-zksync start-up log, the two \"Private Keys\" banner lines and the \"Mnemonic:\" banner line by the marker, only if their values are the known public development credentials; line count and all other bytes unchanged",
+  "summary": {
+    "files_allowlisted": 18,
+    "files_already_sanitised": 0,
+    "files_changed": 18,
+    "lines_changed": 54
+  },
+  "tool": "scripts/release/sanitize_chain_l2_devcreds.py"
+}

@@ -1,0 +1,531 @@
+{
+  "arm": "L2-EraVM",
+  "compiler": {
+    "zksolc_version_output": "1.5.15",
+    "era_solc_long_version": "0.8.20+commit.3b523ea3.Linux.clang",
+    "zksolc_cli_version": "Solidity compiler for ZKsync v1.5.15 (LLVM build fa0fc0bc9caa7884f9f485735b537cb1ac441fe7)",
+    "era_solc_cli_version": "Version: 0.8.20+commit.3b523ea3.Linux.clang | ZKsync: 0.8.20-1.0.2",
+    "zksolc_sha256": "ee4f02f8614ef320fc95d2f15c69678bb1781f9526df78fb35a906180c998b44",
+    "era_solc_sha256": "d98d1068b3bff4679a32585ea75febbf75b004a2870a3e2ebf191550f36950b2"
+  },
+  "settings": {
+    "optimizer": {
+      "enabled": true,
+      "mode": "3",
+      "fallback_to_optimizing_for_size": true
+    },
+    "codegen": "yul",
+    "evmVersion": "paris",
+    "outputSelection": {
+      "*": {
+        "*": [
+          "abi",
+          "evm.methodIdentifiers",
+          "metadata"
+        ]
+      }
+    }
+  },
+  "requested_files": [
+    "contracts/chain/CredentialManagerBase.sol",
+    "contracts/chain/CredentialManagerGroth16.sol",
+    "contracts/chain/CredentialManagerPlonk.sol",
+    "contracts/chain/PlonkVerifierDepth5.sol",
+    "contracts/chain/PlonkVerifierDepth6.sol",
+    "contracts/chain/PlonkVerifierDepth7.sol",
+    "contracts/chain/PlonkVerifierDepth8.sol",
+    "contracts/chain/PlonkVerifierDepth9.sol",
+    "contracts/chain/PlonkVerifierDepth10.sol",
+    "contracts/chain/PlonkVerifierDepth11.sol",
+    "contracts/chain/PlonkVerifierDepth12.sol",
+    "contracts/chain/PlonkVerifierDepth13.sol",
+    "contracts/chain/PlonkVerifierDepth14.sol",
+    "contracts/chain/PlonkVerifierDepth15.sol",
+    "contracts/Groth16LegacyVerifierDepth5.sol",
+    "contracts/Groth16LegacyVerifierDepth6.sol",
+    "contracts/Groth16LegacyVerifierDepth7.sol",
+    "contracts/Groth16LegacyVerifierDepth8.sol",
+    "contracts/Groth16LegacyVerifierDepth9.sol",
+    "contracts/Groth16LegacyVerifierDepth10.sol",
+    "contracts/Groth16LegacyVerifierDepth11.sol",
+    "contracts/Groth16LegacyVerifierDepth12.sol",
+    "contracts/Groth16LegacyVerifierDepth13.sol",
+    "contracts/Groth16LegacyVerifierDepth14.sol",
+    "contracts/Groth16LegacyVerifierDepth15.sol"
+  ],
+  "sources": [
+    {
+      "path": "@openzeppelin/contracts/access/Ownable.sol",
+      "sha256": "a8e4e1ae19d9bd3e8b0a6d46577eec098c01fbaffd3ec1252fd20d799e73393b",
+      "equals_head": null
+    },
+    {
+      "path": "@openzeppelin/contracts/utils/Context.sol",
+      "sha256": "1458c260d010a08e4c20a4a517882259a23a4baa0b5bd9add9fb6d6a1549814a",
+      "equals_head": null
+    },
+    {
+      "path": "contracts/Groth16LegacyVerifierDepth10.sol",
+      "sha256": "6f57bdf058976e33bd3d014ae7888d0b3a19281d86a7f06b65a73f736bc04d57",
+      "equals_head": true
+    },
+    {
+      "path": "contracts/Groth16LegacyVerifierDepth11.sol",
+      "sha256": "da6e3075c9d17039615579eb1c0946423cae0651a57dca2256561a362fbf3dd7",
+      "equals_head": true
+    },
+    {
+      "path": "contracts/Groth16LegacyVerifierDepth12.sol",
+      "sha256": "575089f2592292ca8bc33c395df210dfa8df55943211d64f7f9cfa49e0d4081e",
+      "equals_head": true
+    },
+    {
+      "path": "contracts/Groth16LegacyVerifierDepth13.sol",
+      "sha256": "8b51648490813c526f93ca62ee1aacd404a048de9fbcd1d88aa90a234bdf9eb1",
+      "equals_head": true
+    },
+    {
+      "path": "contracts/Groth16LegacyVerifierDepth14.sol",
+      "sha256": "854d4501db66c5cf31e6953f80e174971068040e2380448b4da7582c0e9d8c4e",
+      "equals_head": true
+    },
+    {
+      "path": "contracts/Groth16LegacyVerifierDepth15.sol",
+      "sha256": "3c29dd4aece8ef7f996f7b23994240cb12d5fb65d51a11665996bddcc0b15c1f",
+      "equals_head": true
+    },
+    {
+      "path": "contracts/Groth16LegacyVerifierDepth5.sol",
+      "sha256": "bf43826b8afcc6fd43c77d760db3f2f7bad230a88301ecb12bfa0458b8b9bfad",
+      "equals_head": true
+    },
+    {
+      "path": "contracts/Groth16LegacyVerifierDepth6.sol",
+      "sha256": "9fddbf723f16f05ec11bd6b61669c79fded63f3605e85c7bcd2c71af1a49a954",
+      "equals_head": true
+    },
+    {
+      "path": "contracts/Groth16LegacyVerifierDepth7.sol",
+      "sha256": "d748e1f7bcbe1de061e410f774b010966f0d6339f344c5578bae45628ca221bf",
+      "equals_head": true
+    },
+    {
+      "path": "contracts/Groth16LegacyVerifierDepth8.sol",
+      "sha256": "de0fbb11c80411a9bc9cdfb325d61fbbb3322f3cc52390dbb7899d96868fdb0f",
+      "equals_head": true
+    },
+    {
+      "path": "contracts/Groth16LegacyVerifierDepth9.sol",
+      "sha256": "330de7a73c5926869f00c8353d15e276351f24816c4ff7c226e476aa3f578456",
+      "equals_head": true
+    },
+    {
+      "path": "contracts/chain/CredentialManagerBase.sol",
+      "sha256": "e68760575138f3bffc98c95057430d5b2e1a2e1458231182520b318f2ef44caf",
+      "equals_head": true
+    },
+    {
+      "path": "contracts/chain/CredentialManagerGroth16.sol",
+      "sha256": "a240480dcb0def8ec7bafb6e50fb9250858601bee8091be4f5f4ad314ace5cfd",
+      "equals_head": true
+    },
+    {
+      "path": "contracts/chain/CredentialManagerPlonk.sol",
+      "sha256": "3c4af458fc22c9cf4f2341b0b716c1be01db1e64b86c1d4995e767fc8d9af1de",
+      "equals_head": true
+    },
+    {
+      "path": "contracts/chain/PlonkVerifierDepth10.sol",
+      "sha256": "92f15a3f0b15c8157ca7bf7d96e8e14a59c6055a665b05c42b92ab4450ddff46",
+      "equals_head": true
+    },
+    {
+      "path": "contracts/chain/PlonkVerifierDepth11.sol",
+      "sha256": "6c447f47aca057919496430770d3a84c7636d1e2bc0ae22bae1e89c74dd74b51",
+      "equals_head": true
+    },
+    {
+      "path": "contracts/chain/PlonkVerifierDepth12.sol",
+      "sha256": "e650efd6157f2148651f9e66f70b5e7c7b0bd35a6e486c621bbcd233e9ab0ff8",
+      "equals_head": true
+    },
+    {
+      "path": "contracts/chain/PlonkVerifierDepth13.sol",
+      "sha256": "b982e7e130278b9c012090bd02568210a0f22c977176a3016181cc7e54df707e",
+      "equals_head": true
+    },
+    {
+      "path": "contracts/chain/PlonkVerifierDepth14.sol",
+      "sha256": "1d41227dd89f3db890c3958a64bd34221459012530aee42320f32efb20aff9a9",
+      "equals_head": true
+    },
+    {
+      "path": "contracts/chain/PlonkVerifierDepth15.sol",
+      "sha256": "5cc78face5c7d093b7e66328e89d6f6911d85ff5c23017ac8ae2f97616ba7a6d",
+      "equals_head": true
+    },
+    {
+      "path": "contracts/chain/PlonkVerifierDepth5.sol",
+      "sha256": "f0ff19a7dd43c464de496e776f4d19743ab17dca90b5c41511cb58ba20c9a25c",
+      "equals_head": true
+    },
+    {
+      "path": "contracts/chain/PlonkVerifierDepth6.sol",
+      "sha256": "c180d54e6053816370e905125c83dd5fa587bedb769133e02a24097614c85361",
+      "equals_head": true
+    },
+    {
+      "path": "contracts/chain/PlonkVerifierDepth7.sol",
+      "sha256": "75702d6aec9c28f367aeef60c327f831f9a542934442a8197d6467a3ad61fdd1",
+      "equals_head": true
+    },
+    {
+      "path": "contracts/chain/PlonkVerifierDepth8.sol",
+      "sha256": "2e55d6173fdd4f2b252c91e1df90cae8fc7e7c964c430d52efde5d1d68b857af",
+      "equals_head": true
+    },
+    {
+      "path": "contracts/chain/PlonkVerifierDepth9.sol",
+      "sha256": "572fb3e6b03d63b36c8ba60864795196ee8a2e05b55da779a1e38150cb73b9d9",
+      "equals_head": true
+    }
+  ],
+  "input_sha256": "7e71bd6af6552a6ede0a85697f89384c7552d7df976978f66e5f4e974cc81966",
+  "output_sha256": "04aba3ac3bc3e1b3d169e83ff091b2c1978eb6218b3449aace23cb2056e115db",
+  "warnings": [
+    {
+      "warning": "contracts/chain/PlonkVerifierDepth10.sol: Unused function parameter. Remove or comment out the variable name to silence this warning.",
+      "count": 1
+    },
+    {
+      "warning": "contracts/chain/PlonkVerifierDepth11.sol: Unused function parameter. Remove or comment out the variable name to silence this warning.",
+      "count": 1
+    },
+    {
+      "warning": "contracts/chain/PlonkVerifierDepth12.sol: Unused function parameter. Remove or comment out the variable name to silence this warning.",
+      "count": 1
+    },
+    {
+      "warning": "contracts/chain/PlonkVerifierDepth13.sol: Unused function parameter. Remove or comment out the variable name to silence this warning.",
+      "count": 1
+    },
+    {
+      "warning": "contracts/chain/PlonkVerifierDepth14.sol: Unused function parameter. Remove or comment out the variable name to silence this warning.",
+      "count": 1
+    },
+    {
+      "warning": "contracts/chain/PlonkVerifierDepth15.sol: Unused function parameter. Remove or comment out the variable name to silence this warning.",
+      "count": 1
+    },
+    {
+      "warning": "contracts/chain/PlonkVerifierDepth5.sol: Unused function parameter. Remove or comment out the variable name to silence this warning.",
+      "count": 1
+    },
+    {
+      "warning": "contracts/chain/PlonkVerifierDepth6.sol: Unused function parameter. Remove or comment out the variable name to silence this warning.",
+      "count": 1
+    },
+    {
+      "warning": "contracts/chain/PlonkVerifierDepth7.sol: Unused function parameter. Remove or comment out the variable name to silence this warning.",
+      "count": 1
+    },
+    {
+      "warning": "contracts/chain/PlonkVerifierDepth8.sol: Unused function parameter. Remove or comment out the variable name to silence this warning.",
+      "count": 1
+    },
+    {
+      "warning": "contracts/chain/PlonkVerifierDepth9.sol: Unused function parameter. Remove or comment out the variable name to silence this warning.",
+      "count": 1
+    }
+  ],
+  "contracts": {
+    "contracts/Groth16LegacyVerifierDepth10.sol:Groth16LegacyVerifierDepth10": {
+      "source": "contracts/Groth16LegacyVerifierDepth10.sol",
+      "name": "Groth16LegacyVerifierDepth10",
+      "bytecode_bytes": 3040,
+      "bytecode_words": 95,
+      "bytecode_sha256": "77bf45466d9e45181edea5c8b96077efc04e7b3bac094201038cf8e0b4224cdb",
+      "bytecode_hash": "0x0100005f6d9e45181edea5c8b96077efc04e7b3bac094201038cf8e0b4224cdb",
+      "abi_sha256": "5460f8721d9f16e96253517e9004a11582b87168fe07bc27dddbff58cfa26fe8",
+      "factory_dependencies": 0,
+      "object_format": "raw",
+      "eravm_size_ok": true
+    },
+    "contracts/Groth16LegacyVerifierDepth11.sol:Groth16LegacyVerifierDepth11": {
+      "source": "contracts/Groth16LegacyVerifierDepth11.sol",
+      "name": "Groth16LegacyVerifierDepth11",
+      "bytecode_bytes": 3040,
+      "bytecode_words": 95,
+      "bytecode_sha256": "3be22e7e89c4cefae9b82d938e5f49479fd773521ddfd615284396aa1bbb65c1",
+      "bytecode_hash": "0x0100005f89c4cefae9b82d938e5f49479fd773521ddfd615284396aa1bbb65c1",
+      "abi_sha256": "5460f8721d9f16e96253517e9004a11582b87168fe07bc27dddbff58cfa26fe8",
+      "factory_dependencies": 0,
+      "object_format": "raw",
+      "eravm_size_ok": true
+    },
+    "contracts/Groth16LegacyVerifierDepth12.sol:Groth16LegacyVerifierDepth12": {
+      "source": "contracts/Groth16LegacyVerifierDepth12.sol",
+      "name": "Groth16LegacyVerifierDepth12",
+      "bytecode_bytes": 3040,
+      "bytecode_words": 95,
+      "bytecode_sha256": "c4e971fd043fcb8bdd66bd13b3da3f666e5123dc99be1cf27c28bfcd38f14b28",
+      "bytecode_hash": "0x0100005f043fcb8bdd66bd13b3da3f666e5123dc99be1cf27c28bfcd38f14b28",
+      "abi_sha256": "5460f8721d9f16e96253517e9004a11582b87168fe07bc27dddbff58cfa26fe8",
+      "factory_dependencies": 0,
+      "object_format": "raw",
+      "eravm_size_ok": true
+    },
+    "contracts/Groth16LegacyVerifierDepth13.sol:Groth16LegacyVerifierDepth13": {
+      "source": "contracts/Groth16LegacyVerifierDepth13.sol",
+      "name": "Groth16LegacyVerifierDepth13",
+      "bytecode_bytes": 3040,
+      "bytecode_words": 95,
+      "bytecode_sha256": "eeb9dcca1dc23fc7534a3857827ca9b0cdd4e6db1ed82dbf90129ab0ee1a194f",
+      "bytecode_hash": "0x0100005f1dc23fc7534a3857827ca9b0cdd4e6db1ed82dbf90129ab0ee1a194f",
+      "abi_sha256": "5460f8721d9f16e96253517e9004a11582b87168fe07bc27dddbff58cfa26fe8",
+      "factory_dependencies": 0,
+      "object_format": "raw",
+      "eravm_size_ok": true
+    },
+    "contracts/Groth16LegacyVerifierDepth14.sol:Groth16LegacyVerifierDepth14": {
+      "source": "contracts/Groth16LegacyVerifierDepth14.sol",
+      "name": "Groth16LegacyVerifierDepth14",
+      "bytecode_bytes": 3040,
+      "bytecode_words": 95,
+      "bytecode_sha256": "c395ef87f9c94468ef04aa3abb837da073e72420031329a99b0b989ad2e597b7",
+      "bytecode_hash": "0x0100005ff9c94468ef04aa3abb837da073e72420031329a99b0b989ad2e597b7",
+      "abi_sha256": "5460f8721d9f16e96253517e9004a11582b87168fe07bc27dddbff58cfa26fe8",
+      "factory_dependencies": 0,
+      "object_format": "raw",
+      "eravm_size_ok": true
+    },
+    "contracts/Groth16LegacyVerifierDepth15.sol:Groth16LegacyVerifierDepth15": {
+      "source": "contracts/Groth16LegacyVerifierDepth15.sol",
+      "name": "Groth16LegacyVerifierDepth15",
+      "bytecode_bytes": 3040,
+      "bytecode_words": 95,
+      "bytecode_sha256": "5a9f361c8b33ef34b7a471fdd08e49fad8475b02e36738a1bb52cd8cbae4ec59",
+      "bytecode_hash": "0x0100005f8b33ef34b7a471fdd08e49fad8475b02e36738a1bb52cd8cbae4ec59",
+      "abi_sha256": "5460f8721d9f16e96253517e9004a11582b87168fe07bc27dddbff58cfa26fe8",
+      "factory_dependencies": 0,
+      "object_format": "raw",
+      "eravm_size_ok": true
+    },
+    "contracts/Groth16LegacyVerifierDepth5.sol:Groth16LegacyVerifierDepth5": {
+      "source": "contracts/Groth16LegacyVerifierDepth5.sol",
+      "name": "Groth16LegacyVerifierDepth5",
+      "bytecode_bytes": 3040,
+      "bytecode_words": 95,
+      "bytecode_sha256": "f850e13de1f7eb30ff73bf3a9f18dde1706f4fc092896fe69c2f23e554859b64",
+      "bytecode_hash": "0x0100005fe1f7eb30ff73bf3a9f18dde1706f4fc092896fe69c2f23e554859b64",
+      "abi_sha256": "5460f8721d9f16e96253517e9004a11582b87168fe07bc27dddbff58cfa26fe8",
+      "factory_dependencies": 0,
+      "object_format": "raw",
+      "eravm_size_ok": true
+    },
+    "contracts/Groth16LegacyVerifierDepth6.sol:Groth16LegacyVerifierDepth6": {
+      "source": "contracts/Groth16LegacyVerifierDepth6.sol",
+      "name": "Groth16LegacyVerifierDepth6",
+      "bytecode_bytes": 3040,
+      "bytecode_words": 95,
+      "bytecode_sha256": "94699daa52255742226f05800a4e7dfa7d113bb34bedc99987908555f4398148",
+      "bytecode_hash": "0x0100005f52255742226f05800a4e7dfa7d113bb34bedc99987908555f4398148",
+      "abi_sha256": "5460f8721d9f16e96253517e9004a11582b87168fe07bc27dddbff58cfa26fe8",
+      "factory_dependencies": 0,
+      "object_format": "raw",
+      "eravm_size_ok": true
+    },
+    "contracts/Groth16LegacyVerifierDepth7.sol:Groth16LegacyVerifierDepth7": {
+      "source": "contracts/Groth16LegacyVerifierDepth7.sol",
+      "name": "Groth16LegacyVerifierDepth7",
+      "bytecode_bytes": 3040,
+      "bytecode_words": 95,
+      "bytecode_sha256": "18617e18b25c1e6da133feeeec9241705eec7a0952dcb9fb69b4abd04fb66281",
+      "bytecode_hash": "0x0100005fb25c1e6da133feeeec9241705eec7a0952dcb9fb69b4abd04fb66281",
+      "abi_sha256": "5460f8721d9f16e96253517e9004a11582b87168fe07bc27dddbff58cfa26fe8",
+      "factory_dependencies": 0,
+      "object_format": "raw",
+      "eravm_size_ok": true
+    },
+    "contracts/Groth16LegacyVerifierDepth8.sol:Groth16LegacyVerifierDepth8": {
+      "source": "contracts/Groth16LegacyVerifierDepth8.sol",
+      "name": "Groth16LegacyVerifierDepth8",
+      "bytecode_bytes": 3040,
+      "bytecode_words": 95,
+      "bytecode_sha256": "1656eb8f81382155d2bed8292cb8d5610a4a877654a68acfa038aefe511fae91",
+      "bytecode_hash": "0x0100005f81382155d2bed8292cb8d5610a4a877654a68acfa038aefe511fae91",
+      "abi_sha256": "5460f8721d9f16e96253517e9004a11582b87168fe07bc27dddbff58cfa26fe8",
+      "factory_dependencies": 0,
+      "object_format": "raw",
+      "eravm_size_ok": true
+    },
+    "contracts/Groth16LegacyVerifierDepth9.sol:Groth16LegacyVerifierDepth9": {
+      "source": "contracts/Groth16LegacyVerifierDepth9.sol",
+      "name": "Groth16LegacyVerifierDepth9",
+      "bytecode_bytes": 3040,
+      "bytecode_words": 95,
+      "bytecode_sha256": "72e9528149dc1cd2f675034815695fda56b741d4f65b83b5c4ba4b3165028f2b",
+      "bytecode_hash": "0x0100005f49dc1cd2f675034815695fda56b741d4f65b83b5c4ba4b3165028f2b",
+      "abi_sha256": "5460f8721d9f16e96253517e9004a11582b87168fe07bc27dddbff58cfa26fe8",
+      "factory_dependencies": 0,
+      "object_format": "raw",
+      "eravm_size_ok": true
+    },
+    "contracts/chain/CredentialManagerGroth16.sol:CredentialManagerGroth16": {
+      "source": "contracts/chain/CredentialManagerGroth16.sol",
+      "name": "CredentialManagerGroth16",
+      "bytecode_bytes": 6752,
+      "bytecode_words": 211,
+      "bytecode_sha256": "3f186bb57155e3640948296be420258a2e1a98adb16b55738b817247e9fd54eb",
+      "bytecode_hash": "0x010000d37155e3640948296be420258a2e1a98adb16b55738b817247e9fd54eb",
+      "abi_sha256": "0d13ed4e78e33a8649c43ee32624f4ec4b1b9f798a8bde31eebfe3227421a464",
+      "factory_dependencies": 0,
+      "object_format": "raw",
+      "eravm_size_ok": true
+    },
+    "contracts/chain/CredentialManagerPlonk.sol:CredentialManagerPlonk": {
+      "source": "contracts/chain/CredentialManagerPlonk.sol",
+      "name": "CredentialManagerPlonk",
+      "bytecode_bytes": 6624,
+      "bytecode_words": 207,
+      "bytecode_sha256": "27a368628ad512f1d77f4733ef95b69a7329a5310824ac0599410635c1c0ebcf",
+      "bytecode_hash": "0x010000cf8ad512f1d77f4733ef95b69a7329a5310824ac0599410635c1c0ebcf",
+      "abi_sha256": "02ae80126e26bacdf1b37bf7f83cf43aa6501c8213267c2741d3e9843a9784cc",
+      "factory_dependencies": 0,
+      "object_format": "raw",
+      "eravm_size_ok": true
+    },
+    "contracts/chain/PlonkVerifierDepth10.sol:PlonkVerifierDepth10": {
+      "source": "contracts/chain/PlonkVerifierDepth10.sol",
+      "name": "PlonkVerifierDepth10",
+      "bytecode_bytes": 41824,
+      "bytecode_words": 1307,
+      "bytecode_sha256": "bf95ada5b9cfc72f77646c32d6a9a333146a15075f8f1fa25c6002ff333ee19a",
+      "bytecode_hash": "0x0100051bb9cfc72f77646c32d6a9a333146a15075f8f1fa25c6002ff333ee19a",
+      "abi_sha256": "2e2d99234e3a2d03aa1d7637e2673c46be668ee12e8bf15d98082195288451c5",
+      "factory_dependencies": 0,
+      "object_format": "raw",
+      "eravm_size_ok": true
+    },
+    "contracts/chain/PlonkVerifierDepth11.sol:PlonkVerifierDepth11": {
+      "source": "contracts/chain/PlonkVerifierDepth11.sol",
+      "name": "PlonkVerifierDepth11",
+      "bytecode_bytes": 42208,
+      "bytecode_words": 1319,
+      "bytecode_sha256": "22b03e4178196cbbed42200c01f2280655dacb2e92a94516f3d56c93d48e4b62",
+      "bytecode_hash": "0x0100052778196cbbed42200c01f2280655dacb2e92a94516f3d56c93d48e4b62",
+      "abi_sha256": "2e2d99234e3a2d03aa1d7637e2673c46be668ee12e8bf15d98082195288451c5",
+      "factory_dependencies": 0,
+      "object_format": "raw",
+      "eravm_size_ok": true
+    },
+    "contracts/chain/PlonkVerifierDepth12.sol:PlonkVerifierDepth12": {
+      "source": "contracts/chain/PlonkVerifierDepth12.sol",
+      "name": "PlonkVerifierDepth12",
+      "bytecode_bytes": 42208,
+      "bytecode_words": 1319,
+      "bytecode_sha256": "aa23668ec8b58592692b22d50d60a700f1542588e63f518224860134fb683e41",
+      "bytecode_hash": "0x01000527c8b58592692b22d50d60a700f1542588e63f518224860134fb683e41",
+      "abi_sha256": "2e2d99234e3a2d03aa1d7637e2673c46be668ee12e8bf15d98082195288451c5",
+      "factory_dependencies": 0,
+      "object_format": "raw",
+      "eravm_size_ok": true
+    },
+    "contracts/chain/PlonkVerifierDepth13.sol:PlonkVerifierDepth13": {
+      "source": "contracts/chain/PlonkVerifierDepth13.sol",
+      "name": "PlonkVerifierDepth13",
+      "bytecode_bytes": 42208,
+      "bytecode_words": 1319,
+      "bytecode_sha256": "9f832ab7468578ce3487b394af8e15ef8f305654e7abcf03b41a5c08faa91940",
+      "bytecode_hash": "0x01000527468578ce3487b394af8e15ef8f305654e7abcf03b41a5c08faa91940",
+      "abi_sha256": "2e2d99234e3a2d03aa1d7637e2673c46be668ee12e8bf15d98082195288451c5",
+      "factory_dependencies": 0,
+      "object_format": "raw",
+      "eravm_size_ok": true
+    },
+    "contracts/chain/PlonkVerifierDepth14.sol:PlonkVerifierDepth14": {
+      "source": "contracts/chain/PlonkVerifierDepth14.sol",
+      "name": "PlonkVerifierDepth14",
+      "bytecode_bytes": 42208,
+      "bytecode_words": 1319,
+      "bytecode_sha256": "ce2a4e9e7bc1473e29a152c9a2a22a5bbce586057cafb6f8ce6b9b1237172665",
+      "bytecode_hash": "0x010005277bc1473e29a152c9a2a22a5bbce586057cafb6f8ce6b9b1237172665",
+      "abi_sha256": "2e2d99234e3a2d03aa1d7637e2673c46be668ee12e8bf15d98082195288451c5",
+      "factory_dependencies": 0,
+      "object_format": "raw",
+      "eravm_size_ok": true
+    },
+    "contracts/chain/PlonkVerifierDepth15.sol:PlonkVerifierDepth15": {
+      "source": "contracts/chain/PlonkVerifierDepth15.sol",
+      "name": "PlonkVerifierDepth15",
+      "bytecode_bytes": 42208,
+      "bytecode_words": 1319,
+      "bytecode_sha256": "2777fef065cab970b17b0cdc721bf5c98f284c5cfa3453344da2e2c80a2a9459",
+      "bytecode_hash": "0x0100052765cab970b17b0cdc721bf5c98f284c5cfa3453344da2e2c80a2a9459",
+      "abi_sha256": "2e2d99234e3a2d03aa1d7637e2673c46be668ee12e8bf15d98082195288451c5",
+      "factory_dependencies": 0,
+      "object_format": "raw",
+      "eravm_size_ok": true
+    },
+    "contracts/chain/PlonkVerifierDepth5.sol:PlonkVerifierDepth5": {
+      "source": "contracts/chain/PlonkVerifierDepth5.sol",
+      "name": "PlonkVerifierDepth5",
+      "bytecode_bytes": 41824,
+      "bytecode_words": 1307,
+      "bytecode_sha256": "329448ea574ff5fa13334fda8cd311790adb11aca28279960e75147e6d0e8872",
+      "bytecode_hash": "0x0100051b574ff5fa13334fda8cd311790adb11aca28279960e75147e6d0e8872",
+      "abi_sha256": "2e2d99234e3a2d03aa1d7637e2673c46be668ee12e8bf15d98082195288451c5",
+      "factory_dependencies": 0,
+      "object_format": "raw",
+      "eravm_size_ok": true
+    },
+    "contracts/chain/PlonkVerifierDepth6.sol:PlonkVerifierDepth6": {
+      "source": "contracts/chain/PlonkVerifierDepth6.sol",
+      "name": "PlonkVerifierDepth6",
+      "bytecode_bytes": 41824,
+      "bytecode_words": 1307,
+      "bytecode_sha256": "eaec49395622328107e72cf3fcd1edcc8194cf1e747b85af455699879077834f",
+      "bytecode_hash": "0x0100051b5622328107e72cf3fcd1edcc8194cf1e747b85af455699879077834f",
+      "abi_sha256": "2e2d99234e3a2d03aa1d7637e2673c46be668ee12e8bf15d98082195288451c5",
+      "factory_dependencies": 0,
+      "object_format": "raw",
+      "eravm_size_ok": true
+    },
+    "contracts/chain/PlonkVerifierDepth7.sol:PlonkVerifierDepth7": {
+      "source": "contracts/chain/PlonkVerifierDepth7.sol",
+      "name": "PlonkVerifierDepth7",
+      "bytecode_bytes": 41824,
+      "bytecode_words": 1307,
+      "bytecode_sha256": "4cd77b6f0f86003ea78b072405b27ded3e02c8f5062133a885461366f1a7abb1",
+      "bytecode_hash": "0x0100051b0f86003ea78b072405b27ded3e02c8f5062133a885461366f1a7abb1",
+      "abi_sha256": "2e2d99234e3a2d03aa1d7637e2673c46be668ee12e8bf15d98082195288451c5",
+      "factory_dependencies": 0,
+      "object_format": "raw",
+      "eravm_size_ok": true
+    },
+    "contracts/chain/PlonkVerifierDepth8.sol:PlonkVerifierDepth8": {
+      "source": "contracts/chain/PlonkVerifierDepth8.sol",
+      "name": "PlonkVerifierDepth8",
+      "bytecode_bytes": 41824,
+      "bytecode_words": 1307,
+      "bytecode_sha256": "6644c518587c2f545720118bfdad5f5f14b44b45af3beb73893c8854198dfbe3",
+      "bytecode_hash": "0x0100051b587c2f545720118bfdad5f5f14b44b45af3beb73893c8854198dfbe3",
+      "abi_sha256": "2e2d99234e3a2d03aa1d7637e2673c46be668ee12e8bf15d98082195288451c5",
+      "factory_dependencies": 0,
+      "object_format": "raw",
+      "eravm_size_ok": true
+    },
+    "contracts/chain/PlonkVerifierDepth9.sol:PlonkVerifierDepth9": {
+      "source": "contracts/chain/PlonkVerifierDepth9.sol",
+      "name": "PlonkVerifierDepth9",
+      "bytecode_bytes": 41824,
+      "bytecode_words": 1307,
+      "bytecode_sha256": "51ce620d2d35ed53f91662363aacad518d0f1d5bef6fcc7355de6d7d9dd46fe2",
+      "bytecode_hash": "0x0100051b2d35ed53f91662363aacad518d0f1d5bef6fcc7355de6d7d9dd46fe2",
+      "abi_sha256": "2e2d99234e3a2d03aa1d7637e2673c46be668ee12e8bf15d98082195288451c5",
+      "factory_dependencies": 0,
+      "object_format": "raw",
+      "eravm_size_ok": true
+    }
+  }
+}

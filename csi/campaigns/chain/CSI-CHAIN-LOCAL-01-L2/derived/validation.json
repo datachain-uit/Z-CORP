@@ -1,0 +1,360 @@
+{
+  "campaign_id": "full-l2-e97b69f-20260925T132901Z",
+  "cells": [
+    "primary-groth16-d5",
+    "primary-groth16-d10",
+    "primary-groth16-d11",
+    "primary-groth16-d15",
+    "primary-plonk-d5",
+    "primary-plonk-d10",
+    "primary-plonk-d11",
+    "primary-plonk-d15"
+  ],
+  "checks": {
+    "a_V10_fresh_chain_per_cell": {
+      "detail": "[]",
+      "pass": true
+    },
+    "a_V11_binaries_pinned": {
+      "detail": "{'anvil_zksync': '565ea5418561937d704c5ef0b2fcea1cb01cd2338e45fdd32ac0516395938216', 'zksolc': 'ee4f02f8614ef320fc95d2f15c69678bb1781f9526df78fb35a906180c998b44', 'era_solc': 'd98d1068b3bff4679a32585ea75febbf75b004a2870a3e2ebf191550f36950b2'}",
+      "pass": true
+    },
+    "a_V12_env_check": {
+      "detail": "",
+      "pass": true
+    },
+    "a_V13_system_contracts": {
+      "detail": "{'bootloader hash': '0x0100092f045c41c21bd08a9c6fa909fa6a8b446e3f6cd9f08356352a3195a40c', 'default AA hash': '0x010005f74935e95e527d18ea9bfc82906fb20903a5683c528ee7af404e9bd531', 'protocol version (block 0)': 'Version29'}",
+      "pass": true
+    },
+    "a_V1_schema": {
+      "detail": "56 columns",
+      "pass": true
+    },
+    "a_V2_counts": {
+      "detail": "288 rows, 200 tx",
+      "pass": true
+    },
+    "a_V3_cells": {
+      "detail": "['primary-groth16-d5', 'primary-groth16-d10', 'primary-groth16-d11', 'primary-groth16-d15', 'primary-plonk-d5', 'primary-plonk-d10', 'primary-plonk-d11', 'primary-plonk-d15']",
+      "pass": true
+    },
+    "a_V4_sequence": {
+      "detail": "",
+      "pass": true
+    },
+    "a_V5_outcomes": {
+      "detail": "[]",
+      "pass": true
+    },
+    "a_V6_tx_fields": {
+      "detail": "[]",
+      "pass": true
+    },
+    "a_V7_fee_accounting": {
+      "detail": "[]",
+      "pass": true
+    },
+    "a_V8_bytecode": {
+      "detail": "[]",
+      "pass": true
+    },
+    "a_V9_size_limit": {
+      "detail": "24 contracts",
+      "pass": true
+    },
+    "a_accepted_by_runner": {
+      "detail": "",
+      "pass": true
+    },
+    "a_commit": {
+      "detail": "e97b69f92b6f1b31bd89f8fa2ffda1792e79a119 dirty=[]",
+      "pass": true
+    },
+    "a_fee_input_as_frozen": {
+      "detail": "{'l1_gas_price': '2365348956', 'fair_l2_gas_price': '45250000', 'fair_pubdata_price': '3784558330', 'base_fee': '45250000', 'gas_per_pubdata': '84'}",
+      "pass": true
+    },
+    "a_image": {
+      "detail": "sha256:255d0dacac2629988c339d311630e3efa99b6153478378570a63ad1b9a7491cc",
+      "pass": true
+    },
+    "a_no_network": {
+      "detail": "{'isolated': True, 'interfaces': ['erspan0', 'gre0', 'gretap0', 'ip6_vti0', 'ip6gre0', 'ip6tnl0', 'ip_vti0', 'lo', 'sit0', 'tunl0'], 'up_non_loopback': [], 'loopback_up': True, 'ipv4_routes': 0, 'ipv6_non_loopback_routes': 0}",
+      "pass": true
+    },
+    "a_plan": {
+      "detail": "full L2-EraVM",
+      "pass": true
+    },
+    "a_protocol_sha256": {
+      "detail": "46a4b9eaf8054a950d3b46add89632842b9fc5309bf16b3d835432f383651e46",
+      "pass": true
+    },
+    "a_run_id": {
+      "detail": "full-l2-e97b69f-20260925T132901Z-a",
+      "pass": true
+    },
+    "a_runner_validation": {
+      "detail": "True 13",
+      "pass": true
+    },
+    "a_steps": {
+      "detail": "{'build': '2026-09-25T13:29:06.765Z', 'envcheck': '2026-09-25T13:29:07.186Z', 'exec': '2026-09-25T13:29:22.741Z', 'finish': '2026-09-25T13:29:22.850Z'}",
+      "pass": true
+    },
+    "a_tx_fields_as_frozen": {
+      "detail": "",
+      "pass": true
+    },
+    "b_V10_fresh_chain_per_cell": {
+      "detail": "[]",
+      "pass": true
+    },
+    "b_V11_binaries_pinned": {
+      "detail": "{'anvil_zksync': '565ea5418561937d704c5ef0b2fcea1cb01cd2338e45fdd32ac0516395938216', 'zksolc': 'ee4f02f8614ef320fc95d2f15c69678bb1781f9526df78fb35a906180c998b44', 'era_solc': 'd98d1068b3bff4679a32585ea75febbf75b004a2870a3e2ebf191550f36950b2'}",
+      "pass": true
+    },
+    "b_V12_env_check": {
+      "detail": "",
+      "pass": true
+    },
+    "b_V13_system_contracts": {
+      "detail": "{'bootloader hash': '0x0100092f045c41c21bd08a9c6fa909fa6a8b446e3f6cd9f08356352a3195a40c', 'default AA hash': '0x010005f74935e95e527d18ea9bfc82906fb20903a5683c528ee7af404e9bd531', 'protocol version (block 0)': 'Version29'}",
+      "pass": true
+    },
+    "b_V1_schema": {
+      "detail": "56 columns",
+      "pass": true
+    },
+    "b_V2_counts": {
+      "detail": "288 rows, 200 tx",
+      "pass": true
+    },
+    "b_V3_cells": {
+      "detail": "['primary-groth16-d5', 'primary-groth16-d10', 'primary-groth16-d11', 'primary-groth16-d15', 'primary-plonk-d5', 'primary-plonk-d10', 'primary-plonk-d11', 'primary-plonk-d15']",
+      "pass": true
+    },
+    "b_V4_sequence": {
+      "detail": "",
+      "pass": true
+    },
+    "b_V5_outcomes": {
+      "detail": "[]",
+      "pass": true
+    },
+    "b_V6_tx_fields": {
+      "detail": "[]",
+      "pass": true
+    },
+    "b_V7_fee_accounting": {
+      "detail": "[]",
+      "pass": true
+    },
+    "b_V8_bytecode": {
+      "detail": "[]",
+      "pass": true
+    },
+    "b_V9_size_limit": {
+      "detail": "24 contracts",
+      "pass": true
+    },
+    "b_accepted_by_runner": {
+      "detail": "",
+      "pass": true
+    },
+    "b_commit": {
+      "detail": "e97b69f92b6f1b31bd89f8fa2ffda1792e79a119 dirty=[]",
+      "pass": true
+    },
+    "b_fee_input_as_frozen": {
+      "detail": "{'l1_gas_price': '2365348956', 'fair_l2_gas_price': '45250000', 'fair_pubdata_price': '3784558330', 'base_fee': '45250000', 'gas_per_pubdata': '84'}",
+      "pass": true
+    },
+    "b_image": {
+      "detail": "sha256:255d0dacac2629988c339d311630e3efa99b6153478378570a63ad1b9a7491cc",
+      "pass": true
+    },
+    "b_no_network": {
+      "detail": "{'isolated': True, 'interfaces': ['erspan0', 'gre0', 'gretap0', 'ip6_vti0', 'ip6gre0', 'ip6tnl0', 'ip_vti0', 'lo', 'sit0', 'tunl0'], 'up_non_loopback': [], 'loopback_up': True, 'ipv4_routes': 0, 'ipv6_non_loopback_routes': 0}",
+      "pass": true
+    },
+    "b_plan": {
+      "detail": "full L2-EraVM",
+      "pass": true
+    },
+    "b_protocol_sha256": {
+      "detail": "46a4b9eaf8054a950d3b46add89632842b9fc5309bf16b3d835432f383651e46",
+      "pass": true
+    },
+    "b_run_id": {
+      "detail": "full-l2-e97b69f-20260925T132901Z-b",
+      "pass": true
+    },
+    "b_runner_validation": {
+      "detail": "True 13",
+      "pass": true
+    },
+    "b_steps": {
+      "detail": "{'build': '2026-09-25T13:29:27.733Z', 'envcheck': '2026-09-25T13:29:28.144Z', 'exec': '2026-09-25T13:29:43.594Z', 'finish': '2026-09-25T13:29:43.703Z'}",
+      "pass": true
+    },
+    "b_tx_fields_as_frozen": {
+      "detail": "",
+      "pass": true
+    },
+    "build_manifest_identical": {
+      "detail": "",
+      "pass": true
+    },
+    "campaign_id_expected": {
+      "detail": "full-l2-e97b69f-20260925T132901Z vs full-l2-e97b69f-20260925T132901Z",
+      "pass": true
+    },
+    "commit_expected": {
+      "detail": "e97b69f92b6f1b31bd89f8fa2ffda1792e79a119 vs e97b69f92b6f1b31bd89f8fa2ffda1792e79a119",
+      "pass": true
+    },
+    "determinism_rows_identical": {
+      "comparisons": 15840,
+      "detail": "0 differing field values",
+      "pass": true
+    },
+    "env_check_probe_identical": {
+      "detail": "",
+      "pass": true
+    },
+    "file_postflight_json": {
+      "detail": "results/chain-local-l2-20260925/full-l2-e97b69f-20260925T132901Z.postflight.json",
+      "pass": true
+    },
+    "file_preflight_json": {
+      "detail": "results/chain-local-l2-20260925/full-l2-e97b69f-20260925T132901Z.preflight.json",
+      "pass": true
+    },
+    "one_campaign_id": {
+      "detail": "dirs ['full-l2-e97b69f-20260925T132901Z-a', 'full-l2-e97b69f-20260925T132901Z-b']",
+      "pass": true
+    },
+    "postflight_archived_l2_image_in_use": {
+      "detail": "PASS",
+      "pass": true
+    },
+    "postflight_image": {
+      "detail": "sha256:255d0dacac2629988c339d311630e3efa99b6153478378570a63ad1b9a7491cc",
+      "pass": true
+    },
+    "postflight_l2_baseline_tag": {
+      "detail": "PASS",
+      "pass": true
+    },
+    "postflight_local_eravm_node": {
+      "detail": "PASS",
+      "pass": true
+    },
+    "postflight_no_fail": {
+      "detail": "fails 0, head e97b69f92b6f1b31bd89f8fa2ffda1792e79a119",
+      "pass": true
+    },
+    "postflight_no_network_container_network_none": {
+      "detail": "PASS",
+      "pass": true
+    },
+    "postflight_proof_set_ps_01_intact": {
+      "detail": "PASS",
+      "pass": true
+    },
+    "postflight_protocol_sha256": {
+      "detail": "46a4b9eaf8054a950d3b46add89632842b9fc5309bf16b3d835432f383651e46",
+      "pass": true
+    },
+    "postflight_protocol_with_the_l2_amendment": {
+      "detail": "PASS",
+      "pass": true
+    },
+    "postflight_sources_clean": {
+      "detail": "PASS",
+      "pass": true
+    },
+    "preflight_archived_l2_image_in_use": {
+      "detail": "PASS",
+      "pass": true
+    },
+    "preflight_image": {
+      "detail": "sha256:255d0dacac2629988c339d311630e3efa99b6153478378570a63ad1b9a7491cc",
+      "pass": true
+    },
+    "preflight_l2_baseline_tag": {
+      "detail": "PASS",
+      "pass": true
+    },
+    "preflight_local_eravm_node": {
+      "detail": "PASS",
+      "pass": true
+    },
+    "preflight_no_fail": {
+      "detail": "fails 0, head e97b69f92b6f1b31bd89f8fa2ffda1792e79a119",
+      "pass": true
+    },
+    "preflight_no_network_container_network_none": {
+      "detail": "PASS",
+      "pass": true
+    },
+    "preflight_proof_set_ps_01_intact": {
+      "detail": "PASS",
+      "pass": true
+    },
+    "preflight_protocol_sha256": {
+      "detail": "46a4b9eaf8054a950d3b46add89632842b9fc5309bf16b3d835432f383651e46",
+      "pass": true
+    },
+    "preflight_protocol_with_the_l2_amendment": {
+      "detail": "PASS",
+      "pass": true
+    },
+    "preflight_sources_clean": {
+      "detail": "PASS",
+      "pass": true
+    },
+    "proofset_is_committed_PS01": {
+      "detail": "{'csv_sha256': '9f82f3830bad61d8824f2a40f6705701d5ec4fba41ef95d0d340bb65c77ae9c4', 'sha256_file_sha256': '55f42c19f477df44f88323abd0f2caf3c17535093df64345305f6261621d1990', 'json_sha256': '5ba2b55016b344f4b2eb3185db5c94c3aca7b7188dcfd7baf20b970f215aac0b', 'files_verified': 128}",
+      "pass": true
+    },
+    "runner_determinism_report": {
+      "detail": "",
+      "pass": true
+    },
+    "same_image": {
+      "detail": "",
+      "pass": true
+    },
+    "same_proofset_manifest": {
+      "detail": "",
+      "pass": true
+    },
+    "same_protocol": {
+      "detail": "",
+      "pass": true
+    },
+    "tag_resolves_to_run_commit": {
+      "detail": "chain-l2-baseline-20260925 -> e97b69f92b6f1b31bd89f8fa2ffda1792e79a119",
+      "pass": true
+    }
+  },
+  "commit": "e97b69f92b6f1b31bd89f8fa2ffda1792e79a119",
+  "environment_label": "EraVM execution under protocol v29 (anvil-zksync 0.6.11 built-in v29 system contracts; bootloader and default-account hashes differ from live Era Sepolia; no EVM emulator; fixed local fee input)",
+  "passed": true,
+  "plan": "full",
+  "proofs": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7
+  ],
+  "rows_per_run": 288,
+  "tx_per_run": 200
+}

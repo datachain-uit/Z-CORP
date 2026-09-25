@@ -27,6 +27,11 @@ under csi/campaigns/chain/<admin_id>/inputs/ (checked here against their manifes
 and attributes their files correctly in provenance/SNAPSHOTS.csv. Prover outputs are unaffected. The local-EraVM arm is a
 separate chain entry (CSI-CHAIN-LOCAL-01-L2, experiment "controlled on-chain verification (local EraVM)"): its image
 record, derivation (derive_chain_l2.py), inputs (the L1 entry's PS-01) and attribution are its own (CHAIN_KIND).
+Publication hygiene (two provenance layers): where a chain entry has ACQUISITION-RAW.json, its tracked source is the public
+artifact raw and SOURCE.sha256 its manifest; the build checks that it equals the acquisition raw (hashes in ACQUISITION-RAW.json)
+with exactly the sanitation of SANITATION.json applied, that NEUTRALITY.json passed and that no credential remains
+(sanitize_chain_l2_devcreds.py --check). A chain protocol file shared by several chain entries is attributed to all of them in
+SNAPSHOTS.csv, with the digest each entry was frozen at.
 Standard library only.
 """
 import argparse
@@ -50,7 +55,8 @@ ANALYSIS_CODE = ['scripts/analysis/derive_prover.py', 'scripts/analysis/compare_
                  'scripts/analysis/input_stage_diagnostic.js', 'scripts/release/build_csi_bundle.py',
                  'scripts/release/make_precorrection_manifest.py', 'scripts/release/save_image.sh',
                  'scripts/release/chain_image_record.py', 'scripts/analysis/derive_chain_l1.py', 'scripts/analysis/verify_chain_proofset.js',
-                 'scripts/analysis/derive_chain_l2.py', 'scripts/release/chain_image_record_l2.py']
+                 'scripts/analysis/derive_chain_l2.py', 'scripts/release/chain_image_record_l2.py',
+                 'scripts/release/chain_l2_publication_hygiene.py', 'scripts/release/sanitize_chain_l2_devcreds.py']
 SUPERSEDED = 'results/PRECORRECTION-2026-07.sha256'
 EXPERIMENT_DIR = {'controlled prover scaling': 'prover', 'controlled on-chain verification (local L1)': 'chain',
                   'controlled on-chain verification (local EraVM)': 'chain'}
@@ -284,6 +290,8 @@ def build_chain_campaign(row, plan, tmpdir):
         if os.path.exists(existing) and open(existing, 'rb').read() != sm:
             raise Abort(f'{admin}: {src} no longer matches the frozen {sm_rel}; the source campaign must not change')
         plan.put(sm_rel, sm)
+        if os.path.exists(os.path.join(REPO, base, 'ACQUISITION-RAW.json')):
+            check_layers(base, src, sm)
         # protocol at the campaign commit must be a byte prefix of the committed protocol: later amendments (e.g. A6,
         # the local-EraVM arm) may only be appended; any edit of the text the campaign ran under aborts
         proto = git('show', f"{row['commit']}:{row['protocol_path']}")
@@ -301,6 +309,52 @@ def build_chain_campaign(row, plan, tmpdir):
             plan.put(f'{base}/derived/{fn}', open(os.path.join(dtmp, fn), 'rb').read())
     plan.put(f'{CSI}/code/chain/{admin}.KIT.sha256', tree_manifest(row['commit'], CHAIN_PATHS))
     return {'row': row, 'base': base, 'scientific': scientific, 'src': src, 'kind': kind}
+
+
+def check_layers(base, src, sm):
+    """Two provenance layers: the public artifact raw (tracked source, SOURCE.sha256) = the acquisition raw (ACQUISITION-RAW.json)
+    with exactly the recorded sanitation (SANITATION.json) applied; neutrality proven (NEUTRALITY.json); no credential left."""
+    acq = json.loads(rd(f'{base}/ACQUISITION-RAW.json')); san = json.loads(rd(f'{base}/SANITATION.json')); neu = json.loads(rd(f'{base}/NEUTRALITY.json'))
+    agg = ('\n'.join(f"{f['sha256']}  {f['path']}" for f in acq['files']) + '\n').encode()
+    if sha(agg) != acq['manifest']['aggregate_sha256'] or len(acq['files']) != acq['manifest']['files']:
+        raise Abort(f'{base}/ACQUISITION-RAW.json: file list does not reproduce its aggregate digest')
+    pub = {ln.split('  ', 1)[1]: ln.split('  ', 1)[0] for ln in sm.decode().splitlines()}
+    af = {f['path']: f['sha256'] for f in acq['files']}
+    sf = {f['path']: f for f in san['files']}
+    if set(pub) != set(af) or not set(sf) <= set(af):
+        raise Abort(f'{src}: file set differs from the acquisition raw')
+    for p, h in pub.items():
+        if p in sf:
+            if sf[p]['sha256_before'] != af[p] or sf[p]['sha256_after'] != h:
+                raise Abort(f'{p}: not the acquisition file with the recorded sanitation applied')
+        elif h != af[p]:
+            raise Abort(f'{p}: differs from the acquisition raw but is not a recorded sanitation')
+    if neu.get('passed') is not True:
+        raise Abort(f'{base}/NEUTRALITY.json: the neutrality proof did not pass')
+    lay = (json.loads(rd(f'{base}/campaign.json')).get('scientific_run') or {}).get('provenance_layers') or {}
+    if (lay.get('public_artifact_raw') or {}).get('source_manifest_sha256') != sha(sm) or (lay.get('acquisition_raw') or {}).get('archive_sha256') != acq['archive']['sha256']:
+        raise Abort(f'{base}/campaign.json: provenance_layers disagree with SOURCE.sha256 / ACQUISITION-RAW.json')
+    arc = os.path.join(REPO, acq['archive']['file'])
+    if os.path.exists(arc) and sha(open(arc, 'rb').read()) != acq['archive']['sha256']:
+        raise Abort(f"{acq['archive']['file']}: acquisition archive hash mismatch")
+    r = subprocess.run([sys.executable, os.path.join(REPO, 'scripts/release/sanitize_chain_l2_devcreds.py'), '--check'], capture_output=True)
+    if r.returncode:
+        raise Abort(f'{src}: sanitize_chain_l2_devcreds.py --check failed: {r.stdout.decode().strip()} {r.stderr.decode().strip()}')
+
+
+def shared_protocol_row(rel, cctx, data):
+    """A chain protocol file shared by several chain entries: attributed to all of them, each with the digest it was frozen at."""
+    users = [c['row'] for c in cctx if c['row']['protocol_path'] == rel]
+    if len(users) < 2:
+        return None
+    per = []
+    for r in users:
+        frozen = git('show', f"{r['commit']}:{rel}", ok_fail=True)
+        per.append(f"{r['admin_id']} frozen at {r['commit'][:7]} ({r['baseline_tag']}) with sha256 {sha(frozen) if frozen is not None else 'absent'}")
+    return {'artifact': rel, 'kind': 'protocol',
+            'source': 'hand-written; frozen; amendments appended only; shared chain protocol: ' + '; '.join(per) + '; this row: the current file',
+            'campaign_id': 'shared: ' + ', '.join(f"{r['admin_id']} ({r['campaign_id']})" for r in users), 'commit': '-', 'baseline_tag': '-',
+            'protocol_version': '|'.join(sorted({r['protocol_version'] for r in users})), 'image_manifest': '-', 'image_config': '-', 'sha256': sha(data)}
 
 
 def det_tar(path, src):
@@ -360,10 +414,17 @@ def chain_attribution_l2(rel, crow):
         return 'record', 'chainbench/adapters/eravm/observe-public.sh (read-only JSON-RPC to ZKsync Era Sepolia, campaign host)'
     if '/readiness/' in rel:
         return 'record', 'chainbench/run.sh author-l2 (campaign host; copied run records; not scientific data)'
+    if rel.endswith('/ACQUISITION-RAW.json'):
+        return 'generated', 'scripts/release/chain_l2_publication_hygiene.py acquire <- the acquisition raw (its archive is not versioned)'
+    if rel.endswith('/SANITATION.json'):
+        return 'generated', 'scripts/release/sanitize_chain_l2_devcreds.py --report (publication hygiene after acceptance)'
+    if rel.endswith('/NEUTRALITY.json'):
+        return 'generated', 'scripts/release/chain_l2_publication_hygiene.py compare (acquisition raw vs public artifact raw)'
     if rel.endswith('/campaign.json') or rel.endswith('/VALIDATION.md'):
-        return 'generated', 'chainbench/workloads/zcorp/record_campaign_l2.py'
+        return 'generated', ('chainbench/workloads/zcorp/record_campaign_l2.py; provenance layers: scripts/release/chain_l2_publication_hygiene.py record'
+                             if os.path.exists(os.path.join(REPO, os.path.dirname(rel), 'ACQUISITION-RAW.json')) else 'chainbench/workloads/zcorp/record_campaign_l2.py')
     if rel.endswith('/SOURCE.sha256'):
-        return 'generated', crow['source_path']
+        return 'generated', crow['source_path'] + (' (public artifact raw)' if os.path.exists(os.path.join(REPO, os.path.dirname(rel), 'ACQUISITION-RAW.json')) else '')
     if '/derived/' in rel:
         return 'generated', f"scripts/analysis/derive_chain_l2.py <- {crow['source_path']}"
     return 'hand-written', '-'
@@ -486,6 +547,10 @@ def main():
                 crow = owners[0] if owners else (cctx[0]['row'] if cctx else None)
                 if crow is None:
                     raise Abort(f'{rel}: chain file but no chain campaign is registered')
+                shared = shared_protocol_row(rel, cctx, data) if rel.startswith(f'{CSI}/protocols/chain/') else None
+                if shared:
+                    snap.append(shared)
+                    continue
                 kind, source = chain_attribution(rel, crow)
                 cid_col = crow['campaign_id'] if crow['campaign_id'] not in ('', '-') else f"{crow['admin_id']} (pre-run)"
                 snap.append({'artifact': rel, 'kind': kind, 'source': source, 'campaign_id': cid_col, 'commit': crow['commit'],

@@ -1,0 +1,82 @@
+ INFO initializing system contracts protocol_version=29 use_evm_emulator=false zksync_os.zksync_os=false
+
+
+                      _  _         _____ _  __
+  __ _  _ __  __   __(_)| |       |__  /| |/ / ___  _   _  _ __    ___
+ / _` || '_ \ \ \ / /| || | _____   / / | ' / / __|| | | || '_ \  / __|
+| (_| || | | | \ V / | || ||_____| / /_ | . \ \__ \| |_| || | | || (__
+ \__,_||_| |_|  \_/  |_||_|       /____||_|\_\|___/ \__, ||_| |_| \___|
+                                                    |___/
+
+Version:        0.6.11
+Repository:     https://github.com/matter-labs/anvil-zksync
+
+
+
+Rich Accounts
+========================
+(0) 0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266 (10000.000000000000000000 ETH)
+(1) 0x70997970C51812dc3A010C7d01b50e0d17dc79C8 (10000.000000000000000000 ETH)
+
+
+
+Private Keys
+========================
+[REDACTED: STANDARD PUBLIC DEVELOPMENT CREDENTIAL]
+[REDACTED: STANDARD PUBLIC DEVELOPMENT CREDENTIAL]
+
+
+
+Wallet
+========================
+[REDACTED: STANDARD PUBLIC DEVELOPMENT CREDENTIAL]
+Derivation path:     m/44'/60'/0'/0/0
+
+
+Network Configuration
+========================
+Chain ID: 260
+
+
+Gas Configuration
+========================
+L1 Gas Price (gwei):               2.365348 gwei
+L2 Gas Price (gwei):               0.045250 gwei
+L1 Pubdata Price (gwei):           0.000000 gwei
+Estimated Gas Price Scale Factor:  2
+Estimated Gas Limit Scale Factor:  1.3
+
+
+Genesis Timestamp
+========================
+1000
+
+
+Node Configuration
+========================
+Port:                  18011
+EVM Interpreter:       Disabled
+Health Check Endpoint: Disabled
+ZKsync OS:             Disabled
+L1:                    Disabled
+
+
+========================================
+  Listening on 127.0.0.1:18011
+========================================
+
+ INFO Starting executing L1 batch #1
+TRACE Fee benchmark for transaction with hash b1dd06629c31ba3a9165b9808497b8929df534d8bf4bd4a6307b6ef3641cd56e
+TRACE Gas Limit: 2000000
+TRACE Gas spent on computation: 114941
+TRACE Gas spent on pubdata: 3780
+TRACE Pubdata published: 45
+
+✅ [SUCCESS] Hash: 0xb1dd06629c31ba3a9165b9808497b8929df534d8bf4bd4a6307b6ef3641cd56e
+Initiator: 0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+Payer: 0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+Gas Limit: 2_000_000 | Used: 118_704 | Refunded: 1_881_296
+Paid: 0.000005371356000000 ETH (118704 gas * 0.045250 gwei)
+Refunded: 0.000085128644000000 ETH
+
+Warning: Read only call to address 0xf39f…2266, which is not associated with any contract.

@@ -9,6 +9,14 @@ L1 entry `CSI-CHAIN-LOCAL-01` and its records are frozen and unchanged. It reuse
 - `observation/`: the read-only observation of live ZKsync Era Sepolia (raw answers, digests) and the compatibility
   classification (class B).
 - `readiness/`, `notes/`: packaging, smoke and reduced-dry-run records made before the freeze. Not scientific data.
+- `VALIDATION.md`, `derived/`: validation of the scientific campaign and its derived outputs (`derive_chain_l2.py`, through
+  `scripts/release/build_csi_bundle.py`).
+- `SOURCE.sha256`: manifest of the public artifact raw, `results/chain-local-l2-20260925/` (the tracked source).
+- `ACQUISITION-RAW.json`: the acquisition raw, i.e. the exact files emitted by the accepted campaign (per-file sha256, manifest
+  digest, archive sha256; no credential value). Its archive is kept outside git.
+- `SANITATION.json`: the publication-hygiene change made after acceptance (18 `anvil.stdout` files, 3 banner lines each,
+  `scripts/release/sanitize_chain_l2_devcreds.py`).
+- `NEUTRALITY.json`: proof that the change is scientifically neutral (`scripts/release/chain_l2_publication_hygiene.py compare`).
 
 Harness: `chainbench/adapters/eravm/` (`./chainbench/run.sh doctor-l2 | smoke-l2 | full-local-l2`). Binding:
 `chainbench/workloads/zcorp/campaigns/CSI-CHAIN-LOCAL-01-L2.json`. Archived image: `csi/release/CSI-CHAIN-LOCAL-01-L2/`.

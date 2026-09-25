@@ -1,0 +1,138 @@
+{
+  "schema": "chainbench-doctor-l2/1",
+  "at_utc": "2026-09-25T13:29:02.430Z",
+  "pass": true,
+  "fails": 0,
+  "warns": 0,
+  "results": [
+    {
+      "level": "PASS",
+      "check": "campaign binding",
+      "detail": "workloads/zcorp/campaigns/CSI-CHAIN-LOCAL-01-L2.json (CSI-CHAIN-LOCAL-01, arm L2-EraVM)",
+      "fix": ""
+    },
+    {
+      "level": "PASS",
+      "check": "runtime",
+      "detail": "Node v22.23.2 on linux/arm64",
+      "fix": ""
+    },
+    {
+      "level": "PASS",
+      "check": "npm dependencies match adapters/eravm/package-lock.json",
+      "detail": "ethers 6.13.5, zksync-ethers 6.21.2, snarkjs 0.7.5",
+      "fix": ""
+    },
+    {
+      "level": "PASS",
+      "check": "anvil_zksync sha256 = pin",
+      "detail": "565ea5418561937d…",
+      "fix": ""
+    },
+    {
+      "level": "PASS",
+      "check": "zksolc sha256 = pin",
+      "detail": "ee4f02f8614ef320…",
+      "fix": ""
+    },
+    {
+      "level": "PASS",
+      "check": "era_solc sha256 = pin",
+      "detail": "d98d1068b3bff467…",
+      "fix": ""
+    },
+    {
+      "level": "PASS",
+      "check": "anvil-zksync version",
+      "detail": "anvil-zksync 0.6.11",
+      "fix": ""
+    },
+    {
+      "level": "PASS",
+      "check": "no network (container --network none)",
+      "detail": "interfaces up besides lo: none; routes: 0",
+      "fix": ""
+    },
+    {
+      "level": "PASS",
+      "check": "protocol with the L2 amendment",
+      "detail": "csi/protocols/chain/CHAIN-PROTOCOL-v1.md (A6, section 16)",
+      "fix": ""
+    },
+    {
+      "level": "PASS",
+      "check": "proof set PS-01 intact",
+      "detail": "128 files verified against PROOFSET.sha256",
+      "fix": ""
+    },
+    {
+      "level": "PASS",
+      "check": "contract sources present",
+      "detail": "25 files",
+      "fix": ""
+    },
+    {
+      "level": "PASS",
+      "check": "sources clean",
+      "detail": "HEAD e97b69f",
+      "fix": ""
+    },
+    {
+      "level": "PASS",
+      "check": "L2 baseline tag",
+      "detail": "chain-l2-baseline-20260925 -> e97b69f; measurement sources and image records unchanged since the tag",
+      "fix": ""
+    },
+    {
+      "level": "PASS",
+      "check": "archived L2 image in use",
+      "detail": "sha256:255d0dacac2629988c339d311630e3efa99b6153478378570a63ad1b9a7491cc = image/chainbench-l2-arm64.oci.tar (sha256 8790cf4d90c8380a…)",
+      "fix": ""
+    },
+    {
+      "level": "PASS",
+      "check": "local EraVM node",
+      "detail": "anvil-zksync offline, chain 260, Version29, bootloader 0x0100092f045c…, start-up 123 ms",
+      "fix": ""
+    },
+    {
+      "level": "PASS",
+      "check": "EraVM compiler",
+      "detail": "zksolc 1.5.15 + era-solc 0.8.20+commit.3b523ea3.Linux.clang: Groth16 d5 verifier 3040 B",
+      "fix": ""
+    }
+  ],
+  "head": "e97b69f92b6f1b31bd89f8fa2ffda1792e79a119",
+  "binding": "workloads/zcorp/campaigns/CSI-CHAIN-LOCAL-01-L2.json",
+  "evidence_id": "CSI-CHAIN-LOCAL-01-L2",
+  "protocol_sha256": "46a4b9eaf8054a950d3b46add89632842b9fc5309bf16b3d835432f383651e46",
+  "image_id": "sha256:255d0dacac2629988c339d311630e3efa99b6153478378570a63ad1b9a7491cc",
+  "host": {
+    "os": "Darwin",
+    "os_version": "26.6.2",
+    "arch": "arm64",
+    "docker_server": "29.8.0",
+    "docker_os": "Docker Desktop",
+    "docker_cpus": "10",
+    "docker_mem_bytes": "16745824256"
+  },
+  "network_isolation": {
+    "isolated": true,
+    "interfaces": [
+      "erspan0",
+      "gre0",
+      "gretap0",
+      "ip6_vti0",
+      "ip6gre0",
+      "ip6tnl0",
+      "ip_vti0",
+      "lo",
+      "sit0",
+      "tunl0"
+    ],
+    "up_non_loopback": [],
+    "loopback_up": true,
+    "ipv4_routes": 0,
+    "ipv6_non_loopback_routes": 0
+  }
+}

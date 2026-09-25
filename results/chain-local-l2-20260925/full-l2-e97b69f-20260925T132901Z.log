@@ -1,0 +1,91 @@
+{"cell":"primary-groth16-d5","rows":36,"fail":0,"accounting_fail":0}
+{"cell":"primary-groth16-d10","rows":36,"fail":0,"accounting_fail":0}
+{"cell":"primary-groth16-d11","rows":36,"fail":0,"accounting_fail":0}
+{"cell":"primary-groth16-d15","rows":36,"fail":0,"accounting_fail":0}
+{"cell":"primary-plonk-d5","rows":36,"fail":0,"accounting_fail":0}
+{"cell":"primary-plonk-d10","rows":36,"fail":0,"accounting_fail":0}
+{"cell":"primary-plonk-d11","rows":36,"fail":0,"accounting_fail":0}
+{"cell":"primary-plonk-d15","rows":36,"fail":0,"accounting_fail":0}
+EXEC cells done 8/8
+{"run":"full-l2-e97b69f-20260925T132901Z-a","rows":288,"expected":288,"failing":0,"accounting_fail":0,"bytecode_match":true,"accepted_checks":true}
+[PASS] V1 CSV header = raw schema (56 columns)
+[PASS] V2 rows 288 = 288, tx rows 200 = 200
+[PASS] V3 cells in plan order
+[PASS] V4 every cell follows the section 7 operation sequence (op_seq 1..n)
+[PASS] V5 every row has its expected status / revert reason / return value (check_pass = 1)
+[PASS] V6 transaction type, gas limit, fee fields, chain id and protocol version as frozen
+[PASS] V7 fee accounting: one node record per transaction; pubdata_gas = pubdata_bytes x 84; receipt gasUsed reproduced exactly from computational_gas, pubdata_bytes and the fixed fee input
+[PASS] V8 deployed bytecode = compiled artifact (eth_getCode, versioned bytecode hash, size, one factory dependency)
+[PASS] V9 all 24 compiled contracts within the EraVM bytecode limit
+[PASS] V10 fresh chain per cell: nonces from 0, strictly increasing blocks, distinct transaction hashes
+[PASS] V11 anvil-zksync, zksolc and era-solc binaries = pins
+[PASS] V12 environment check passed (system contracts, protocol, fee-accounting probe)
+[PASS] V13 base system contracts = anvil-zksync 0.6.11 built-in protocol v29
+VALIDATION PASS (13/13 rules)
+{"cell":"primary-groth16-d5","rows":36,"fail":0,"accounting_fail":0}
+{"cell":"primary-groth16-d10","rows":36,"fail":0,"accounting_fail":0}
+{"cell":"primary-groth16-d11","rows":36,"fail":0,"accounting_fail":0}
+{"cell":"primary-groth16-d15","rows":36,"fail":0,"accounting_fail":0}
+{"cell":"primary-plonk-d5","rows":36,"fail":0,"accounting_fail":0}
+{"cell":"primary-plonk-d10","rows":36,"fail":0,"accounting_fail":0}
+{"cell":"primary-plonk-d11","rows":36,"fail":0,"accounting_fail":0}
+{"cell":"primary-plonk-d15","rows":36,"fail":0,"accounting_fail":0}
+EXEC cells done 8/8
+{"run":"full-l2-e97b69f-20260925T132901Z-b","rows":288,"expected":288,"failing":0,"accounting_fail":0,"bytecode_match":true,"accepted_checks":true}
+[PASS] V1 CSV header = raw schema (56 columns)
+[PASS] V2 rows 288 = 288, tx rows 200 = 200
+[PASS] V3 cells in plan order
+[PASS] V4 every cell follows the section 7 operation sequence (op_seq 1..n)
+[PASS] V5 every row has its expected status / revert reason / return value (check_pass = 1)
+[PASS] V6 transaction type, gas limit, fee fields, chain id and protocol version as frozen
+[PASS] V7 fee accounting: one node record per transaction; pubdata_gas = pubdata_bytes x 84; receipt gasUsed reproduced exactly from computational_gas, pubdata_bytes and the fixed fee input
+[PASS] V8 deployed bytecode = compiled artifact (eth_getCode, versioned bytecode hash, size, one factory dependency)
+[PASS] V9 all 24 compiled contracts within the EraVM bytecode limit
+[PASS] V10 fresh chain per cell: nonces from 0, strictly increasing blocks, distinct transaction hashes
+[PASS] V11 anvil-zksync, zksolc and era-solc binaries = pins
+[PASS] V12 environment check passed (system contracts, protocol, fee-accounting probe)
+[PASS] V13 base system contracts = anvil-zksync 0.6.11 built-in protocol v29
+VALIDATION PASS (13/13 rules)
+{
+ "identical": true,
+ "rows_a": 288,
+ "rows_b": 288,
+ "rows_compared": 288,
+ "tx_rows_compared": 200,
+ "call_rows_compared": 88,
+ "field_value_comparisons": 15840,
+ "differences_per_field": {},
+ "build_manifest": {
+  "identical": true,
+  "sha256_a": "60f5f73114ef0639b8036f2fa560dafd5f56f4dd0db9664a5544e164c2f1a504",
+  "sha256_b": "60f5f73114ef0639b8036f2fa560dafd5f56f4dd0db9664a5544e164c2f1a504"
+ },
+ "env_check": {
+  "probe_identical": true,
+  "checks_identical": true
+ },
+ "environment": {
+  "toolchain": true,
+  "packages": true,
+  "lockfile_sha256": true,
+  "pins_sha256": true,
+  "node_options": true,
+  "tx_fields": true,
+  "fee_input": true,
+  "compiler_settings": true,
+  "node": true
+ },
+ "run_level": {
+  "arm": true,
+  "plan": true,
+  "protocol_sha256": true,
+  "proofset_manifest": true,
+  "cells": true,
+  "proofs": true,
+  "expected_rows": true,
+  "expected_tx": true,
+  "build_output_sha256": true
+ }
+}
+summary: /repo/build/campaigns/chain-l2/full-l2-e97b69f-20260925T132901Z-a/summary.csv (88 groups from full-l2-e97b69f-20260925T132901Z-a)
+compile sizes: /repo/build/campaigns/chain-l2/full-l2-e97b69f-20260925T132901Z-a/compile_sizes.csv (24 contracts)

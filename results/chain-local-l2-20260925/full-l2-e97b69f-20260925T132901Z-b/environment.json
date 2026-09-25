@@ -1,0 +1,154 @@
+{
+  "host": {
+    "platform": "linux",
+    "release": "7.0.12-linuxkit",
+    "arch": "arm64",
+    "cpus": 10,
+    "os_release": "Debian GNU/Linux 12 (bookworm)"
+  },
+  "node": "v22.23.2",
+  "npm": "10.9.8",
+  "packages": {
+    "ethers": "6.13.5",
+    "zksync-ethers": "6.21.2",
+    "snarkjs": "0.7.5",
+    "ffjavascript": "0.3.1",
+    "@openzeppelin/contracts": "4.9.0"
+  },
+  "lockfile": "chainbench/adapters/eravm/package-lock.json",
+  "lockfile_sha256": "2987f02e0807e9b354a1d90742bac4b71a565e43a478d1fbaf247ec6174f7f81",
+  "pins_sha256": "a6b9b250ae66d8a654730f6119c2e6cfbb22787bd7e94d85384af19895361aff",
+  "toolchain": {
+    "anvil_zksync": {
+      "sha256": "565ea5418561937d704c5ef0b2fcea1cb01cd2338e45fdd32ac0516395938216",
+      "version": "anvil-zksync 0.6.11",
+      "pinned_sha256": "565ea5418561937d704c5ef0b2fcea1cb01cd2338e45fdd32ac0516395938216",
+      "release_tgz_sha256": "f7d85fd20a41004e4c8662f6748a89ee45e9dc940bbca3a29b2a1634648a7285"
+    },
+    "zksolc": {
+      "sha256": "ee4f02f8614ef320fc95d2f15c69678bb1781f9526df78fb35a906180c998b44",
+      "version": "Solidity compiler for ZKsync v1.5.15 (LLVM build fa0fc0bc9caa7884f9f485735b537cb1ac441fe7)",
+      "pinned_sha256": "ee4f02f8614ef320fc95d2f15c69678bb1781f9526df78fb35a906180c998b44"
+    },
+    "era_solc": {
+      "sha256": "d98d1068b3bff4679a32585ea75febbf75b004a2870a3e2ebf191550f36950b2",
+      "version": "solc, the ZKsync Solidity compiler commandline interface\nVersion: 0.8.20+commit.3b523ea3.Linux.clang\nZKsync: 0.8.20-1.0.2",
+      "pinned_sha256": "d98d1068b3bff4679a32585ea75febbf75b004a2870a3e2ebf191550f36950b2"
+    }
+  },
+  "node_options": {
+    "args": [
+      "--offline",
+      "--timestamp",
+      "1000",
+      "--protocol-version",
+      "29",
+      "--dev-system-contracts",
+      "built-in",
+      "--enforce-bytecode-compression",
+      "false",
+      "--host",
+      "127.0.0.1",
+      "--port",
+      "18011",
+      "--cache",
+      "none",
+      "--chain-id",
+      "260",
+      "-m",
+      "test test test test test test test test test test test junk",
+      "-a",
+      "2",
+      "--balance",
+      "10000",
+      "--show-gas-details",
+      "none",
+      "--show-vm-details",
+      "none",
+      "--show-storage-logs",
+      "none",
+      "--log",
+      "info",
+      "--log-file-path",
+      "<cell>/anvil.log",
+      "run"
+    ],
+    "rust_log": "zksync_multivm::versions::vm_latest::utils::refund=trace",
+    "fresh_node_per_cell": true
+  },
+  "tx_fields": {
+    "type": 113,
+    "max_fee_per_gas": "45250000",
+    "max_priority_fee_per_gas": "45250000",
+    "gas_per_pubdata_limit": "50000",
+    "gas_limits": {
+      "deploy_verifier": 20000000,
+      "deploy_manager": 20000000,
+      "set_issuer": 2000000,
+      "add_root": 2000000,
+      "verify_credential": 10000000,
+      "verify_proof_direct": 10000000,
+      "neg_unknown_root": 10000000,
+      "neg_tampered": 10000000,
+      "neg_cross_depth_setup": 2000000,
+      "neg_cross_depth": 10000000,
+      "neg_non_issuer": 2000000
+    }
+  },
+  "fee_input": {
+    "l1_gas_price": "2365348956",
+    "fair_l2_gas_price": "45250000",
+    "fair_pubdata_price": "3784558330",
+    "base_fee": "45250000",
+    "gas_per_pubdata": "84"
+  },
+  "expected_system_contracts": {
+    "protocol_version": "Version29",
+    "bootloader": "0x0100092f045c41c21bd08a9c6fa909fa6a8b446e3f6cd9f08356352a3195a40c",
+    "default_aa": "0x010005f74935e95e527d18ea9bfc82906fb20903a5683c528ee7af404e9bd531",
+    "evm_emulator": null
+  },
+  "compiler_settings": {
+    "optimizer": {
+      "enabled": true,
+      "mode": "3",
+      "fallback_to_optimizing_for_size": true
+    },
+    "codegen": "yul",
+    "evmVersion": "paris",
+    "outputSelection": {
+      "*": {
+        "*": [
+          "abi",
+          "evm.methodIdentifiers",
+          "metadata"
+        ]
+      }
+    }
+  },
+  "container": {
+    "image_id": "sha256:255d0dacac2629988c339d311630e3efa99b6153478378570a63ad1b9a7491cc",
+    "image_ref": "chainbench-l2:local",
+    "base_image": "node@sha256:48e4b67d85f87bd551df43704e24d252f56cc5f8e9718841aace50f19948f0f9",
+    "network": "none",
+    "network_isolation": {
+      "isolated": true,
+      "interfaces": [
+        "erspan0",
+        "gre0",
+        "gretap0",
+        "ip6_vti0",
+        "ip6gre0",
+        "ip6tnl0",
+        "ip_vti0",
+        "lo",
+        "sit0",
+        "tunl0"
+      ],
+      "up_non_loopback": [],
+      "loopback_up": true,
+      "ipv4_routes": 0,
+      "ipv6_non_loopback_routes": 0
+    }
+  }
+}

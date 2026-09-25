@@ -1,0 +1,62 @@
+{
+  "campaign_id": "CSI-CHAIN-LOCAL-01",
+  "arm": "L2-EraVM",
+  "run_id": "full-l2-e97b69f-20260925T132901Z-a",
+  "plan": "full",
+  "scientific": true,
+  "env": "L2-EraVM-anvil-zksync",
+  "started_at_utc": "2026-09-25T13:29:02.933Z",
+  "commit": "e97b69f92b6f1b31bd89f8fa2ffda1792e79a119",
+  "dirty_tracked_paths": [],
+  "protocol": "csi/protocols/chain/CHAIN-PROTOCOL-v1.md",
+  "protocol_sha256": "46a4b9eaf8054a950d3b46add89632842b9fc5309bf16b3d835432f383651e46",
+  "workload": "zcorp",
+  "campaign_binding": "workloads/zcorp/campaigns/CSI-CHAIN-LOCAL-01-L2.json",
+  "out_root": "build/campaigns/chain-l2",
+  "cells": [
+    "primary-groth16-d5",
+    "primary-groth16-d10",
+    "primary-groth16-d11",
+    "primary-groth16-d15",
+    "primary-plonk-d5",
+    "primary-plonk-d10",
+    "primary-plonk-d11",
+    "primary-plonk-d15"
+  ],
+  "proofs": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7
+  ],
+  "expected_rows": 288,
+  "expected_tx": 200,
+  "steps": {
+    "build": "2026-09-25T13:29:06.765Z",
+    "envcheck": "2026-09-25T13:29:07.186Z",
+    "exec": "2026-09-25T13:29:22.741Z",
+    "finish": "2026-09-25T13:29:22.850Z"
+  },
+  "build_output_sha256": "04aba3ac3bc3e1b3d169e83ff091b2c1978eb6218b3449aace23cb2056e115db",
+  "env_check_pass": true,
+  "proofset_manifest": {
+    "csv_sha256": "9f82f3830bad61d8824f2a40f6705701d5ec4fba41ef95d0d340bb65c77ae9c4",
+    "sha256_file_sha256": "55f42c19f477df44f88323abd0f2caf3c17535093df64345305f6261621d1990",
+    "json_sha256": "5ba2b55016b344f4b2eb3185db5c94c3aca7b7188dcfd7baf20b970f215aac0b",
+    "files_verified": 128
+  },
+  "rows": 288,
+  "rows_expected": 288,
+  "tx_rows": 200,
+  "tx_expected": 200,
+  "rows_failing_check": 0,
+  "tx_failing_accounting": 0,
+  "deployments_bytecode_match": true,
+  "accepted_checks": true,
+  "ops_csv_sha256": "2767bdb8dcc23c94b68d981ed3755d3e4eab74b0c6ac2ceb81caf6092b225a2d",
+  "finished_at_utc": "2026-09-25T13:29:22.850Z"
+}

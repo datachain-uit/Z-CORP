@@ -1,0 +1,167 @@
+{
+  "pass": true,
+  "checks": [
+    {
+      "check": "anvil_zksync binary sha256 = pin",
+      "pass": true,
+      "got": "565ea5418561937d704c5ef0b2fcea1cb01cd2338e45fdd32ac0516395938216",
+      "want": "565ea5418561937d704c5ef0b2fcea1cb01cd2338e45fdd32ac0516395938216"
+    },
+    {
+      "check": "zksolc binary sha256 = pin",
+      "pass": true,
+      "got": "ee4f02f8614ef320fc95d2f15c69678bb1781f9526df78fb35a906180c998b44",
+      "want": "ee4f02f8614ef320fc95d2f15c69678bb1781f9526df78fb35a906180c998b44"
+    },
+    {
+      "check": "era_solc binary sha256 = pin",
+      "pass": true,
+      "got": "d98d1068b3bff4679a32585ea75febbf75b004a2870a3e2ebf191550f36950b2",
+      "want": "d98d1068b3bff4679a32585ea75febbf75b004a2870a3e2ebf191550f36950b2"
+    },
+    {
+      "check": "anvil-zksync version",
+      "pass": true,
+      "got": "anvil-zksync 0.6.11",
+      "want": "anvil-zksync 0.6.11"
+    },
+    {
+      "check": "network isolation (container --network none)",
+      "pass": true,
+      "got": {
+        "isolated": true,
+        "interfaces": [
+          "erspan0",
+          "gre0",
+          "gretap0",
+          "ip6_vti0",
+          "ip6gre0",
+          "ip6tnl0",
+          "ip_vti0",
+          "lo",
+          "sit0",
+          "tunl0"
+        ],
+        "up_non_loopback": [],
+        "loopback_up": true,
+        "ipv4_routes": 0,
+        "ipv6_non_loopback_routes": 0
+      },
+      "want": "isolated"
+    },
+    {
+      "check": "eth_chainId",
+      "pass": true,
+      "got": "0x104",
+      "want": 260
+    },
+    {
+      "check": "web3_clientVersion",
+      "pass": true,
+      "got": "zkSync/v2.0",
+      "want": "zkSync/v2.0"
+    },
+    {
+      "check": "protocol version (block 0)",
+      "pass": true,
+      "got": "Version29",
+      "want": "Version29"
+    },
+    {
+      "check": "bootloader hash",
+      "pass": true,
+      "got": "0x0100092f045c41c21bd08a9c6fa909fa6a8b446e3f6cd9f08356352a3195a40c",
+      "want": "0x0100092f045c41c21bd08a9c6fa909fa6a8b446e3f6cd9f08356352a3195a40c"
+    },
+    {
+      "check": "default AA hash",
+      "pass": true,
+      "got": "0x010005f74935e95e527d18ea9bfc82906fb20903a5683c528ee7af404e9bd531",
+      "want": "0x010005f74935e95e527d18ea9bfc82906fb20903a5683c528ee7af404e9bd531"
+    },
+    {
+      "check": "EVM emulator disabled",
+      "pass": true,
+      "got": null,
+      "want": null
+    },
+    {
+      "check": "genesis timestamp",
+      "pass": true,
+      "got": 1000,
+      "want": 1000
+    },
+    {
+      "check": "eth_gasPrice (API)",
+      "pass": true,
+      "got": "45250000",
+      "want": "45250000"
+    },
+    {
+      "check": "zks_gasPerPubdata (API, estimation-scaled)",
+      "pass": true,
+      "got": "168",
+      "want": "168"
+    },
+    {
+      "check": "balance A0",
+      "pass": true,
+      "got": "10000000000000000000000",
+      "want": "10000 ETH"
+    },
+    {
+      "check": "balance A1",
+      "pass": true,
+      "got": "10000000000000000000000",
+      "want": "10000 ETH"
+    },
+    {
+      "check": "eth_call answers",
+      "pass": true,
+      "got": true,
+      "want": true
+    },
+    {
+      "check": "probe transaction succeeded",
+      "pass": true,
+      "got": 1,
+      "want": 1
+    },
+    {
+      "check": "probe: one fee record",
+      "pass": true,
+      "got": 1,
+      "want": 1
+    },
+    {
+      "check": "probe: pubdata_gas = pubdata_bytes x 84",
+      "pass": true,
+      "got": 3780,
+      "want": "45 x 84"
+    },
+    {
+      "check": "probe: receipt gasUsed reproduced from the fixed fee input",
+      "pass": true,
+      "got": 118704,
+      "want": 118704
+    },
+    {
+      "check": "probe: effective gas price = base fee",
+      "pass": true,
+      "got": "45250000",
+      "want": "45250000"
+    }
+  ],
+  "probe": {
+    "hash": "0xb1dd06629c31ba3a9165b9808497b8929df534d8bf4bd4a6307b6ef3641cd56e",
+    "status": 1,
+    "gas_used": 118704,
+    "effective_gas_price": "45250000",
+    "fee_trace_gas_limit": 2000000,
+    "computational_gas": 114941,
+    "pubdata_gas": 3780,
+    "pubdata_bytes": 45,
+    "gas_used_derived": 118704
+  },
+  "node_startup_ms": 120
+}

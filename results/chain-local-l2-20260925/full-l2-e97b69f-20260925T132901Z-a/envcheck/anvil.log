@@ -1,0 +1,7 @@
+ INFO initializing system contracts protocol_version=29 use_evm_emulator=false zksync_os.zksync_os=false
+ INFO Starting executing L1 batch #1
+TRACE Fee benchmark for transaction with hash b1dd06629c31ba3a9165b9808497b8929df534d8bf4bd4a6307b6ef3641cd56e
+TRACE Gas Limit: 2000000
+TRACE Gas spent on computation: 114941
+TRACE Gas spent on pubdata: 3780
+TRACE Pubdata published: 45
