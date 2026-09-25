@@ -5,7 +5,7 @@ const fs = require('fs');
 const os = require('os');
 const path = require('path');
 const { HttpRpc, waitReceipt } = require('./rpc');
-const { BLOCK_GAS_LIMIT } = require('./constants');
+const { BLOCK_GAS_LIMIT } = require('../core/workload').module('constants');
 function gethVersion(bin) { return execFileSync(bin, ['version'], { encoding: 'utf8' }); }
 async function startGeth(bin, port) {
   const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'chainbench-geth-'));

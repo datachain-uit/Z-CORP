@@ -53,8 +53,10 @@ Chain campaigns are registered in the same `campaign-index.csv`. Their layout di
 | `protocols/chain/CHAIN-PROTOCOL-v1.md` | The protocol. The L1 arm is frozen; the local-EraVM arm is pending. Pre-run amendments are logged in its §15. | Hand-written, committed (not a snapshot) |
 | `campaigns/chain/CSI-CHAIN-LOCAL-01/inputs/proofset/` | The frozen proof set PS-01: 64 proofs and their manifest | `chainbench/scripts/gen_proofset.js`, once, never regenerated |
 | `campaigns/chain/CSI-CHAIN-LOCAL-01/inputs/plonk-verifiers.provenance.json` | Provenance checks for `contracts/chain/PlonkVerifierDepth*.sol` | `chainbench/scripts/export_plonk_verifiers.js` |
-| `campaigns/chain/CSI-CHAIN-LOCAL-01/campaign.json` | Registration, identities (protocol, harness commit, lockfile, compiler, EDR and geth binaries, proof set) and the validation state | `chainbench/scripts/record_campaign.py` |
-| `campaigns/chain/CSI-CHAIN-LOCAL-01/notes/` | The dry-run record and the proof-set generation record | `DRY-RUN.md` is generated; `PROOFSET-GENERATION.md` is hand-written |
+| `campaigns/chain/CSI-CHAIN-LOCAL-01/campaign.json` | Registration, identities (protocol, harness commit, container image, lockfile, compiler, EDR and geth binaries, proof set) and the validation state | `chainbench/workloads/zcorp/record_campaign.py` (reads the campaign binding) |
+| `campaigns/chain/CSI-CHAIN-LOCAL-01/notes/` | The dry-run records and the proof-set generation record | `DRY-RUN.md` (packaged dry run) is generated; `DRY-RUN-readiness-<commit>.md` keeps the earlier readiness dry run; `PROOFSET-GENERATION.md` is hand-written |
+| `chainbench/workloads/zcorp/campaigns/CSI-CHAIN-LOCAL-01.json` | The campaign binding: the only place where the venue-neutral chainbench core learns the CSI campaign id, protocol, frozen inputs, tracked/measurement paths and baseline-tag prefix | Hand-written, committed |
+| `chainbench/README.md` | Reviewer instructions: `./chainbench/run.sh doctor`, `smoke`, `full-local-l1` (Docker only) | Hand-written |
 | `code/chain/CSI-CHAIN-LOCAL-01.KIT.sha256` | The chain campaign's code at its registered commit | `scripts/release/build_csi_bundle.py` |
 
 - **Raw run data** goes to `build/campaigns/chain/<run_id>/` (git-ignored).

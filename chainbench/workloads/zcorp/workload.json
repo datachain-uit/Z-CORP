@@ -1,0 +1,42 @@
+{
+  "name": "zcorp",
+  "title": "Z-CORP root-anchored credential verification: Groth16 and PLONK verifiers behind a root-registry manager",
+  "default_campaign": "campaigns/CSI-CHAIN-LOCAL-01.json",
+  "modules": {
+    "constants": "lib/constants.js",
+    "profiles": "lib/profiles.js",
+    "plan": "lib/plan.js",
+    "ops": "lib/ops.js",
+    "proofset": "lib/proofset.js"
+  },
+  "scripts": {
+    "summarize": "scripts/summarize_l1.py",
+    "unit_tests": "scripts/test.js",
+    "verifier_check": "scripts/export_plonk_verifiers.js",
+    "record_campaign": "workloads/zcorp/record_campaign.py",
+    "make_smoke_reference": "workloads/zcorp/make_smoke_reference.py"
+  },
+  "plans": {
+    "smoke": {
+      "scientific": false,
+      "out_root": "build/chainbench/smoke",
+      "purpose": "packaging smoke test (2 cells, 1 proof, all negative controls)"
+    },
+    "dry": {
+      "scientific": false,
+      "out_root": "build/chainbench/dry-run",
+      "purpose": "engineering dry run (protocol section 10 item 7)"
+    },
+    "full": {
+      "scientific": true,
+      "out_root": "build/campaigns/chain",
+      "purpose": "scientific matrix (protocol section 6)"
+    }
+  },
+  "smoke_reference": "workloads/zcorp/smoke-reference.csv",
+  "optional_data_for_checks": [
+    "data/plonk-zkeys",
+    "data/plonk-vkeys",
+    "ARTIFACTS.sha256"
+  ]
+}

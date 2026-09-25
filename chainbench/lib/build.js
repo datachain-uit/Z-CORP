@@ -5,7 +5,7 @@ const path = require('path');
 const { spawnSync } = require('child_process');
 const { ethers } = require('ethers');
 const C = require('./common');
-const P = require('./profiles');
+const P = require('../core/workload').module('profiles');
 const { stage } = require('./stage');
 
 function sortObj(o) { return Object.keys(o).sort().reduce((a, k) => { a[k] = o[k]; return a; }, {}); }

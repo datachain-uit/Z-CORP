@@ -1,0 +1,30 @@
+{
+  "purpose": "Toolchain of the accepted CSI-CHAIN-LOCAL-01 readiness dry run (commit e141816; Linux VM, aarch64). A packaged environment must reproduce these values; runtime fields that depend on the host or base image are warn-only.",
+  "source": "build/campaigns/chain/dry-e141816-edr-a/environment.json",
+  "warn_only": ["runtime.node", "runtime.npm", "runtime.libc"],
+  "toolchain": {
+    "runtime": { "node": "v22.23.2", "npm": "10.9.8", "arch": "arm64", "libc": "glibc 2.35" },
+    "packages": {
+      "hardhat": "2.29.1",
+      "@nomicfoundation/edr": "0.12.0-next.23",
+      "@nomicfoundation/hardhat-ethers": "3.0.8",
+      "ethers": "6.13.5",
+      "snarkjs": "0.7.5",
+      "ffjavascript": "0.3.1",
+      "solc": "0.8.20",
+      "@openzeppelin/contracts": "4.9.0",
+      "ejs": "3.1.10"
+    },
+    "lockfile_sha256": "0add12b819839bb7ebbb5a70d65d61bd1202fd1a2a1a0ca823e47d0fa2b068cd",
+    "package_json_sha256": "5ebd42186a72180ee3b10aad8484aa7fbfdd4165f9550fdb91ebc586925cc109",
+    "edr_native": {
+      "package": "@nomicfoundation/edr-linux-arm64-gnu",
+      "version": "0.12.0-next.23",
+      "file": "edr.linux-arm64-gnu.node",
+      "sha256": "17e6d355e924c5aa05b0e162ab63a15f62833408f03913aec497c886d8163ebc"
+    },
+    "soljson_sha256": "033dc42a16378dd036a475b8a7080af83cfae1841eb6848ce1667c56193972ba",
+    "hardhat_console_sol_sha256": "5a6db75ebe2603ab1ce17c40f48447f3040268675f027a77fe5e9b236f4e31dd",
+    "geth": { "version": "1.16.9-stable", "git_commit": "95665d5703e1023995a0ff93e4ce9eb77e8a59bd" }
+  }
+}

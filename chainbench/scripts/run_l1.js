@@ -10,20 +10,27 @@ const os = require('os');
 const path = require('path');
 const { execFileSync, spawnSync } = require('child_process');
 const C = require('../lib/common');
-const K = require('../lib/constants');
-const { PLANS, expectedRows } = require('../lib/plan');
+const W = require('../core/workload');
+const K = W.module('constants');
+const { PLANS, expectedRows } = W.module('plan');
 const { build } = require('../lib/build');
 const { toCsv } = require('../lib/schema');
 const arg = (n, d) => { const i = process.argv.indexOf(n); return i > 0 ? process.argv[i + 1] : d; };
 
 const plan = arg('--plan'); const env = arg('--env'); const runId = arg('--run-id'); const step = arg('--step', 'all');
 if (!PLANS[plan] || !['edr', 'geth'].includes(env) || !runId || !/^[A-Za-z0-9._-]+$/.test(runId)) { console.error('usage: --plan dry|full --env edr|geth --run-id <id>'); process.exit(2); }
-const OUT = path.join(C.REPO, 'build', 'campaigns', 'chain', runId);
+// Output root: the scientific plan writes to build/campaigns/chain (protocol section 8); non-scientific plans may be
+// redirected (CHAINBENCH_OUT_ROOT) so that smoke and dry-run data never mix with scientific runs.
+const OUT_ROOT_DEFAULT = path.join(C.REPO, 'build', 'campaigns', 'chain');
+const OUT_ROOT = process.env.CHAINBENCH_OUT_ROOT ? path.resolve(process.env.CHAINBENCH_OUT_ROOT) : OUT_ROOT_DEFAULT;
+if (plan === 'full' && OUT_ROOT !== OUT_ROOT_DEFAULT) { console.error('the full (scientific) plan writes only to build/campaigns/chain'); process.exit(2); }
+const OUT = path.join(OUT_ROOT, runId);
 const WORK = path.join(C.CHAINBENCH, '.work', runId);
 const RUNJSON = path.join(OUT, 'run.json');
-const gethBin = arg('--geth-bin') ? path.resolve(arg('--geth-bin')) : null;
+const gethArg = arg('--geth-bin') || (env === 'geth' ? process.env.CHAINBENCH_GETH_BIN : null);
+const gethBin = gethArg ? path.resolve(gethArg) : null;
 const reference = arg('--reference') ? path.resolve(arg('--reference')) : null;
-const TRACKED = ['contracts', 'chainbench', 'csi/protocols/chain', 'csi/campaigns/chain/CSI-CHAIN-LOCAL-01/inputs'];
+const TRACKED = W.campaign.tracked_paths;
 
 function readRun() { return JSON.parse(fs.readFileSync(RUNJSON, 'utf8')); }
 function saveRun(r) { C.writeJson(RUNJSON, r); }
@@ -47,6 +54,7 @@ function stepInit() {
     protocol: C.PROTOCOL_REL, protocol_sha256: C.sha256File(path.join(C.REPO, C.PROTOCOL_REL)),
     plonk_verifier_provenance_sha256: C.sha256File(path.join(C.CAMPAIGN_DIR, 'inputs', 'plonk-verifiers.provenance.json')),
     reference_run: reference ? path.relative(C.REPO, reference) : null, cells: PLANS[plan].cells.map((c) => c.cell_id), proofs: PLANS[plan].proofs,
+    workload: W.NAME, campaign_binding: path.relative(C.CHAINBENCH, W.bindingFile), out_root: path.relative(C.REPO, OUT_ROOT),
     expected_rows: expectedRows(plan), steps: {},
   });
   C.writeJson(path.join(OUT, 'environment.json'), {
@@ -59,6 +67,19 @@ function stepInit() {
     hardhat_console_sol_sha256: C.sha256File(path.join(C.CHAINBENCH, 'node_modules', 'hardhat', 'console.sol')),
     edr_network_config: { ...K.EDR_NETWORK, hardfork: K.HARDFORK },
     geth: gethBin ? { binary: gethBin, sha256: C.sha256File(gethBin), version: require('../lib/geth').gethVersion(gethBin) } : null,
+    edr_identity: {
+      npm_package: '@nomicfoundation/edr', npm_version: ver('@nomicfoundation/edr'),
+      native_package: edrNativeBinary() ? edrNativeBinary().package : null,
+      native_package_version: edrNativeBinary() ? C.pkgVersion(edrNativeBinary().package) : null,
+      native_sha256: edrNativeBinary() ? edrNativeBinary().sha256 : null,
+      client_version_note: 'web3_clientVersion carries the EDR Rust workspace version (crate edr_provider, CARGO_PKG_VERSION = 0.3.8 at npm release 0.12.0-next.23); the npm package version is authoritative',
+    },
+    container: process.env.CHAINBENCH_IMAGE_ID ? {
+      image_id: process.env.CHAINBENCH_IMAGE_ID, image_ref: process.env.CHAINBENCH_IMAGE_REF || null,
+      base_image: process.env.CHAINBENCH_BASE_IMAGE || null, geth_source: process.env.CHAINBENCH_GETH_SOURCE || null,
+      network: process.env.CHAINBENCH_NETWORK || null,
+      network_interfaces: (() => { try { return fs.readdirSync('/sys/class/net').sort(); } catch (e) { return null; } })(),
+    } : null,
   });
 }
 function stepBuild() {
@@ -93,9 +114,9 @@ async function stepExec(budgetMs) {
   if (!r.steps.build || !r.steps.envcheck) throw new Error('build and envcheck must precede exec');
   const t0 = Date.now();
   const cellDir = path.join(OUT, 'cells'); fs.mkdirSync(cellDir, { recursive: true });
-  const ps = await require('../lib/proofset').load();
+  const ps = await W.module('proofset').load();
   r.proofset_manifest = ps.manifest;
-  const { runCell } = require('../lib/ops');
+  const { runCell } = W.module('ops');
   const artCache = {};
   const artifact = (profile, source, name) => {
     const k = `${profile}:${source}:${name}`;
@@ -123,8 +144,8 @@ async function stepExec(budgetMs) {
       ctx = { rpc: edr, env: 'L1-EDR', chainId: K.EDR_CHAIN_ID, fees: K.FEES.edr, hardfork: K.HARDFORK, clientVersion: await edr.call('web3_clientVersion') };
     } else {
       g = await G.startGeth(gethBin, port); port += 10;
-      const W = require('../lib/ops').wallets();
-      await G.fundAccounts(g.rpc, [W.A0.address, W.A1.address]);
+      const A = W.module('ops').wallets();
+      await G.fundAccounts(g.rpc, [A.A0.address, A.A1.address]);
       ctx = { rpc: g.rpc, env: 'L1-geth', chainId: Number(await g.rpc.call('eth_chainId')), fees: K.FEES.geth, hardfork: K.HARDFORK, clientVersion: await g.rpc.call('web3_clientVersion') };
     }
     Object.assign(ctx, { runId, plan, artifact });

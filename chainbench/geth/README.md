@@ -22,3 +22,11 @@
 - **Fixed build directory.** `build_geth.sh` builds in `/tmp/zcorp-geth-v1.16.9`. gnark-crypto's assembly `#include` paths embed the absolute module-cache path in the binary despite `-trimpath`, so byte-identical output requires this path.
 - **Verified.** Two from-scratch builds with this recipe produced identical binaries (the `SHA256SUMS` values).
 - **Not versioned.** The binaries are not in git. The arm64 binary used on the campaign VM is kept xz-compressed under `build/chain/geth/`, which is git-ignored, and is archived with the campaign release.
+
+## Use in the chainbench image
+
+`chainbench/run.sh build-image` prefers the official `ethereum/client-go:v1.16.9` image. It pins the image by digest in `chainbench/docker/pins.env` and accepts it only if `geth version` reports `Git Commit: 95665d5703e1023995a0ff93e4ce9eb77e8a59bd`.
+
+If the official image is unavailable or fails that check, the build uses this from-source binary. The binary must be uncompressed at `build/chain/geth/geth-v1.16.9-linux-<arch>` and match the sha256 in `SHA256SUMS`, which is also in `pins.env`.
+
+The source actually used is recorded in `chainbench/docker/IMAGE.json` (`toolchain.geth`) and in every run's `environment.json` (`container.geth_source`, `geth.sha256`).

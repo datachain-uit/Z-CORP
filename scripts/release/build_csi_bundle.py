@@ -265,8 +265,10 @@ def chain_attribution(rel, crow):
         return 'protocol', 'hand-written; frozen, amendments logged in its section 15'
     if rel.startswith(f'{CSI}/code/chain/'):
         return 'generated', 'scripts/release/build_csi_bundle.py'
+    if re.search(r'/notes/DRY-RUN-readiness-[0-9a-f]{7}\.md$', rel):
+        return 'generated', 'chainbench/scripts/record_campaign.py at the readiness commit (earlier readiness dry run)'
     if rel.endswith('/campaign.json') or rel.endswith('/notes/DRY-RUN.md'):
-        return 'generated', 'chainbench/scripts/record_campaign.py'
+        return 'generated', 'chainbench/workloads/zcorp/record_campaign.py'
     if '/derived/' in rel:
         return 'generated', 'chainbench/scripts (summarize_l1.py, compare_runs.py)'
     return 'hand-written', '-'

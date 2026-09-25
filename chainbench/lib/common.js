@@ -1,5 +1,6 @@
 'use strict';
-// Shared helpers for chainbench (CSI-CHAIN-LOCAL-01, CHAIN-PROTOCOL-v1).
+// Shared helpers for chainbench. Campaign identity (id, protocol, frozen-input locations) comes from the selected
+// workload's campaign binding (core/workload.js); nothing venue-specific is hard-coded here.
 const fs = require('fs');
 const path = require('path');
 const crypto = require('crypto');
@@ -7,10 +8,11 @@ const { execFileSync } = require('child_process');
 
 const CHAINBENCH = path.resolve(__dirname, '..');
 const REPO = path.resolve(CHAINBENCH, '..');
-const CAMPAIGN_ID = 'CSI-CHAIN-LOCAL-01';
-const CAMPAIGN_DIR = path.join(REPO, 'csi', 'campaigns', 'chain', CAMPAIGN_ID);
-const PROTOCOL_REL = 'csi/protocols/chain/CHAIN-PROTOCOL-v1.md';
-const PROOFSET_DIR = path.join(CAMPAIGN_DIR, 'inputs', 'proofset');
+const W = require('../core/workload');
+const CAMPAIGN_ID = W.campaign.campaign_id;
+const CAMPAIGN_DIR = path.join(REPO, W.campaign.campaign_dir);
+const PROTOCOL_REL = W.campaign.protocol;
+const PROOFSET_DIR = path.join(REPO, W.campaign.proofset_dir);
 // snarkjs does not export ./package.json; read it from the chainbench install directly.
 const SNARKJS_DIR = path.join(CHAINBENCH, 'node_modules', 'snarkjs');
 function pkgVersion(name) { return JSON.parse(fs.readFileSync(path.join(CHAINBENCH, 'node_modules', name, 'package.json'), 'utf8')).version; }

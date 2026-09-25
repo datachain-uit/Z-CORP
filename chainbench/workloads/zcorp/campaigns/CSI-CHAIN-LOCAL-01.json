@@ -1,0 +1,42 @@
+{
+  "campaign_id": "CSI-CHAIN-LOCAL-01",
+  "venue": "CSI",
+  "admin_record": {
+    "admin_id": "CSI-CHAIN-LOCAL-01",
+    "experiment": "controlled on-chain verification (local L1)",
+    "registry": "csi/campaign-index.csv",
+    "notes_dir": "csi/campaigns/chain/CSI-CHAIN-LOCAL-01/notes"
+  },
+  "campaign_dir": "csi/campaigns/chain/CSI-CHAIN-LOCAL-01",
+  "protocol": "csi/protocols/chain/CHAIN-PROTOCOL-v1.md",
+  "proofset_dir": "csi/campaigns/chain/CSI-CHAIN-LOCAL-01/inputs/proofset",
+  "plonk_verifier_provenance": "csi/campaigns/chain/CSI-CHAIN-LOCAL-01/inputs/plonk-verifiers.provenance.json",
+  "tracked_paths": [
+    "contracts",
+    "chainbench",
+    ":(exclude)chainbench/docker/IMAGE.json",
+    ":(exclude)chainbench/docker/pins.env",
+    "csi/protocols/chain",
+    "csi/campaigns/chain/CSI-CHAIN-LOCAL-01/inputs"
+  ],
+  "measurement_paths_note": "tracked_paths: clean-tree check before a run. measurement_paths: everything that can change a measured value; used for the baseline-tag and record checks. The image records (pins.env, IMAGE.json) are checked separately against the image actually used.",
+  "measurement_paths": [
+    "contracts",
+    "chainbench",
+    ":(exclude)chainbench/docker/IMAGE.json",
+    ":(exclude)chainbench/docker/pins.env",
+    ":(exclude)chainbench/README.md",
+    ":(exclude)chainbench/workloads/zcorp/record_campaign.py",
+    "csi/protocols/chain",
+    "csi/campaigns/chain/CSI-CHAIN-LOCAL-01/inputs",
+    "scripts/setup/generate_input_depth.js",
+    "scripts/setup/paths.js",
+    "ARTIFACTS.sha256"
+  ],
+  "baseline_tag_prefix": "chain-l1-baseline-",
+  "reference_dry_run": {
+    "edr": "build/campaigns/chain/dry-e141816-edr-a",
+    "geth": "build/campaigns/chain/dry-e141816-geth",
+    "note": "accepted readiness dry run at e141816 (raw data on the author's machine only; git-ignored)"
+  }
+}

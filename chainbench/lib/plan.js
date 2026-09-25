@@ -17,6 +17,11 @@ const PLANS = {
     cells: [...['groth16', 'plonk'].flatMap((b) => K.DEPTHS.map((d) => cell('primary', b, d))), cell('bridge', 'groth16', 11)],
     proofs: [0, 1, 2, 3, 4, 5, 6, 7],
   },
+  // Packaging smoke test (chainbench/run.sh smoke): NOT scientific data; a subset of `dry` for regression checks.
+  smoke: {
+    cells: [cell('primary', 'groth16', 5), cell('primary', 'plonk', 10)],
+    proofs: [0],
+  },
   dry: {
     cells: [cell('primary', 'groth16', 5), cell('primary', 'groth16', 11), cell('primary', 'plonk', 10), cell('primary', 'plonk', 11), cell('bridge', 'groth16', 11)],
     proofs: [0, 1],

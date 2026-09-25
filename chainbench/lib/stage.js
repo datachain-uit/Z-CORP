@@ -3,7 +3,7 @@
 const fs = require('fs');
 const path = require('path');
 const C = require('./common');
-const P = require('./profiles');
+const P = require('../core/workload').module('profiles');
 function stage(name, workdir) {
   const p = P.get(name, workdir);
   if (fs.existsSync(p.root)) throw new Error(`stage directory already exists (use a fresh workdir): ${p.root}`);

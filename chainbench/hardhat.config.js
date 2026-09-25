@@ -1,12 +1,13 @@
 'use strict';
-// chainbench Hardhat configuration (CSI-CHAIN-LOCAL-01, CHAIN-PROTOCOL-v1). NOT the repository root config.
+// chainbench Hardhat configuration (workload-driven; see core/workload.js). NOT the repository root config.
 // The profile (primary | bridge) is chosen by CHAINBENCH_PROFILE; the project root is the staged source tree.
 require('@nomicfoundation/hardhat-ethers');
 const path = require('path');
 const { subtask } = require('hardhat/config');
 const { TASK_COMPILE_SOLIDITY_GET_SOLC_BUILD } = require('hardhat/builtin-tasks/task-names');
-const { EDR_NETWORK } = require('./lib/constants');
-const profile = require('./lib/profiles').get(process.env.CHAINBENCH_PROFILE || 'primary');
+const W = require('./core/workload');
+const { EDR_NETWORK } = W.module('constants');
+const profile = W.module('profiles').get(process.env.CHAINBENCH_PROFILE || 'primary');
 
 // solc 0.8.20 from the pinned npm package (soljson.js); no compiler download.
 subtask(TASK_COMPILE_SOLIDITY_GET_SOLC_BUILD, async (args) => {

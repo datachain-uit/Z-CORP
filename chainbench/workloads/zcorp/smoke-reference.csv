@@ -1,0 +1,31 @@
+cell_id,op,proof_id,kind,expected_status,status,revert_reason,return_value,gas_used,exec_gas_derived,calldata_bytes,calldata_zero_bytes,runtime_bytes,runtime_keccak,contract_address
+primary-groth16-d5,deploy_verifier,,tx,1,1,,,350084,275112,1406,51,1374,0xd2265cf2fd416385d635f7e4516dc0426e34ab18c61d5bbfdd683902ab2760f7,0x5FbDB2315678afecb367f032d93F642f64180aa3
+primary-groth16-d5,deploy_manager,,tx,1,1,,,565248,474544,2410,84,2140,0x3fa88dab92b4daae5449537045ac5d6e143ea11f41fcdff2d37adb5523454ace,0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512
+primary-groth16-d5,set_issuer,,tx,1,1,,,47900,26328,68,43,,,0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512
+primary-groth16-d5,add_root,,tx,1,1,,,47334,25770,36,1,,,0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512
+primary-groth16-d5,precheck_call,G16-d5-p0,call,call,call,,true,,,292,1,,,0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512
+primary-groth16-d5,verify_credential,G16-d5-p0,tx,1,1,,,223958,198298,292,1,,,0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512
+primary-groth16-d5,verify_proof_call,G16-d5-p0,call,call,call,,true,,,292,1,,,0x5FbDB2315678afecb367f032d93F642f64180aa3
+primary-groth16-d5,verify_proof_direct,G16-d5-p0,tx,1,1,,,214597,188937,292,1,,,0x5FbDB2315678afecb367f032d93F642f64180aa3
+primary-groth16-d5,neg_unknown_root,G16-d10-p0,tx,0,0,Invalid root,,32590,6954,292,3,,,0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512
+primary-groth16-d5,neg_tampered_call,G16-d5-p0,call,call,call,,false,,,292,1,,,0x5FbDB2315678afecb367f032d93F642f64180aa3
+primary-groth16-d5,neg_tampered,G16-d5-p0,tx,0,0,Invalid proof,,2908558,2882898,292,1,,,0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512
+primary-groth16-d5,neg_cross_depth_setup,G16-d10-p0,tx,1,1,,,47346,25770,36,0,,,0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512
+primary-groth16-d5,neg_cross_depth_call,G16-d10-p0,call,call,call,,false,,,292,3,,,0x5FbDB2315678afecb367f032d93F642f64180aa3
+primary-groth16-d5,neg_cross_depth,G16-d10-p0,tx,0,0,Invalid proof,,222900,197264,292,3,,,0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512
+primary-groth16-d5,neg_non_issuer,G16-d5-p0,tx,0,0,CredentialManager: not issuer,,24171,2607,36,1,,,0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512
+primary-plonk-d10,deploy_verifier,,tx,1,1,,,1222173,1083727,5445,168,5413,0x0f9e4e6a75f74410329f14fbc186bf6a563c32c6ade9bb87c537b598001df46a,0x5FbDB2315678afecb367f032d93F642f64180aa3
+primary-plonk-d10,deploy_manager,,tx,1,1,,,541930,452926,2302,81,2032,0x81cfa580fc010d5bf437f4e25120ed772a570f64d5503726e6beb874892ec653,0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512
+primary-plonk-d10,set_issuer,,tx,1,1,,,47900,26328,68,43,,,0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512
+primary-plonk-d10,add_root,,tx,1,1,,,47346,25770,36,0,,,0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512
+primary-plonk-d10,precheck_call,PLK-d10-p0,call,call,call,,true,,,804,4,,,0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512
+primary-plonk-d10,verify_credential,PLK-d10-p0,tx,1,1,,,300791,266975,804,4,,,0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512
+primary-plonk-d10,verify_proof_call,PLK-d10-p0,call,call,call,,true,,,804,4,,,0x5FbDB2315678afecb367f032d93F642f64180aa3
+primary-plonk-d10,verify_proof_direct,PLK-d10-p0,tx,1,1,,,291792,257976,804,4,,,0x5FbDB2315678afecb367f032d93F642f64180aa3
+primary-plonk-d10,neg_unknown_root,PLK-d11-p0,tx,0,0,Invalid root,,53070,19242,804,3,,,0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512
+primary-plonk-d10,neg_tampered_call,PLK-d10-p0,call,call,call,,false,,,804,4,,,0x5FbDB2315678afecb367f032d93F642f64180aa3
+primary-plonk-d10,neg_tampered,PLK-d10-p0,tx,0,0,Invalid proof,,299761,265945,804,4,,,0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512
+primary-plonk-d10,neg_cross_depth_setup,PLK-d11-p0,tx,1,1,,,47334,25770,36,1,,,0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512
+primary-plonk-d10,neg_cross_depth_call,PLK-d11-p0,call,call,call,,false,,,804,3,,,0x5FbDB2315678afecb367f032d93F642f64180aa3
+primary-plonk-d10,neg_cross_depth,PLK-d11-p0,tx,0,0,Invalid proof,,299149,265321,804,3,,,0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512
+primary-plonk-d10,neg_non_issuer,PLK-d10-p0,tx,0,0,CredentialManager: not issuer,,24183,2607,36,0,,,0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512

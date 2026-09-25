@@ -5,7 +5,7 @@ const { execFileSync } = require('child_process');
 const path = require('path');
 const { ethers } = require('ethers');
 const C = require('../lib/common');
-const K = require('../lib/constants');
+const K = require('../core/workload').module('constants');
 const arg = (n) => { const i = process.argv.indexOf(n); return i > 0 ? process.argv[i + 1] : null; };
 
 async function inEdr() {
