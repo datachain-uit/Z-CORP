@@ -1,5 +1,97 @@
 {
   "admin_id": "CSI-CHAIN-LOCAL-01",
+  "baseline": {
+    "campaign_binding": "workloads/zcorp/campaigns/CSI-CHAIN-LOCAL-01.json",
+    "image_records": [
+      "chainbench/docker/pins.env",
+      "chainbench/docker/IMAGE.json"
+    ],
+    "measurement_paths": [
+      "contracts",
+      "chainbench",
+      ":(exclude)chainbench/docker/IMAGE.json",
+      ":(exclude)chainbench/docker/pins.env",
+      ":(exclude)chainbench/README.md",
+      ":(exclude)chainbench/workloads/zcorp/record_campaign.py",
+      "csi/protocols/chain",
+      "csi/campaigns/chain/CSI-CHAIN-LOCAL-01/inputs",
+      "scripts/setup/generate_input_depth.js",
+      "scripts/setup/paths.js",
+      "ARTIFACTS.sha256"
+    ],
+    "measurement_paths_identical_to": "83a7eb7ca1c29ee7ce82041dc4ec046924fa7b83",
+    "tag": "chain-l1-baseline-20260925",
+    "tagged_commit": "the commit that adds this record and the committed image records (see the registry and `git rev-parse <tag>`)",
+    "workload": "zcorp"
+  },
+  "container_image": {
+    "apt_packages": [
+      "ca-certificates 20250419~deb12u1",
+      "git 1:2.39.5-0+deb12u3",
+      "python3 3.11.2-1+b1",
+      "python3-minimal 3.11.2-1+b1"
+    ],
+    "base_image": "node@sha256:48e4b67d85f87bd551df43704e24d252f56cc5f8e9718841aace50f19948f0f9",
+    "buildx_metadata": {
+      "buildx.build.ref": "desktop-linux/desktop-linux/ogquddnus20tfui86r3xcu0h5",
+      "containerimage.digest": "sha256:53d80311c0d3d2ff57b5eca3d8b1ace9eb4c45449fbb8b6596045dbb606e6cb6"
+    },
+    "built_at_utc": "20260925T111549Z",
+    "docker_host": {
+      "arch": "arm64",
+      "docker_cpus": "10",
+      "docker_mem_bytes": "16745824256",
+      "docker_os": "Docker Desktop",
+      "docker_server": "29.8.0",
+      "os": "Darwin",
+      "os_version": "26.6.2"
+    },
+    "geth_source": "official:ethereum/client-go@sha256:2dd7ef210a1a3fb87887676f7ead1b98161af83810928cdf6fc5b84bcdcc8ef4",
+    "identity_record": "chainbench/docker/IMAGE.json",
+    "identity_record_sha256": "5195be2fc2ad352d54501fd4e8eb689c262dd3cd45ca3ad5633da641cc7562bd",
+    "image_id": "sha256:53d80311c0d3d2ff57b5eca3d8b1ace9eb4c45449fbb8b6596045dbb606e6cb6",
+    "image_id_note": "the image id is machine-specific (apt layer); reproducibility is defined by the pinned base/geth digests, the lockfile and the recorded toolchain identity",
+    "network_at_run_time": "none: only loopback up, no IPv4 route, no non-loopback IPv6 route (core/netcheck.js; recorded per run in environment.json container.network_isolation)",
+    "os_release": "Debian GNU/Linux 12 (bookworm)",
+    "pins": "chainbench/docker/pins.env",
+    "pins_sha256": "0bc3bc198a81fa0990cba7b6510c856fb1a01139cb50ca800e00dae71f44668c",
+    "platform": "linux/arm64",
+    "toolchain": {
+      "edr_native": {
+        "file": "edr.linux-arm64-gnu.node",
+        "package": "@nomicfoundation/edr-linux-arm64-gnu",
+        "sha256": "17e6d355e924c5aa05b0e162ab63a15f62833408f03913aec497c886d8163ebc",
+        "version": "0.12.0-next.23"
+      },
+      "geth": {
+        "git_commit": "95665d5703e1023995a0ff93e4ce9eb77e8a59bd",
+        "go": "go1.24.13",
+        "sha256": "a437c0a5e17d4c740418fbae6657b62d695b71dda8c923112f22fe4e91d58f84",
+        "version": "1.16.9-stable"
+      },
+      "hardhat_console_sol_sha256": "5a6db75ebe2603ab1ce17c40f48447f3040268675f027a77fe5e9b236f4e31dd",
+      "lockfile_sha256": "0add12b819839bb7ebbb5a70d65d61bd1202fd1a2a1a0ca823e47d0fa2b068cd",
+      "package_json_sha256": "5ebd42186a72180ee3b10aad8484aa7fbfdd4165f9550fdb91ebc586925cc109",
+      "packages": {
+        "@nomicfoundation/edr": "0.12.0-next.23",
+        "@nomicfoundation/hardhat-ethers": "3.0.8",
+        "@openzeppelin/contracts": "4.9.0",
+        "ejs": "3.1.10",
+        "ethers": "6.13.5",
+        "ffjavascript": "0.3.1",
+        "hardhat": "2.29.1",
+        "snarkjs": "0.7.5",
+        "solc": "0.8.20"
+      },
+      "runtime": {
+        "arch": "arm64",
+        "libc": "glibc 2.36",
+        "node": "v22.23.2",
+        "npm": "10.9.8"
+      },
+      "soljson_sha256": "033dc42a16378dd036a475b8a7080af83cfae1841eb6848ce1667c56193972ba"
+    }
+  },
   "contracts": {
     "contracts/CredentialManager.sol": "05908953fe6e90ff50f148d23b1a16ab926bdb7ae80ff9d17af41cfc9019d5da",
     "contracts/Groth16LegacyVerifierDepth10.sol": "6f57bdf058976e33bd3d014ae7888d0b3a19281d86a7f06b65a73f736bc04d57",
@@ -31,6 +123,8 @@
   },
   "dry_run": {
     "cross_client": {
+      "a": "build/chainbench/dry-run/dry-83a7eb7-20260925T111609Z-edr-a",
+      "b": "build/chainbench/dry-run/dry-83a7eb7-20260925T111609Z-geth",
       "build_manifests_identical": true,
       "call_rows_compared": 25,
       "differences_per_field": {},
@@ -49,6 +143,8 @@
       "tx_rows_compared": 65
     },
     "determinism": {
+      "a": "build/chainbench/dry-run/dry-83a7eb7-20260925T111609Z-edr-a",
+      "b": "build/chainbench/dry-run/dry-83a7eb7-20260925T111609Z-edr-b",
       "build_manifests_identical": true,
       "call_rows_compared": 25,
       "differences_per_field": {},
@@ -60,53 +156,90 @@
       "rows_compared": 90,
       "tx_rows_compared": 65
     },
+    "environment": "packaged container (this record's container_image), --network none",
     "evidence_status": "engineering; not evidence (protocol section 10 item 7)",
-    "plan": "dry (Groth16 d5, d11; PLONK d10, d11; bridge Groth16 d11; 2 proofs per cell; all negative controls)",
+    "plan": "dry (Groth16 d5, d11; PLONK d10, d11; bridge Groth16 d11; proofs p0, p1; all negative controls)",
     "runs": {
       "edr-a": {
-        "commit": "e141816d2af3c83c76050294ed4e6ad1f05795be",
+        "commit": "83a7eb7ca1c29ee7ce82041dc4ec046924fa7b83",
         "deployments_runtime_match": true,
         "env": "edr",
         "env_check_pass": true,
-        "finished_at_utc": "2026-09-25T10:14:36.671Z",
-        "ops_csv_sha256": "146f6895e372da862b61de56f5b8ab6aa11f5620035b936d1c22bdd368af2e16",
+        "finished_at_utc": "2026-09-25T11:16:15.066Z",
+        "ops_csv_sha256": "51892c27581a71d677644d974d17d11dc31ca71e08f0ce5a8e834cc17cde842d",
         "plan": "dry",
-        "raw_dir": "build/campaigns/chain/dry-e141816-edr-a (git-ignored; engineering, not archived)",
+        "raw_dir": "build/chainbench/dry-run/dry-83a7eb7-20260925T111609Z-edr-a (git-ignored; engineering, not archived)",
         "rows": 90,
         "rows_expected": 90,
         "rows_failing_check": 0,
-        "run_id": "dry-e141816-edr-a",
-        "started_at_utc": "2026-09-25T10:14:30.001Z"
+        "run_id": "dry-83a7eb7-20260925T111609Z-edr-a",
+        "started_at_utc": "2026-09-25T11:16:10.604Z"
       },
       "edr-b": {
-        "commit": "e141816d2af3c83c76050294ed4e6ad1f05795be",
+        "commit": "83a7eb7ca1c29ee7ce82041dc4ec046924fa7b83",
         "deployments_runtime_match": true,
         "env": "edr",
         "env_check_pass": true,
-        "finished_at_utc": "2026-09-25T10:14:43.486Z",
-        "ops_csv_sha256": "cda786c73f2070fe29db71a82a9b03ab3b7b9019984cd8b4b6737292883f578d",
+        "finished_at_utc": "2026-09-25T11:16:20.683Z",
+        "ops_csv_sha256": "9ce29fcb9d34f4631fac4c0fb34e001d475b9ad1e12ef4f05ba0a353fac93eae",
         "plan": "dry",
-        "raw_dir": "build/campaigns/chain/dry-e141816-edr-b (git-ignored; engineering, not archived)",
+        "raw_dir": "build/chainbench/dry-run/dry-83a7eb7-20260925T111609Z-edr-b (git-ignored; engineering, not archived)",
         "rows": 90,
         "rows_expected": 90,
         "rows_failing_check": 0,
-        "run_id": "dry-e141816-edr-b",
-        "started_at_utc": "2026-09-25T10:14:36.809Z"
+        "run_id": "dry-83a7eb7-20260925T111609Z-edr-b",
+        "started_at_utc": "2026-09-25T11:16:16.178Z"
       },
       "geth": {
-        "commit": "e141816d2af3c83c76050294ed4e6ad1f05795be",
+        "commit": "83a7eb7ca1c29ee7ce82041dc4ec046924fa7b83",
         "deployments_runtime_match": true,
         "env": "geth",
         "env_check_pass": true,
-        "finished_at_utc": "2026-09-25T10:14:53.081Z",
-        "ops_csv_sha256": "96347bfb9c505b037f601aba0e4912a662bfbfa0810f2872cf6db8daec86d6cf",
+        "finished_at_utc": "2026-09-25T11:16:29.442Z",
+        "ops_csv_sha256": "341a1e77505316f3cf8d5f8040cbf006d1e9beb8e75f85df31f2afc38155cad0",
         "plan": "dry",
-        "raw_dir": "build/campaigns/chain/dry-e141816-geth (git-ignored; engineering, not archived)",
+        "raw_dir": "build/chainbench/dry-run/dry-83a7eb7-20260925T111609Z-geth (git-ignored; engineering, not archived)",
         "rows": 90,
         "rows_expected": 90,
         "rows_failing_check": 0,
-        "run_id": "dry-e141816-geth",
-        "started_at_utc": "2026-09-25T10:14:43.618Z"
+        "run_id": "dry-83a7eb7-20260925T111609Z-geth",
+        "started_at_utc": "2026-09-25T11:16:21.765Z"
+      }
+    },
+    "vs_readiness_dry_run": {
+      "edr": {
+        "a": "build/campaigns/chain/dry-e141816-edr-a",
+        "b": "build/chainbench/dry-run/dry-83a7eb7-20260925T111609Z-edr-a",
+        "build_manifests_identical": true,
+        "call_rows_compared": 25,
+        "differences_per_field": {},
+        "excluded_fields": [
+          "run_id"
+        ],
+        "field_value_comparisons": 4500,
+        "identical": true,
+        "rows_compared": 90,
+        "tx_rows_compared": 65
+      },
+      "geth": {
+        "a": "build/campaigns/chain/dry-e141816-geth",
+        "b": "build/chainbench/dry-run/dry-83a7eb7-20260925T111609Z-geth",
+        "build_manifests_identical": true,
+        "call_rows_compared": 25,
+        "differences_per_field": {},
+        "excluded_fields": [
+          "block_number",
+          "chain_id",
+          "client_version",
+          "env",
+          "gas_price_wei",
+          "run_id",
+          "tx_hash"
+        ],
+        "field_value_comparisons": 3960,
+        "identical": true,
+        "rows_compared": 90,
+        "tx_rows_compared": 65
       }
     }
   },
@@ -123,7 +256,7 @@
       "p256verify_valid_returns_1": false,
       "tx_gas_cap_2p24_plus_1_rejected": false
     },
-    "file": "build/campaigns/chain/dry-e141816-checks/env_check.json",
+    "file": "build/chainbench/dry-run/dry-83a7eb7-20260925T111609Z-geth/env_check.json",
     "geth_markers": {
       "clz_returns_255": true,
       "p256verify_invalid_returns_empty": true,
@@ -134,21 +267,29 @@
   },
   "experiment": "controlled on-chain verification (local L1)",
   "geth": {
-    "binary_sha256": {
+    "binary_used_sha256": "a437c0a5e17d4c740418fbae6657b62d695b71dda8c923112f22fe4e91d58f84",
+    "binary_used_version": "Geth\nVersion: 1.16.9-stable\nGit Commit: 95665d5703e1023995a0ff93e4ce9eb77e8a59bd\nGit Commit Date: 20260217\nArchitecture: arm64\nGo Version: go1.24.13\nOperating System: linux\nGOPATH=\nGOROOT=\n",
+    "client_version": "Geth/v1.16.9-stable-95665d57/linux-arm64/go1.24.13",
+    "dev_mode_forks": "through Osaka (AllDevChainProtocolChanges)",
+    "from_source_binary_sha256": {
       "geth-v1.16.9-linux-amd64": "13a12608f822e47dc96164417ca1033df905cd53992f1b40214dc36dcbb17137",
       "geth-v1.16.9-linux-arm64": "5551bdb5cbfe4c1e3879efe39676d8f7e5c6d978af110cf477f7c00a867f7d6e"
     },
-    "binary_used_sha256": "5551bdb5cbfe4c1e3879efe39676d8f7e5c6d978af110cf477f7c00a867f7d6e",
-    "build_recipe": "chainbench/geth/",
-    "client_version": "Geth/v1.16.9-stable-95665d57/linux-arm64/go1.24.7",
-    "dev_mode_forks": "through Osaka (AllDevChainProtocolChanges)",
-    "go": "go1.24.7",
+    "from_source_recipe": "chainbench/geth/",
     "source_commit": "95665d5703e1023995a0ff93e4ce9eb77e8a59bd",
+    "source_used": "official:ethereum/client-go@sha256:2dd7ef210a1a3fb87887676f7ead1b98161af83810928cdf6fc5b84bcdcc8ef4",
     "version": "v1.16.9"
   },
   "harness": {
-    "commit": "e141816d2af3c83c76050294ed4e6ad1f05795be",
-    "container_image": "none (pinned-environment record instead; see readiness report)",
+    "commit": "83a7eb7ca1c29ee7ce82041dc4ec046924fa7b83",
+    "edr_identity": {
+      "client_version_note": "web3_clientVersion carries the EDR Rust workspace version (crate edr_provider, CARGO_PKG_VERSION = 0.3.8 at npm release 0.12.0-next.23); the npm package version is authoritative",
+      "native_package": "@nomicfoundation/edr-linux-arm64-gnu",
+      "native_package_version": "0.12.0-next.23",
+      "native_sha256": "17e6d355e924c5aa05b0e162ab63a15f62833408f03913aec497c886d8163ebc",
+      "npm_package": "@nomicfoundation/edr",
+      "npm_version": "0.12.0-next.23"
+    },
     "edr_native_binary": {
       "file": "edr.linux-arm64-gnu.node",
       "package": "@nomicfoundation/edr-linux-arm64-gnu",
@@ -157,10 +298,10 @@
     "hardhat_console_sol_sha256": "5a6db75ebe2603ab1ce17c40f48447f3040268675f027a77fe5e9b236f4e31dd",
     "host": {
       "arch": "arm64",
-      "cpus": 4,
-      "os_release": "Ubuntu 22.04.5 LTS",
+      "cpus": 10,
+      "os_release": "Debian GNU/Linux 12 (bookworm)",
       "platform": "linux",
-      "release": "6.8.0-138-generic"
+      "release": "7.0.12-linuxkit"
     },
     "lockfile_sha256": "0add12b819839bb7ebbb5a70d65d61bd1202fd1a2a1a0ca823e47d0fa2b068cd",
     "node": "v22.23.2",
@@ -177,10 +318,12 @@
       "solc": "0.8.20"
     },
     "path": "chainbench",
-    "soljson_sha256": "033dc42a16378dd036a475b8a7080af83cfae1841eb6848ce1667c56193972ba",
-    "unchanged_at_record_head": "52d8036c96ebd69f6e9f15f7e8dbb7093f9c221b"
+    "reviewer_entry_point": "chainbench/run.sh (doctor, smoke, full-local-l1)",
+    "reviewer_readme": "chainbench/README.md",
+    "soljson_sha256": "033dc42a16378dd036a475b8a7080af83cfae1841eb6848ce1667c56193972ba"
   },
   "notes": [
+    "csi/campaigns/chain/CSI-CHAIN-LOCAL-01/notes/DRY-RUN-readiness-e141816.md",
     "csi/campaigns/chain/CSI-CHAIN-LOCAL-01/notes/DRY-RUN.md",
     "csi/campaigns/chain/CSI-CHAIN-LOCAL-01/notes/PROOFSET-GENERATION.md"
   ],
@@ -190,6 +333,92 @@
     "provenance": "csi/campaigns/chain/CSI-CHAIN-LOCAL-01/inputs/plonk-verifiers.provenance.json",
     "sha256": "e076fb94ab55c7d13b5baee6ba8589d5fe7483a5f6b7b302cd3127dfd1955dd8"
   },
+  "previous_dry_runs": [
+    {
+      "cross_client": {
+        "build_manifests_identical": true,
+        "call_rows_compared": 25,
+        "differences_per_field": {},
+        "excluded_fields": [
+          "block_number",
+          "chain_id",
+          "client_version",
+          "env",
+          "gas_price_wei",
+          "run_id",
+          "tx_hash"
+        ],
+        "field_value_comparisons": 3960,
+        "identical": true,
+        "rows_compared": 90,
+        "tx_rows_compared": 65
+      },
+      "determinism": {
+        "build_manifests_identical": true,
+        "call_rows_compared": 25,
+        "differences_per_field": {},
+        "excluded_fields": [
+          "run_id"
+        ],
+        "field_value_comparisons": 4500,
+        "identical": true,
+        "rows_compared": 90,
+        "tx_rows_compared": 65
+      },
+      "environment": "uncontainerised pinned VM environment (readiness)",
+      "evidence_status": "engineering; not evidence (protocol section 10 item 7)",
+      "harness_commit": "e141816d2af3c83c76050294ed4e6ad1f05795be",
+      "notes": "csi/campaigns/chain/CSI-CHAIN-LOCAL-01/notes/DRY-RUN-readiness-e141816.md",
+      "plan": "dry (Groth16 d5, d11; PLONK d10, d11; bridge Groth16 d11; 2 proofs per cell; all negative controls)",
+      "runs": {
+        "edr-a": {
+          "commit": "e141816d2af3c83c76050294ed4e6ad1f05795be",
+          "deployments_runtime_match": true,
+          "env": "edr",
+          "env_check_pass": true,
+          "finished_at_utc": "2026-09-25T10:14:36.671Z",
+          "ops_csv_sha256": "146f6895e372da862b61de56f5b8ab6aa11f5620035b936d1c22bdd368af2e16",
+          "plan": "dry",
+          "raw_dir": "build/campaigns/chain/dry-e141816-edr-a (git-ignored; engineering, not archived)",
+          "rows": 90,
+          "rows_expected": 90,
+          "rows_failing_check": 0,
+          "run_id": "dry-e141816-edr-a",
+          "started_at_utc": "2026-09-25T10:14:30.001Z"
+        },
+        "edr-b": {
+          "commit": "e141816d2af3c83c76050294ed4e6ad1f05795be",
+          "deployments_runtime_match": true,
+          "env": "edr",
+          "env_check_pass": true,
+          "finished_at_utc": "2026-09-25T10:14:43.486Z",
+          "ops_csv_sha256": "cda786c73f2070fe29db71a82a9b03ab3b7b9019984cd8b4b6737292883f578d",
+          "plan": "dry",
+          "raw_dir": "build/campaigns/chain/dry-e141816-edr-b (git-ignored; engineering, not archived)",
+          "rows": 90,
+          "rows_expected": 90,
+          "rows_failing_check": 0,
+          "run_id": "dry-e141816-edr-b",
+          "started_at_utc": "2026-09-25T10:14:36.809Z"
+        },
+        "geth": {
+          "commit": "e141816d2af3c83c76050294ed4e6ad1f05795be",
+          "deployments_runtime_match": true,
+          "env": "geth",
+          "env_check_pass": true,
+          "finished_at_utc": "2026-09-25T10:14:53.081Z",
+          "ops_csv_sha256": "96347bfb9c505b037f601aba0e4912a662bfbfa0810f2872cf6db8daec86d6cf",
+          "plan": "dry",
+          "raw_dir": "build/campaigns/chain/dry-e141816-geth (git-ignored; engineering, not archived)",
+          "rows": 90,
+          "rows_expected": 90,
+          "rows_failing_check": 0,
+          "run_id": "dry-e141816-geth",
+          "started_at_utc": "2026-09-25T10:14:43.618Z"
+        }
+      }
+    }
+  ],
   "proofset": {
     "count": 64,
     "csv_sha256": "9f82f3830bad61d8824f2a40f6705701d5ec4fba41ef95d0d340bb65c77ae9c4",
@@ -214,10 +443,17 @@
     "version": "v1"
   },
   "scientific_run": null,
-  "stage": "engineering dry run passed; full L1 scientific matrix not started; local-EraVM arm pending (protocol section 14)",
+  "smoke": {
+    "checks": 9,
+    "evidence_status": "packaging check; not data",
+    "pass": true,
+    "run_id": "smoke-20260925T111555Z"
+  },
+  "stage": "packaged (container) environment frozen; packaged engineering dry run passed; baseline tag chain-l1-baseline-20260925; full L1 scientific matrix not started; local-EraVM arm pending (protocol section 14)",
   "status": "ready",
   "unit_tests": {
     "failing": 0,
+    "log": "build/chainbench/smoke/smoke-20260925T111555Z/unit_tests.log",
     "passing": 12
   },
   "used_in_manuscript": "no",

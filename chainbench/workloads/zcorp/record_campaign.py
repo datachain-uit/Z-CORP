@@ -150,14 +150,16 @@ open(P(os.path.join(CAMP, 'campaign.json')), 'w').write(json.dumps(rec, indent=2
 
 # ---- DRY-RUN.md (packaged)
 S = list(csv.DictReader(open(P(os.path.join(D['edr-a'], 'summary.csv')))))
+refG = jl(os.path.join(B['reference_dry_run']['geth'], 'environment.json')) if os.path.exists(P(os.path.join(B['reference_dry_run']['geth'], 'environment.json'))) else {}
 det, xc, re_e, re_g = cmp['determinism'], cmp['cross_client'], cmp['edr_vs_readiness'], cmp['geth_vs_readiness']
 L = [f'# {AR["admin_id"]}: packaged engineering dry run (not evidence)', '',
      f"- **Commit:** `{head[:7]}`, clean tracked paths. **Baseline tag:** `{a.baseline_tag}`. **Plan:** `dry`, i.e. Groth16 d5 and d11, PLONK d10 and d11, and the bridge cell (Groth16 d11, July configuration), with proofs p0 and p1 and all negative controls.",
-     f"- **Environment:** the chainbench container `{fz_env['IMAGE_ID'][:19]}…` (base `{fz_env['BASE_IMAGE_PINNED']}`; geth `{fz_env['GETH_SOURCE_DESC']}`), platform linux/{fz_env['ARCH']}, run with `--network none` (loopback only), repository mounted read-only, one fresh container per run.",
+     f"- **Environment:** the chainbench container `{fz_env['IMAGE_ID'][:19]}…` (base `{fz_env['BASE_IMAGE_PINNED']}`; geth `{fz_env['GETH_SOURCE_DESC']}`), platform linux/{fz_env['ARCH']}, run with `--network none` (only loopback up, no routes; checked per run), repository mounted read-only, one fresh container per run.",
      f"- **Runs:** two from-scratch EDR runs, `{runs['edr-a']['run_id']}` and `{runs['edr-b']['run_id']}`, and a geth v1.16.9 `--dev` replay, `{runs['geth']['run_id']}`. Each has {runs['edr-a']['rows']} rows, the planned number, and every row passes its check.",
      f"- **Determinism (a against b):** identical = {det['identical']}. {det['rows_compared']} rows × {len(det['fields_compared'])} fields = {det['field_value_comparisons']} comparisons, 0 differences; build manifests byte-identical.",
      f"- **Cross-client (EDR a against geth):** identical = {xc['identical']}. {xc['field_value_comparisons']} comparisons (excluding {', '.join(xc['excluded_fields'])}), 0 differences.",
      f"- **Against the accepted readiness dry run:** EDR a against `{cmp_summary(re_e)['a']}`: identical = {re_e['identical']} ({re_e['field_value_comparisons']} comparisons, 0 differences, build manifests byte-identical). geth against `{cmp_summary(re_g)['a']}`: identical = {re_g['identical']} ({re_g['field_value_comparisons']} comparisons).",
+     f"- **Why the geth comparison uses the cross-client exclusions:** the geth binaries differ. The readiness run used `{refG.get('geth', {}).get('sha256', '?')[:12]}…` (the from-source build); the packaged run used `{envG['geth']['sha256'][:12]}…` ({gsrc.split('@')[0]}). Both report v1.16.9 at commit 95665d57, so `client_version` differs (the Go version). `block_number` and `gas_price_wei` are geth dev-mode scheduling fields; they also vary between two runs of the same geth binary. `gas_used`, status, revert data, return values, addresses, bytecode and `tx_hash` are identical.",
      f"- **Hardfork verification:** EDR `osaka` and geth show all four Osaka markers; the EDR `prague` control shows none. Unit tests: {rec['unit_tests']['passing']} passing, {rec['unit_tests']['failing']} failing. Smoke check: pass.",
      '', '## Per-cell summary (run a; gas units; engineering values)', '',
      '| cell | verifier deploy | manager deploy | setIssuer | addRoot | verifyCredential (min–max) | direct verifyProof (min–max) | verifier runtime B | manager runtime B | negatives |',

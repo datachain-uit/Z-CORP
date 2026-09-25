@@ -10,8 +10,8 @@
 
 - **What it checks:** Docker and its resources, the architecture, the toolchain image, the frozen proof set, the contract sources, the git state, the toolchain versions and hashes, and whether the output folders are writable. Each problem is printed as `[FAIL]` with a `Fix:` line.
 - **What it does not do:** it never runs an experiment.
-- **First run only:** it builds the pinned toolchain image. This needs network access once and takes about 5 minutes.
-- **Afterwards:** about 1 minute.
+- **First run only:** it builds the pinned toolchain image. This needs network access once and takes a few minutes.
+- **Afterwards:** a few seconds to a minute.
 
 ### 2. Run the smoke test
 
@@ -19,7 +19,7 @@
 ./chainbench/run.sh smoke
 ```
 
-- **What it runs:** a tiny subset, about 1–2 minutes. It compiles the contracts. It verifies one Groth16 proof and one PLONK proof through their managers. It sets up the managers and checks that an unknown root, a tampered proof and a non-issuer root publication are rejected. It writes and validates the CSV and runs the unit tests.
+- **What it runs:** a tiny subset, well under a minute. It compiles the contracts. It verifies one Groth16 proof and one PLONK proof through their managers. It sets up the managers and checks that an unknown root, a tampered proof and a non-issuer root publication are rejected. It writes and validates the CSV and runs the unit tests.
 - **Reference check:** every gas value must equal the accepted reference values exactly.
 - **Status:** not scientific data.
 
@@ -29,7 +29,7 @@
 ./chainbench/run.sh full-local-l1
 ```
 
-This runs the frozen procedure of `csi/protocols/chain/CHAIN-PROTOCOL-v1.md`, in about 5–10 minutes:
+This runs the frozen procedure of `csi/protocols/chain/CHAIN-PROTOCOL-v1.md`, in a few minutes:
 
 1. two independent EDR (Hardhat) runs, each from scratch in a fresh container;
 2. a geth v1.16.9 `--dev` replay of every operation;
@@ -56,12 +56,14 @@ It starts only if the doctor passes with a clean checkout of the baseline tag (`
 
 ## Time and disk
 
-| Step | Time (Apple silicon, 4+ CPUs) | Disk |
+| Step | Time | Disk |
 |---|---|---|
-| Image build (first `doctor` only) | 3–8 min, depending on the network | about 1.5 GB image |
-| `doctor` | about 1 min | – |
-| `smoke` | 1–2 min | < 1 MB |
-| `full-local-l1` | 5–10 min | a few MB |
+| Image build (first `doctor` only) | 1–5 min, depending on the network (45 s on the author's machine) | about 1 GB image (the npm dependencies alone are about 400 MB) |
+| `doctor` | about 15 s | – |
+| `smoke` | about 15 s | < 1 MB |
+| `full-local-l1` | about 2–5 min (estimated from the packaged dry run) | a few MB |
+
+The times were measured on an Apple M5 Mac with Docker Desktop (Engine 29.8; 10 vCPUs, 16 GB). The packaged dry run took 20 s for its three runs.
 
 Docker needs at least 2 CPUs and 4 GB of memory. Keep 5 GB of disk free.
 

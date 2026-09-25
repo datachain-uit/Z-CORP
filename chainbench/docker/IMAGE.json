@@ -1,0 +1,176 @@
+{
+  "schema": "chainbench-toolchain-identity/1",
+  "at_utc": "2026-09-25T11:15:50.601Z",
+  "toolchain": {
+    "runtime": {
+      "node": "v22.23.2",
+      "npm": "10.9.8",
+      "arch": "arm64",
+      "libc": "glibc 2.36"
+    },
+    "packages": {
+      "hardhat": "2.29.1",
+      "@nomicfoundation/edr": "0.12.0-next.23",
+      "@nomicfoundation/hardhat-ethers": "3.0.8",
+      "ethers": "6.13.5",
+      "snarkjs": "0.7.5",
+      "ffjavascript": "0.3.1",
+      "solc": "0.8.20",
+      "@openzeppelin/contracts": "4.9.0",
+      "ejs": "3.1.10"
+    },
+    "lockfile_sha256": "0add12b819839bb7ebbb5a70d65d61bd1202fd1a2a1a0ca823e47d0fa2b068cd",
+    "package_json_sha256": "5ebd42186a72180ee3b10aad8484aa7fbfdd4165f9550fdb91ebc586925cc109",
+    "edr_native": {
+      "package": "@nomicfoundation/edr-linux-arm64-gnu",
+      "version": "0.12.0-next.23",
+      "file": "edr.linux-arm64-gnu.node",
+      "sha256": "17e6d355e924c5aa05b0e162ab63a15f62833408f03913aec497c886d8163ebc"
+    },
+    "soljson_sha256": "033dc42a16378dd036a475b8a7080af83cfae1841eb6848ce1667c56193972ba",
+    "hardhat_console_sol_sha256": "5a6db75ebe2603ab1ce17c40f48447f3040268675f027a77fe5e9b236f4e31dd",
+    "geth": {
+      "sha256": "a437c0a5e17d4c740418fbae6657b62d695b71dda8c923112f22fe4e91d58f84",
+      "version": "1.16.9-stable",
+      "git_commit": "95665d5703e1023995a0ff93e4ce9eb77e8a59bd",
+      "go": "go1.24.13"
+    }
+  },
+  "geth_detail": {
+    "path": "/opt/geth/geth",
+    "sha256": "a437c0a5e17d4c740418fbae6657b62d695b71dda8c923112f22fe4e91d58f84",
+    "version": "1.16.9-stable",
+    "git_commit": "95665d5703e1023995a0ff93e4ce9eb77e8a59bd",
+    "go": "go1.24.13",
+    "arch": "arm64",
+    "source": "official:ethereum/client-go@sha256:2dd7ef210a1a3fb87887676f7ead1b98161af83810928cdf6fc5b84bcdcc8ef4"
+  },
+  "system": {
+    "os_release": "Debian GNU/Linux 12 (bookworm)",
+    "kernel": "7.0.12-linuxkit",
+    "cpus": 10,
+    "mem_bytes": 16745824256,
+    "git": "git version 2.39.5",
+    "python3": "Python 3.11.2",
+    "apt_packages": [
+      "ca-certificates 20250419~deb12u1",
+      "git 1:2.39.5-0+deb12u3",
+      "python3 3.11.2-1+b1",
+      "python3-minimal 3.11.2-1+b1"
+    ],
+    "network_interfaces": [
+      "bonding_masters",
+      "erspan0",
+      "gre0",
+      "gretap0",
+      "ip6_vti0",
+      "ip6gre0",
+      "ip6tnl0",
+      "ip_vti0",
+      "lo",
+      "sit0",
+      "tunl0"
+    ],
+    "network_isolation": {
+      "isolated": true,
+      "interfaces": [
+        "erspan0",
+        "gre0",
+        "gretap0",
+        "ip6_vti0",
+        "ip6gre0",
+        "ip6tnl0",
+        "ip_vti0",
+        "lo",
+        "sit0",
+        "tunl0"
+      ],
+      "up_non_loopback": [],
+      "loopback_up": true,
+      "ipv4_routes": 0,
+      "ipv6_non_loopback_routes": 0
+    }
+  },
+  "container": {
+    "image_id": "sha256:53d80311c0d3d2ff57b5eca3d8b1ace9eb4c45449fbb8b6596045dbb606e6cb6",
+    "image_ref": "chainbench-l1:local",
+    "base_image": "node@sha256:48e4b67d85f87bd551df43704e24d252f56cc5f8e9718841aace50f19948f0f9",
+    "geth_source": "official:ethereum/client-go@sha256:2dd7ef210a1a3fb87887676f7ead1b98161af83810928cdf6fc5b84bcdcc8ef4",
+    "network": "none"
+  },
+  "host": {
+    "os": "Darwin",
+    "os_version": "26.6.2",
+    "arch": "arm64",
+    "docker_server": "29.8.0",
+    "docker_os": "Docker Desktop",
+    "docker_cpus": "10",
+    "docker_mem_bytes": "16745824256"
+  },
+  "build_metadata": {
+    "buildx.build.provenance": {
+      "builder": {
+        "id": ""
+      },
+      "buildType": "https://mobyproject.org/buildkit@v1",
+      "materials": [
+        {
+          "uri": "pkg:docker/ethereum/client-go?digest=sha256:2dd7ef210a1a3fb87887676f7ead1b98161af83810928cdf6fc5b84bcdcc8ef4&platform=linux%2Farm64",
+          "digest": {
+            "sha256": "2dd7ef210a1a3fb87887676f7ead1b98161af83810928cdf6fc5b84bcdcc8ef4"
+          }
+        },
+        {
+          "uri": "pkg:docker/node?digest=sha256:48e4b67d85f87bd551df43704e24d252f56cc5f8e9718841aace50f19948f0f9&platform=linux%2Farm64",
+          "digest": {
+            "sha256": "48e4b67d85f87bd551df43704e24d252f56cc5f8e9718841aace50f19948f0f9"
+          }
+        }
+      ],
+      "invocation": {
+        "configSource": {
+          "entryPoint": "Dockerfile"
+        },
+        "parameters": {
+          "frontend": "dockerfile.v0",
+          "args": {
+            "build-arg:BASE_IMAGE": "node@sha256:48e4b67d85f87bd551df43704e24d252f56cc5f8e9718841aace50f19948f0f9",
+            "build-arg:GETH_STAGE": "ethereum/client-go@sha256:2dd7ef210a1a3fb87887676f7ead1b98161af83810928cdf6fc5b84bcdcc8ef4"
+          },
+          "locals": [
+            {
+              "name": "context"
+            },
+            {
+              "name": "dockerfile"
+            }
+          ],
+          "root": {
+            "configSource": {
+              "path": "Dockerfile"
+            },
+            "request": {
+              "args": {
+                "build-arg:BASE_IMAGE": "node@sha256:48e4b67d85f87bd551df43704e24d252f56cc5f8e9718841aace50f19948f0f9",
+                "build-arg:GETH_STAGE": "ethereum/client-go@sha256:2dd7ef210a1a3fb87887676f7ead1b98161af83810928cdf6fc5b84bcdcc8ef4"
+              }
+            }
+          },
+          "compatibilityVersion": 30
+        },
+        "environment": {
+          "dockerfileVersion": "1.27.0",
+          "platform": "linux/arm64"
+        }
+      }
+    },
+    "buildx.build.ref": "desktop-linux/desktop-linux/ogquddnus20tfui86r3xcu0h5",
+    "containerimage.descriptor": {
+      "mediaType": "application/vnd.oci.image.index.v1+json",
+      "digest": "sha256:53d80311c0d3d2ff57b5eca3d8b1ace9eb4c45449fbb8b6596045dbb606e6cb6",
+      "size": 856
+    },
+    "containerimage.digest": "sha256:53d80311c0d3d2ff57b5eca3d8b1ace9eb4c45449fbb8b6596045dbb606e6cb6",
+    "image.name": "docker.io/library/chainbench-l1:local"
+  }
+}
