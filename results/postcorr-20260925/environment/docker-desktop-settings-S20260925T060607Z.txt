@@ -1,0 +1,10 @@
+# file: settings-store.json
+# key names:
+AutoStart DesktopTerminalEnabled DisplayedOnboarding DockerAppLaunchPath EnableDockerAI LastContainerdSnapshotterEnable LicenseTermsVersion MemoryMiB SettingsVersion ShowInstallScreen UpdateInstallerPid UpdateInstallTime UpdatePreviousVersion UseContainerdSnapshotter 
+# resource/VM/update values:
+  "LastContainerdSnapshotterEnable" => 1777531247
+  "MemoryMiB" => 16384
+  "UpdateInstallerPid" => 0
+  "UpdateInstallTime" => 0
+  "UpdatePreviousVersion" => ""
+  "UseContainerdSnapshotter" => true

@@ -1,0 +1,14 @@
+== docker desktop version
+Docker Desktop CLI plugin version: v0.4.4
+== docker desktop status
+Name                Value
+Status              stopped
+SessionID           cca21bf4-82d4-468d-8683-b8c3bad618ac
+== docker desktop update --help
+Usage:  docker desktop update
+
+Manage Docker Desktop updates
+
+Options:
+  -k, --check-only   Check for updates without applying them
+  -q, --quiet        Quietly check and apply updates

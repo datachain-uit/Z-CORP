@@ -1,0 +1,45 @@
+#0 building with "desktop-linux" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 1.04kB done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/node:18.20.8-bookworm-slim@sha256:f9ab18e354e6855ae56ef2b290dd225c1e51a564f87584b9bd21dd651838830e
+#2 DONE 0.1s
+
+#3 [internal] load .dockerignore
+#3 transferring context: 58B done
+#3 DONE 0.0s
+
+#4 [internal] load build context
+#4 transferring context: 627B done
+#4 DONE 0.0s
+
+#5 [1/6] FROM docker.io/library/node:18.20.8-bookworm-slim@sha256:f9ab18e354e6855ae56ef2b290dd225c1e51a564f87584b9bd21dd651838830e
+#5 resolve docker.io/library/node:18.20.8-bookworm-slim@sha256:f9ab18e354e6855ae56ef2b290dd225c1e51a564f87584b9bd21dd651838830e done
+#5 DONE 0.0s
+
+#6 [3/6] COPY package.json package-lock.json ./
+#6 CACHED
+
+#7 [2/6] WORKDIR /opt/zcorp
+#7 CACHED
+
+#8 [4/6] RUN npm ci --omit=dev --ignore-scripts --no-audit --no-fund && npm cache clean --force
+#8 CACHED
+
+#9 [5/6] COPY lib ./lib
+#9 CACHED
+
+#10 [6/6] COPY harness.js preflight.js provenance.js make_schedule.js summarize_prover.js record_controls.js campaign_state.js validate_round.js check_resume_test.js ./
+#10 CACHED
+
+#11 exporting to image
+#11 exporting layers done
+#11 exporting manifest sha256:257d9d8a106dcb9efc1768136119106e88e314d6779be543bdbe49e3b267e5a5 done
+#11 exporting config sha256:3f3ad4add97c954e9492e621f9844671c0ccf0ae51495c1fef0d09af0d2d32ab done
+#11 exporting attestation manifest sha256:e8db3c08c65401a97367a66c24080c027a6ba7cf66a42dd41ae18751231488c2 done
+#11 exporting manifest list sha256:50c5f26d2c05b460aa702d89700b74f817ea4adce9d64a5abacaae7a9bb671c8 done
+#11 naming to docker.io/library/zcorp-bench:v3 done
+#11 unpacking to docker.io/library/zcorp-bench:v3 done
+#11 DONE 0.0s

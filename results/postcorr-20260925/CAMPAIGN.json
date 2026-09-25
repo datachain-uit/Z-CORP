@@ -1,0 +1,170 @@
+{
+  "protocol_version": "v3",
+  "campaign_id": "campaign-20260925T060607Z",
+  "mode": "campaign",
+  "plan_name": "campaign",
+  "created_utc": "2026-09-25T06:06:17.002Z",
+  "schedule_seed": "zcorp-rerun-v3",
+  "profiles": [
+    {
+      "id": "cpu2",
+      "cpuset": "1-2",
+      "cpus": 2
+    },
+    {
+      "id": "cpu4",
+      "cpuset": "1-4",
+      "cpus": 4
+    },
+    {
+      "id": "cpu8",
+      "cpuset": "1-8",
+      "cpus": 8
+    }
+  ],
+  "plan": {
+    "primary_configs": [
+      "groth16:5",
+      "groth16:6",
+      "groth16:7",
+      "groth16:8",
+      "groth16:9",
+      "groth16:10",
+      "groth16:11",
+      "groth16:12",
+      "groth16:13",
+      "groth16:14",
+      "groth16:15",
+      "plonk:5",
+      "plonk:6",
+      "plonk:7",
+      "plonk:8",
+      "plonk:9",
+      "plonk:10",
+      "plonk:11",
+      "plonk:12",
+      "plonk:13",
+      "plonk:14",
+      "plonk:15"
+    ],
+    "primary_rounds": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "groth16_only_rounds": [
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "diag_configs": [
+      "groth16:5",
+      "groth16:7",
+      "groth16:8",
+      "groth16:15",
+      "plonk:5",
+      "plonk:10",
+      "plonk:11",
+      "plonk:15"
+    ],
+    "diag_rounds": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "warmup_in_process": [
+      "groth16:5",
+      "plonk:5"
+    ],
+    "p7_depths": [
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15
+    ]
+  },
+  "expect": {
+    "arch": "arm64",
+    "machine": "aarch64",
+    "cpu_implementer": "0x61",
+    "cgroup_version": 2,
+    "memory_bytes": 8589934592,
+    "node": "v18.20.8",
+    "snarkjs": "0.7.5",
+    "ffjavascript": "0.3.1",
+    "fastfile": "0.0.20",
+    "node_options": "--require /opt/zcorp/lib/cpu-visibility.js --max-old-space-size=4096"
+  },
+  "repo": {
+    "commit": "dc13ddd3e4561e5d69fe372fe3cb2d550bfb2b81",
+    "dirty": true,
+    "status_sha256": "497986a44ebfb3bd04bed109c83fd83f37fad6e00a636bb06da6b1f653b6ce19",
+    "campaign_paths": "bench scripts/setup circuits contracts test ARTIFACTS.sha256 PROVENANCE.md",
+    "campaign_paths_status_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "image": {
+    "built_image_id": "sha256:50c5f26d2c05b460aa702d89700b74f817ea4adce9d64a5abacaae7a9bb671c8",
+    "tag": "zcorp-bench:campaign-20260925T060607Z",
+    "base_image_ref": "node:18.20.8-bookworm-slim@sha256:f9ab18e354e6855ae56ef2b290dd225c1e51a564f87584b9bd21dd651838830e",
+    "base_arm64_manifest_digest": "sha256:0cc5f8897ffbf799d16ffe58bf3ce6242d23e5f9aa658e55b8d5ca8fc7f01bad",
+    "platform": "linux/arm64"
+  },
+  "environment": {
+    "docker_desktop": "4.92.0",
+    "engine": "29.8.0",
+    "kernel": "7.0.12-linuxkit",
+    "vm_ncpu": "10",
+    "vm_mem_bytes": "16745824256",
+    "configured_memory_mib": "16384"
+  },
+  "host_files_sha256": {
+    "bench/run-campaign.sh": "66616d03b0b8b7f53d251a7dfa0ea2112e2785ee72960c0fee335d51aede7133",
+    "bench/compose.yaml": "ea721f6e792fda4fe0646138544a3d1d3ae9bfa99d562a4c23b4bd1003e50e13",
+    "bench/Dockerfile": "cacd85666c51ecd7f0f75f6c6252a9750989415c8bc06f9d5d110c3a6f2af728"
+  },
+  "manifest_sha256": "9a7829fe2584259f1dd0dc45cf73c5ce904fce7e61e964fb7958826f156b43be",
+  "adapter_sha256": "749eea66bb9bf3256f1afbabd0119dd67c1fca95c3174c8373b49f9470942867",
+  "harness_sha256": {
+    "lib/cpu-visibility.js": "749eea66bb9bf3256f1afbabd0119dd67c1fca95c3174c8373b49f9470942867",
+    "lib/common.js": "a8b02465922646ce80cfd466a849d36e974cbaf74afc11fa2973868721a96823",
+    "lib/checks.js": "24a2d289b4bedfeb811cd4b9bf3b53d3fc6dc002805b9ef7cf786668c65f5111",
+    "lib/pipeline.js": "d8df078a337658d02fdd3efbccb417921b2119f794774f971b2cf30525cb3fec",
+    "lib/schema.js": "031f746388c9708080e2ab1b74e40bd6d1cce76cdd399dc2369d5611f0b31da8",
+    "lib/validate.js": "40370dd7f8f8bf82239fb3cfb7fc0accbd6bff99f75e9e1f3f468288148316f8",
+    "harness.js": "3ab8a67a35f0da6979d247589d0cf776af0a08f724996e41296f1aa884215535",
+    "preflight.js": "8f785894c8e823b93f1badb72654fee61fde021281a689bc04235919a0d2d508",
+    "provenance.js": "10d4f5a2ad7317a6f064b99c2122293f113d0567f156e65af2110533795755a2",
+    "make_schedule.js": "2536dc53ce326433db4cd36fe564bb5bfce17285d4f47a94922e6f9f2013d6cc",
+    "summarize_prover.js": "3fde442f455f8fb2cef48c03cca53d1717f8efc71761df46a0f365a08cf42a19",
+    "record_controls.js": "acf81fe1cc308352e0c43ded8285ea15ee2101b4fbf2a52a9d9788f02797172e",
+    "campaign_state.js": "1387f2d7b5ba5bb96adbb1d6e266c3f71f8b5b84e5f7012e133b20757dde05ea",
+    "validate_round.js": "b9754e4216e4a1b2277bc9ebb1492a92825fdcfdd9a4c5b36c0209a0d79c6d31",
+    "check_resume_test.js": "440eaf26af6dd76921e7c7e0c59acb8b6f6aafcc5c33808c45ae34eb89440a1d",
+    "package-lock.json": "5774be4171d9433dbb49700fcb44053739f086ade74cd8cbec85889a01a104e2"
+  },
+  "input_generator_sha256": {
+    "scripts/setup/generate_input_depth.js": "4d3f34f781b087f432ccf74a0f0d3ec68018f396ab9efb77f5aa7efa028f7f44",
+    "scripts/setup/paths.js": "004b6e77f5b2298c08506930a4281134649e96575f42038718e34aad6493be3b"
+  },
+  "schedule_sha256": "f7e6de3bbd1c9d24b0c41909414014c4e9cd1ee2ff2179c845aec8b9464fbb95",
+  "execution_plan_sha256": "99fb360ccb801606ee13a7aa03705522aceb5845a0d62affd647d9a2b0badc94"
+}

@@ -1,0 +1,11 @@
+{
+  "session_id": "S20260925T060607Z",
+  "manifest_before_ok": true,
+  "manifest_after_ok": true,
+  "manifest_entries_ok_after": 161,
+  "git_head_before": "dc13ddd3e4561e5d69fe372fe3cb2d550bfb2b81",
+  "git_head_after": "dc13ddd3e4561e5d69fe372fe3cb2d550bfb2b81",
+  "git_head_unchanged": true,
+  "git_status_unchanged": true,
+  "git_status_sha256_before": "497986a44ebfb3bd04bed109c83fd83f37fad6e00a636bb06da6b1f653b6ce19"
+}

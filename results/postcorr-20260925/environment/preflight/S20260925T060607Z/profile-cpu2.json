@@ -1,0 +1,154 @@
+{
+  "utc": "2026-09-25T06:08:23.944Z",
+  "campaign_id": "campaign-20260925T060607Z",
+  "profile": "cpu2",
+  "image_id": "sha256:50c5f26d2c05b460aa702d89700b74f817ea4adce9d64a5abacaae7a9bb671c8",
+  "assertions_passed": true,
+  "failures": [],
+  "environment": {
+    "utc": "2026-09-25T06:08:23.940Z",
+    "container_id": "6c412d809ff6",
+    "profile": "cpu2",
+    "zcorp_cpus_env": "2",
+    "node_options": "--require /opt/zcorp/lib/cpu-visibility.js --max-old-space-size=4096",
+    "node": "v18.20.8",
+    "libuv": "1.44.2",
+    "v8": "10.2.154.26-node.39",
+    "process_arch": "arm64",
+    "machine": "aarch64",
+    "kernel": "7.0.12-linuxkit",
+    "os_release": "Debian GNU/Linux 12 (bookworm)",
+    "cpuinfo": {
+      "implementer": "0x61",
+      "part": "0x000",
+      "model_name": null
+    },
+    "os_cpus_length": 2,
+    "available_parallelism": 2,
+    "adapter": {
+      "zcorp_cpus": 2,
+      "cpuset": "1-2",
+      "cpuset_source": "/sys/fs/cgroup/cpuset.cpus.effective",
+      "cpuset_ids": [
+        1,
+        2
+      ],
+      "available_parallelism": 2,
+      "os_cpus_before_adapter": 10,
+      "os_cpus_after_adapter": 2
+    },
+    "heap_size_limit_mb": 4144,
+    "os_totalmem_gib": 15.6,
+    "packages": {
+      "snarkjs": "0.7.5",
+      "ffjavascript_used_by_snarkjs": "0.3.1",
+      "fastfile": "0.0.20",
+      "binfileutils": "0.0.12",
+      "r1csfile": "0.0.48",
+      "circom_runtime": "0.1.28",
+      "circom2": "0.2.16",
+      "circomlib": "2.0.5"
+    },
+    "cgroup": {
+      "version": 2,
+      "cpuset_effective": "1-2",
+      "cpu_max": "max 100000",
+      "quota_unlimited": true,
+      "memory_max_bytes": 8589934592,
+      "swap_max": "0",
+      "swap_disabled": true,
+      "memory_peak_bytes": 14389248,
+      "oom_kill": 0,
+      "oom": 0,
+      "nr_throttled": 0
+    }
+  },
+  "repo_readonly": {
+    "readonly": true,
+    "error": "EROFS"
+  },
+  "proofs": [
+    {
+      "backend": "groth16",
+      "depth": 5,
+      "zkey_mode": "path",
+      "proof_verifies": true,
+      "public_root_equals_committed": true,
+      "input_matches_committed": true,
+      "shifted_root_rejected": true
+    },
+    {
+      "backend": "plonk",
+      "depth": 10,
+      "zkey_mode": "path",
+      "proof_verifies": true,
+      "public_root_equals_committed": true,
+      "input_matches_committed": true,
+      "shifted_root_rejected": true
+    },
+    {
+      "backend": "plonk",
+      "depth": 11,
+      "zkey_mode": "path",
+      "proof_verifies": true,
+      "public_root_equals_committed": true,
+      "input_matches_committed": true,
+      "shifted_root_rejected": true
+    },
+    {
+      "backend": "groth16",
+      "depth": 5,
+      "zkey_mode": "mem",
+      "proof_verifies": true,
+      "public_root_equals_committed": true,
+      "input_matches_committed": true,
+      "shifted_root_rejected": true
+    },
+    {
+      "backend": "groth16",
+      "depth": 11,
+      "zkey_mode": "mem",
+      "proof_verifies": true,
+      "public_root_equals_committed": true,
+      "input_matches_committed": true,
+      "shifted_root_rejected": true
+    },
+    {
+      "backend": "plonk",
+      "depth": 5,
+      "zkey_mode": "mem",
+      "proof_verifies": true,
+      "public_root_equals_committed": true,
+      "input_matches_committed": true,
+      "shifted_root_rejected": true
+    },
+    {
+      "backend": "plonk",
+      "depth": 11,
+      "zkey_mode": "mem",
+      "proof_verifies": true,
+      "public_root_equals_committed": true,
+      "input_matches_committed": true,
+      "shifted_root_rejected": true
+    }
+  ],
+  "ffjs_concurrency": 2,
+  "proofs_passed": true,
+  "concurrency_passed": true,
+  "cgroup_after": {
+    "version": 2,
+    "cpuset_effective": "1-2",
+    "cpu_max": "max 100000",
+    "quota_unlimited": true,
+    "memory_max_bytes": 8589934592,
+    "swap_max": "0",
+    "swap_disabled": true,
+    "memory_peak_bytes": 781799424,
+    "oom_kill": 0,
+    "oom": 0,
+    "nr_throttled": 0
+  },
+  "resource_flags_passed": true,
+  "passed": true,
+  "session_id": "S20260925T060607Z"
+}

@@ -1,0 +1,16 @@
+{
+  "no_adapter": "control cpuset, adapter not loaded (ffjavascript sizes its pool from all VM CPUs)",
+  "no_adapter_exit": 0,
+  "no_adapter_os_cpus": 10,
+  "no_adapter_available_parallelism": 2,
+  "no_adapter_ffjs_concurrency": 10,
+  "mismatch": "control cpuset with ZCORP_CPUS = 2 x its size (adapter must abort)",
+  "mismatch_exit": 97,
+  "mismatch_stderr": "[cpu-visibility] ABORT: effective cpuset \"1-2\" has 2 CPU(s), ZCORP_CPUS=4",
+  "quota_only": "CFS quota (--cpus) without cpuset, ZCORP_CPUS = quota (adapter must abort)",
+  "quota_only_exit": 97,
+  "quota_only_stderr": "[cpu-visibility] ABORT: effective cpuset \"0-9\" has 10 CPU(s), ZCORP_CPUS=2",
+  "control_cpuset_size": 2,
+  "passed": true,
+  "session_id": "S20260925T060607Z"
+}

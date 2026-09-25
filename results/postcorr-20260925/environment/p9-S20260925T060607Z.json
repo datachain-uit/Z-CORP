@@ -1,0 +1,15 @@
+{
+  "session_id": "S20260925T060607Z",
+  "enforced_in_this_mode": true,
+  "power_source": "AC Power",
+  "low_power_mode": "0",
+  "caffeinate_pid": "2017",
+  "caffeinate_alive": "1",
+  "caffeinate_comm": "caffeinate",
+  "caffeinate_assertions": "5",
+  "caffeinate_ok": true,
+  "conditions_met": true,
+  "self_test_battery_rejected": true,
+  "self_test_low_power_mode_rejected": true,
+  "self_test_no_caffeinate_rejected": true
+}

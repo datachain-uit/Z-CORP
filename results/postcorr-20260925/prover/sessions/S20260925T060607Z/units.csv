@@ -1,0 +1,17 @@
+kind,round,attempt,profiles
+primary,0,1,cpu8;cpu2;cpu4
+primary,1,1,cpu4;cpu8;cpu2
+primary,2,1,cpu2;cpu4;cpu8
+primary,3,1,cpu8;cpu2;cpu4
+primary,4,1,cpu2;cpu4;cpu8
+primary,5,1,cpu8;cpu2;cpu4
+primary,6,1,cpu4;cpu8;cpu2
+primary,7,1,cpu8;cpu2;cpu4
+primary,8,1,cpu2;cpu4;cpu8
+primary,9,1,cpu4;cpu8;cpu2
+primary,10,1,cpu8;cpu2;cpu4
+diag,1,1,cpu2;cpu4;cpu8
+diag,2,1,cpu4;cpu8;cpu2
+diag,3,1,cpu8;cpu2;cpu4
+diag,4,1,cpu4;cpu8;cpu2
+diag,5,1,cpu8;cpu2;cpu4

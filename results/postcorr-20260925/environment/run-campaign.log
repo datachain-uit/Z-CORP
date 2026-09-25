@@ -1,0 +1,357 @@
+== Z-CORP v3 campaign: campaign campaign-20260925T060607Z, session S20260925T060607Z -> /Users/votankhoa/Desktop/Workspace/Z-CORP/Z-CORP/results/postcorr-20260925
+session_id=S20260925T060607Z
+hw.model=Mac17,2
+cpu.brand=Apple M5
+hw.physicalcpu=10
+perflevel0=Super physicalcpu=4
+perflevel1=Efficiency physicalcpu=6
+hw.memsize=34359738368
+macos=26.6.2 build=25G83
+model_name=MacBook Pro
+chip=Apple M5
+power_source=AC Power
+low_power_mode=0
+docker_desktop_app_version=4.92.0
+docker_context=desktop-linux
+git=git version 2.54.0 (Apple Git-157)
+caffeinate_pid=2017
+caffeinate_alive=1
+caffeinate_comm=caffeinate
+caffeinate_assertions=5
+P9: enforced=true met=true (power='AC Power' lowpower=0 caffeinate pid=2017 alive=1 comm=caffeinate assertions=5); self-tests battery=true lpm=true nocaff=true
+docker: desktop=4.92.0 engine=29.8.0 ncpu=10 mem_bytes=16745824256 configured_memory_mib=16384 arch=aarch64 cgroup=v2 kernel=7.0.12-linuxkit
+manifest before: 161 OK, exit 0; git HEAD dc13ddd3e4561e5d69fe372fe3cb2d550bfb2b81 dirty=true; uncommitted campaign paths: 0
+image zcorp-bench:campaign-20260925T060607Z id=sha256:50c5f26d2c05b460aa702d89700b74f817ea4adce9d64a5abacaae7a9bb671c8 platform=linux/arm64
+ Container zcorp-bench-tools-run-96ca2c759e82 Creating 
+ Container zcorp-bench-tools-run-96ca2c759e82 Created 
+campaign campaign-20260925T060607Z (campaign, plan campaign): 48 containers scheduled
+  1. primary round 0 position 1: cpu8
+  2. primary round 0 position 2: cpu2
+  3. primary round 0 position 3: cpu4
+  4. primary round 1 position 1: cpu4
+  5. primary round 1 position 2: cpu8
+  6. primary round 1 position 3: cpu2
+  7. primary round 2 position 1: cpu2
+  8. primary round 2 position 2: cpu4
+  9. primary round 2 position 3: cpu8
+  10. primary round 3 position 1: cpu8
+  11. primary round 3 position 2: cpu2
+  12. primary round 3 position 3: cpu4
+  13. primary round 4 position 1: cpu2
+  14. primary round 4 position 2: cpu4
+  15. primary round 4 position 3: cpu8
+  16. primary round 5 position 1: cpu8
+  17. primary round 5 position 2: cpu2
+  18. primary round 5 position 3: cpu4
+  19. primary round 6 position 1: cpu4
+  20. primary round 6 position 2: cpu8
+  21. primary round 6 position 3: cpu2
+  22. primary round 7 position 1: cpu8
+  23. primary round 7 position 2: cpu2
+  24. primary round 7 position 3: cpu4
+  25. primary round 8 position 1: cpu2
+  26. primary round 8 position 2: cpu4
+  27. primary round 8 position 3: cpu8
+  28. primary round 9 position 1: cpu4
+  29. primary round 9 position 2: cpu8
+  30. primary round 9 position 3: cpu2
+  31. primary round 10 position 1: cpu8
+  32. primary round 10 position 2: cpu2
+  33. primary round 10 position 3: cpu4
+  34. diag round 1 position 1: cpu2
+  35. diag round 1 position 2: cpu4
+  36. diag round 1 position 3: cpu8
+  37. diag round 2 position 1: cpu4
+  38. diag round 2 position 2: cpu8
+  39. diag round 2 position 3: cpu2
+  40. diag round 3 position 1: cpu8
+  41. diag round 3 position 2: cpu2
+  42. diag round 3 position 3: cpu4
+  43. diag round 4 position 1: cpu4
+  44. diag round 4 position 2: cpu8
+  45. diag round 4 position 3: cpu2
+  46. diag round 5 position 1: cpu8
+  47. diag round 5 position 2: cpu2
+  48. diag round 5 position 3: cpu4
+ Container zcorp-bench-tools-run-13b4b0fb5a89 Creating 
+ Container zcorp-bench-tools-run-13b4b0fb5a89 Created 
+(node:7) Warning: Closing file descriptor 51 on garbage collection
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:7) [DEP0137] DeprecationWarning: Closing a FileHandle object on garbage collection is deprecated. Please close FileHandle objects explicitly using FileHandle.prototype.close(). In the future, an error will be thrown if a file descriptor is closed during garbage collection.
+P7 d=5: PASS
+(node:7) Warning: Closing file descriptor 51 on garbage collection
+P7 d=6: PASS
+(node:7) Warning: Closing file descriptor 51 on garbage collection
+P7 d=7: PASS
+(node:7) Warning: Closing file descriptor 51 on garbage collection
+P7 d=8: PASS
+(node:7) Warning: Closing file descriptor 51 on garbage collection
+P7 d=9: PASS
+(node:7) Warning: Closing file descriptor 51 on garbage collection
+P7 d=10: PASS
+(node:7) Warning: Closing file descriptor 51 on garbage collection
+P7 d=11: PASS
+(node:7) Warning: Closing file descriptor 51 on garbage collection
+P7 d=12: PASS
+(node:7) Warning: Closing file descriptor 51 on garbage collection
+P7 d=13: PASS
+(node:7) Warning: Closing file descriptor 51 on garbage collection
+P7 d=14: PASS
+(node:7) Warning: Closing file descriptor 51 on garbage collection
+P7 d=15: PASS
+P7 overall: PASS
+ Container zcorp-bench-cpu2-run-1e1a4ff57732 Creating 
+ Container zcorp-bench-cpu2-run-1e1a4ff57732 Created 
+preflight cpu2: PASS
+ Container zcorp-bench-cpu4-run-2cbc9633b095 Creating 
+ Container zcorp-bench-cpu4-run-2cbc9633b095 Created 
+preflight cpu4: PASS
+ Container zcorp-bench-cpu8-run-1ea1ee86ce08 Creating 
+ Container zcorp-bench-cpu8-run-1ea1ee86ce08 Created 
+preflight cpu8: PASS
+ Container zcorp-bench-tools-run-3500bb34ac1f Creating 
+ Container zcorp-bench-tools-run-3500bb34ac1f Created 
+controls: PASS (no adapter -> 10 workers on a 2-CPU cpuset; mismatch exit 97; quota-only exit 97)
+ Container zcorp-bench-tools-run-7c0b58a9ad96 Creating 
+ Container zcorp-bench-tools-run-7c0b58a9ad96 Created 
+campaign_state: campaign-20260925T060607Z session S20260925T060607Z: 0/16 rounds accepted; 16 to run
+campaign_state: next primary round 0 attempt 1 (cpu8;cpu2;cpu4)
+campaign_state: next primary round 1 attempt 1 (cpu4;cpu8;cpu2)
+campaign_state: next primary round 2 attempt 1 (cpu2;cpu4;cpu8)
+== round unit: primary round 0 attempt 1 (cpu8;cpu2;cpu4)
+== [1] primary round 0 attempt 1: cpu8
+ Container zcorp-bench-cpu8-run-24215a33eafd Creating 
+ Container zcorp-bench-cpu8-run-24215a33eafd Created 
+== [2] primary round 0 attempt 1: cpu2
+ Container zcorp-bench-cpu2-run-b90428b0f9c9 Creating 
+ Container zcorp-bench-cpu2-run-b90428b0f9c9 Created 
+== [3] primary round 0 attempt 1: cpu4
+ Container zcorp-bench-cpu4-run-51fa9fc9fcaa Creating 
+ Container zcorp-bench-cpu4-run-51fa9fc9fcaa Created 
+ Container zcorp-bench-tools-run-c2f9dd21606b Creating 
+ Container zcorp-bench-tools-run-c2f9dd21606b Created 
+round primary 0 attempt 1: ACCEPTED
+== round unit: primary round 1 attempt 1 (cpu4;cpu8;cpu2)
+== [4] primary round 1 attempt 1: cpu4
+ Container zcorp-bench-cpu4-run-d2b21a1ec8d3 Creating 
+ Container zcorp-bench-cpu4-run-d2b21a1ec8d3 Created 
+== [5] primary round 1 attempt 1: cpu8
+ Container zcorp-bench-cpu8-run-a115d4313eb6 Creating 
+ Container zcorp-bench-cpu8-run-a115d4313eb6 Created 
+== [6] primary round 1 attempt 1: cpu2
+ Container zcorp-bench-cpu2-run-c143835a11b3 Creating 
+ Container zcorp-bench-cpu2-run-c143835a11b3 Created 
+ Container zcorp-bench-tools-run-59d51a0312cc Creating 
+ Container zcorp-bench-tools-run-59d51a0312cc Created 
+round primary 1 attempt 1: ACCEPTED
+== round unit: primary round 2 attempt 1 (cpu2;cpu4;cpu8)
+== [7] primary round 2 attempt 1: cpu2
+ Container zcorp-bench-cpu2-run-741dd3049620 Creating 
+ Container zcorp-bench-cpu2-run-741dd3049620 Created 
+== [8] primary round 2 attempt 1: cpu4
+ Container zcorp-bench-cpu4-run-1e2eec256a1c Creating 
+ Container zcorp-bench-cpu4-run-1e2eec256a1c Created 
+== [9] primary round 2 attempt 1: cpu8
+ Container zcorp-bench-cpu8-run-38f170ff7e96 Creating 
+ Container zcorp-bench-cpu8-run-38f170ff7e96 Created 
+ Container zcorp-bench-tools-run-01b1eeb75af0 Creating 
+ Container zcorp-bench-tools-run-01b1eeb75af0 Created 
+round primary 2 attempt 1: ACCEPTED
+== round unit: primary round 3 attempt 1 (cpu8;cpu2;cpu4)
+== [10] primary round 3 attempt 1: cpu8
+ Container zcorp-bench-cpu8-run-7c8c8f9035dc Creating 
+ Container zcorp-bench-cpu8-run-7c8c8f9035dc Created 
+== [11] primary round 3 attempt 1: cpu2
+ Container zcorp-bench-cpu2-run-7f13ad1101b5 Creating 
+ Container zcorp-bench-cpu2-run-7f13ad1101b5 Created 
+== [12] primary round 3 attempt 1: cpu4
+ Container zcorp-bench-cpu4-run-4a39ceddd882 Creating 
+ Container zcorp-bench-cpu4-run-4a39ceddd882 Created 
+ Container zcorp-bench-tools-run-2420404c3f17 Creating 
+ Container zcorp-bench-tools-run-2420404c3f17 Created 
+round primary 3 attempt 1: ACCEPTED
+== round unit: primary round 4 attempt 1 (cpu2;cpu4;cpu8)
+== [13] primary round 4 attempt 1: cpu2
+ Container zcorp-bench-cpu2-run-22b463c3a1d9 Creating 
+ Container zcorp-bench-cpu2-run-22b463c3a1d9 Created 
+== [14] primary round 4 attempt 1: cpu4
+ Container zcorp-bench-cpu4-run-43015c76d829 Creating 
+ Container zcorp-bench-cpu4-run-43015c76d829 Created 
+== [15] primary round 4 attempt 1: cpu8
+ Container zcorp-bench-cpu8-run-e853f2c0d6f3 Creating 
+ Container zcorp-bench-cpu8-run-e853f2c0d6f3 Created 
+ Container zcorp-bench-tools-run-878d91d0d856 Creating 
+ Container zcorp-bench-tools-run-878d91d0d856 Created 
+round primary 4 attempt 1: ACCEPTED
+== round unit: primary round 5 attempt 1 (cpu8;cpu2;cpu4)
+== [16] primary round 5 attempt 1: cpu8
+ Container zcorp-bench-cpu8-run-d1c35aac8317 Creating 
+ Container zcorp-bench-cpu8-run-d1c35aac8317 Created 
+== [17] primary round 5 attempt 1: cpu2
+ Container zcorp-bench-cpu2-run-99df6d209f96 Creating 
+ Container zcorp-bench-cpu2-run-99df6d209f96 Created 
+== [18] primary round 5 attempt 1: cpu4
+ Container zcorp-bench-cpu4-run-9bbc95cf1bb0 Creating 
+ Container zcorp-bench-cpu4-run-9bbc95cf1bb0 Created 
+ Container zcorp-bench-tools-run-de4eb8c665bb Creating 
+ Container zcorp-bench-tools-run-de4eb8c665bb Created 
+round primary 5 attempt 1: ACCEPTED
+== round unit: primary round 6 attempt 1 (cpu4;cpu8;cpu2)
+== [19] primary round 6 attempt 1: cpu4
+ Container zcorp-bench-cpu4-run-da5aeb8d4467 Creating 
+ Container zcorp-bench-cpu4-run-da5aeb8d4467 Created 
+== [20] primary round 6 attempt 1: cpu8
+ Container zcorp-bench-cpu8-run-f53a2828c4bb Creating 
+ Container zcorp-bench-cpu8-run-f53a2828c4bb Created 
+== [21] primary round 6 attempt 1: cpu2
+ Container zcorp-bench-cpu2-run-7714b1a7e2ee Creating 
+ Container zcorp-bench-cpu2-run-7714b1a7e2ee Created 
+ Container zcorp-bench-tools-run-5e5acb3db402 Creating 
+ Container zcorp-bench-tools-run-5e5acb3db402 Created 
+round primary 6 attempt 1: ACCEPTED
+== round unit: primary round 7 attempt 1 (cpu8;cpu2;cpu4)
+== [22] primary round 7 attempt 1: cpu8
+ Container zcorp-bench-cpu8-run-dcbc5889f3aa Creating 
+ Container zcorp-bench-cpu8-run-dcbc5889f3aa Created 
+== [23] primary round 7 attempt 1: cpu2
+ Container zcorp-bench-cpu2-run-1bd2f3985835 Creating 
+ Container zcorp-bench-cpu2-run-1bd2f3985835 Created 
+== [24] primary round 7 attempt 1: cpu4
+ Container zcorp-bench-cpu4-run-863fa85a2fae Creating 
+ Container zcorp-bench-cpu4-run-863fa85a2fae Created 
+ Container zcorp-bench-tools-run-00adf7debbfa Creating 
+ Container zcorp-bench-tools-run-00adf7debbfa Created 
+round primary 7 attempt 1: ACCEPTED
+== round unit: primary round 8 attempt 1 (cpu2;cpu4;cpu8)
+== [25] primary round 8 attempt 1: cpu2
+ Container zcorp-bench-cpu2-run-144f6a8fbba2 Creating 
+ Container zcorp-bench-cpu2-run-144f6a8fbba2 Created 
+== [26] primary round 8 attempt 1: cpu4
+ Container zcorp-bench-cpu4-run-ea31521cdca6 Creating 
+ Container zcorp-bench-cpu4-run-ea31521cdca6 Created 
+== [27] primary round 8 attempt 1: cpu8
+ Container zcorp-bench-cpu8-run-b189e85459d6 Creating 
+ Container zcorp-bench-cpu8-run-b189e85459d6 Created 
+ Container zcorp-bench-tools-run-5714644e519c Creating 
+ Container zcorp-bench-tools-run-5714644e519c Created 
+round primary 8 attempt 1: ACCEPTED
+== round unit: primary round 9 attempt 1 (cpu4;cpu8;cpu2)
+== [28] primary round 9 attempt 1: cpu4
+ Container zcorp-bench-cpu4-run-17b553b46206 Creating 
+ Container zcorp-bench-cpu4-run-17b553b46206 Created 
+== [29] primary round 9 attempt 1: cpu8
+ Container zcorp-bench-cpu8-run-5fb0182f1cbb Creating 
+ Container zcorp-bench-cpu8-run-5fb0182f1cbb Created 
+== [30] primary round 9 attempt 1: cpu2
+ Container zcorp-bench-cpu2-run-a2553131d281 Creating 
+ Container zcorp-bench-cpu2-run-a2553131d281 Created 
+ Container zcorp-bench-tools-run-37d26528a188 Creating 
+ Container zcorp-bench-tools-run-37d26528a188 Created 
+round primary 9 attempt 1: ACCEPTED
+== round unit: primary round 10 attempt 1 (cpu8;cpu2;cpu4)
+== [31] primary round 10 attempt 1: cpu8
+ Container zcorp-bench-cpu8-run-08173b868b82 Creating 
+ Container zcorp-bench-cpu8-run-08173b868b82 Created 
+== [32] primary round 10 attempt 1: cpu2
+ Container zcorp-bench-cpu2-run-f3bbdf01666e Creating 
+ Container zcorp-bench-cpu2-run-f3bbdf01666e Created 
+== [33] primary round 10 attempt 1: cpu4
+ Container zcorp-bench-cpu4-run-9d5e2bbf1e32 Creating 
+ Container zcorp-bench-cpu4-run-9d5e2bbf1e32 Created 
+ Container zcorp-bench-tools-run-2fa34ca7d93e Creating 
+ Container zcorp-bench-tools-run-2fa34ca7d93e Created 
+round primary 10 attempt 1: ACCEPTED
+== round unit: diag round 1 attempt 1 (cpu2;cpu4;cpu8)
+== [34] diag round 1 attempt 1: cpu2
+ Container zcorp-bench-cpu2-run-f578d392e8b2 Creating 
+ Container zcorp-bench-cpu2-run-f578d392e8b2 Created 
+== [35] diag round 1 attempt 1: cpu4
+ Container zcorp-bench-cpu4-run-47351e0ddb26 Creating 
+ Container zcorp-bench-cpu4-run-47351e0ddb26 Created 
+== [36] diag round 1 attempt 1: cpu8
+ Container zcorp-bench-cpu8-run-69bd59a1da33 Creating 
+ Container zcorp-bench-cpu8-run-69bd59a1da33 Created 
+ Container zcorp-bench-tools-run-0a1eb9d145b8 Creating 
+ Container zcorp-bench-tools-run-0a1eb9d145b8 Created 
+round diag 1 attempt 1: ACCEPTED
+== round unit: diag round 2 attempt 1 (cpu4;cpu8;cpu2)
+== [37] diag round 2 attempt 1: cpu4
+ Container zcorp-bench-cpu4-run-a1780d1312d0 Creating 
+ Container zcorp-bench-cpu4-run-a1780d1312d0 Created 
+== [38] diag round 2 attempt 1: cpu8
+ Container zcorp-bench-cpu8-run-dbf492021894 Creating 
+ Container zcorp-bench-cpu8-run-dbf492021894 Created 
+== [39] diag round 2 attempt 1: cpu2
+ Container zcorp-bench-cpu2-run-2710d085e5d4 Creating 
+ Container zcorp-bench-cpu2-run-2710d085e5d4 Created 
+ Container zcorp-bench-tools-run-4f07dc87cef9 Creating 
+ Container zcorp-bench-tools-run-4f07dc87cef9 Created 
+round diag 2 attempt 1: ACCEPTED
+== round unit: diag round 3 attempt 1 (cpu8;cpu2;cpu4)
+== [40] diag round 3 attempt 1: cpu8
+ Container zcorp-bench-cpu8-run-9d9a61bb2362 Creating 
+ Container zcorp-bench-cpu8-run-9d9a61bb2362 Created 
+== [41] diag round 3 attempt 1: cpu2
+ Container zcorp-bench-cpu2-run-4017e992c517 Creating 
+ Container zcorp-bench-cpu2-run-4017e992c517 Created 
+== [42] diag round 3 attempt 1: cpu4
+ Container zcorp-bench-cpu4-run-a8f15eb73b79 Creating 
+ Container zcorp-bench-cpu4-run-a8f15eb73b79 Created 
+ Container zcorp-bench-tools-run-ea8a9ab5b7e7 Creating 
+ Container zcorp-bench-tools-run-ea8a9ab5b7e7 Created 
+round diag 3 attempt 1: ACCEPTED
+== round unit: diag round 4 attempt 1 (cpu4;cpu8;cpu2)
+== [43] diag round 4 attempt 1: cpu4
+ Container zcorp-bench-cpu4-run-dd9f9b8a0056 Creating 
+ Container zcorp-bench-cpu4-run-dd9f9b8a0056 Created 
+== [44] diag round 4 attempt 1: cpu8
+ Container zcorp-bench-cpu8-run-be4e9da6b024 Creating 
+ Container zcorp-bench-cpu8-run-be4e9da6b024 Created 
+== [45] diag round 4 attempt 1: cpu2
+ Container zcorp-bench-cpu2-run-562682af8a62 Creating 
+ Container zcorp-bench-cpu2-run-562682af8a62 Created 
+ Container zcorp-bench-tools-run-b82cbdc9e76c Creating 
+ Container zcorp-bench-tools-run-b82cbdc9e76c Created 
+round diag 4 attempt 1: ACCEPTED
+== round unit: diag round 5 attempt 1 (cpu8;cpu2;cpu4)
+== [46] diag round 5 attempt 1: cpu8
+ Container zcorp-bench-cpu8-run-314d08de054e Creating 
+ Container zcorp-bench-cpu8-run-314d08de054e Created 
+== [47] diag round 5 attempt 1: cpu2
+ Container zcorp-bench-cpu2-run-1d8672dd24d8 Creating 
+ Container zcorp-bench-cpu2-run-1d8672dd24d8 Created 
+== [48] diag round 5 attempt 1: cpu4
+ Container zcorp-bench-cpu4-run-523f1999ea77 Creating 
+ Container zcorp-bench-cpu4-run-523f1999ea77 Created 
+ Container zcorp-bench-tools-run-ed468157e50c Creating 
+ Container zcorp-bench-tools-run-ed468157e50c Created 
+round diag 5 attempt 1: ACCEPTED
+{
+  "session_id": "S20260925T060607Z",
+  "manifest_before_ok": true,
+  "manifest_after_ok": true,
+  "manifest_entries_ok_after": 161,
+  "git_head_before": "dc13ddd3e4561e5d69fe372fe3cb2d550bfb2b81",
+  "git_head_after": "dc13ddd3e4561e5d69fe372fe3cb2d550bfb2b81",
+  "git_head_unchanged": true,
+  "git_status_unchanged": true,
+  "git_status_sha256_before": "497986a44ebfb3bd04bed109c83fd83f37fad6e00a636bb06da6b1f653b6ce19"
+}
+ Container zcorp-bench-tools-run-8dccf986a811 Creating 
+ Container zcorp-bench-tools-run-8dccf986a811 Created 
+PASS  schema_headers
+PASS  schema_required_fields
+PASS  ids_campaign
+PASS  ids_image
+PASS  ids_manifest
+PASS  ids_session_and_attempt
+PASS  ledger_consistency
+PASS  rounds_complete
+PASS  accepted_rounds_revalidated
+PASS  seeded_schedule_reproducible
+PASS  session_preflight_and_controls
+PASS  repository_unchanged
+PASS  provenance_p7
+PASS  summaries_use_accepted_attempts_only
+validation: PASS (14/14); rounds accepted 16/16
+result: PASS (campaign campaign-20260925T060607Z; session S20260925T060607Z; see derived/validation.json)

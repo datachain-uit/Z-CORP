@@ -1,0 +1,19 @@
+session_id=S20260925T060607Z
+hw.model=Mac17,2
+cpu.brand=Apple M5
+hw.physicalcpu=10
+perflevel0=Super physicalcpu=4
+perflevel1=Efficiency physicalcpu=6
+hw.memsize=34359738368
+macos=26.6.2 build=25G83
+model_name=MacBook Pro
+chip=Apple M5
+power_source=AC Power
+low_power_mode=0
+docker_desktop_app_version=4.92.0
+docker_context=desktop-linux
+git=git version 2.54.0 (Apple Git-157)
+caffeinate_pid=2017
+caffeinate_alive=1
+caffeinate_comm=caffeinate
+caffeinate_assertions=5

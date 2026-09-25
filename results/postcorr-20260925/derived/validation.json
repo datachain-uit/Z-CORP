@@ -1,0 +1,121 @@
+{
+  "utc": "2026-09-25T07:46:24.685Z",
+  "campaign_id": "campaign-20260925T060607Z",
+  "mode": "campaign",
+  "plan": "campaign",
+  "passed": true,
+  "complete": true,
+  "accepted_rounds": 16,
+  "scheduled_rounds": 16,
+  "ledger": [
+    "primary0 a1 complete (S20260925T060607Z)",
+    "primary1 a1 complete (S20260925T060607Z)",
+    "primary2 a1 complete (S20260925T060607Z)",
+    "primary3 a1 complete (S20260925T060607Z)",
+    "primary4 a1 complete (S20260925T060607Z)",
+    "primary5 a1 complete (S20260925T060607Z)",
+    "primary6 a1 complete (S20260925T060607Z)",
+    "primary7 a1 complete (S20260925T060607Z)",
+    "primary8 a1 complete (S20260925T060607Z)",
+    "primary9 a1 complete (S20260925T060607Z)",
+    "primary10 a1 complete (S20260925T060607Z)",
+    "diag1 a1 complete (S20260925T060607Z)",
+    "diag2 a1 complete (S20260925T060607Z)",
+    "diag3 a1 complete (S20260925T060607Z)",
+    "diag4 a1 complete (S20260925T060607Z)",
+    "diag5 a1 complete (S20260925T060607Z)"
+  ],
+  "sessions": [
+    "S20260925T060607Z"
+  ],
+  "checks": [
+    {
+      "name": "schema_headers",
+      "passed": true,
+      "detail": "raw and ledger headers match lib/schema.js"
+    },
+    {
+      "name": "schema_required_fields",
+      "passed": true,
+      "detail": "identity fields campaign/session/round/attempt/profile/container present"
+    },
+    {
+      "name": "ids_campaign",
+      "passed": true,
+      "detail": [
+        "campaign-20260925T060607Z"
+      ]
+    },
+    {
+      "name": "ids_image",
+      "passed": true,
+      "detail": [
+        "sha256:50c5f26d2c05b460aa702d89700b74f817ea4adce9d64a5abacaae7a9bb671c8"
+      ]
+    },
+    {
+      "name": "ids_manifest",
+      "passed": true,
+      "detail": [
+        "9a7829fe2584259f1dd0dc45cf73c5ce904fce7e61e964fb7958826f156b43be"
+      ]
+    },
+    {
+      "name": "ids_session_and_attempt",
+      "passed": true,
+      "detail": "every row carries session_id, round_attempt and container_id"
+    },
+    {
+      "name": "ledger_consistency",
+      "passed": true,
+      "detail": "one accepted attempt at most per round; accepted rounds form a prefix; every attempt has an outcome; nothing ran after acceptance"
+    },
+    {
+      "name": "rounds_complete",
+      "passed": true,
+      "detail": {
+        "accepted": 16,
+        "scheduled": 16,
+        "partial_allowed": false
+      }
+    },
+    {
+      "name": "accepted_rounds_revalidated",
+      "passed": true,
+      "detail": "16 accepted round attempts pass the round-level checks again"
+    },
+    {
+      "name": "seeded_schedule_reproducible",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "name": "session_preflight_and_controls",
+      "passed": true,
+      "detail": "1 session(s) with rows; each passed its container pre-flight and adapter controls"
+    },
+    {
+      "name": "repository_unchanged",
+      "passed": true,
+      "detail": "manifest, git HEAD and git status unchanged in every finished session"
+    },
+    {
+      "name": "provenance_p7",
+      "passed": true,
+      "detail": {
+        "passed": true,
+        "depths": 11,
+        "circom": "2.1.6"
+      }
+    },
+    {
+      "name": "summaries_use_accepted_attempts_only",
+      "passed": true,
+      "detail": {
+        "rows_summarised": 495,
+        "measured_rows_in_rejected_or_interrupted_attempts": 0,
+        "warmup_rows_excluded": 162
+      }
+    }
+  ]
+}
