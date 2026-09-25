@@ -2,7 +2,8 @@
 """CSI-CHAIN-LOCAL-01 administrative record (CHAIN-PROTOCOL-v1 §13): writes
   csi/campaigns/chain/CSI-CHAIN-LOCAL-01/campaign.json   (deterministic, sort_keys)
   csi/campaigns/chain/CSI-CHAIN-LOCAL-01/notes/DRY-RUN.md (engineering dry run: status, comparisons, per-cell summary)
-from the dry-run run directories. Refuses unless all three runs were made at the current HEAD with a clean tree.
+from the dry-run run directories. Refuses unless all three runs were made at one commit with a clean tree, and the
+measurement-relevant paths are unchanged between that commit and HEAD (this script itself is excluded).
 Usage: record_campaign.py --edr-a <dir> --edr-b <dir> --geth <dir> --unit-tests <log> --env-check <json>"""
 import argparse, csv, hashlib, json, os, re, subprocess, sys
 REPO = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '..'))
@@ -13,13 +14,18 @@ def jl(p): return json.load(open(p))
 ap = argparse.ArgumentParser()
 for k in ('--edr-a', '--edr-b', '--geth', '--unit-tests', '--env-check'): ap.add_argument(k, required=True)
 a = ap.parse_args()
-head = git('rev-parse', 'HEAD')
 runs = {k: jl(os.path.join(getattr(a, k.replace('-', '_')), 'run.json')) for k in ('edr-a', 'edr-b', 'geth')}
+head = runs['edr-a']['commit']
+MEAS = ['chainbench', ':(exclude)chainbench/scripts/record_campaign.py', 'contracts', 'csi/protocols/chain', 'csi/campaigns/chain/CSI-CHAIN-LOCAL-01/inputs',
+        'scripts/setup/generate_input_depth.js', 'scripts/setup/paths.js', 'ARTIFACTS.sha256']
 for k, r in runs.items():
     if r['commit'] != head or r['dirty_tracked_paths']:
-        sys.exit(f'{k}: run commit {r["commit"][:7]} / dirty {r["dirty_tracked_paths"]} does not match clean HEAD {head[:7]}')
+        sys.exit(f'{k}: run commit {r["commit"][:7]} / dirty {r["dirty_tracked_paths"]} (all runs must share one clean commit)')
     if not r.get('accepted_checks'):
         sys.exit(f'{k}: run checks not accepted')
+changed = git('diff', '--name-only', head, 'HEAD', '--', *MEAS)
+if changed:
+    sys.exit(f'measurement-relevant paths changed since the dry-run commit {head[:7]}: {changed}')
 det = jl(os.path.join(a.edr_b, 'compare_determinism.json')); xc = jl(os.path.join(a.geth, 'compare_crossclient.json'))
 envA = jl(os.path.join(a.edr_a, 'environment.json')); envG = jl(os.path.join(a.geth, 'environment.json'))
 ut = open(a.unit_tests).read()
@@ -42,8 +48,9 @@ rec = {
     'used_in_manuscript': 'no',
     'protocol': {'path': 'csi/protocols/chain/CHAIN-PROTOCOL-v1.md', 'version': 'v1', 'sha256': sha('csi/protocols/chain/CHAIN-PROTOCOL-v1.md'),
                  'frozen_at_commit': git('log', '--diff-filter=A', '--format=%H', '--', 'csi/protocols/chain/CHAIN-PROTOCOL-v1.md').splitlines()[-1],
-                 'amendments_pre_run': ['A1', 'A2', 'A3'], 'eravm_arm': 'pending'},
-    'harness': {'path': 'chainbench', 'commit': head, 'lockfile_sha256': envA['lockfile_sha256'], 'packages': envA['packages'],
+                 'amendments_pre_run': re.findall(r'^\| (A\d+) \|', open(os.path.join(REPO, 'csi/protocols/chain/CHAIN-PROTOCOL-v1.md')).read(), re.M),
+                 'eravm_arm': 'pending'},
+    'harness': {'path': 'chainbench', 'commit': head, 'unchanged_at_record_head': git('rev-parse', 'HEAD'), 'lockfile_sha256': envA['lockfile_sha256'], 'packages': envA['packages'],
                 'edr_native_binary': envA['edr_native_binary'], 'soljson_sha256': envA['soljson_sha256'],
                 'hardhat_console_sol_sha256': envA['hardhat_console_sol_sha256'], 'node': envA['node'], 'npm': envA['npm'], 'host': envA['host'],
                 'container_image': 'none (pinned-environment record instead; see readiness report)'},
