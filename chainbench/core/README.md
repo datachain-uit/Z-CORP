@@ -25,7 +25,7 @@ The core modules read campaign identity only from the binding: `lib/common.js` e
 | `dry` | `build/chainbench/dry-run/<run>-{edr-a,edr-b,geth}` | engineering, not data |
 | `full` | `build/campaigns/chain/<run>-{edr-a,edr-b,geth}` | scientific; the runner refuses any other root for this plan |
 
-Each run is one container. Inside it:
+Each run is one container. Inside it, each step is one runner invocation (protocol §12, §15 A3):
 
 1. `init` writes `run.json` and `environment.json` (toolchain, EDR identity, container image, network interfaces).
 2. `build` stages the committed sources byte-for-byte into a tmpfs work directory and compiles them. It writes `build_manifest.<profile>.json`.
@@ -33,7 +33,7 @@ Each run is one container. Inside it:
 4. `exec` runs the cells, each on a fresh chain, and writes `cells/*.json`.
 5. `finish` writes `local_l1_ops.csv` and the accepted-checks verdict.
 
-After the runs, `compare_runs.py` checks determinism (EDR a against b) and cross-client agreement (EDR a against geth).
+The unit tests run first, in their own container. After the runs, `compare_runs.py` checks determinism (EDR a against b) and cross-client agreement (EDR a against geth).
 
 ## Adding a workload
 

@@ -267,6 +267,8 @@ def chain_attribution(rel, crow):
         return 'generated', 'scripts/release/build_csi_bundle.py'
     if re.search(r'/notes/DRY-RUN-readiness-[0-9a-f]{7}\.md$', rel):
         return 'generated', 'chainbench/scripts/record_campaign.py at the readiness commit (earlier readiness dry run)'
+    if re.search(r'/notes/DRY-RUN-packaged-[0-9a-f]{7}\.md$', rel):
+        return 'generated', 'chainbench/workloads/zcorp/record_campaign.py (earlier, superseded packaged dry run)'
     if rel.endswith('/campaign.json') or rel.endswith('/notes/DRY-RUN.md'):
         return 'generated', 'chainbench/workloads/zcorp/record_campaign.py'
     if '/derived/' in rel:

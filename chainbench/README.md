@@ -31,13 +31,14 @@
 
 This runs the frozen procedure of `csi/protocols/chain/CHAIN-PROTOCOL-v1.md`, in a few minutes:
 
-1. two independent EDR (Hardhat) runs, each from scratch in a fresh container;
-2. a geth v1.16.9 `--dev` replay of every operation;
-3. the determinism comparison (EDR run a against run b);
-4. the cross-client comparison (EDR against geth);
-5. a per-cell summary.
+1. the unit tests;
+2. two independent EDR (Hardhat) runs, each from scratch in a fresh container;
+3. a geth v1.16.9 `--dev` replay of every operation;
+4. the determinism comparison (EDR run a against run b);
+5. the cross-client comparison (EDR against geth);
+6. a per-cell summary.
 
-It starts only if the doctor passes with a clean checkout of the baseline tag (`git checkout chain-l1-baseline-…`).
+It starts only if the doctor passes with a clean checkout of the baseline tag (`git checkout chain-l1-baseline-…`). The doctor's result is saved next to the runs.
 
 ### 4. Find the outputs here
 
@@ -50,7 +51,7 @@ It starts only if the doctor passes with a clean checkout of the baseline tag (`
 - **Per-run files:** `local_l1_ops.csv` (raw rows, one per operation), `run.json`, `environment.json`, `build_manifest.*.json` and `env_check.json`.
 - **Summary:** `…-edr-a/summary.csv`.
 - **Comparisons:** `…-edr-b/compare_determinism.json` and `…-geth/compare_crossclient.json`.
-- **Log:** `build/campaigns/chain/full-<commit>-<time>.log`.
+- **Log and records:** `build/campaigns/chain/full-<commit>-<time>.log`, `….preflight.json` (the doctor) and `….unit_tests.log`.
 
 ---
 
@@ -98,7 +99,8 @@ Docker needs at least 2 CPUs and 4 GB of memory. Keep 5 GB of disk free.
 |---|---|
 | `./chainbench/run.sh build-image` | Rebuild the image from the committed pins. |
 | `./chainbench/run.sh dry-run` | Reduced engineering dry run: Groth16 d5 and d11, PLONK d10 and d11, the bridge cell, 2 proofs. Same procedure as the full run. The output goes to `build/chainbench/dry-run/`. |
-| `./chainbench/run.sh author-freeze` | Author only. Pins new image digests, then runs doctor, smoke and a packaged dry run against the accepted readiness dry run. |
+| `./chainbench/run.sh author-freeze` | Author only. Pins new image digests and builds the image, then runs `author-verify`. |
+| `./chainbench/run.sh author-verify` | Author only. Runs doctor, smoke and a packaged dry run against the accepted readiness dry run, and writes a freeze record. It uses the existing image and does not rebuild. |
 
 ## Layout and reuse
 

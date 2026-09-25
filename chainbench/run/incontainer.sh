@@ -13,8 +13,9 @@ case "$cmd" in
   identity)       exec node docker/identity.js "$@" ;;
   doctor)         exec node doctor/doctor.js "$@" ;;
   unit-tests)     exec node "$(wscript unit_tests)" ;;
-  # One container = one complete run: no per-call time budget (the step budget exists for time-limited shells).
-  run)            exec node scripts/run_l1.js --budget-seconds 86400 "$@" ;;
+  # One container = one complete run. As in CHAIN-PROTOCOL-v1 §12 (steps 5-6) and §15 A3, each step is one
+  # invocation of the runner; no per-call time budget is needed here (A3's budget exists for time-limited shells).
+  run)            for s in init build envcheck exec finish; do node scripts/run_l1.js --budget-seconds 86400 "$@" --step "$s" || exit $?; done ;;
   compare)        exec python3 scripts/compare_runs.py "$@" ;;
   summarize)      exec python3 "$(wscript summarize)" "$@" ;;
   smoke-check)    exec python3 smoke/check_smoke.py "$@" ;;

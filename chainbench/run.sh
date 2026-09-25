@@ -3,11 +3,12 @@
 #
 #   ./chainbench/run.sh build-image     build the pinned toolchain image (needs network access once)
 #   ./chainbench/run.sh doctor          check Docker, resources, image, inputs, sources, outputs; runs no experiment
-#   ./chainbench/run.sh smoke           short packaging test (about 1 minute; not scientific data)
-#   ./chainbench/run.sh full-local-l1   the frozen scientific procedure (two EDR runs, geth replay, comparisons)
+#   ./chainbench/run.sh smoke           short packaging test (under a minute; not scientific data)
+#   ./chainbench/run.sh full-local-l1   the frozen scientific procedure (unit tests, two EDR runs, geth replay, comparisons)
 #
 #   ./chainbench/run.sh dry-run         reduced engineering dry run (same procedure on a small subset)
-#   ./chainbench/run.sh author-freeze   author only: pin image digests, build, doctor, smoke, dry-run vs accepted run
+#   ./chainbench/run.sh author-freeze   author only: pin image digests, build, then author-verify
+#   ./chainbench/run.sh author-verify   author only: doctor, smoke, dry-run vs the accepted run, freeze record (no rebuild)
 #
 # Everything measured runs inside the chainbench container with --network none; the repository is mounted read-only.
 set -uo pipefail
@@ -29,7 +30,7 @@ fail() { printf '[FAIL] %s\n' "$1"; if [ -n "${2:-}" ]; then printf '       Fix:
 die()  { printf '[FAIL] %s\n' "$1" >&2; if [ -n "${2:-}" ]; then printf '       Fix: %s\n' "$2" >&2; fi; exit 1; }
 utc()  { date -u +%Y%m%dT%H%M%SZ; }
 sha256_of() { if command -v shasum >/dev/null 2>&1; then shasum -a 256 "$1" | awk '{print $1}'; else sha256sum "$1" | awk '{print $1}'; fi; }
-usage() { sed -n '2,13p' "$0" | sed 's/^# \{0,1\}//'; }
+usage() { sed -n '2,14p' "$0" | sed 's/^# \{0,1\}//'; }
 
 # ---------------------------------------------------------------- Docker helpers
 have_docker() {
@@ -297,6 +298,10 @@ three_runs() {
   local plan=$1 rid=$2 out=$3 hout=$4 log=$5 envs=()
   [ "$plan" = full ] || envs=(-e "CHAINBENCH_OUT_ROOT=$out")
   local r
+  say "  unit tests (protocol section 12, step 4) ..."
+  dkr -- unit-tests >"$hout/$rid.unit_tests.log" 2>&1 \
+    || { tail -20 "$hout/$rid.unit_tests.log"; die "Unit tests failed; no run was started." "See ${hout#"$REPO"/}/$rid.unit_tests.log"; }
+  pass "unit tests: $(grep -Eo '[0-9]+ passing' "$hout/$rid.unit_tests.log" | tail -1) (${hout#"$REPO"/}/$rid.unit_tests.log)"
   for r in a b; do
     say "  EDR run $r (fresh container, from scratch) ..."
     dkr ${envs[@]+"${envs[@]}"} -- run --plan "$plan" --env edr --run-id "$rid-edr-$r" >>"$log" 2>&1 && run_ok "$hout/$rid-edr-$r" \
@@ -344,10 +349,11 @@ dry_run() {
 full_local_l1() {
   load_image
   say "chainbench full-local-l1: the frozen scientific procedure (protocol $(dkr -- workload | grep -Eo '"protocol": *"[^"]+"' | head -1 | sed 's/.*: *"//; s/"$//'))"
-  say "--- pre-flight (doctor, clean sources and baseline tag required):"
-  dkr -- doctor --require-clean --require-baseline || die "Pre-flight checks failed; the scientific run was NOT started." "Fix the items above."
   local rid; rid="full-$(dkr -- head | tail -1)-$(utc)"
   local out=/repo/build/campaigns/chain hout="$REPO/build/campaigns/chain"
+  say "--- pre-flight (doctor, clean sources and baseline tag required; record ${hout#"$REPO"/}/$rid.preflight.json):"
+  dkr -e "CHAINBENCH_HOST_JSON=$(host_json)" -- doctor --require-clean --require-baseline --out "$out/$rid.preflight.json" \
+    || die "Pre-flight checks failed; the scientific run was NOT started." "Fix the items above."
   local log="$hout/$rid.log"; : >"$log"
   say "running $rid (outputs in ${hout#"$REPO"/}) ..."
   three_runs full "$rid" "$out" "$hout" "$log"
@@ -355,10 +361,14 @@ full_local_l1() {
 }
 
 author_freeze() {
-  say "=== author-freeze: pin + build image, doctor, smoke, packaged dry run vs the accepted readiness dry run ==="
+  say "=== author-freeze: pin + build image, then author-verify ==="
   build_image --freeze
+  author_verify
+}
+author_verify() {  # author only: doctor, smoke, packaged dry run vs the accepted readiness dry run, freeze record (no rebuild)
+  say "=== author-verify: doctor, smoke, packaged dry run vs the accepted readiness dry run (existing image) ==="
   load_image
-  doctor || die "author-freeze stopped at doctor." "Fix the items above and re-run."
+  doctor || die "author-verify stopped at doctor." "Fix the items above and re-run."
   smoke
   local ref_edr ref_geth
   ref_edr=$(dkr -- dry-ref edr | tail -1); ref_geth=$(dkr -- dry-ref geth | tail -1)
@@ -367,7 +377,7 @@ author_freeze() {
   dkr -- sources >"$fz/SOURCES.sha256" 2>/dev/null
   cp "$IMG_STATE/image.env" "$IMG_STATE/identity.json" "$fz/" 2>/dev/null
   cp "$PINS" "$fz/pins.env"; cat "$REPO/build/chainbench/dry-run/LATEST" >"$fz/DRY_RUN_ID"
-  say "AUTHOR-FREEZE PASS: records in ${fz#"$REPO"/}; commit chainbench/docker/pins.env and chainbench/docker/IMAGE.json."
+  say "AUTHOR-VERIFY PASS: records in ${fz#"$REPO"/}. Image records: chainbench/docker/pins.env, chainbench/docker/IMAGE.json (commit them if author-freeze changed them)."
 }
 
 # ---------------------------------------------------------------- main
@@ -379,6 +389,7 @@ case "$cmd" in
   dry-run)        dry_run "$@" ;;
   full-local-l1)  full_local_l1 ;;
   author-freeze)  author_freeze ;;
+  author-verify)  author_verify ;;
   help|-h|--help) usage ;;
-  *) usage; die "unknown command '$cmd'" "Use one of: build-image, doctor, smoke, full-local-l1 (or dry-run)." ;;
+  *) usage; die "unknown command '$cmd'" "Use one of: doctor, smoke, full-local-l1 (also build-image, dry-run)." ;;
 esac

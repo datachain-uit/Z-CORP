@@ -50,6 +50,7 @@ head = runs['edr-a']['commit']
 for k, r in runs.items():
     if r['commit'] != head or r['dirty_tracked_paths']: die(f'{k}: commit {r["commit"][:7]} / dirty {r["dirty_tracked_paths"]} (one clean commit required)')
     if r.get('accepted_checks') is not True: die(f'{k}: run checks not accepted')
+    if not all(s in r.get('steps', {}) for s in ('build', 'envcheck', 'exec', 'finish')): die(f'{k}: incomplete steps {r.get("steps")}')
     if r.get('campaign_id') != B['campaign_id']: die(f'{k}: campaign {r.get("campaign_id")} is not {B["campaign_id"]}')
 changed = git('diff', '--name-only', head, '--', *MEAS)
 if changed: die(f'measurement paths differ between the dry-run commit {head[:7]} and the working tree: {changed}')
@@ -73,17 +74,27 @@ if open(P(os.path.join(a.freeze, 'DRY_RUN_ID'))).read().strip() != a.dry_run_id:
 # ---- record
 envA, envG = envs['edr-a'], envs['geth']
 ec = jl(os.path.join(D['geth'], 'env_check.json'))
-ut = open(os.path.join(a.smoke, 'unit_tests.log')).read()
+UT = f'{dry}.unit_tests.log' if os.path.exists(P(f'{dry}.unit_tests.log')) else os.path.join(a.smoke, 'unit_tests.log')  # dry run's own step 4, else smoke
+ut = open(P(UT)).read()
 m_pass = re.search(r'(\d+) passing', ut); m_fail = re.search(r'(\d+) failing', ut)
 prov = jl(B['plonk_verifier_provenance'])
 psj = jl(os.path.join(B['proofset_dir'], 'PROOFSET.json'))
 geth_sums = dict(reversed(l.split()) for l in open(os.path.join(CB, 'geth', 'SHA256SUMS')).read().splitlines())
 old = jl(os.path.join(CAMP, 'campaign.json')) if os.path.exists(P(os.path.join(CAMP, 'campaign.json'))) else {}
-previous = list(old.get('previous_dry_runs') or [])
+previous = [{'superseded_because': 'readiness dry run before packaging', **p} for p in (old.get('previous_dry_runs') or [])]
 if old.get('dry_run') and old['dry_run'].get('runs', {}).get('edr-a', {}).get('commit') not in (None, head) \
         and not any(p.get('runs', {}).get('edr-a', {}).get('commit') == old['dry_run']['runs']['edr-a']['commit'] for p in previous):
-    previous.append({**old['dry_run'], 'environment': 'uncontainerised pinned VM environment (readiness)',
-                     'harness_commit': old.get('harness', {}).get('commit'), 'notes': f'{NOTES}/DRY-RUN-readiness-{old["dry_run"]["runs"]["edr-a"]["commit"][:7]}.md'})
+    oc = old['dry_run']['runs']['edr-a']['commit'][:7]
+    packaged = 'packaged' in str(old['dry_run'].get('environment', ''))
+    previous.append({**old['dry_run'],
+                     'environment': (f"packaged container, image {old.get('container_image', {}).get('image_id')}, --network none" if packaged
+                                     else 'uncontainerised pinned VM environment (readiness)'),
+                     'superseded_because': ('the reviewer entry point changed after this run (protocol section 12 step 4 unit tests added to the '
+                                            'run procedure; one runner invocation per step, section 15 A3); packaged dry run repeated'
+                                            if packaged else 'readiness dry run before packaging'),
+                     'container_image': old.get('container_image', {}).get('image_id') if packaged else None,
+                     'harness_commit': old.get('harness', {}).get('commit'),
+                     'notes': f'{NOTES}/DRY-RUN-{"packaged" if packaged else "readiness"}-{oc}.md'})
 
 def run_summary(k):
     r = runs[k]
@@ -132,7 +143,7 @@ rec = {
              'client_version': ec['geth']['client_version']},
     'env_check': {'file': os.path.relpath(P(os.path.join(D['geth'], 'env_check.json')), REPO), 'edr_osaka_markers': ec['edr']['osaka']['markers'],
                   'edr_prague_control_markers': ec['edr']['prague']['markers'], 'geth_markers': ec['geth']['markers'], 'pass': ec['pass']},
-    'unit_tests': {'passing': int(m_pass.group(1)) if m_pass else 0, 'failing': int(m_fail.group(1)) if m_fail else 0, 'log': os.path.relpath(P(os.path.join(a.smoke, 'unit_tests.log')), REPO)},
+    'unit_tests': {'passing': int(m_pass.group(1)) if m_pass else 0, 'failing': int(m_fail.group(1)) if m_fail else 0, 'log': os.path.relpath(P(UT), REPO)},
     'smoke': {'run_id': os.path.basename(os.path.normpath(a.smoke)), 'pass': sm['pass'], 'checks': len(sm.get('checks', [])),
               'evidence_status': 'packaging check; not data'},
     'dry_run': {
