@@ -42,6 +42,23 @@ bash scripts/release/save_image.sh                     # campaign host only: doc
 | Admin ID | Experiment | Status | Used in manuscript | Source |
 |---|---|---|---|---|
 | CSI-PROVER-01 | controlled prover scaling | validated | pending | `results/postcorr-20260925/` (`campaign-20260925T060607Z`, tag `rerun-baseline-20260925`, commit `dc13ddd`, protocol v3) |
+| CSI-CHAIN-LOCAL-01 | controlled on-chain verification (local L1) | ready | no | No scientific run yet: the engineering dry run passed (`campaigns/chain/CSI-CHAIN-LOCAL-01/notes/DRY-RUN.md`). Protocol `protocols/chain/CHAIN-PROTOCOL-v1.md`. |
+
+### Chain campaigns (`campaigns/chain/`)
+
+Chain campaigns are registered in the same `campaign-index.csv`. Their layout differs from the prover campaign, because they have no pre-existing source campaign directory.
+
+| Path | What it is | How it is made |
+|---|---|---|
+| `protocols/chain/CHAIN-PROTOCOL-v1.md` | The protocol. The L1 arm is frozen; the local-EraVM arm is pending. Pre-run amendments are logged in its §15. | Hand-written, committed (not a snapshot) |
+| `campaigns/chain/CSI-CHAIN-LOCAL-01/inputs/proofset/` | The frozen proof set PS-01: 64 proofs and their manifest | `chainbench/scripts/gen_proofset.js`, once, never regenerated |
+| `campaigns/chain/CSI-CHAIN-LOCAL-01/inputs/plonk-verifiers.provenance.json` | Provenance checks for `contracts/chain/PlonkVerifierDepth*.sol` | `chainbench/scripts/export_plonk_verifiers.js` |
+| `campaigns/chain/CSI-CHAIN-LOCAL-01/campaign.json` | Registration, identities (protocol, harness commit, lockfile, compiler, EDR and geth binaries, proof set) and the validation state | `chainbench/scripts/record_campaign.py` |
+| `campaigns/chain/CSI-CHAIN-LOCAL-01/notes/` | The dry-run record and the proof-set generation record | `DRY-RUN.md` is generated; `PROOFSET-GENERATION.md` is hand-written |
+| `code/chain/CSI-CHAIN-LOCAL-01.KIT.sha256` | The chain campaign's code at its registered commit | `scripts/release/build_csi_bundle.py` |
+
+- **Raw run data** goes to `build/campaigns/chain/<run_id>/` (git-ignored).
+- **After the scientific run** (not started), the raw data is archived into `release/CSI-CHAIN-LOCAL-01/` and the derived outputs go to `campaigns/chain/CSI-CHAIN-LOCAL-01/derived/`.
 
 The pre-correction July 2026 files are superseded; their provenance is `results/PRECORRECTION-2026-07.sha256`,
 whose digest each campaign record carries as `superseded_campaign`.

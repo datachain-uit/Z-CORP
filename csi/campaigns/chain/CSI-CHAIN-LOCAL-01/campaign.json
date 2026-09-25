@@ -1,0 +1,223 @@
+{
+  "admin_id": "CSI-CHAIN-LOCAL-01",
+  "contracts": {
+    "contracts/CredentialManager.sol": "05908953fe6e90ff50f148d23b1a16ab926bdb7ae80ff9d17af41cfc9019d5da",
+    "contracts/Groth16LegacyVerifierDepth10.sol": "6f57bdf058976e33bd3d014ae7888d0b3a19281d86a7f06b65a73f736bc04d57",
+    "contracts/Groth16LegacyVerifierDepth11.sol": "da6e3075c9d17039615579eb1c0946423cae0651a57dca2256561a362fbf3dd7",
+    "contracts/Groth16LegacyVerifierDepth12.sol": "575089f2592292ca8bc33c395df210dfa8df55943211d64f7f9cfa49e0d4081e",
+    "contracts/Groth16LegacyVerifierDepth13.sol": "8b51648490813c526f93ca62ee1aacd404a048de9fbcd1d88aa90a234bdf9eb1",
+    "contracts/Groth16LegacyVerifierDepth14.sol": "854d4501db66c5cf31e6953f80e174971068040e2380448b4da7582c0e9d8c4e",
+    "contracts/Groth16LegacyVerifierDepth15.sol": "3c29dd4aece8ef7f996f7b23994240cb12d5fb65d51a11665996bddcc0b15c1f",
+    "contracts/Groth16LegacyVerifierDepth5.sol": "bf43826b8afcc6fd43c77d760db3f2f7bad230a88301ecb12bfa0458b8b9bfad",
+    "contracts/Groth16LegacyVerifierDepth6.sol": "9fddbf723f16f05ec11bd6b61669c79fded63f3605e85c7bcd2c71af1a49a954",
+    "contracts/Groth16LegacyVerifierDepth7.sol": "d748e1f7bcbe1de061e410f774b010966f0d6339f344c5578bae45628ca221bf",
+    "contracts/Groth16LegacyVerifierDepth8.sol": "de0fbb11c80411a9bc9cdfb325d61fbbb3322f3cc52390dbb7899d96868fdb0f",
+    "contracts/Groth16LegacyVerifierDepth9.sol": "330de7a73c5926869f00c8353d15e276351f24816c4ff7c226e476aa3f578456",
+    "contracts/IGroth16Verifier.sol": "2cfe66c839f36b516361cad616c40a9ca4f18fe10a048f99606b8cffbd52a256",
+    "contracts/chain/CredentialManagerBase.sol": "e68760575138f3bffc98c95057430d5b2e1a2e1458231182520b318f2ef44caf",
+    "contracts/chain/CredentialManagerGroth16.sol": "a240480dcb0def8ec7bafb6e50fb9250858601bee8091be4f5f4ad314ace5cfd",
+    "contracts/chain/CredentialManagerPlonk.sol": "3c4af458fc22c9cf4f2341b0b716c1be01db1e64b86c1d4995e767fc8d9af1de",
+    "contracts/chain/PlonkVerifierDepth10.sol": "92f15a3f0b15c8157ca7bf7d96e8e14a59c6055a665b05c42b92ab4450ddff46",
+    "contracts/chain/PlonkVerifierDepth11.sol": "6c447f47aca057919496430770d3a84c7636d1e2bc0ae22bae1e89c74dd74b51",
+    "contracts/chain/PlonkVerifierDepth12.sol": "e650efd6157f2148651f9e66f70b5e7c7b0bd35a6e486c621bbcd233e9ab0ff8",
+    "contracts/chain/PlonkVerifierDepth13.sol": "b982e7e130278b9c012090bd02568210a0f22c977176a3016181cc7e54df707e",
+    "contracts/chain/PlonkVerifierDepth14.sol": "1d41227dd89f3db890c3958a64bd34221459012530aee42320f32efb20aff9a9",
+    "contracts/chain/PlonkVerifierDepth15.sol": "5cc78face5c7d093b7e66328e89d6f6911d85ff5c23017ac8ae2f97616ba7a6d",
+    "contracts/chain/PlonkVerifierDepth5.sol": "f0ff19a7dd43c464de496e776f4d19743ab17dca90b5c41511cb58ba20c9a25c",
+    "contracts/chain/PlonkVerifierDepth6.sol": "c180d54e6053816370e905125c83dd5fa587bedb769133e02a24097614c85361",
+    "contracts/chain/PlonkVerifierDepth7.sol": "75702d6aec9c28f367aeef60c327f831f9a542934442a8197d6467a3ad61fdd1",
+    "contracts/chain/PlonkVerifierDepth8.sol": "2e55d6173fdd4f2b252c91e1df90cae8fc7e7c964c430d52efde5d1d68b857af",
+    "contracts/chain/PlonkVerifierDepth9.sol": "572fb3e6b03d63b36c8ba60864795196ee8a2e05b55da779a1e38150cb73b9d9"
+  },
+  "dry_run": {
+    "cross_client": {
+      "build_manifests_identical": true,
+      "call_rows_compared": 25,
+      "differences_per_field": {},
+      "excluded_fields": [
+        "block_number",
+        "chain_id",
+        "client_version",
+        "env",
+        "gas_price_wei",
+        "run_id",
+        "tx_hash"
+      ],
+      "field_value_comparisons": 3960,
+      "identical": true,
+      "rows_compared": 90,
+      "tx_rows_compared": 65
+    },
+    "determinism": {
+      "build_manifests_identical": true,
+      "call_rows_compared": 25,
+      "differences_per_field": {},
+      "excluded_fields": [
+        "run_id"
+      ],
+      "field_value_comparisons": 4500,
+      "identical": true,
+      "rows_compared": 90,
+      "tx_rows_compared": 65
+    },
+    "evidence_status": "engineering; not evidence (protocol section 10 item 7)",
+    "plan": "dry (Groth16 d5, d11; PLONK d10, d11; bridge Groth16 d11; 2 proofs per cell; all negative controls)",
+    "runs": {
+      "edr-a": {
+        "commit": "e141816d2af3c83c76050294ed4e6ad1f05795be",
+        "deployments_runtime_match": true,
+        "env": "edr",
+        "env_check_pass": true,
+        "finished_at_utc": "2026-09-25T10:14:36.671Z",
+        "ops_csv_sha256": "146f6895e372da862b61de56f5b8ab6aa11f5620035b936d1c22bdd368af2e16",
+        "plan": "dry",
+        "raw_dir": "build/campaigns/chain/dry-e141816-edr-a (git-ignored; engineering, not archived)",
+        "rows": 90,
+        "rows_expected": 90,
+        "rows_failing_check": 0,
+        "run_id": "dry-e141816-edr-a",
+        "started_at_utc": "2026-09-25T10:14:30.001Z"
+      },
+      "edr-b": {
+        "commit": "e141816d2af3c83c76050294ed4e6ad1f05795be",
+        "deployments_runtime_match": true,
+        "env": "edr",
+        "env_check_pass": true,
+        "finished_at_utc": "2026-09-25T10:14:43.486Z",
+        "ops_csv_sha256": "cda786c73f2070fe29db71a82a9b03ab3b7b9019984cd8b4b6737292883f578d",
+        "plan": "dry",
+        "raw_dir": "build/campaigns/chain/dry-e141816-edr-b (git-ignored; engineering, not archived)",
+        "rows": 90,
+        "rows_expected": 90,
+        "rows_failing_check": 0,
+        "run_id": "dry-e141816-edr-b",
+        "started_at_utc": "2026-09-25T10:14:36.809Z"
+      },
+      "geth": {
+        "commit": "e141816d2af3c83c76050294ed4e6ad1f05795be",
+        "deployments_runtime_match": true,
+        "env": "geth",
+        "env_check_pass": true,
+        "finished_at_utc": "2026-09-25T10:14:53.081Z",
+        "ops_csv_sha256": "96347bfb9c505b037f601aba0e4912a662bfbfa0810f2872cf6db8daec86d6cf",
+        "plan": "dry",
+        "raw_dir": "build/campaigns/chain/dry-e141816-geth (git-ignored; engineering, not archived)",
+        "rows": 90,
+        "rows_expected": 90,
+        "rows_failing_check": 0,
+        "run_id": "dry-e141816-geth",
+        "started_at_utc": "2026-09-25T10:14:43.618Z"
+      }
+    }
+  },
+  "env_check": {
+    "edr_osaka_markers": {
+      "clz_returns_255": true,
+      "p256verify_invalid_returns_empty": true,
+      "p256verify_valid_returns_1": true,
+      "tx_gas_cap_2p24_plus_1_rejected": true
+    },
+    "edr_prague_control_markers": {
+      "clz_returns_255": false,
+      "p256verify_invalid_returns_empty": true,
+      "p256verify_valid_returns_1": false,
+      "tx_gas_cap_2p24_plus_1_rejected": false
+    },
+    "file": "build/campaigns/chain/dry-e141816-checks/env_check.json",
+    "geth_markers": {
+      "clz_returns_255": true,
+      "p256verify_invalid_returns_empty": true,
+      "p256verify_valid_returns_1": true,
+      "tx_gas_cap_2p24_plus_1_rejected": true
+    },
+    "pass": true
+  },
+  "experiment": "controlled on-chain verification (local L1)",
+  "geth": {
+    "binary_sha256": {
+      "geth-v1.16.9-linux-amd64": "13a12608f822e47dc96164417ca1033df905cd53992f1b40214dc36dcbb17137",
+      "geth-v1.16.9-linux-arm64": "5551bdb5cbfe4c1e3879efe39676d8f7e5c6d978af110cf477f7c00a867f7d6e"
+    },
+    "binary_used_sha256": "5551bdb5cbfe4c1e3879efe39676d8f7e5c6d978af110cf477f7c00a867f7d6e",
+    "build_recipe": "chainbench/geth/",
+    "client_version": "Geth/v1.16.9-stable-95665d57/linux-arm64/go1.24.7",
+    "dev_mode_forks": "through Osaka (AllDevChainProtocolChanges)",
+    "go": "go1.24.7",
+    "source_commit": "95665d5703e1023995a0ff93e4ce9eb77e8a59bd",
+    "version": "v1.16.9"
+  },
+  "harness": {
+    "commit": "e141816d2af3c83c76050294ed4e6ad1f05795be",
+    "container_image": "none (pinned-environment record instead; see readiness report)",
+    "edr_native_binary": {
+      "file": "edr.linux-arm64-gnu.node",
+      "package": "@nomicfoundation/edr-linux-arm64-gnu",
+      "sha256": "17e6d355e924c5aa05b0e162ab63a15f62833408f03913aec497c886d8163ebc"
+    },
+    "hardhat_console_sol_sha256": "5a6db75ebe2603ab1ce17c40f48447f3040268675f027a77fe5e9b236f4e31dd",
+    "host": {
+      "arch": "arm64",
+      "cpus": 4,
+      "os_release": "Ubuntu 22.04.5 LTS",
+      "platform": "linux",
+      "release": "6.8.0-138-generic"
+    },
+    "lockfile_sha256": "0add12b819839bb7ebbb5a70d65d61bd1202fd1a2a1a0ca823e47d0fa2b068cd",
+    "node": "v22.23.2",
+    "npm": "10.9.8",
+    "packages": {
+      "@nomicfoundation/edr": "0.12.0-next.23",
+      "@nomicfoundation/hardhat-ethers": "3.0.8",
+      "@openzeppelin/contracts": "4.9.0",
+      "ejs": "3.1.10",
+      "ethers": "6.13.5",
+      "ffjavascript": "0.3.1",
+      "hardhat": "2.29.1",
+      "snarkjs": "0.7.5",
+      "solc": "0.8.20"
+    },
+    "path": "chainbench",
+    "soljson_sha256": "033dc42a16378dd036a475b8a7080af83cfae1841eb6848ce1667c56193972ba"
+  },
+  "notes": [
+    "csi/campaigns/chain/CSI-CHAIN-LOCAL-01/notes/DRY-RUN.md",
+    "csi/campaigns/chain/CSI-CHAIN-LOCAL-01/notes/PROOFSET-GENERATION.md"
+  ],
+  "plonk_verifiers": {
+    "all_checks_pass": true,
+    "depths": 11,
+    "provenance": "csi/campaigns/chain/CSI-CHAIN-LOCAL-01/inputs/plonk-verifiers.provenance.json",
+    "sha256": "e076fb94ab55c7d13b5baee6ba8589d5fe7483a5f6b7b302cd3127dfd1955dd8"
+  },
+  "proofset": {
+    "count": 64,
+    "csv_sha256": "9f82f3830bad61d8824f2a40f6705701d5ec4fba41ef95d0d340bb65c77ae9c4",
+    "dir": "csi/campaigns/chain/CSI-CHAIN-LOCAL-01/inputs/proofset",
+    "generated_at_commit": "a7482a12e161ab996f6dbf5c11490d4b64e42606",
+    "id": "PS-01",
+    "json_sha256": "5ba2b55016b344f4b2eb3185db5c94c3aca7b7188dcfd7baf20b970f215aac0b",
+    "rule": "i_j = (2j+1) * 2^(d-4), j = 0..7; same indices for both backends",
+    "sha256_file_sha256": "55f42c19f477df44f88323abd0f2caf3c17535093df64345305f6261621d1990"
+  },
+  "protocol": {
+    "amendments_pre_run": [
+      "A1",
+      "A2",
+      "A3"
+    ],
+    "eravm_arm": "pending",
+    "frozen_at_commit": "a7482a12e161ab996f6dbf5c11490d4b64e42606",
+    "path": "csi/protocols/chain/CHAIN-PROTOCOL-v1.md",
+    "sha256": "135b3e6b94406256240c88e6db292f6cd4f9b4c15a52f6ef0e91dc48476d5a0a",
+    "version": "v1"
+  },
+  "scientific_run": null,
+  "stage": "engineering dry run passed; full L1 scientific matrix not started; local-EraVM arm pending (protocol section 14)",
+  "status": "ready",
+  "unit_tests": {
+    "failing": 0,
+    "passing": 12
+  },
+  "used_in_manuscript": "no",
+  "venue": "CSI"
+}

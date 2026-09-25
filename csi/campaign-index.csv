@@ -1,2 +1,3 @@
 venue,admin_id,experiment,status,used_in_manuscript,campaign_id,source_path,baseline_tag,commit,protocol_version,protocol_path
 CSI,CSI-PROVER-01,controlled prover scaling,validated,pending,campaign-20260925T060607Z,results/postcorr-20260925,rerun-baseline-20260925,dc13ddd3e4561e5d69fe372fe3cb2d550bfb2b81,v3,submission/csi/RERUN-PROTOCOL.md
+CSI,CSI-CHAIN-LOCAL-01,controlled on-chain verification (local L1),ready,no,-,-,-,e141816d2af3c83c76050294ed4e6ad1f05795be,v1,csi/protocols/chain/CHAIN-PROTOCOL-v1.md
