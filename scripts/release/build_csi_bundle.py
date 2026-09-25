@@ -232,20 +232,31 @@ def build_campaign(row, plan, tmpdir):
     return {'row': row, 'base': base, 'image': image, 'cj': cj}
 
 
-def build_chain_campaign(row, plan):
-    """Chain campaign: verify registry identities and frozen inputs; generate the code manifest."""
+def build_chain_campaign(row, plan, tmpdir):
+    """Chain campaign: verify registry identities and frozen inputs; generate the code manifest. Once the scientific
+    run is registered (source_path set): the frozen source manifest and the derived outputs (derive_chain_l1.py)."""
     admin = row['admin_id']
     base = f"{CSI}/campaigns/{EXPERIMENT_DIR[row['experiment']]}/{admin}"
     git('rev-parse', row['commit'] + '^{commit}')
     if not os.path.exists(os.path.join(REPO, row['protocol_path'])):
         raise Abort(f"{admin}: protocol {row['protocol_path']} missing")
+    src = row['source_path']
+    scientific = src not in ('', '-')
     rec_rel = f'{base}/campaign.json'
     if os.path.exists(os.path.join(REPO, rec_rel)):
         rec = json.loads(rd(rec_rel))
         for k in ('admin_id', 'status'):
             if rec.get(k) != row[k]:
                 raise Abort(f'{admin}: {rec_rel} {k}={rec.get(k)} but registry has {row[k]}')
-        if rec.get('harness', {}).get('commit') != row['commit']:
+        if scientific:
+            sr = rec.get('scientific_run') or {}
+            for k, want in (('baseline_commit', row['commit']), ('campaign_id', row['campaign_id']), ('source_path', src), ('baseline_tag', row['baseline_tag'])):
+                if sr.get(k) != want:
+                    raise Abort(f"{admin}: {rec_rel} scientific_run.{k}={sr.get(k)} but registry has {want}")
+            tag_commit = git('rev-parse', row['baseline_tag'] + '^{commit}').decode().strip()
+            if tag_commit != row['commit']:
+                raise Abort(f"{admin}: tag {row['baseline_tag']} -> {tag_commit}, registry commit {row['commit']}")
+        elif rec.get('harness', {}).get('commit') != row['commit']:
             raise Abort(f"{admin}: {rec_rel} harness commit {rec.get('harness', {}).get('commit')} but registry has {row['commit']}")
     ps = f'{base}/inputs/proofset'
     if os.path.exists(os.path.join(REPO, ps, 'PROOFSET.sha256')):
@@ -253,8 +264,73 @@ def build_chain_campaign(row, plan):
             h, f = ln.split(None, 1)
             if sha(rd(f'{ps}/{f.strip()}')) != h:
                 raise Abort(f'{admin}: frozen proof-set file changed: {ps}/{f.strip()}')
+    if scientific:
+        # frozen source fingerprint (the tracked raw campaign is the only source of truth)
+        sm = source_manifest(src)
+        sm_rel = f'{base}/SOURCE.sha256'
+        existing = os.path.join(REPO, sm_rel)
+        if os.path.exists(existing) and open(existing, 'rb').read() != sm:
+            raise Abort(f'{admin}: {src} no longer matches the frozen {sm_rel}; the source campaign must not change')
+        plan.put(sm_rel, sm)
+        # protocol at the campaign commit must equal the committed protocol (no later edit)
+        proto = git('show', f"{row['commit']}:{row['protocol_path']}")
+        if sha(proto) != sha(rd(row['protocol_path'])):
+            raise Abort(f"{admin}: {row['protocol_path']} changed after the campaign commit")
+        arc = json.loads(git('show', f"{row['commit']}:chainbench/docker/ARCHIVE.json"))
+        dtmp = os.path.join(tmpdir, admin, 'derived')
+        cmd = [sys.executable, os.path.join(REPO, 'scripts/analysis/derive_chain_l1.py'), '--campaign', os.path.join(REPO, src), '--out', dtmp,
+               '--repo', REPO, '--expect-campaign-id', row['campaign_id'], '--expect-commit', row['commit'], '--expect-tag', row['baseline_tag'],
+               '--expect-image-id', arc['image_id'], '--expect-protocol-sha256', sha(proto)]
+        r = subprocess.run(cmd, capture_output=True)
+        if r.returncode:
+            raise Abort(f'{admin}: derive_chain_l1.py failed: {r.stderr.decode().strip()}')
+        for fn in sorted(os.listdir(dtmp)):
+            plan.put(f'{base}/derived/{fn}', open(os.path.join(dtmp, fn), 'rb').read())
     plan.put(f'{CSI}/code/chain/{admin}.KIT.sha256', tree_manifest(row['commit'], CHAIN_PATHS))
-    return {'row': row, 'base': base}
+    return {'row': row, 'base': base, 'scientific': scientific, 'src': src}
+
+
+def det_tar(path, src):
+    """Deterministic tar of a directory (sorted paths, mtime 0, uid/gid 0, mode 0644)."""
+    with tarfile.open(path, 'w', format=tarfile.USTAR_FORMAT) as t:
+        paths = []
+        for root, dirs, files in os.walk(os.path.join(REPO, src)):
+            dirs.sort()
+            paths += [os.path.join(root, f) for f in sorted(files)]
+        for p in sorted(paths, key=lambda x: os.path.relpath(x, REPO)):
+            ti = tarfile.TarInfo(os.path.relpath(p, REPO))
+            data = open(p, 'rb').read()
+            ti.size, ti.mtime, ti.mode, ti.uid, ti.gid, ti.uname, ti.gname = len(data), 0, 0o644, 0, 0, '', ''
+            t.addfile(ti, io.BytesIO(data))
+
+
+def release_manifest(rdir):
+    lines = []
+    for root, _, files in os.walk(rdir):
+        for fn in files:
+            p = os.path.join(root, fn)
+            rel = os.path.relpath(p, rdir)
+            if rel != 'RELEASE.sha256':
+                h = hashlib.sha256()
+                with open(p, 'rb') as f:
+                    for b in iter(lambda: f.read(1 << 20), b''):
+                        h.update(b)
+                lines.append(f'{h.hexdigest()}  {rel}')
+    with open(os.path.join(rdir, 'RELEASE.sha256'), 'w') as f:
+        f.write('\n'.join(sorted(lines, key=lambda l: l[66:])) + '\n')
+
+
+def build_chain_release(ctx):
+    """Chain release archives (not versioned): raw campaign tar (deterministic), code tar (git archive at the campaign commit)."""
+    admin, src, commit = ctx['row']['admin_id'], ctx['row']['source_path'], ctx['row']['commit']
+    rdir = os.path.join(REPO, CSI, 'release', admin)
+    os.makedirs(rdir, exist_ok=True)
+    det_tar(os.path.join(rdir, f"campaign-{ctx['row']['campaign_id']}.tar"), src)
+    with open(os.path.join(rdir, f'code-{commit[:7]}.tar'), 'wb') as f:
+        f.write(git('archive', '--format=tar', f'--prefix=zcorp-{commit[:7]}/', commit, '--', *CHAIN_PATHS,
+                    'csi/protocols/chain', f"{CSI}/campaigns/chain/{admin}/inputs"))
+    release_manifest(rdir)
+    print(f'release: {rdir}')
 
 
 def chain_attribution(rel, crow):
@@ -276,10 +352,14 @@ def chain_attribution(rel, crow):
         return 'generated', 'chainbench/scripts/record_campaign.py at the readiness commit (earlier readiness dry run)'
     if re.search(r'/notes/DRY-RUN-packaged-[0-9a-f]{7}\.md$', rel):
         return 'generated', 'chainbench/workloads/zcorp/record_campaign.py (earlier, superseded packaged dry run)'
-    if rel.endswith('/campaign.json') or rel.endswith('/notes/DRY-RUN.md'):
+    if rel.endswith('/campaign.json') or rel.endswith('/notes/DRY-RUN.md') or rel.endswith('/VALIDATION.md'):
         return 'generated', 'chainbench/workloads/zcorp/record_campaign.py'
+    if rel.endswith('/SOURCE.sha256'):
+        return 'generated', crow['source_path']
     if '/derived/' in rel:
-        return 'generated', 'chainbench/scripts (summarize_l1.py, compare_runs.py)'
+        return 'generated', f"scripts/analysis/derive_chain_l1.py <- {crow['source_path']}"
+    if '/validation/' in rel:
+        return 'generated', 'scripts/analysis/verify_chain_proofset.js (needs the manifest-covered vkeys under data/)'
     return 'hand-written', '-'
 
 
@@ -329,10 +409,13 @@ def main():
         rows = [r for r in allrows if EXPERIMENT_DIR[r['experiment']] == 'prover']
         crows = [r for r in allrows if EXPERIMENT_DIR[r['experiment']] == 'chain']
         ctxs = [build_campaign(r, plan, tmpdir) for r in rows]
-        cctx = [build_chain_campaign(r, plan) for r in crows]
+        cctx = [build_chain_campaign(r, plan, tmpdir) for r in crows]
         if a.release and not a.check:
             for c in ctxs:
                 build_release(c)
+            for c in cctx:
+                if c['scientific']:
+                    build_chain_release(c)
         commits = sorted({r['commit'] for r in rows})
         for c in commits:
             plan.put(f'{CSI}/code/prover/KIT.sha256', tree_manifest(c, CAMPAIGN_PATHS))

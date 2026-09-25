@@ -42,7 +42,7 @@ bash scripts/release/save_image.sh                     # campaign host only: doc
 | Admin ID | Experiment | Status | Used in manuscript | Source |
 |---|---|---|---|---|
 | CSI-PROVER-01 | controlled prover scaling | validated | pending | `results/postcorr-20260925/` (`campaign-20260925T060607Z`, tag `rerun-baseline-20260925`, commit `dc13ddd`, protocol v3) |
-| CSI-CHAIN-LOCAL-01 | controlled on-chain verification (local L1) | ready | no | No scientific run yet. The packaged (container) engineering dry run passed and equals the readiness dry run (`campaigns/chain/CSI-CHAIN-LOCAL-01/notes/DRY-RUN.md`). Baseline tag `chain-l1-baseline-20260925`, harness commit `fbe3794`, protocol `protocols/chain/CHAIN-PROTOCOL-v1.md`. Reviewer entry point: `chainbench/README.md`. |
+| CSI-CHAIN-LOCAL-01 | controlled on-chain verification (local L1) | validated | no | `results/chain-local-l1-20260925/` (`full-71a5854-20260925T115726Z`: EDR runs a and b and the geth replay; tag `chain-l1-baseline-20260925`, baseline commit `71a5854`, measurement code `fbe3794`, protocol `protocols/chain/CHAIN-PROTOCOL-v1.md` with A1–A5). Validation: `campaigns/chain/CSI-CHAIN-LOCAL-01/VALIDATION.md`. Reviewer entry point: `chainbench/README.md`. |
 
 ### Chain campaigns (`campaigns/chain/`)
 
@@ -61,8 +61,9 @@ Chain campaigns are registered in the same `campaign-index.csv`. Their layout di
 | `release/CSI-CHAIN-LOCAL-01/` | `docker save` archives of the scientific image (linux/arm64), of the official geth image it was built from, and of the linux/amd64 portability image. The archives are not versioned; their records (`IMAGE-ARCHIVE.<arch>.json`, OCI index, listing) and `IMAGE-ARCHIVE.json` are. | `./chainbench/run.sh save-image` on the campaign host; `scripts/release/chain_image_record.py` |
 | `campaigns/chain/CSI-CHAIN-LOCAL-01/notes/PORTABILITY.md` | Archived images and the reviewer-platform check (linux/amd64 doctor and smoke) | Hand-written from the records |
 
-- **Raw run data** goes to `build/campaigns/chain/<run_id>/` (git-ignored).
-- **After the scientific run** (not started), the raw data is archived into `release/CSI-CHAIN-LOCAL-01/` and the derived outputs go to `campaigns/chain/CSI-CHAIN-LOCAL-01/derived/`.
+- **Raw run data** is written to `build/campaigns/chain/<run_id>/` (git-ignored). The accepted scientific campaign was moved unchanged (52 files, byte-identical) to the tracked `results/chain-local-l1-20260925/`. That directory is its only source of truth, frozen by `campaigns/chain/CSI-CHAIN-LOCAL-01/SOURCE.sha256`.
+- **Derived outputs** (`campaigns/chain/CSI-CHAIN-LOCAL-01/derived/`) are generated from it by `scripts/analysis/derive_chain_l1.py`, through `build_csi_bundle.py`; `--check` regenerates them byte for byte.
+- **Release** (`release/CSI-CHAIN-LOCAL-01/`, for the Zenodo deposit): the deterministic raw-campaign tar, the code tar at the baseline commit, and the `docker save` archives. `RELEASE.sha256` is versioned; the tars are not.
 
 The pre-correction July 2026 files are superseded; their provenance is `results/PRECORRECTION-2026-07.sha256`,
 whose digest each campaign record carries as `superseded_campaign`.

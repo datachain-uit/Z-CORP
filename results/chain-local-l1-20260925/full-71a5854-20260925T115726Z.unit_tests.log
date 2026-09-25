@@ -1,0 +1,99 @@
+Warning: Unused function parameter. Remove or comment out the variable name to silence this warning.
+   --> contracts/chain/PlonkVerifierDepth10.sol:121:26:
+    |
+121 |     function verifyProof(uint256[24] calldata _proof, uint256[1] calldata _pubSignals) public view returns (bool) {
+    |                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+
+Warning: Unused function parameter. Remove or comment out the variable name to silence this warning.
+   --> contracts/chain/PlonkVerifierDepth11.sol:121:26:
+    |
+121 |     function verifyProof(uint256[24] calldata _proof, uint256[1] calldata _pubSignals) public view returns (bool) {
+    |                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+
+Warning: Unused function parameter. Remove or comment out the variable name to silence this warning.
+   --> contracts/chain/PlonkVerifierDepth12.sol:121:26:
+    |
+121 |     function verifyProof(uint256[24] calldata _proof, uint256[1] calldata _pubSignals) public view returns (bool) {
+    |                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+
+Warning: Unused function parameter. Remove or comment out the variable name to silence this warning.
+   --> contracts/chain/PlonkVerifierDepth13.sol:121:26:
+    |
+121 |     function verifyProof(uint256[24] calldata _proof, uint256[1] calldata _pubSignals) public view returns (bool) {
+    |                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+
+Warning: Unused function parameter. Remove or comment out the variable name to silence this warning.
+   --> contracts/chain/PlonkVerifierDepth14.sol:121:26:
+    |
+121 |     function verifyProof(uint256[24] calldata _proof, uint256[1] calldata _pubSignals) public view returns (bool) {
+    |                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+
+Warning: Unused function parameter. Remove or comment out the variable name to silence this warning.
+   --> contracts/chain/PlonkVerifierDepth15.sol:121:26:
+    |
+121 |     function verifyProof(uint256[24] calldata _proof, uint256[1] calldata _pubSignals) public view returns (bool) {
+    |                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+
+Warning: Unused function parameter. Remove or comment out the variable name to silence this warning.
+   --> contracts/chain/PlonkVerifierDepth5.sol:121:26:
+    |
+121 |     function verifyProof(uint256[24] calldata _proof, uint256[1] calldata _pubSignals) public view returns (bool) {
+    |                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+
+Warning: Unused function parameter. Remove or comment out the variable name to silence this warning.
+   --> contracts/chain/PlonkVerifierDepth6.sol:121:26:
+    |
+121 |     function verifyProof(uint256[24] calldata _proof, uint256[1] calldata _pubSignals) public view returns (bool) {
+    |                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+
+Warning: Unused function parameter. Remove or comment out the variable name to silence this warning.
+   --> contracts/chain/PlonkVerifierDepth7.sol:121:26:
+    |
+121 |     function verifyProof(uint256[24] calldata _proof, uint256[1] calldata _pubSignals) public view returns (bool) {
+    |                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+
+Warning: Unused function parameter. Remove or comment out the variable name to silence this warning.
+   --> contracts/chain/PlonkVerifierDepth8.sol:121:26:
+    |
+121 |     function verifyProof(uint256[24] calldata _proof, uint256[1] calldata _pubSignals) public view returns (bool) {
+    |                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+
+Warning: Unused function parameter. Remove or comment out the variable name to silence this warning.
+   --> contracts/chain/PlonkVerifierDepth9.sol:121:26:
+    |
+121 |     function verifyProof(uint256[24] calldata _proof, uint256[1] calldata _pubSignals) public view returns (bool) {
+    |                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+
+Compiled 27 Solidity files successfully (evm target: paris).
+
+
+  CHAIN-PROTOCOL-v1 §12.1 manager unit tests
+    CredentialManagerGroth16
+      ✔ accepts a valid proof (returns true, emits CredentialVerified)
+      ✔ rejects a tampered proof (verifier false, manager reverts "Invalid proof")
+      ✔ rejects an unknown root ("Invalid root")
+      ✔ rejects root publication by a non-issuer
+      ✔ rejects a cross-depth proof even when its root is registered
+      ✔ keeps owner-only and zero-address guards
+    CredentialManagerPlonk
+      ✔ accepts a valid proof (returns true, emits CredentialVerified)
+      ✔ rejects a tampered proof (verifier false, manager reverts "Invalid proof")
+      ✔ rejects an unknown root ("Invalid root")
+      ✔ rejects root publication by a non-issuer
+      ✔ rejects a cross-depth proof even when its root is registered
+      ✔ keeps owner-only and zero-address guards
+
+
+  12 passing (375ms)
+

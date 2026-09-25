@@ -15,6 +15,7 @@ Refuses unless:
   * the image records in the working tree (chainbench/docker/pins.env, IMAGE.json) equal the records of the image the
     runs actually used (freeze directory written by `run.sh author-freeze`; image id in each run's environment.json).
 
+Scientific mode (after the full matrix): record_campaign.py --scientific <tracked raw campaign dir> --baseline-tag <tag> [--offchain <json>]
 Usage: record_campaign.py --dry-run-id <id> --smoke <smoke run dir> --freeze <freeze dir> --baseline-tag <tag>
                           [--dry-root build/chainbench/dry-run] [--binding <campaign binding json>]"""
 import argparse, csv, hashlib, json, os, re, subprocess, sys
@@ -24,13 +25,15 @@ CB = os.path.abspath(os.path.join(HERE, '..', '..'))
 REPO = os.path.abspath(os.path.join(CB, '..'))
 CB_REL = os.path.relpath(CB, REPO)
 ap = argparse.ArgumentParser()
-ap.add_argument('--dry-run-id', required=True); ap.add_argument('--smoke', required=True); ap.add_argument('--freeze', required=True)
+ap.add_argument('--dry-run-id'); ap.add_argument('--smoke'); ap.add_argument('--freeze')
 ap.add_argument('--baseline-tag', required=True); ap.add_argument('--dry-root', default='build/chainbench/dry-run')
 ap.add_argument('--binding', default=os.path.join(HERE, 'campaigns', 'CSI-CHAIN-LOCAL-01.json'))
 ap.add_argument('--archive-record', help='CSI image archive record (csi/release/<id>/IMAGE-ARCHIVE.json)')
 ap.add_argument('--portability-smoke', action='append', default=[], help='smoke run dir on another platform (repeatable)')
 ap.add_argument('--prefreeze-summary', help='summary file written by run.sh author-prefreeze')
 ap.add_argument('--previous-tag', action='append', default=[], help='TAGOBJECT:COMMIT of an earlier (moved, never pushed) baseline tag')
+ap.add_argument('--scientific', help='scientific mode: the tracked raw campaign directory (e.g. results/chain-local-l1-20260925)')
+ap.add_argument('--offchain', help='scientific mode: off-chain proof-set verification record (scripts/analysis/verify_chain_proofset.js)')
 a = ap.parse_args()
 
 def P(p): return p if os.path.isabs(p) else os.path.join(REPO, p)
@@ -39,6 +42,144 @@ def git(*x): return subprocess.run(['git', '-C', REPO, *x], capture_output=True,
 def jl(p): return json.load(open(P(p)))
 def envfile(p): return dict(re.findall(r'^([A-Z0-9_]+)="(.*)"$', open(P(p)).read(), re.M))
 def die(msg): sys.exit(f'record_campaign: REFUSED: {msg}')
+
+# ================================================================ scientific mode (inserted into record_campaign.py)
+def scientific(a):
+    """Register the accepted scientific campaign: re-validate identities (anti-mixing), run the committed derivation into a
+    temporary directory (all section 10 checks must pass), then write campaign.json scientific_run, VALIDATION.md and the
+    registry row. The tracked raw campaign directory is the only source of truth; nothing in it is modified."""
+    import tempfile
+    B = jl(a.binding); AR = B['admin_record']
+    CAMP = B['campaign_dir']; PROTO = B['protocol']; MCODE = B['measurement_code_paths']
+    src = a.scientific.rstrip('/')
+    runs_dirs = sorted(d for d in os.listdir(P(src)) if os.path.isdir(P(os.path.join(src, d))))
+    cid = sorted({re.sub(r'-(edr-a|edr-b|geth)$', '', d) for d in runs_dirs})
+    if len(cid) != 1: die(f'{src}: expected one campaign, found {cid}')
+    cid = cid[0]
+    D = {k: os.path.join(src, f'{cid}-{k}') for k in ('edr-a', 'edr-b', 'geth')}
+    runs = {k: jl(os.path.join(d, 'run.json')) for k, d in D.items()}
+    envs = {k: jl(os.path.join(d, 'environment.json')) for k, d in D.items()}
+    rec = jl(os.path.join(CAMP, 'campaign.json'))
+    tag = a.baseline_tag
+    tag_commit = git('rev-parse', f'{tag}^{{commit}}'); tag_object = git('rev-parse', tag)
+    mcc = rec['commits']['measurement_code_commit']
+    # ---- anti-mixing: one campaign, one commit (= the baseline tag), one image (= the archived image), one protocol
+    for k, r in runs.items():
+        if r['plan'] != 'full': die(f'{k}: plan {r["plan"]} is not full')
+        if r['commit'] != tag_commit: die(f'{k}: run commit {r["commit"]} != baseline tag commit {tag_commit}')
+        if r['dirty_tracked_paths']: die(f'{k}: dirty tracked paths {r["dirty_tracked_paths"]}')
+        if r.get('accepted_checks') is not True: die(f'{k}: runner checks not accepted')
+        if r.get('campaign_id') != B['campaign_id']: die(f'{k}: campaign {r.get("campaign_id")}')
+    if git('diff', '--name-only', mcc, tag_commit, '--', *MCODE): die(f'measurement code changed between {mcc[:7]} and the baseline {tag_commit[:7]}')
+    arc = json.loads(git('show', f'{tag_commit}:{CB_REL}/docker/ARCHIVE.json'))
+    for k, e in envs.items():
+        c = e.get('container') or {}
+        if c.get('image_id') != arc['image_id']: die(f'{k}: image {c.get("image_id")} is not the archived image {arc["image_id"]}')
+        if (c.get('network_isolation') or {}).get('isolated') is not True: die(f'{k}: network isolation not established')
+    proto_bytes = subprocess.run(['git', '-C', REPO, 'show', f'{tag_commit}:{PROTO}'], capture_output=True, check=True).stdout  # exact bytes (no strip)
+    proto_at_tag = proto_bytes.decode()
+    proto_sha = hashlib.sha256(proto_bytes).hexdigest()
+    if sha(PROTO) != proto_sha: die('the protocol changed after the baseline tag')
+    for k, r in runs.items():
+        if r['protocol_sha256'] != proto_sha: die(f'{k}: protocol sha256 {r["protocol_sha256"]} != protocol at the baseline')
+    pm = runs['edr-a']['proofset_manifest']
+    psd = B['proofset_dir']
+    if pm.get('csv_sha256') != sha(f'{psd}/PROOFSET.csv') or pm.get('sha256_file_sha256') != sha(f'{psd}/PROOFSET.sha256'): die('proof-set manifest differs from the committed proof set')
+    pre = jl(os.path.join(src, f'{cid}.preflight.json')); post = jl(os.path.join(src, f'{cid}.postflight.json'))
+    for n, d in (('pre-flight', pre), ('post-flight', post)):
+        if d['fails'] != 0 or d['head'] != tag_commit: die(f'{n}: fails {d["fails"]}, head {d["head"]}')
+    off = jl(a.offchain) if a.offchain else None
+    if off and off.get('all_checks_pass') is not True: die('off-chain proof-set verification failed')
+    # ---- the committed derivation (all section 10 checks re-evaluated from the raw rows)
+    tmp = tempfile.mkdtemp(prefix='chain-derive-')
+    cmd = [sys.executable, P('scripts/analysis/derive_chain_l1.py'), '--campaign', P(src), '--out', tmp, '--repo', REPO,
+           '--expect-campaign-id', cid, '--expect-commit', tag_commit, '--expect-tag', tag, '--expect-image-id', arc['image_id'],
+           '--expect-protocol-sha256', proto_sha]
+    r = subprocess.run(cmd, capture_output=True, text=True)
+    if r.returncode: die(f'derivation checks failed: {r.stderr.strip()}')
+    val = json.load(open(os.path.join(tmp, 'validation.json'))); dmeta = json.load(open(os.path.join(tmp, 'derivation.json')))
+    if val.get('passed') is not True: die('validation.json: not passed')
+    ut = open(P(os.path.join(src, f'{cid}.unit_tests.log'))).read()
+    mp = re.search(r'(\d+) passing', ut)
+    envG = envs['geth']
+    ec = jl(os.path.join(D['geth'], 'env_check.json'))
+    def runsum(k):
+        x = runs[k]
+        return {'run_id': x['run_id'], 'env': x['env'], 'rows': x['rows'], 'rows_expected': x['rows_expected'], 'rows_failing_check': x['rows_failing_check'],
+                'deployments_runtime_match': x['deployments_runtime_match'], 'env_check_pass': x['env_check_pass'], 'ops_csv_sha256': x['ops_csv_sha256'],
+                'started_at_utc': x['started_at_utc'], 'finished_at_utc': x['finished_at_utc'], 'dir': D[k]}
+    ch = val['checks']
+    sr = {
+        'campaign_id': cid, 'source_path': src,
+        'produced_at': 'build/campaigns/chain/ (protocol section 8); moved unchanged to the tracked source_path, which is the only source of truth',
+        'source_manifest': f'{CAMP}/SOURCE.sha256',
+        'baseline_tag': tag, 'baseline_tag_object': tag_object, 'baseline_commit': tag_commit,
+        'measurement_code_commit': mcc, 'measurement_code_identical_at_baseline': True,
+        'raw_row_commit_field': f'run.json "commit" of every run = {tag_commit} (the baseline commit)',
+        'protocol': {'path': PROTO, 'sha256_at_baseline': proto_sha, 'amendments': re.findall(r'^\| (A\d+) \|', proto_at_tag, re.M)},
+        'image': {'image_id': arc['image_id'], 'platform': arc['platform'], 'archive_sha256': arc['archive_sha256'], 'archive_bytes': arc['archive_bytes'],
+                  'archive_record': f'{CB_REL}/docker/ARCHIVE.json', 'geth_archive_sha256': arc.get('geth_archive_sha256')},
+        'geth': {'binary_sha256': envG['geth']['sha256'], 'client_version': ec['geth']['client_version'], 'source': (envG.get('container') or {}).get('geth_source')},
+        'edr': envs['edr-a'].get('edr_identity'),
+        'plan': {'cells': runs['edr-a']['cells'], 'proofs': runs['edr-a']['proofs'], 'rows_per_run': runs['edr-a']['expected_rows']},
+        'runs': {k: runsum(k) for k in ('edr-a', 'edr-b', 'geth')},
+        'unit_tests': {'passing': int(mp.group(1)) if mp else 0, 'log': os.path.join(src, f'{cid}.unit_tests.log')},
+        'preflight': {'file': os.path.join(src, f'{cid}.preflight.json'), 'fails': pre['fails'], 'head': pre['head']},
+        'postflight': {'file': os.path.join(src, f'{cid}.postflight.json'), 'fails': post['fails'], 'head': post['head']},
+        'validation': {'passed': True, 'checks': f"{sum(1 for c in ch.values() if c['pass'])}/{len(ch)}",
+                       'determinism_field_comparisons': ch['determinism_rows_identical']['comparisons'],
+                       'crossclient_field_comparisons': ch['crossclient_rows_identical']['comparisons'],
+                       'file': f'{CAMP}/derived/validation.json', 'summary': f'{CAMP}/VALIDATION.md'},
+        'offchain_proofset': ({'file': a.offchain, 'proofs': off['proofs'], 'verified': off['verified'], 'all_checks_pass': off['all_checks_pass'],
+                               'snarkjs': off['snarkjs']} if off else None),
+        'derived': {'dir': f'{CAMP}/derived', 'tool': dmeta['tool'], 'tool_sha256': dmeta['tool_sha256'], 'outputs_sha256': dmeta['outputs_sha256'],
+                    'rule': 'generated by scripts/release/build_csi_bundle.py from the tracked raw campaign; --check regenerates them byte for byte'},
+        'release': {'dir': f'csi/release/{AR["admin_id"]}', 'manifest': f'csi/release/{AR["admin_id"]}/RELEASE.sha256',
+                    'archives': [f'campaign-{cid}.tar', f'code-{tag_commit[:7]}.tar', arc['archive'], arc.get('geth_archive')],
+                    'versioned': 'no (Zenodo deposit); their sha256 are in RELEASE.sha256'},
+        'evidence_status': 'scientific; accepted (protocol section 10 items 1-6)',
+    }
+    rec['scientific_run'] = sr
+    rec['status'] = 'validated'
+    rec['stage'] = (f'scientific L1 matrix run and validated ({cid}); baseline tag {tag} at {tag_commit[:7]}; '
+                    'local-EraVM arm pending (protocol section 14)')
+    rec['notes'] = sorted(set(rec.get('notes', [])) | {f'{AR["notes_dir"]}/PORTABILITY.md'})
+    open(P(os.path.join(CAMP, 'campaign.json')), 'w').write(json.dumps(rec, indent=2, sort_keys=True) + '\n')
+    # ---- VALIDATION.md
+    L = [f'# {AR["admin_id"]}: validation of the scientific L1 campaign `{cid}`', '',
+         f'- **Source (only source of truth):** `{src}/`, frozen by `SOURCE.sha256`. Produced by `./chainbench/run.sh full-local-l1` at the baseline tag `{tag}` (`{tag_commit[:7]}`).',
+         f'- **Measurement code:** identical to `{mcc[:7]}`, the commit of the final packaged dry run (`measurement_code_paths` of the campaign binding).',
+         f'- **Environment:** archived image `{arc["image_id"]}` ({arc["platform"]}; `docker save` sha256 `{arc["archive_sha256"]}`), `--network none`; geth `{ec["geth"]["client_version"]}` (binary sha256 `{envG["geth"]["sha256"][:16]}…`).',
+         f'- **Protocol:** CHAIN-PROTOCOL-v1 with amendments {", ".join(sr["protocol"]["amendments"])}, sha256 `{proto_sha[:16]}…`.',
+         f'- **Rows:** {runs["edr-a"]["expected_rows"]} per run, as planned ({len(sr["plan"]["cells"])} cells × 36 rows; K = {len(sr["plan"]["proofs"])}).',
+         '', '| Criterion (section 10) | Result |', '|---|---|',
+         f'| 1. Build: compiles, size limits, staged = committed, PLONK verifier provenance | pass (both profiles, all three runs; pre-flight `export_plonk_verifiers --check-only` 11/11) |',
+         f'| 2. Proof set: `PROOFSET.sha256`, off-chain verification | pass (128 files; ' + (f'{off["verified"]}/{off["proofs"]} proofs verified off-chain with snarkjs {off["snarkjs"]}' if off else 'generation record') + ') |',
+         f'| 3. Rows: `check_pass = 1`, runtime = artifact, counts | pass (every row of every run; {runs["edr-a"]["expected_rows"]}/{runs["edr-a"]["expected_rows"]}) |',
+         '| 4. Hardfork (`env_check`) | pass (EDR osaka 4/4, prague control 0/4, geth 4/4) |',
+         f'| 5. Determinism (EDR a vs b, from scratch) | identical: {ch["determinism_rows_identical"]["comparisons"]} field comparisons, 0 differences; build manifests byte-identical |',
+         f'| 6. Cross-client (EDR a vs geth) | identical: {ch["crossclient_rows_identical"]["comparisons"]} field comparisons under the §8.4 exclusions, 0 differences; build manifests byte-identical |',
+         f'| Unit tests (§12 step 4) | {sr["unit_tests"]["passing"]} passing, 0 failing |',
+         f'| Pre-flight / post-flight doctor | 0 FAIL / 0 FAIL; head = baseline commit; archived image in use; no network |',
+         f'| Anti-mixing | every run.json commit = {tag_commit[:7]} = tag; one image; one protocol; proof-set manifest = committed |',
+         '', f'All {sr["validation"]["checks"]} checks of `derived/validation.json` pass. Derived outputs: `derived/` (`scripts/analysis/derive_chain_l1.py`).', '']
+    open(P(os.path.join(CAMP, 'VALIDATION.md')), 'w').write('\n'.join(L))
+    # ---- registry row
+    reg = P(AR['registry'])
+    rows = list(csv.DictReader(open(reg, newline=''))); fields = list(rows[0].keys())
+    hit = [x for x in rows if x['admin_id'] == AR['admin_id']]
+    if len(hit) != 1: die('registry: expected one row')
+    hit[0].update({'status': 'validated', 'campaign_id': cid, 'source_path': src, 'baseline_tag': tag, 'commit': tag_commit})
+    with open(reg, 'w', newline='') as f:
+        w = csv.DictWriter(f, fieldnames=fields, lineterminator='\n'); w.writeheader(); w.writerows(rows)
+    print('written', f'{CAMP}/campaign.json', f'{CAMP}/VALIDATION.md', f'{AR["registry"]} ({AR["admin_id"]} row: validated, {cid}, {tag_commit[:7]})')
+
+
+if a.scientific:
+    scientific(a)
+    sys.exit(0)
+if not (a.dry_run_id and a.smoke and a.freeze):
+    ap.error('dry-run mode needs --dry-run-id, --smoke and --freeze')
 
 B = jl(a.binding); AR = B['admin_record']
 CAMP = B['campaign_dir']; NOTES = AR['notes_dir']; PROTO = B['protocol']

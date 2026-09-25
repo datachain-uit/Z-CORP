@@ -1,0 +1,64 @@
+cell_id,backend,depth,op,kind,from_account,expected_status,status,expected_revert,revert_reason,expected_return,return_value,check_pass
+primary-groth16-d5,groth16,5,neg_unknown_root,tx,A0,0,0,Invalid root,Invalid root,,,1
+primary-groth16-d5,groth16,5,neg_tampered_call,call,A0,call,call,,,false,false,1
+primary-groth16-d5,groth16,5,neg_tampered,tx,A0,0,0,Invalid proof,Invalid proof,,,1
+primary-groth16-d5,groth16,5,neg_cross_depth_setup,tx,A0,1,1,,,,,1
+primary-groth16-d5,groth16,5,neg_cross_depth_call,call,A0,call,call,,,false,false,1
+primary-groth16-d5,groth16,5,neg_cross_depth,tx,A0,0,0,Invalid proof,Invalid proof,,,1
+primary-groth16-d5,groth16,5,neg_non_issuer,tx,A1,0,0,CredentialManager: not issuer,CredentialManager: not issuer,,,1
+primary-groth16-d10,groth16,10,neg_unknown_root,tx,A0,0,0,Invalid root,Invalid root,,,1
+primary-groth16-d10,groth16,10,neg_tampered_call,call,A0,call,call,,,false,false,1
+primary-groth16-d10,groth16,10,neg_tampered,tx,A0,0,0,Invalid proof,Invalid proof,,,1
+primary-groth16-d10,groth16,10,neg_cross_depth_setup,tx,A0,1,1,,,,,1
+primary-groth16-d10,groth16,10,neg_cross_depth_call,call,A0,call,call,,,false,false,1
+primary-groth16-d10,groth16,10,neg_cross_depth,tx,A0,0,0,Invalid proof,Invalid proof,,,1
+primary-groth16-d10,groth16,10,neg_non_issuer,tx,A1,0,0,CredentialManager: not issuer,CredentialManager: not issuer,,,1
+primary-groth16-d11,groth16,11,neg_unknown_root,tx,A0,0,0,Invalid root,Invalid root,,,1
+primary-groth16-d11,groth16,11,neg_tampered_call,call,A0,call,call,,,false,false,1
+primary-groth16-d11,groth16,11,neg_tampered,tx,A0,0,0,Invalid proof,Invalid proof,,,1
+primary-groth16-d11,groth16,11,neg_cross_depth_setup,tx,A0,1,1,,,,,1
+primary-groth16-d11,groth16,11,neg_cross_depth_call,call,A0,call,call,,,false,false,1
+primary-groth16-d11,groth16,11,neg_cross_depth,tx,A0,0,0,Invalid proof,Invalid proof,,,1
+primary-groth16-d11,groth16,11,neg_non_issuer,tx,A1,0,0,CredentialManager: not issuer,CredentialManager: not issuer,,,1
+primary-groth16-d15,groth16,15,neg_unknown_root,tx,A0,0,0,Invalid root,Invalid root,,,1
+primary-groth16-d15,groth16,15,neg_tampered_call,call,A0,call,call,,,false,false,1
+primary-groth16-d15,groth16,15,neg_tampered,tx,A0,0,0,Invalid proof,Invalid proof,,,1
+primary-groth16-d15,groth16,15,neg_cross_depth_setup,tx,A0,1,1,,,,,1
+primary-groth16-d15,groth16,15,neg_cross_depth_call,call,A0,call,call,,,false,false,1
+primary-groth16-d15,groth16,15,neg_cross_depth,tx,A0,0,0,Invalid proof,Invalid proof,,,1
+primary-groth16-d15,groth16,15,neg_non_issuer,tx,A1,0,0,CredentialManager: not issuer,CredentialManager: not issuer,,,1
+primary-plonk-d5,plonk,5,neg_unknown_root,tx,A0,0,0,Invalid root,Invalid root,,,1
+primary-plonk-d5,plonk,5,neg_tampered_call,call,A0,call,call,,,false,false,1
+primary-plonk-d5,plonk,5,neg_tampered,tx,A0,0,0,Invalid proof,Invalid proof,,,1
+primary-plonk-d5,plonk,5,neg_cross_depth_setup,tx,A0,1,1,,,,,1
+primary-plonk-d5,plonk,5,neg_cross_depth_call,call,A0,call,call,,,false,false,1
+primary-plonk-d5,plonk,5,neg_cross_depth,tx,A0,0,0,Invalid proof,Invalid proof,,,1
+primary-plonk-d5,plonk,5,neg_non_issuer,tx,A1,0,0,CredentialManager: not issuer,CredentialManager: not issuer,,,1
+primary-plonk-d10,plonk,10,neg_unknown_root,tx,A0,0,0,Invalid root,Invalid root,,,1
+primary-plonk-d10,plonk,10,neg_tampered_call,call,A0,call,call,,,false,false,1
+primary-plonk-d10,plonk,10,neg_tampered,tx,A0,0,0,Invalid proof,Invalid proof,,,1
+primary-plonk-d10,plonk,10,neg_cross_depth_setup,tx,A0,1,1,,,,,1
+primary-plonk-d10,plonk,10,neg_cross_depth_call,call,A0,call,call,,,false,false,1
+primary-plonk-d10,plonk,10,neg_cross_depth,tx,A0,0,0,Invalid proof,Invalid proof,,,1
+primary-plonk-d10,plonk,10,neg_non_issuer,tx,A1,0,0,CredentialManager: not issuer,CredentialManager: not issuer,,,1
+primary-plonk-d11,plonk,11,neg_unknown_root,tx,A0,0,0,Invalid root,Invalid root,,,1
+primary-plonk-d11,plonk,11,neg_tampered_call,call,A0,call,call,,,false,false,1
+primary-plonk-d11,plonk,11,neg_tampered,tx,A0,0,0,Invalid proof,Invalid proof,,,1
+primary-plonk-d11,plonk,11,neg_cross_depth_setup,tx,A0,1,1,,,,,1
+primary-plonk-d11,plonk,11,neg_cross_depth_call,call,A0,call,call,,,false,false,1
+primary-plonk-d11,plonk,11,neg_cross_depth,tx,A0,0,0,Invalid proof,Invalid proof,,,1
+primary-plonk-d11,plonk,11,neg_non_issuer,tx,A1,0,0,CredentialManager: not issuer,CredentialManager: not issuer,,,1
+primary-plonk-d15,plonk,15,neg_unknown_root,tx,A0,0,0,Invalid root,Invalid root,,,1
+primary-plonk-d15,plonk,15,neg_tampered_call,call,A0,call,call,,,false,false,1
+primary-plonk-d15,plonk,15,neg_tampered,tx,A0,0,0,Invalid proof,Invalid proof,,,1
+primary-plonk-d15,plonk,15,neg_cross_depth_setup,tx,A0,1,1,,,,,1
+primary-plonk-d15,plonk,15,neg_cross_depth_call,call,A0,call,call,,,false,false,1
+primary-plonk-d15,plonk,15,neg_cross_depth,tx,A0,0,0,Invalid proof,Invalid proof,,,1
+primary-plonk-d15,plonk,15,neg_non_issuer,tx,A1,0,0,CredentialManager: not issuer,CredentialManager: not issuer,,,1
+bridge-groth16-d11,groth16,11,neg_unknown_root,tx,A0,0,0,Invalid root,Invalid root,,,1
+bridge-groth16-d11,groth16,11,neg_tampered_call,call,A0,call,call,,,false,false,1
+bridge-groth16-d11,groth16,11,neg_tampered,tx,A0,0,0,Invalid proof,Invalid proof,,,1
+bridge-groth16-d11,groth16,11,neg_cross_depth_setup,tx,A0,1,1,,,,,1
+bridge-groth16-d11,groth16,11,neg_cross_depth_call,call,A0,call,call,,,false,false,1
+bridge-groth16-d11,groth16,11,neg_cross_depth,tx,A0,0,0,Invalid proof,Invalid proof,,,1
+bridge-groth16-d11,groth16,11,neg_non_issuer,tx,A1,0,0,CredentialManager: not issuer,CredentialManager: not issuer,,,1

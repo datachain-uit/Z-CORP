@@ -1,0 +1,58 @@
+{
+  "campaign_id": "CSI-CHAIN-LOCAL-01",
+  "run_id": "full-71a5854-20260925T115726Z-edr-b",
+  "plan": "full",
+  "env": "edr",
+  "started_at_utc": "2026-09-25T11:57:41.333Z",
+  "commit": "71a58545a6bc6873499928154827d7075bdb3440",
+  "dirty_tracked_paths": [],
+  "protocol": "csi/protocols/chain/CHAIN-PROTOCOL-v1.md",
+  "protocol_sha256": "086206c5a6df8e78fdd9c47639e6288533c3e7fb51271e352c997f2ebd5dc4da",
+  "plonk_verifier_provenance_sha256": "e076fb94ab55c7d13b5baee6ba8589d5fe7483a5f6b7b302cd3127dfd1955dd8",
+  "reference_run": null,
+  "cells": [
+    "primary-groth16-d5",
+    "primary-groth16-d10",
+    "primary-groth16-d11",
+    "primary-groth16-d15",
+    "primary-plonk-d5",
+    "primary-plonk-d10",
+    "primary-plonk-d11",
+    "primary-plonk-d15",
+    "bridge-groth16-d11"
+  ],
+  "proofs": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7
+  ],
+  "workload": "zcorp",
+  "campaign_binding": "workloads/zcorp/campaigns/CSI-CHAIN-LOCAL-01.json",
+  "out_root": "build/campaigns/chain",
+  "expected_rows": 324,
+  "steps": {
+    "build": "2026-09-25T11:57:44.998Z",
+    "envcheck": "2026-09-25T11:57:45.470Z",
+    "exec": "2026-09-25T11:57:46.560Z",
+    "finish": "2026-09-25T11:57:46.614Z"
+  },
+  "env_check_pass": true,
+  "proofset_manifest": {
+    "csv_sha256": "9f82f3830bad61d8824f2a40f6705701d5ec4fba41ef95d0d340bb65c77ae9c4",
+    "sha256_file_sha256": "55f42c19f477df44f88323abd0f2caf3c17535093df64345305f6261621d1990",
+    "json_sha256": "5ba2b55016b344f4b2eb3185db5c94c3aca7b7188dcfd7baf20b970f215aac0b",
+    "files_verified": 128
+  },
+  "rows": 324,
+  "rows_expected": 324,
+  "rows_failing_check": 0,
+  "deployments_runtime_match": true,
+  "accepted_checks": true,
+  "ops_csv_sha256": "1459734f249a5351888e35cfaa8eb08f15d406cedd877ddb10ed116735af9347",
+  "finished_at_utc": "2026-09-25T11:57:46.614Z"
+}

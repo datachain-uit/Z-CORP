@@ -1,0 +1,214 @@
+{
+  "at_utc": "2026-09-25T11:57:29.584Z",
+  "head": "71a58545a6bc6873499928154827d7075bdb3440",
+  "fails": 0,
+  "results": [
+    {
+      "level": "INFO",
+      "check": "toolchain",
+      "detail": "node v22.23.2, npm 10.9.8, arm64/glibc 2.36, hardhat 2.29.1, EDR 0.12.0-next.23, solc 0.8.20, geth 1.16.9-stable",
+      "fix": ""
+    },
+    {
+      "level": "PASS",
+      "check": "toolchain matches reference image record (chainbench/docker/IMAGE.json)",
+      "detail": "",
+      "fix": ""
+    },
+    {
+      "level": "PASS",
+      "check": "toolchain matches accepted readiness toolchain (chainbench/docker/ACCEPTED-TOOLCHAIN.json)",
+      "detail": "1 warn-only difference(s): [WARN] runtime.libc: reference glibc 2.35, here glibc 2.36",
+      "fix": ""
+    },
+    {
+      "level": "PASS",
+      "check": "no network access at run time",
+      "detail": "no interface up except loopback, no IPv4 route, no non-loopback IPv6 route (down, unroutable kernel devices: erspan0, gre0, gretap0, ip6_vti0, ip6gre0, ip6tnl0, ip_vti0, sit0, tunl0)",
+      "fix": ""
+    },
+    {
+      "level": "PASS",
+      "check": "proof set matches its manifest",
+      "detail": "128 files, csi/campaigns/chain/CSI-CHAIN-LOCAL-01/inputs/proofset",
+      "fix": ""
+    },
+    {
+      "level": "PASS",
+      "check": "protocol present",
+      "detail": "csi/protocols/chain/CHAIN-PROTOCOL-v1.md sha256 086206c5a6df8e78…",
+      "fix": ""
+    },
+    {
+      "level": "PASS",
+      "check": "contract sources present",
+      "detail": "primary: 25, bridge: 3 files",
+      "fix": ""
+    },
+    {
+      "level": "PASS",
+      "check": "measurement sources clean",
+      "detail": "HEAD 71a5854; tracked: contracts chainbench :(exclude)chainbench/docker/IMAGE.json :(exclude)chainbench/docker/pins.env :(exclude)chainbench/docker/ARCHIVE.json csi/protocols/chain csi/campaigns/chain/CSI-CHAIN-LOCAL-01/inputs + image records",
+      "fix": ""
+    },
+    {
+      "level": "PASS",
+      "check": "baseline tag",
+      "detail": "chain-l1-baseline-20260925 -> 71a5854; measurement sources and image records unchanged since the tag",
+      "fix": ""
+    },
+    {
+      "level": "PASS",
+      "check": "archived image in use",
+      "detail": "sha256:53d80311c0d3d2ff57b5eca3d8b1ace9eb4c45449fbb8b6596045dbb606e6cb6 = image/chainbench-l1-arm64.oci.tar (sha256 bc16b206855bf8d5…)",
+      "fix": ""
+    },
+    {
+      "level": "PASS",
+      "check": "output location writable (smoke)",
+      "detail": "build/chainbench/smoke",
+      "fix": ""
+    },
+    {
+      "level": "PASS",
+      "check": "output location writable (dry)",
+      "detail": "build/chainbench/dry-run",
+      "fix": ""
+    },
+    {
+      "level": "PASS",
+      "check": "output location writable (full)",
+      "detail": "build/campaigns/chain",
+      "fix": ""
+    },
+    {
+      "level": "PASS",
+      "check": "PLONK verifier provenance re-check",
+      "detail": "11/11 generated verifiers equal the snarkjs export of the committed zkeys",
+      "fix": ""
+    },
+    {
+      "level": "PASS",
+      "check": "hardfork behaviour (Osaka)",
+      "detail": "EDR osaka markers 4/4, prague control 0/4, geth 4/4 (Geth/v1.16.9-stable-95665d57/linux-arm64/go1.24.13)",
+      "fix": ""
+    },
+    {
+      "level": "INFO",
+      "check": "resources visible to the environment",
+      "detail": "10 CPUs, 15.6 GiB memory",
+      "fix": ""
+    }
+  ],
+  "identity": {
+    "schema": "chainbench-toolchain-identity/1",
+    "at_utc": "2026-09-25T11:57:28.020Z",
+    "toolchain": {
+      "runtime": {
+        "node": "v22.23.2",
+        "npm": "10.9.8",
+        "arch": "arm64",
+        "libc": "glibc 2.36"
+      },
+      "packages": {
+        "hardhat": "2.29.1",
+        "@nomicfoundation/edr": "0.12.0-next.23",
+        "@nomicfoundation/hardhat-ethers": "3.0.8",
+        "ethers": "6.13.5",
+        "snarkjs": "0.7.5",
+        "ffjavascript": "0.3.1",
+        "solc": "0.8.20",
+        "@openzeppelin/contracts": "4.9.0",
+        "ejs": "3.1.10"
+      },
+      "lockfile_sha256": "0add12b819839bb7ebbb5a70d65d61bd1202fd1a2a1a0ca823e47d0fa2b068cd",
+      "package_json_sha256": "5ebd42186a72180ee3b10aad8484aa7fbfdd4165f9550fdb91ebc586925cc109",
+      "edr_native": {
+        "package": "@nomicfoundation/edr-linux-arm64-gnu",
+        "version": "0.12.0-next.23",
+        "file": "edr.linux-arm64-gnu.node",
+        "sha256": "17e6d355e924c5aa05b0e162ab63a15f62833408f03913aec497c886d8163ebc"
+      },
+      "soljson_sha256": "033dc42a16378dd036a475b8a7080af83cfae1841eb6848ce1667c56193972ba",
+      "hardhat_console_sol_sha256": "5a6db75ebe2603ab1ce17c40f48447f3040268675f027a77fe5e9b236f4e31dd",
+      "geth": {
+        "sha256": "a437c0a5e17d4c740418fbae6657b62d695b71dda8c923112f22fe4e91d58f84",
+        "version": "1.16.9-stable",
+        "git_commit": "95665d5703e1023995a0ff93e4ce9eb77e8a59bd",
+        "go": "go1.24.13"
+      }
+    },
+    "geth_detail": {
+      "path": "/opt/geth/geth",
+      "sha256": "a437c0a5e17d4c740418fbae6657b62d695b71dda8c923112f22fe4e91d58f84",
+      "version": "1.16.9-stable",
+      "git_commit": "95665d5703e1023995a0ff93e4ce9eb77e8a59bd",
+      "go": "go1.24.13",
+      "arch": "arm64",
+      "source": "official:ethereum/client-go@sha256:2dd7ef210a1a3fb87887676f7ead1b98161af83810928cdf6fc5b84bcdcc8ef4"
+    },
+    "system": {
+      "os_release": "Debian GNU/Linux 12 (bookworm)",
+      "kernel": "7.0.12-linuxkit",
+      "cpus": 10,
+      "mem_bytes": 16745824256,
+      "git": "git version 2.39.5",
+      "python3": "Python 3.11.2",
+      "apt_packages": [
+        "ca-certificates 20250419~deb12u1",
+        "git 1:2.39.5-0+deb12u3",
+        "python3 3.11.2-1+b1",
+        "python3-minimal 3.11.2-1+b1"
+      ],
+      "network_interfaces": [
+        "bonding_masters",
+        "erspan0",
+        "gre0",
+        "gretap0",
+        "ip6_vti0",
+        "ip6gre0",
+        "ip6tnl0",
+        "ip_vti0",
+        "lo",
+        "sit0",
+        "tunl0"
+      ],
+      "network_isolation": {
+        "isolated": true,
+        "interfaces": [
+          "erspan0",
+          "gre0",
+          "gretap0",
+          "ip6_vti0",
+          "ip6gre0",
+          "ip6tnl0",
+          "ip_vti0",
+          "lo",
+          "sit0",
+          "tunl0"
+        ],
+        "up_non_loopback": [],
+        "loopback_up": true,
+        "ipv4_routes": 0,
+        "ipv6_non_loopback_routes": 0
+      }
+    },
+    "container": {
+      "image_id": "sha256:53d80311c0d3d2ff57b5eca3d8b1ace9eb4c45449fbb8b6596045dbb606e6cb6",
+      "image_ref": "chainbench-l1:local",
+      "base_image": "node@sha256:48e4b67d85f87bd551df43704e24d252f56cc5f8e9718841aace50f19948f0f9",
+      "geth_source": "official:ethereum/client-go@sha256:2dd7ef210a1a3fb87887676f7ead1b98161af83810928cdf6fc5b84bcdcc8ef4",
+      "network": "none"
+    },
+    "host": {
+      "os": "Darwin",
+      "os_version": "26.6.2",
+      "arch": "arm64",
+      "docker_server": "29.8.0",
+      "docker_os": "Docker Desktop",
+      "docker_cpus": "10",
+      "docker_mem_bytes": "16745824256"
+    },
+    "build_metadata": null
+  }
+}

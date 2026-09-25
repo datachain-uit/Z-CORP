@@ -1,0 +1,372 @@
+{
+  "campaign_id": "full-71a5854-20260925T115726Z",
+  "cells": [
+    "primary-groth16-d5",
+    "primary-groth16-d10",
+    "primary-groth16-d11",
+    "primary-groth16-d15",
+    "primary-plonk-d5",
+    "primary-plonk-d10",
+    "primary-plonk-d11",
+    "primary-plonk-d15",
+    "bridge-groth16-d11"
+  ],
+  "checks": {
+    "build_manifest_bridge_identical": {
+      "detail": "",
+      "pass": true
+    },
+    "build_manifest_primary_identical": {
+      "detail": "",
+      "pass": true
+    },
+    "campaign_id_expected": {
+      "detail": "full-71a5854-20260925T115726Z vs full-71a5854-20260925T115726Z",
+      "pass": true
+    },
+    "commit_expected": {
+      "detail": "71a58545a6bc6873499928154827d7075bdb3440 vs 71a58545a6bc6873499928154827d7075bdb3440",
+      "pass": true
+    },
+    "crossclient_rows_identical": {
+      "comparisons": 14256,
+      "detail": "0 differing field values",
+      "pass": true
+    },
+    "determinism_rows_identical": {
+      "comparisons": 16200,
+      "detail": "0 differing field values",
+      "pass": true
+    },
+    "edr-a_accepted_by_runner": {
+      "detail": "",
+      "pass": true
+    },
+    "edr-a_build_bridge_limits": {
+      "detail": "",
+      "pass": true
+    },
+    "edr-a_build_bridge_staged_equal_head": {
+      "detail": "",
+      "pass": true
+    },
+    "edr-a_build_primary_limits": {
+      "detail": "",
+      "pass": true
+    },
+    "edr-a_build_primary_staged_equal_head": {
+      "detail": "",
+      "pass": true
+    },
+    "edr-a_check_pass_all": {
+      "detail": "",
+      "pass": true
+    },
+    "edr-a_commit_clean": {
+      "detail": "71a58545a6bc6873499928154827d7075bdb3440 []",
+      "pass": true
+    },
+    "edr-a_env": {
+      "detail": "edr",
+      "pass": true
+    },
+    "edr-a_hardfork": {
+      "detail": "",
+      "pass": true
+    },
+    "edr-a_image": {
+      "detail": "sha256:53d80311c0d3d2ff57b5eca3d8b1ace9eb4c45449fbb8b6596045dbb606e6cb6",
+      "pass": true
+    },
+    "edr-a_no_network": {
+      "detail": "{'isolated': True, 'interfaces': ['erspan0', 'gre0', 'gretap0', 'ip6_vti0', 'ip6gre0', 'ip6tnl0', 'ip_vti0', 'lo', 'sit0', 'tunl0'], 'up_non_loopback': [], 'loopback_up': True, 'ipv4_routes': 0, 'ipv6_non_loopback_routes': 0}",
+      "pass": true
+    },
+    "edr-a_plan": {
+      "detail": "full",
+      "pass": true
+    },
+    "edr-a_protocol_sha256": {
+      "detail": "086206c5a6df8e78fdd9c47639e6288533c3e7fb51271e352c997f2ebd5dc4da",
+      "pass": true
+    },
+    "edr-a_rows": {
+      "detail": "324 of 324",
+      "pass": true
+    },
+    "edr-a_runtime_matches_artifact": {
+      "detail": "18 deployments",
+      "pass": true
+    },
+    "edr-a_steps": {
+      "detail": "{'build': '2026-09-25T11:57:38.671Z', 'envcheck': '2026-09-25T11:57:39.151Z', 'exec': '2026-09-25T11:57:40.218Z', 'finish': '2026-09-25T11:57:40.271Z'}",
+      "pass": true
+    },
+    "edr-b_accepted_by_runner": {
+      "detail": "",
+      "pass": true
+    },
+    "edr-b_build_bridge_limits": {
+      "detail": "",
+      "pass": true
+    },
+    "edr-b_build_bridge_staged_equal_head": {
+      "detail": "",
+      "pass": true
+    },
+    "edr-b_build_primary_limits": {
+      "detail": "",
+      "pass": true
+    },
+    "edr-b_build_primary_staged_equal_head": {
+      "detail": "",
+      "pass": true
+    },
+    "edr-b_check_pass_all": {
+      "detail": "",
+      "pass": true
+    },
+    "edr-b_commit_clean": {
+      "detail": "71a58545a6bc6873499928154827d7075bdb3440 []",
+      "pass": true
+    },
+    "edr-b_env": {
+      "detail": "edr",
+      "pass": true
+    },
+    "edr-b_hardfork": {
+      "detail": "",
+      "pass": true
+    },
+    "edr-b_image": {
+      "detail": "sha256:53d80311c0d3d2ff57b5eca3d8b1ace9eb4c45449fbb8b6596045dbb606e6cb6",
+      "pass": true
+    },
+    "edr-b_no_network": {
+      "detail": "{'isolated': True, 'interfaces': ['erspan0', 'gre0', 'gretap0', 'ip6_vti0', 'ip6gre0', 'ip6tnl0', 'ip_vti0', 'lo', 'sit0', 'tunl0'], 'up_non_loopback': [], 'loopback_up': True, 'ipv4_routes': 0, 'ipv6_non_loopback_routes': 0}",
+      "pass": true
+    },
+    "edr-b_plan": {
+      "detail": "full",
+      "pass": true
+    },
+    "edr-b_protocol_sha256": {
+      "detail": "086206c5a6df8e78fdd9c47639e6288533c3e7fb51271e352c997f2ebd5dc4da",
+      "pass": true
+    },
+    "edr-b_rows": {
+      "detail": "324 of 324",
+      "pass": true
+    },
+    "edr-b_runtime_matches_artifact": {
+      "detail": "18 deployments",
+      "pass": true
+    },
+    "edr-b_steps": {
+      "detail": "{'build': '2026-09-25T11:57:44.998Z', 'envcheck': '2026-09-25T11:57:45.470Z', 'exec': '2026-09-25T11:57:46.560Z', 'finish': '2026-09-25T11:57:46.614Z'}",
+      "pass": true
+    },
+    "file_postflight_json": {
+      "detail": "results/chain-local-l1-20260925/full-71a5854-20260925T115726Z.postflight.json",
+      "pass": true
+    },
+    "file_preflight_json": {
+      "detail": "results/chain-local-l1-20260925/full-71a5854-20260925T115726Z.preflight.json",
+      "pass": true
+    },
+    "file_unit_tests_log": {
+      "detail": "results/chain-local-l1-20260925/full-71a5854-20260925T115726Z.unit_tests.log",
+      "pass": true
+    },
+    "geth_accepted_by_runner": {
+      "detail": "",
+      "pass": true
+    },
+    "geth_build_bridge_limits": {
+      "detail": "",
+      "pass": true
+    },
+    "geth_build_bridge_staged_equal_head": {
+      "detail": "",
+      "pass": true
+    },
+    "geth_build_primary_limits": {
+      "detail": "",
+      "pass": true
+    },
+    "geth_build_primary_staged_equal_head": {
+      "detail": "",
+      "pass": true
+    },
+    "geth_check_pass_all": {
+      "detail": "",
+      "pass": true
+    },
+    "geth_commit_clean": {
+      "detail": "71a58545a6bc6873499928154827d7075bdb3440 []",
+      "pass": true
+    },
+    "geth_env": {
+      "detail": "geth",
+      "pass": true
+    },
+    "geth_hardfork": {
+      "detail": "",
+      "pass": true
+    },
+    "geth_image": {
+      "detail": "sha256:53d80311c0d3d2ff57b5eca3d8b1ace9eb4c45449fbb8b6596045dbb606e6cb6",
+      "pass": true
+    },
+    "geth_no_network": {
+      "detail": "{'isolated': True, 'interfaces': ['erspan0', 'gre0', 'gretap0', 'ip6_vti0', 'ip6gre0', 'ip6tnl0', 'ip_vti0', 'lo', 'sit0', 'tunl0'], 'up_non_loopback': [], 'loopback_up': True, 'ipv4_routes': 0, 'ipv6_non_loopback_routes': 0}",
+      "pass": true
+    },
+    "geth_plan": {
+      "detail": "full",
+      "pass": true
+    },
+    "geth_protocol_sha256": {
+      "detail": "086206c5a6df8e78fdd9c47639e6288533c3e7fb51271e352c997f2ebd5dc4da",
+      "pass": true
+    },
+    "geth_reference_is_run_a": {
+      "detail": "build/campaigns/chain/full-71a5854-20260925T115726Z-edr-a",
+      "pass": true
+    },
+    "geth_rows": {
+      "detail": "324 of 324",
+      "pass": true
+    },
+    "geth_runtime_matches_artifact": {
+      "detail": "18 deployments",
+      "pass": true
+    },
+    "geth_steps": {
+      "detail": "{'build': '2026-09-25T11:57:51.349Z', 'envcheck': '2026-09-25T11:57:52.125Z', 'exec': '2026-09-25T11:58:04.388Z', 'finish': '2026-09-25T11:58:04.443Z'}",
+      "pass": true
+    },
+    "one_campaign_id": {
+      "detail": "dirs ['full-71a5854-20260925T115726Z-edr-a', 'full-71a5854-20260925T115726Z-edr-b', 'full-71a5854-20260925T115726Z-geth']",
+      "pass": true
+    },
+    "postflight_archived_image": {
+      "detail": "PASS",
+      "pass": true
+    },
+    "postflight_baseline_tag": {
+      "detail": "",
+      "pass": true
+    },
+    "postflight_network": {
+      "detail": "",
+      "pass": true
+    },
+    "postflight_no_fail": {
+      "detail": "fails 0, head 71a58545a6bc6873499928154827d7075bdb3440",
+      "pass": true
+    },
+    "preflight_archived_image": {
+      "detail": "PASS",
+      "pass": true
+    },
+    "preflight_baseline_tag": {
+      "detail": "",
+      "pass": true
+    },
+    "preflight_network": {
+      "detail": "",
+      "pass": true
+    },
+    "preflight_no_fail": {
+      "detail": "fails 0, head 71a58545a6bc6873499928154827d7075bdb3440",
+      "pass": true
+    },
+    "preflight_proofset_manifest": {
+      "detail": "",
+      "pass": true
+    },
+    "preflight_verifier_provenance": {
+      "detail": "",
+      "pass": true
+    },
+    "runner_crossclient_report": {
+      "detail": "",
+      "pass": true
+    },
+    "runner_determinism_report": {
+      "detail": "",
+      "pass": true
+    },
+    "same_image": {
+      "detail": "",
+      "pass": true
+    },
+    "same_proofset_manifest": {
+      "detail": "",
+      "pass": true
+    },
+    "same_protocol": {
+      "detail": "",
+      "pass": true
+    },
+    "structure_bridge-groth16-d11": {
+      "detail": "36 rows",
+      "pass": true
+    },
+    "structure_primary-groth16-d10": {
+      "detail": "36 rows",
+      "pass": true
+    },
+    "structure_primary-groth16-d11": {
+      "detail": "36 rows",
+      "pass": true
+    },
+    "structure_primary-groth16-d15": {
+      "detail": "36 rows",
+      "pass": true
+    },
+    "structure_primary-groth16-d5": {
+      "detail": "36 rows",
+      "pass": true
+    },
+    "structure_primary-plonk-d10": {
+      "detail": "36 rows",
+      "pass": true
+    },
+    "structure_primary-plonk-d11": {
+      "detail": "36 rows",
+      "pass": true
+    },
+    "structure_primary-plonk-d15": {
+      "detail": "36 rows",
+      "pass": true
+    },
+    "structure_primary-plonk-d5": {
+      "detail": "36 rows",
+      "pass": true
+    },
+    "tag_resolves_to_run_commit": {
+      "detail": "chain-l1-baseline-20260925 -> 71a58545a6bc6873499928154827d7075bdb3440",
+      "pass": true
+    },
+    "unit_tests": {
+      "detail": "12 passing, 0 failing",
+      "pass": true
+    }
+  },
+  "commit": "71a58545a6bc6873499928154827d7075bdb3440",
+  "passed": true,
+  "plan": "full",
+  "proofs": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7
+  ],
+  "rows_per_run": 324
+}

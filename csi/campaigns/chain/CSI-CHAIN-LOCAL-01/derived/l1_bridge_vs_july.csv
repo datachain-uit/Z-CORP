@@ -1,0 +1,6 @@
+quantity,bridge_local_min,bridge_local_max,july_sepolia_min,july_sepolia_max,july_n,bridge_minus_july_min,primary_groth16_d11_min,primary_groth16_d11_max
+verifier deployment,384793,384793,385209,385209,1,-416,349628,349628
+manager deployment,1525514,1525514,1525514,1525514,1,0,565248,565248
+setIssuer,48410,48410,48410,48410,1,0,47900,47900
+addRoot,51326,51326,51326,51326,1,0,47334,47334
+verifyCredential,239217,239241,239241,239241,147,-24,223934,223958

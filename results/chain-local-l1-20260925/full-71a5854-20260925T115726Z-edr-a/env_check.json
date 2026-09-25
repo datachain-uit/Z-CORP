@@ -1,0 +1,48 @@
+{
+  "at_utc": "2026-09-25T11:57:38.748Z",
+  "protocol": "csi/protocols/chain/CHAIN-PROTOCOL-v1.md",
+  "edr": {
+    "osaka": {
+      "raw": {
+        "p256": {
+          "valid_sig_result": "0x0000000000000000000000000000000000000000000000000000000000000001",
+          "invalid_sig_result": "0x"
+        },
+        "clz": "0x00000000000000000000000000000000000000000000000000000000000000ff",
+        "tx_gas_cap": "rejected:Transaction gas limit is 16777217 and exceeds transaction gas cap of 16777216"
+      },
+      "markers": {
+        "p256verify_valid_returns_1": true,
+        "p256verify_invalid_returns_empty": true,
+        "clz_returns_255": true,
+        "tx_gas_cap_2p24_plus_1_rejected": true
+      },
+      "osaka_markers_all": true,
+      "osaka_markers_none": false,
+      "configured_hardfork": "osaka",
+      "client_version": "HardhatNetwork/2.29.1/@nomicfoundation/edr/0.3.8"
+    },
+    "prague": {
+      "raw": {
+        "p256": {
+          "valid_sig_result": "0x",
+          "invalid_sig_result": "0x"
+        },
+        "clz": "error:VM Exception while processing transaction: invalid opcode",
+        "tx_gas_cap": "accepted:0x7fec771a56a5691f47770804bfff0f72f2f8cd7e96a604d1bfdf5f196a06932a"
+      },
+      "markers": {
+        "p256verify_valid_returns_1": false,
+        "p256verify_invalid_returns_empty": true,
+        "clz_returns_255": false,
+        "tx_gas_cap_2p24_plus_1_rejected": false
+      },
+      "osaka_markers_all": false,
+      "osaka_markers_none": true,
+      "configured_hardfork": "prague",
+      "client_version": "HardhatNetwork/2.29.1/@nomicfoundation/edr/0.3.8"
+    }
+  },
+  "edr_pass": true,
+  "pass": true
+}

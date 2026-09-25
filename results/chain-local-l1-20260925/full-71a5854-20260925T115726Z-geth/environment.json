@@ -1,0 +1,105 @@
+{
+  "host": {
+    "platform": "linux",
+    "release": "7.0.12-linuxkit",
+    "arch": "arm64",
+    "cpus": 10,
+    "os_release": "Debian GNU/Linux 12 (bookworm)"
+  },
+  "node": "v22.23.2",
+  "npm": "10.9.8",
+  "packages": {
+    "hardhat": "2.29.1",
+    "@nomicfoundation/edr": "0.12.0-next.23",
+    "@nomicfoundation/hardhat-ethers": "3.0.8",
+    "ethers": "6.13.5",
+    "snarkjs": "0.7.5",
+    "ffjavascript": "0.3.1",
+    "solc": "0.8.20",
+    "@openzeppelin/contracts": "4.9.0",
+    "ejs": "3.1.10"
+  },
+  "lockfile_sha256": "0add12b819839bb7ebbb5a70d65d61bd1202fd1a2a1a0ca823e47d0fa2b068cd",
+  "package_json_sha256": "5ebd42186a72180ee3b10aad8484aa7fbfdd4165f9550fdb91ebc586925cc109",
+  "edr_native_binary": {
+    "package": "@nomicfoundation/edr-linux-arm64-gnu",
+    "file": "edr.linux-arm64-gnu.node",
+    "sha256": "17e6d355e924c5aa05b0e162ab63a15f62833408f03913aec497c886d8163ebc"
+  },
+  "soljson_sha256": "033dc42a16378dd036a475b8a7080af83cfae1841eb6848ce1667c56193972ba",
+  "hardhat_console_sol_sha256": "5a6db75ebe2603ab1ce17c40f48447f3040268675f027a77fe5e9b236f4e31dd",
+  "edr_network_config": {
+    "hardfork": "osaka",
+    "chainId": 31337,
+    "initialBaseFeePerGas": 0,
+    "blockGasLimit": 60000000,
+    "allowUnlimitedContractSize": false,
+    "allowBlocksWithSameTimestamp": false,
+    "initialDate": "2026-01-01T00:00:00.000Z",
+    "mining": {
+      "auto": true,
+      "interval": 0
+    },
+    "accounts": {
+      "mnemonic": "test test test test test test test test test test test junk",
+      "path": "m/44'/60'/0'/0",
+      "count": 2,
+      "accountsBalance": "10000000000000000000000"
+    },
+    "throwOnTransactionFailures": false,
+    "throwOnCallFailures": true,
+    "loggingEnabled": false
+  },
+  "geth": {
+    "binary": "/opt/geth/geth",
+    "sha256": "a437c0a5e17d4c740418fbae6657b62d695b71dda8c923112f22fe4e91d58f84",
+    "version": "Geth\nVersion: 1.16.9-stable\nGit Commit: 95665d5703e1023995a0ff93e4ce9eb77e8a59bd\nGit Commit Date: 20260217\nArchitecture: arm64\nGo Version: go1.24.13\nOperating System: linux\nGOPATH=\nGOROOT=\n"
+  },
+  "edr_identity": {
+    "npm_package": "@nomicfoundation/edr",
+    "npm_version": "0.12.0-next.23",
+    "native_package": "@nomicfoundation/edr-linux-arm64-gnu",
+    "native_package_version": "0.12.0-next.23",
+    "native_sha256": "17e6d355e924c5aa05b0e162ab63a15f62833408f03913aec497c886d8163ebc",
+    "client_version_note": "web3_clientVersion carries the EDR Rust workspace version (crate edr_provider, CARGO_PKG_VERSION = 0.3.8 at npm release 0.12.0-next.23); the npm package version is authoritative"
+  },
+  "container": {
+    "image_id": "sha256:53d80311c0d3d2ff57b5eca3d8b1ace9eb4c45449fbb8b6596045dbb606e6cb6",
+    "image_ref": "chainbench-l1:local",
+    "base_image": "node@sha256:48e4b67d85f87bd551df43704e24d252f56cc5f8e9718841aace50f19948f0f9",
+    "geth_source": "official:ethereum/client-go@sha256:2dd7ef210a1a3fb87887676f7ead1b98161af83810928cdf6fc5b84bcdcc8ef4",
+    "network": "none",
+    "network_interfaces": [
+      "bonding_masters",
+      "erspan0",
+      "gre0",
+      "gretap0",
+      "ip6_vti0",
+      "ip6gre0",
+      "ip6tnl0",
+      "ip_vti0",
+      "lo",
+      "sit0",
+      "tunl0"
+    ],
+    "network_isolation": {
+      "isolated": true,
+      "interfaces": [
+        "erspan0",
+        "gre0",
+        "gretap0",
+        "ip6_vti0",
+        "ip6gre0",
+        "ip6tnl0",
+        "ip_vti0",
+        "lo",
+        "sit0",
+        "tunl0"
+      ],
+      "up_non_loopback": [],
+      "loopback_up": true,
+      "ipv4_routes": 0,
+      "ipv6_non_loopback_routes": 0
+    }
+  }
+}
