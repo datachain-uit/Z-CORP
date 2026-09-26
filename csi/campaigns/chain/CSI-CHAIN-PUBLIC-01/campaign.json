@@ -1,15 +1,65 @@
 {
   "admin_id": "CSI-CHAIN-PUBLIC-01",
   "arm": "PUBLIC",
-  "author_inputs_open": [
-    "funding on both networks, recorded by a read-only doctor-public with the key",
-    "results directory date label <D> (binding results_dir)",
-    "public baseline commit and annotated tag chain-public-baseline-<D>"
-  ],
-  "baseline": null,
+  "author_inputs_open": [],
+  "baseline": {
+    "funded_doctor": {
+      "funded_state": {
+        "era-sepolia": {
+          "balance_wei": "300000000000000000",
+          "chain_id": 300,
+          "endpoint": {
+            "host": "sepolia.era.zksync.dev",
+            "label": "ZKsync Era Sepolia official public RPC",
+            "scheme": "https",
+            "url_sha256": "8366bcd4a2dff06e774b1669d14489dcdeea53d8dbe92049cbf1f35ba8d2b23d"
+          },
+          "nonce_latest": 0,
+          "nonce_pending": 0,
+          "observation_id": "26edcdbd523f4993",
+          "observed_utc": [
+            "2026-09-26T02:47:23.889Z",
+            "2026-09-26T02:47:28.231Z"
+          ],
+          "target_wei": "10000000000000000"
+        },
+        "sepolia": {
+          "balance_wei": "500000000000000000",
+          "chain_id": 11155111,
+          "endpoint": {
+            "host": "eth-sepolia.g.alchemy.com",
+            "label": "Alchemy",
+            "scheme": "https",
+            "url_sha256": "d020365e52fcb294a6f7da7658481c30fb2f4144d2cac3fdd97697cbe33dee10"
+          },
+          "nonce_latest": 0,
+          "nonce_pending": 0,
+          "observation_id": "cd28811ca763efc4",
+          "observed_utc": [
+            "2026-09-26T02:47:22.162Z",
+            "2026-09-26T02:47:23.888Z"
+          ],
+          "target_wei": "200000000000000000"
+        }
+      },
+      "funding_gate": "D5 PASS",
+      "path": "csi/campaigns/chain/CSI-CHAIN-PUBLIC-01/readiness/funded-20260926/doctor-20260926T024728Z.json",
+      "sha256": "0bd5518193a2e7e42b1ffe2cd8a6ba49f98cb24d42c4cc1907b9bc0c5990562e",
+      "signer_balance_wei": {
+        "era-sepolia": "300000000000000000",
+        "sepolia": "500000000000000000"
+      }
+    },
+    "image_id": "sha256:246e35a06b0e823697fd42c5297739e1c3ecca145d6869adbf19b094d9d8eb49",
+    "measurement_code_commit": "8674988f329d54f6b03b2d791e601f688c59b713",
+    "protocol_sha256": "51db3707331f72c30fea99f485979d6d5141a5e2c7bcc585d822066aaa15bb35",
+    "results_dir": "results/chain-public-20260926",
+    "tag": "chain-public-baseline-20260926",
+    "tagged_commit": "the commit that adds this record (git rev-parse chain-public-baseline-20260926^{commit}); setup and S1-S3 run from it with a clean tree"
+  },
   "binding": {
     "path": "chainbench/workloads/zcorp/campaigns/CSI-CHAIN-PUBLIC-01.json",
-    "sha256": "66b4befd287b59de24fe3c51a1529270fb2340b7f109ca26c53d55469fcf7d6d"
+    "sha256": "c5c53ac91ce5efea41d1db2d2cdab6d7ce7ee99a88beba70d699cb1a2b48afbe"
   },
   "claim_boundary": "dated public-network case study: deployability, observed price and paid fee, request-to-hash and hash-to-receipt behaviour through named endpoints, public gasUsed as a dated observation, RPC/client failures, Era batch lifecycle post hoc; not latency in general, mainnet economics, reliability, superiority, EVM-vs-EraVM equivalence or causal backend latency",
   "dependency_audit": {
@@ -160,7 +210,7 @@
   },
   "harness": {
     "adapter": "chainbench/adapters/public",
-    "commit": "79d2eb188345bc2f1015df023ae83dd455e02db8",
+    "commit": "ed33276c37b0cec738390ef50d1fe4cce788a97a",
     "derivation": "scripts/analysis/derive_chain_public.py",
     "image_base": "node@sha256:48e4b67d85f87bd551df43704e24d252f56cc5f8e9718841aace50f19948f0f9",
     "lockfile_sha256": "8b172dc5330372883135cb618b1078a50273b753d94160cd972c66e7d4771c20",
@@ -343,7 +393,7 @@
       "short": "SEP"
     }
   },
-  "not_done": "no transaction sent, no key used, no test ether spent, no deployment on Sepolia or Era Sepolia; no July or zkUIT result included",
+  "not_done": "no public-network transaction signed or sent, no test ether spent, no deployment on Sepolia or Era Sepolia; no July or zkUIT result included",
   "protocol": {
     "path": "csi/protocols/chain/CHAIN-PUBLIC-PROTOCOL-v1.md",
     "sha256": "51db3707331f72c30fea99f485979d6d5141a5e2c7bcc585d822066aaa15bb35",
@@ -359,7 +409,7 @@
     "node": "v22.23.2",
     "reuse": {
       "dry_run_commit": "68279431a6588c1aed7cc27d754de4b4a462e5b6",
-      "harness_commit": "79d2eb188345bc2f1015df023ae83dd455e02db8",
+      "harness_commit": "ed33276c37b0cec738390ef50d1fe4cce788a97a",
       "rule": "accepted: the measurement code, the image record and the binding apart from key.signer_address, key.signer_note and results_dir are identical at both commits"
     },
     "summary_sha256": "90a8257048300e1bab18183bc37eb41473aaa035475db0debad45541cc08e163"
@@ -397,7 +447,7 @@
     "key": "never recorded, printed or read by any tool other than the key-safety module at run time",
     "verified_with": "chainbench/adapters/public/tools/verify_public_key.sh (author; PASS)"
   },
-  "stage": "harness, design, frozen inputs and image registered; engineering dry run passed; author inputs listed in author_inputs_open remain; no public transaction sent",
+  "stage": "baseline: every author input frozen, funded read-only doctor recorded; the annotated baseline tag is created on this commit before setup; no public transaction sent",
   "states": [
     "unsent_preflight_failure",
     "unsent_client_error",
@@ -406,7 +456,7 @@
     "reverted",
     "confirmed_success"
   ],
-  "status": "planned",
+  "status": "ready",
   "timing": {
     "clocks": "UTC wall clock (Date) and monotonic clock (process.hrtime.bigint) at t_prepare, t0, t_hash, t_receipt",
     "poll_interval_ms": 1000,
