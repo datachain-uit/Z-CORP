@@ -262,7 +262,7 @@ rec = {
     'engineering_records': records,
     'dependency_audit': {'note': os.path.join(EV, 'notes', 'DEPENDENCY-AUDIT.md'), 'evidence': os.path.join(EV, 'notes', 'dependency-audit')},
     'author_inputs_open': open_inputs,
-    'not_done': 'no transaction sent, no key used, no test ether spent, no deployment on Sepolia or Era Sepolia; no July or zkUIT result included',
+    'not_done': 'no public-network transaction signed or sent, no test ether spent, no deployment on Sepolia or Era Sepolia; no July or zkUIT result included',
 }
 open(P(os.path.join(EV, 'campaign.json')), 'w').write(json.dumps(rec, indent=2, sort_keys=True) + '\n')
 reg = P(AR['registry'])

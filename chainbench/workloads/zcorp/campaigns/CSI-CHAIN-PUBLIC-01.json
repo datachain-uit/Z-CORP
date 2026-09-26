@@ -107,7 +107,7 @@
     "rule": "CHAIN-PUBLIC-PROTOCOL-v1 section 13.1: live commands run only in this image (image-index digest = Docker image ID, platform manifest, config, archive sha256, architecture), verified by run-public.sh before and after every live command and recorded in run.json and IMAGE-LEDGER.jsonl; a Docker tag is never identity"
   },
   "out_roots": { "dry": "build/chainbench/public/dry-run", "live": "build/campaigns/chain-public" },
-  "results_dir": null,
+  "results_dir": "results/chain-public-20260926",
   "tracked_paths": [
     "contracts", "chainbench/adapters/public", "chainbench/workloads/zcorp/public", "chainbench/workloads/zcorp/campaigns/CSI-CHAIN-PUBLIC-01.json",
     "csi/protocols/chain/CHAIN-PUBLIC-PROTOCOL-v1.md", "csi/campaigns/chain/CSI-CHAIN-PUBLIC-01/inputs", "csi/campaigns/chain/CSI-CHAIN-LOCAL-01/inputs/proofset",
