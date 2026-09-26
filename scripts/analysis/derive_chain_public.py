@@ -10,6 +10,15 @@ every run, re-verified after the run, and the frozen endpoints). Outcomes (state
 balance-based fee consistency) are findings: they are counted and reported, never used to exclude or normalise a row.
 Derived summaries are descriptive only (n, min, median, max; per session); no test, no inference. Fees are in wei of
 test ether (Sepolia ETH, Era Sepolia ETH), which have no monetary value.
+
+VP11 as amended (CHAIN-PUBLIC-PROTOCOL-v1 section 18, A1): an Era row with a receipt whose recorded receipt carries an L1
+batch number is validated at once (available). A row recorded at the `included` stage, before its L2 block was sealed into
+an L1 batch, has no batch number yet; that is an observed property of the live run, not a failed record: its batch check is
+deferred until a post-hoc section-10 collection (FINALITY/*/finality.json, same mode, frozen Era endpoint, frozen image in
+live mode) reports the transaction by hash with a present receipt and an L1 batch number (reconciled). The row itself is
+never changed. VP11 passes only when no row is deferred or failed; it fails if a row has no batch number at another stage,
+if a collection reports the receipt absent, or if batch numbers disagree. Per-row outcomes: era_vp11_reconciliation.csv.
+Exit code: 0 every check passes; 1 a check fails; 3 no check fails but VP11 is deferred (awaiting section-10 evidence).
 """
 import argparse, csv, glob, hashlib, json, os, re, statistics, sys
 
@@ -89,6 +98,60 @@ def live_image_check(run, rid, rec, ledger):
     return not bad, bad
 
 
+def finality_admissible(fj, mode, B, rec):
+    """A section-10 collection may reconcile VP11 only if it was taken in the same mode and, in live mode, through the frozen
+    Era primary (or the validated secondary under a recorded deviation) in the frozen public image."""
+    if fj.get('mode') != mode:
+        return False, 'mode'
+    if mode != 'live':
+        return True, ''
+    ep, ident = B.get('endpoints') or {}, fj.get('endpoint') or {}
+    role = ident.get('role', '')
+    exp = (ep.get('frozen') or {}).get('era-sepolia') if role == 'primary' else ((ep.get('secondary') or {}).get('era-sepolia') if role.startswith('secondary') and fj.get('deviation') else None)
+    if not exp or any(ident.get(k) != exp.get(k) for k in ('label', 'host', 'url_sha256')):
+        return False, 'endpoint not frozen'
+    img = fj.get('image') or {}
+    if rec is None or img.get('verified_by_wrapper') != 'pass' or any(img.get(k) != rec[k] for k in IMG_FIELDS):
+        return False, 'image not the verified frozen image'
+    return True, ''
+
+
+def vp11_row(r, rid, fin_all, mode, B, rec):
+    """Amendment A1: the VP11 state of one Era row with a receipt. Reads the row and the collections; changes nothing."""
+    o = {'run_id': rid, 'schedule_id': r['schedule_id'], 'tx_hash': r['tx_hash'], 'recorded_l1_batch_number': r['l1_batch_number'],
+         'recorded_era_details_status': r['era_details_status'], 'vp11': '', 'finality_collection': '', 'finality_l1_batch_number': '',
+         'finality_receipt_now': '', 'reason': ''}
+    hits, skipped = [], []
+    for fp, fj in fin_all:
+        adm, why = finality_admissible(fj, mode, B, rec)
+        for t in fj.get('transactions') or []:
+            if t.get('tx_hash') == r['tx_hash'] and t.get('run_id') == rid and t.get('schedule_id') == r['schedule_id']:
+                (hits if adm else skipped).append((fj.get('collection_id') or os.path.basename(os.path.dirname(fp)), t, why))
+    bns = sorted({str(t.get('l1_batch_number')) for _, t, _ in hits if t.get('receipt_now') == 'present' and str(t.get('l1_batch_number', '')) != ''})
+    if r['l1_batch_number'] != '':
+        bad = [b for b in bns if b != r['l1_batch_number']]
+        o.update(vp11='failed' if bad else 'available', finality_l1_batch_number=';'.join(bns),
+                 reason='a post-hoc collection reports another L1 batch number' if bad else 'L1 batch number in the recorded receipt')
+        return o
+    if r['era_details_status'] != 'included':
+        o.update(vp11='failed', reason=f"no L1 batch number in the recorded receipt at stage '{r['era_details_status'] or 'unknown'}' (only the included stage defers the check)")
+        return o
+    absent = [c for c, t, _ in hits if t.get('receipt_now') == 'absent']
+    if absent:
+        o.update(vp11='failed', finality_collection=absent[-1], finality_receipt_now='absent', reason='a post-hoc collection no longer finds the receipt')
+    elif len(bns) > 1:
+        o.update(vp11='failed', finality_l1_batch_number=';'.join(bns), reason='post-hoc collections report different L1 batch numbers')
+    elif bns:
+        c, t, _ = [h for h in hits if str(h[1].get('l1_batch_number', '')) == bns[0]][-1]
+        o.update(vp11='reconciled', finality_collection=c, finality_l1_batch_number=bns[0], finality_receipt_now='present',
+                 reason='recorded at the included stage; L1 batch number reconciled by transaction hash from a section-10 collection')
+    else:
+        o.update(vp11='deferred_pending', finality_receipt_now=';'.join(sorted({t.get('receipt_now', '') for _, t, _ in hits})),
+                 reason='recorded at the included stage (no L1 batch yet); awaiting a section-10 collection that reports its L1 batch'
+                        + (f"; {len(skipped)} record(s) in non-admissible collections ({', '.join(sorted({w for _, _, w in skipped}))}) not used" if skipped else ''))
+    return o
+
+
 def live_endpoint_check(run, rr, B):
     """VP13: each network's endpoint is the frozen primary, or the validated secondary under a recorded deviation, and every
     row carries the label, host and URL sha256 of the endpoint that run used."""
@@ -120,6 +183,8 @@ def main():
     ledger = [json.loads(l) for l in open(lp) if l.strip()] if a.mode == 'live' and os.path.isfile(lp) else []
     images = set()
     runs = sorted(d for d in glob.glob(os.path.join(root, '*')) if os.path.isfile(os.path.join(d, 'run.json')) and os.path.isfile(os.path.join(d, 'tx.csv')))
+    fin_all = [(fp, json.load(open(fp))) for fp in sorted(glob.glob(os.path.join(root, 'FINALITY', '*', 'finality.json')))]
+    vp11_all = []
     checks = []
 
     def check(name, ok, detail=None):
@@ -182,7 +247,12 @@ def main():
         check(f'{rid}: VP9 RPC-returned hash = locally computed hash', all(r['tx_hash_matches'] == '1' for r in rr if r['tx_hash'] and r['tx_hash_local']))
         check(f'{rid}: VP10 signer recorded as an address only', re.fullmatch(r'0x[0-9a-fA-F]{40}', run.get('signer_address', '')) is not None
               and all(r['signer_address'] == run['signer_address'] for r in rr) and not any('key' in c.lower() and 'key_source' not in c for c in COLUMNS))
-        check(f'{rid}: VP11 Era receipts carry an L1 batch number', all(r['l1_batch_number'] != '' for r in rr if r['network'] == 'era-sepolia' and r['receipt_status'] != ''))
+        vr = [vp11_row(r, rid, fin_all, a.mode, B, rec_img) for r in rr if r['network'] == 'era-sepolia' and r['receipt_status'] != '']
+        vp11_all += vr
+        st = 'fail' if any(x['vp11'] == 'failed' for x in vr) else ('deferred' if any(x['vp11'] == 'deferred_pending' for x in vr) else 'pass')
+        checks.append({'check': f'{rid}: VP11 Era L1 batch number in the recorded receipt, or reconciled by transaction hash from a section-10 collection (amendment A1)',
+                       'pass': {'pass': True, 'fail': False, 'deferred': None}[st], 'status': st,
+                       'detail': {k: sum(1 for x in vr if x['vp11'] == k) for k in ('available', 'reconciled', 'deferred_pending', 'failed')}})
         if a.mode == 'live':
             ok, det = live_image_check(run, rid, rec_img, ledger)
             check(f'{rid}: VP12 frozen public image (index, manifest, config, archive, architecture) verified before and after the run', ok, det)
@@ -250,6 +320,8 @@ def main():
         for t in fj['transactions']:
             fin_rows.append({k: t[k] for k in ('schedule_id', 'op', 'backend', 'proof_id', 'row_state', 'l1_batch_number', 'batch_status', 'committed_at', 'proven_at', 'executed_at',
                                                'commit_chain_id', 'receipt_to_commit_s', 'receipt_to_prove_s', 'receipt_to_execute_s')})
+    V11 = ['run_id', 'schedule_id', 'tx_hash', 'recorded_l1_batch_number', 'recorded_era_details_status', 'vp11', 'finality_collection', 'finality_l1_batch_number', 'finality_receipt_now', 'reason']
+    wcsv(os.path.join(a.out, 'era_vp11_reconciliation.csv'), vp11_all, V11)
     wcsv(os.path.join(a.out, 'era_batch_lifecycle.csv'), fin_rows, ['schedule_id', 'op', 'backend', 'proof_id', 'row_state', 'l1_batch_number', 'batch_status', 'committed_at',
                                                                  'proven_at', 'executed_at', 'commit_chain_id', 'receipt_to_commit_s', 'receipt_to_prove_s', 'receipt_to_execute_s'])
     findings = {
@@ -259,20 +331,26 @@ def main():
                                     'not_available': sum(1 for r in rows if r['receipt_status'] != '' and r['fee_consistency_ok'] == '')},
         'sepolia_gas_equal_to_controlled_l1': {'rows': len(gv), 'equal': sum(1 for x in gv if x['difference'] == 0)},
         'era_finality_collection': os.path.relpath(fins[-1], REPO) if fins else None,
+        'era_l1_batch_at_recording': {'with_batch_number': sum(1 for x in vp11_all if x['recorded_l1_batch_number'] != ''),
+                                      'without_batch_number_included_stage': sum(1 for x in vp11_all if x['recorded_l1_batch_number'] == '' and x['recorded_era_details_status'] == 'included'),
+                                      'without_batch_number_other_stage': sum(1 for x in vp11_all if x['recorded_l1_batch_number'] == '' and x['recorded_era_details_status'] != 'included')},
+        'vp11_rows': {k: sum(1 for x in vp11_all if x['vp11'] == k) for k in ('available', 'reconciled', 'deferred_pending', 'failed')},
     }
-    val = {'mode': a.mode, 'runs': [os.path.basename(d) for d in runs], 'checks': checks, 'checks_passed': sum(c['pass'] for c in checks), 'checks_total': len(checks),
-           'passed': all(c['pass'] for c in checks), 'findings': findings}
+    npass, nfail, ndef = sum(1 for c in checks if c['pass'] is True), sum(1 for c in checks if c['pass'] is False), sum(1 for c in checks if c['pass'] is None)
+    val = {'mode': a.mode, 'runs': [os.path.basename(d) for d in runs], 'checks': checks, 'checks_passed': npass, 'checks_deferred': ndef, 'checks_total': len(checks),
+           'passed': npass == len(checks), 'status': 'FAIL' if nfail else ('DEFERRED' if ndef else 'PASS'), 'findings': findings}
     json.dump(val, open(os.path.join(a.out, 'validation.json'), 'w'), indent=2, sort_keys=True); open(os.path.join(a.out, 'validation.json'), 'a').write('\n')
     outs = {f: sha_file(os.path.join(a.out, f)) for f in sorted(os.listdir(a.out)) if f != 'derivation.json'}
     ins = {os.path.relpath(p, REPO): sha_file(p) for d in runs for p in sorted(glob.glob(os.path.join(d, '**', '*'), recursive=True)) if os.path.isfile(p)}
     json.dump({'tool': os.path.relpath(os.path.abspath(__file__), REPO), 'tool_sha256': sha_file(os.path.abspath(__file__)), 'mode': a.mode, 'inputs_sha256': ins, 'outputs_sha256': outs,
                'units': 'gas; wei of test ether (no monetary value); ms; s', 'boundary': 'descriptive, dated; no significance test; no EVM-vs-EraVM comparison; receipt latency is not finality'},
               open(os.path.join(a.out, 'derivation.json'), 'w'), indent=2, sort_keys=True)
-    print(f"derive_chain_public: {len(runs)} runs, {len(rows)} rows; validation {val['checks_passed']}/{val['checks_total']} {'PASS' if val['passed'] else 'FAIL'}; states {findings['states']}")
+    print(f"derive_chain_public: {len(runs)} runs, {len(rows)} rows; validation {val['checks_passed']}/{val['checks_total']} {val['status']}"
+          f"{f' ({ndef} deferred: VP11 awaiting section-10 evidence)' if ndef else ''}; states {findings['states']}")
     for c in checks:
-        if not c['pass']:
-            print(f"FAIL {c['check']}: {c['detail']}", file=sys.stderr)
-    sys.exit(0 if val['passed'] else 1)
+        if c['pass'] is not True:
+            print(f"{'DEFERRED' if c['pass'] is None else 'FAIL'} {c['check']}: {c['detail']}", file=sys.stderr)
+    sys.exit(0 if val['passed'] else (1 if nfail else 3))
 
 
 if __name__ == '__main__':
