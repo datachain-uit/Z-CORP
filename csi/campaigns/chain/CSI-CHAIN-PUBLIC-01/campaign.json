@@ -2,14 +2,14 @@
   "admin_id": "CSI-CHAIN-PUBLIC-01",
   "arm": "PUBLIC",
   "author_inputs_open": [
-    "dedicated signing key and its address (tools/new_public_key.sh, verify_public_key.sh)",
     "funding on both networks, recorded by a read-only doctor-public with the key",
     "results directory date label <D> (binding results_dir)",
     "public baseline commit and annotated tag chain-public-baseline-<D>"
   ],
+  "baseline": null,
   "binding": {
     "path": "chainbench/workloads/zcorp/campaigns/CSI-CHAIN-PUBLIC-01.json",
-    "sha256": "3c68ea07687a94cf10b3be78a191add4d74d66f0f37c33b08b8968faea69a6ea"
+    "sha256": "66b4befd287b59de24fe3c51a1529270fb2340b7f109ca26c53d55469fcf7d6d"
   },
   "claim_boundary": "dated public-network case study: deployability, observed price and paid fee, request-to-hash and hash-to-receipt behaviour through named endpoints, public gasUsed as a dated observation, RPC/client failures, Era batch lifecycle post hoc; not latency in general, mainnet economics, reliability, superiority, EVM-vs-EraVM equivalence or causal backend latency",
   "dependency_audit": {
@@ -148,7 +148,7 @@
   },
   "harness": {
     "adapter": "chainbench/adapters/public",
-    "commit": "68279431a6588c1aed7cc27d754de4b4a462e5b6",
+    "commit": "89e23e57211b580cec984c12431416e1302fae91",
     "derivation": "scripts/analysis/derive_chain_public.py",
     "image_base": "node@sha256:48e4b67d85f87bd551df43704e24d252f56cc5f8e9718841aace50f19948f0f9",
     "lockfile_sha256": "8b172dc5330372883135cb618b1078a50273b753d94160cd972c66e7d4771c20",
@@ -345,6 +345,11 @@
     "expectations": "92/92",
     "mode": "dry (mock endpoints on 127.0.0.1; ephemeral key; no public network; no test ETH)",
     "node": "v22.23.2",
+    "reuse": {
+      "dry_run_commit": "68279431a6588c1aed7cc27d754de4b4a462e5b6",
+      "harness_commit": "89e23e57211b580cec984c12431416e1302fae91",
+      "rule": "accepted: the measurement code, the image record and the binding apart from key.signer_address, key.signer_note and results_dir are identical at both commits"
+    },
     "summary_sha256": "90a8257048300e1bab18183bc37eb41473aaa035475db0debad45541cc08e163"
   },
   "sessions": [
@@ -373,7 +378,14 @@
       "scheduled_start_utc": "2026-09-30T07:05:00Z"
     }
   ],
-  "stage": "harness, design and frozen inputs registered; engineering dry run passed; author inputs open (protocol section 17); no public transaction sent",
+  "signer": {
+    "address": "0x6C58f325404dFF6c860034ceDA59D1de789Ac2E3",
+    "checks_here": "EIP-55 form; not one of the blocked development accounts",
+    "created_with": "chainbench/adapters/public/tools/new_public_key.sh (author, campaign host, frozen image)",
+    "key": "never recorded, printed or read by any tool other than the key-safety module at run time",
+    "verified_with": "chainbench/adapters/public/tools/verify_public_key.sh (author; PASS)"
+  },
+  "stage": "harness, design, frozen inputs and image registered; engineering dry run passed; author inputs listed in author_inputs_open remain; no public transaction sent",
   "states": [
     "unsent_preflight_failure",
     "unsent_client_error",
