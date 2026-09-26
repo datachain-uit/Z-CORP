@@ -98,7 +98,9 @@
   "key": {
     "rule": "a dedicated, externally supplied, funded key used only for this study: CHAINBENCH_PUBLIC_KEY_FILE (absolute path outside the repository, mode 0600 or 0400, one 0x-prefixed 32-byte hex key) or CHAINBENCH_PUBLIC_PRIVATE_KEY; never a mnemonic; only the signer address is recorded",
     "host_rule": "run-public.sh (lib/guards.sh, macOS/BSD and GNU/Linux stat): absolute, not a symbolic link, regular file, outside the repository, owned by the invoking user, mode 0600/0400, directory owned by the invoking user with no group/other permission",
-    "tools": ["chainbench/adapters/public/tools/new_public_key.sh", "chainbench/adapters/public/tools/verify_public_key.sh"]
+    "tools": ["chainbench/adapters/public/tools/new_public_key.sh", "chainbench/adapters/public/tools/verify_public_key.sh"],
+    "signer_address": "0x6C58f325404dFF6c860034ceDA59D1de789Ac2E3",
+    "signer_note": "the dedicated CSI-CHAIN-PUBLIC-01 signer, created by the author with tools/new_public_key.sh and verified with tools/verify_public_key.sh on the campaign host (2026-09-26); public address only; not the older local secret.json account, which is never the campaign signer"
   },
   "image_record": {
     "path": "chainbench/adapters/public/ARCHIVE.json",
