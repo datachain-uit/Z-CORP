@@ -24,4 +24,9 @@
   offline after a probe-tool fix), `final-6827943/` (at the harness commit `6827943`, in the frozen image: dry run 92/92
   with the full record, `check-public-inputs` 27/27, offline doctor, guard tests 44/44 + 39/39, BSD-host key-file tests
   44/44, wrapper tests 11/11, npm audit, comparisons with the accepted native and pre-flight dry runs), `integrity/`.
-All of these are engineering records, not scientific data; no key was created or used and nothing was signed or sent.
+- `funded-20260926/`: the funded pre-baseline verification on the campaign Mac (commit `79d2eb1`, frozen image): the
+  dedicated key verified against the frozen address, the live read-only `doctor-public` with the key on both frozen
+  primaries (Sepolia 0.5 and Era Sepolia 0.3 test ETH, nonce 0 latest and pending on both), and the D5 funding gate
+  (`record_campaign_public.py --check-funded-doctor`): PASS. The key was used only to derive the address.
+All of these are engineering records, not scientific data. Up to `prefreeze-20260925/` no key was created or used; in
+`funded-20260926/` the dedicated key only derived the signer address. Nothing was ever signed or sent.

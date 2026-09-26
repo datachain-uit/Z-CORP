@@ -81,6 +81,18 @@
       "path": "csi/campaigns/chain/CSI-CHAIN-PUBLIC-01/readiness/prefreeze-20260925/final-6827943/test-wrapper-guards.log",
       "sha256": "d9d06a6c89b80d94872ddd3e6151534807f65e63a27d264c9ef10c1fc2e96ff4"
     },
+    "funded_doctor": {
+      "path": "csi/campaigns/chain/CSI-CHAIN-PUBLIC-01/readiness/funded-20260926/doctor-20260926T024728Z.json",
+      "sha256": "0bd5518193a2e7e42b1ffe2cd8a6ba49f98cb24d42c4cc1907b9bc0c5990562e"
+    },
+    "funded_doctor_log": {
+      "path": "csi/campaigns/chain/CSI-CHAIN-PUBLIC-01/readiness/funded-20260926/funded-doctor.log",
+      "sha256": "657e86c4e6de3ca959282b4aca4053903eae1611ad87a7e4dd361f380a64ea0d"
+    },
+    "funded_gate": {
+      "path": "csi/campaigns/chain/CSI-CHAIN-PUBLIC-01/readiness/funded-20260926/funded-gate.json",
+      "sha256": "0474298cae31e99dd6a340bcfd199c2aed2256dd7bba141262bd439e6a8fac47"
+    },
     "image_record_as_saved": {
       "path": "csi/campaigns/chain/CSI-CHAIN-PUBLIC-01/readiness/prefreeze-20260925/image-8674988/ARCHIVE.json",
       "sha256": "dc9df9ea0b5c3122c841ba00c7681b5c44799d7fb411abfe2a23ae57fc25203d"
@@ -148,7 +160,7 @@
   },
   "harness": {
     "adapter": "chainbench/adapters/public",
-    "commit": "89e23e57211b580cec984c12431416e1302fae91",
+    "commit": "79d2eb188345bc2f1015df023ae83dd455e02db8",
     "derivation": "scripts/analysis/derive_chain_public.py",
     "image_base": "node@sha256:48e4b67d85f87bd551df43704e24d252f56cc5f8e9718841aace50f19948f0f9",
     "lockfile_sha256": "8b172dc5330372883135cb618b1078a50273b753d94160cd972c66e7d4771c20",
@@ -347,7 +359,7 @@
     "node": "v22.23.2",
     "reuse": {
       "dry_run_commit": "68279431a6588c1aed7cc27d754de4b4a462e5b6",
-      "harness_commit": "89e23e57211b580cec984c12431416e1302fae91",
+      "harness_commit": "79d2eb188345bc2f1015df023ae83dd455e02db8",
       "rule": "accepted: the measurement code, the image record and the binding apart from key.signer_address, key.signer_note and results_dir are identical at both commits"
     },
     "summary_sha256": "90a8257048300e1bab18183bc37eb41473aaa035475db0debad45541cc08e163"

@@ -4,8 +4,9 @@ Status: **planned** (pre-freeze). Harness, design, frozen inputs, the frozen pub
 ARCHIVE.json`), the session times, the frozen endpoints (Sepolia primary Alchemy; Era primary the official public RPC; Era
 secondary Alchemy, read-only validated fallback used only under a recorded deviation), P = 1 gwei and the dedicated signer's
 public address (`0x6C58f325404dFF6c860034ceDA59D1de789Ac2E3`, binding `key.signer_address`; the key itself is never recorded)
-are recorded; its funding, the results label and the baseline tag are open; the signer is not funded and **no public
-transaction has been sent**. This entry is separate from the
+are recorded. The signer is funded (Sepolia 0.5, Era Sepolia 0.3 test ETH) with nonce 0 on both networks, verified by a
+live read-only doctor on the frozen primaries (`readiness/funded-20260926/`, D5 funding gate PASS); the results label and
+the baseline tag are open and **no public transaction has been sent**. This entry is separate from the
 controlled local entries CSI-CHAIN-LOCAL-01 (L1) and CSI-CHAIN-LOCAL-01-L2 (local EraVM), which it does not change, and it
 contains no July 2026 or zkUIT result.
 

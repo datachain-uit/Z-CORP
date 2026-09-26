@@ -1,0 +1,525 @@
+{
+  "image": {
+    "architecture": "arm64",
+    "archive_sha256": "d8cbdd0f8a49ffb034bd154aa7943e4ad8c51030f5b8cd0fd36328663f14362c",
+    "config_digest": "sha256:34381409de95cb54c90b06c63a04ecb34dff0b37bc386b15e0aa2d4ca5d825db",
+    "image_id": "sha256:246e35a06b0e823697fd42c5297739e1c3ecca145d6869adbf19b094d9d8eb49",
+    "manifest_digest": "sha256:3a0cf3776167447ee37332fd5fc1756b2b6b253bcdf0f38d68bdabbe12fbdb0d",
+    "platform": "linux/arm64",
+    "precheck_utc": "2026-09-26T02:47:21Z",
+    "verified_by_wrapper": "pass"
+  },
+  "image_record": {
+    "architecture": "arm64",
+    "archive_sha256": "d8cbdd0f8a49ffb034bd154aa7943e4ad8c51030f5b8cd0fd36328663f14362c",
+    "config_digest": "sha256:34381409de95cb54c90b06c63a04ecb34dff0b37bc386b15e0aa2d4ca5d825db",
+    "image_id": "sha256:246e35a06b0e823697fd42c5297739e1c3ecca145d6869adbf19b094d9d8eb49",
+    "manifest_digest": "sha256:3a0cf3776167447ee37332fd5fc1756b2b6b253bcdf0f38d68bdabbe12fbdb0d",
+    "platform": "linux/arm64"
+  },
+  "kind": "doctor-public (engineering; not session evidence)",
+  "observations": {
+    "era-sepolia": {
+      "calls": [
+        {
+          "http_status": 200,
+          "method": "eth_chainId",
+          "ms": 553.433,
+          "name": "chainId",
+          "ok": true,
+          "params": [],
+          "response_raw": "{\"jsonrpc\":\"2.0\",\"id\":1,\"result\":\"0x12c\"}",
+          "response_sha256": "57542f60e6a80a747e1722b9de65b9125a74522052ac6af20ca36555aad3b838",
+          "t_request_utc": "2026-09-26T02:47:23.889Z",
+          "t_response_utc": "2026-09-26T02:47:24.443Z"
+        },
+        {
+          "http_status": 200,
+          "method": "web3_clientVersion",
+          "ms": 261.224,
+          "name": "clientVersion",
+          "ok": true,
+          "params": [],
+          "response_raw": "{\"jsonrpc\":\"2.0\",\"id\":2,\"result\":\"zkSync/v2.0\"}",
+          "response_sha256": "193cdff101937b4739f713bfb70b743961415e5e8ed5f203765b5c0b1953c6f8",
+          "t_request_utc": "2026-09-26T02:47:24.443Z",
+          "t_response_utc": "2026-09-26T02:47:24.704Z"
+        },
+        {
+          "http_status": 200,
+          "method": "eth_getBlockByNumber",
+          "ms": 351.721,
+          "name": "latestBlock",
+          "ok": true,
+          "params": [
+            "latest",
+            false
+          ],
+          "response_raw": "{\"jsonrpc\":\"2.0\",\"id\":3,\"result\":{\"hash\":\"0x572e2acc16073fee531611a18b99acde2e6a86da0e306ca41c6160a3857af713\",\"parentHash\":\"0x28f442c61b14070a8005ef3d84a6201e9deaf2d159d772f6c61c71904457416c\",\"sha3Uncles\":\"0x1dcc4de8dec75d7aab85b567b6ccd41ad312451b948a7413f0a142fd40d49347\",\"miner\":\"0x0000000000000000000000000000000000000000\",\"stateRoot\":\"0x0000000000000000000000000000000000000000000000000000000000000000\",\"transactionsRoot\":\"0x0000000000000000000000000000000000000000000000000000000000000000\",\"receiptsRoot\":\"0x0000000000000000000000000000000000000000000000000000000000000000\",\"number\":\"0x82b348\",\"l1BatchNumber\":null,\"gasUsed\":\"0x16e74\",\"gasLimit\":\"0x4000000000000\",\"baseFeePerGas\":\"0x17d7840\",\"extraData\":\"0x\",\"logsBloom\":\"0x00000000000400000010000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000800000000000000000000000040000000008000000000000000000000000000000000000080000000000000000000000000000000000000000000000000000000010000000000010004000000000000004000000000000000000000000000000000000000000000000000000100000000000000000000000000000000000000000000000000008000002008000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000004000000000000\",\"timestamp\":\"0x6ab73231\",\"l1BatchTimestamp\":null,\"difficulty\":\"0x0\",\"totalDifficulty\":\"0x0\",\"sealFields\":[],\"uncles\":[],\"transactions\":[\"0x24a13f465a81eaeae5d799c567139a0b51a16d1b0ee6132bd1bb434ba53315a5\"],\"size\":\"0x0\",\"mixHash\":\"0x0000000000000000000000000000000000000000000000000000000000000000\",\"nonce\":\"0x0000000000000000\"}}",
+          "response_sha256": "1196ed52dee40120c69eeff49ba41fb9c0a87fd8f3ed21ff0eddd8156bac6c47",
+          "t_request_utc": "2026-09-26T02:47:24.705Z",
+          "t_response_utc": "2026-09-26T02:47:25.057Z"
+        },
+        {
+          "http_status": 200,
+          "method": "eth_gasPrice",
+          "ms": 307.645,
+          "name": "gasPrice",
+          "ok": true,
+          "params": [],
+          "response_raw": "{\"jsonrpc\":\"2.0\",\"id\":4,\"result\":\"0x17d7840\"}",
+          "response_sha256": "18393b2ae1a7bb6998e32207842551215cb54204d6736a4d3e9790c894943d87",
+          "t_request_utc": "2026-09-26T02:47:25.057Z",
+          "t_response_utc": "2026-09-26T02:47:25.365Z"
+        },
+        {
+          "http_status": 200,
+          "method": "zks_getProtocolVersion",
+          "ms": 258.007,
+          "name": "protocolVersion",
+          "ok": true,
+          "params": [],
+          "response_raw": "{\"jsonrpc\":\"2.0\",\"id\":5,\"result\":{\"version_id\":29,\"minorVersion\":29,\"timestamp\":1757332047,\"verification_keys_hashes\":{\"recursion_scheduler_level_vk_hash\":\"0x0000000000000000000000000000000000000000000000000000000000000000\",\"fflonk_snark_wrapper_vk_hash\":null,\"airbender_snark_wrapper_vk_hash\":null},\"base_system_contracts\":{\"bootloader\":\"0x01000911c4db4fe62c98e180cfa7e9b3a22fb15f505905d4bf36192f481551e6\",\"default_aa\":\"0x010005f73e7c299ed73db937843643bdc276cbc2cc8596287e1e0cf3afc60252\",\"evm_emulator\":\"0x01000d8bae37b82f311186426184866498b357f41d7a02ced11f3e3fbfbacd63\"},\"bootloaderCodeHash\":\"0x01000911c4db4fe62c98e180cfa7e9b3a22fb15f505905d4bf36192f481551e6\",\"defaultAccountCodeHash\":\"0x010005f73e7c299ed73db937843643bdc276cbc2cc8596287e1e0cf3afc60252\",\"evmSimulatorCodeHash\":\"0x01000d8bae37b82f311186426184866498b357f41d7a02ced11f3e3fbfbacd63\",\"l2_system_upgrade_tx_hash\":\"0xa1ff3e02225fe7ec1fc05ad9f3a1082f770f7de11095c9a1af5ea88fbba0e4ce\",\"l2SystemUpgradeTxHash\":\"0xa1ff3e02225fe7ec1fc05ad9f3a1082f770f7de11095c9a1af5ea88fbba0e4ce\"}}",
+          "response_sha256": "cf6c5b27d3a9ab3479569414a83c56d5fb4af383427055a6b6eae4c9edf6f800",
+          "t_request_utc": "2026-09-26T02:47:25.365Z",
+          "t_response_utc": "2026-09-26T02:47:25.623Z"
+        },
+        {
+          "http_status": 200,
+          "method": "zks_getFeeParams",
+          "ms": 456.427,
+          "name": "feeParams",
+          "ok": true,
+          "params": [],
+          "response_raw": "{\"jsonrpc\":\"2.0\",\"id\":6,\"result\":{\"V2\":{\"config\":{\"minimal_l2_gas_price\":25000000,\"compute_overhead_part\":0.0,\"pubdata_overhead_part\":1.0,\"batch_overhead_l1_gas\":800000,\"max_gas_per_batch\":200000000,\"max_pubdata_per_batch\":700000},\"l1_gas_price\":1524396651,\"l1_pubdata_price\":175580634,\"conversion_ratio\":{\"l1\":{\"numerator\":1,\"denominator\":1},\"sl\":{\"numerator\":1,\"denominator\":1},\"numerator\":1,\"denominator\":1}}}}",
+          "response_sha256": "ad74a161ab8147aecfdad9d1fab35488e200ecbddcb6de3e8be31be340978173",
+          "t_request_utc": "2026-09-26T02:47:25.624Z",
+          "t_response_utc": "2026-09-26T02:47:26.080Z"
+        },
+        {
+          "http_status": 200,
+          "method": "zks_L1BatchNumber",
+          "ms": 306.144,
+          "name": "l1BatchNumber",
+          "ok": true,
+          "params": [],
+          "response_raw": "{\"jsonrpc\":\"2.0\",\"id\":7,\"result\":\"0x56fc\"}",
+          "response_sha256": "ce98158e5f8de3e22149c7e1e660effccff04b0b2141f41cc4ca0e58f201d1b2",
+          "t_request_utc": "2026-09-26T02:47:26.081Z",
+          "t_response_utc": "2026-09-26T02:47:26.387Z"
+        },
+        {
+          "http_status": 200,
+          "method": "zks_getL1BatchDetails",
+          "ms": 309.637,
+          "name": "l1BatchDetails",
+          "ok": true,
+          "params": [
+            22268
+          ],
+          "response_raw": "{\"jsonrpc\":\"2.0\",\"id\":8,\"result\":{\"number\":22268,\"commitment\":\"0xb0c871cae70ddc0363f384c571c044ef3767a3abe95809cbda255045ce3a8f39\",\"timestamp\":1790379263,\"l1TxCount\":0,\"l2TxCount\":863,\"rootHash\":\"0xb4bb18816fe20aefe98e77b0e2aaa2a2e18b05969295c127cb6b99ca33714b1e\",\"status\":\"verified\",\"commitTxHash\":\"0xa510a8c9576aa108dc8a633c86af92dd1d5d1da939f4b7a67cede968b47e41a7\",\"committedAt\":\"2026-09-26T01:50:36.942854Z\",\"commitTxFinality\":\"finalized\",\"commitChainId\":11155111,\"proveTxHash\":\"0x29f64d81484208889aa66a43264b16b4022e54b2ae8bd7d1d3748f65680e046f\",\"proveTxFinality\":\"finalized\",\"provenAt\":\"2026-09-26T02:03:35.192398Z\",\"proveChainId\":11155111,\"executeTxHash\":\"0x83f04fd9b0f9ea3b132560532485fec752750bff09c4f4ec0d832c8ad13c3ade\",\"executeTxFinality\":\"finalized\",\"executedAt\":\"2026-09-26T02:03:35.366384Z\",\"executeChainId\":11155111,\"precommitTxHash\":null,\"precommitTxFinality\":null,\"precommittedAt\":null,\"precommitChainId\":null,\"l1GasPrice\":1523100162,\"l2FairGasPrice\":25000000,\"fairPubdataPrice\":1841451554,\"baseSystemContractsHashes\":{\"bootloader\":\"0x01000911c4db4fe62c98e180cfa7e9b3a22fb15f505905d4bf36192f481551e6\",\"default_aa\":\"0x010005f73e7c299ed73db937843643bdc276cbc2cc8596287e1e0cf3afc60252\",\"evm_emulator\":\"0x01000d8bae37b82f311186426184866498b357f41d7a02ced11f3e3fbfbacd63\"}}}",
+          "response_sha256": "d88dbc0a547362b33e277f05cffc3c4dcf76bdcbb14a7bf843144f1934451f61",
+          "t_request_utc": "2026-09-26T02:47:26.388Z",
+          "t_response_utc": "2026-09-26T02:47:26.697Z"
+        },
+        {
+          "http_status": 200,
+          "method": "zks_getL1BatchDetails",
+          "ms": 305.067,
+          "name": "l1BatchDetailsPrev",
+          "ok": true,
+          "params": [
+            22267
+          ],
+          "response_raw": "{\"jsonrpc\":\"2.0\",\"id\":9,\"result\":{\"number\":22267,\"commitment\":\"0xa7948a1c04c39dd36805ba0a43985eab2e3fc6b6dcd037f9eefe8650a509693d\",\"timestamp\":1790372055,\"l1TxCount\":1,\"l2TxCount\":583,\"rootHash\":\"0x3ba3f17eafbbef27e144193c75c1871df0268c9146043c731684167098caf83d\",\"status\":\"verified\",\"commitTxHash\":\"0x5acffe4235e19b19e68d80f81e24cde9e56a66cb647c1787298bda1567f3dc82\",\"committedAt\":\"2026-09-25T23:49:24.657443Z\",\"commitTxFinality\":\"finalized\",\"commitChainId\":11155111,\"proveTxHash\":\"0x087c8b38089f360141e899c3918dff558f7ed9e5bf60c10f7cc927a66ca93e82\",\"proveTxFinality\":\"finalized\",\"provenAt\":\"2026-09-26T00:02:02.593610Z\",\"proveChainId\":11155111,\"executeTxHash\":\"0x3bb64b309c5a759eb561a099635e874f85fadb2da06a8b1707581cfeb87deed4\",\"executeTxFinality\":\"finalized\",\"executedAt\":\"2026-09-26T00:02:02.726470Z\",\"executeChainId\":11155111,\"precommitTxHash\":null,\"precommitTxFinality\":null,\"precommittedAt\":null,\"precommitChainId\":null,\"l1GasPrice\":1520731136,\"l2FairGasPrice\":25000000,\"fairPubdataPrice\":1846975359,\"baseSystemContractsHashes\":{\"bootloader\":\"0x01000911c4db4fe62c98e180cfa7e9b3a22fb15f505905d4bf36192f481551e6\",\"default_aa\":\"0x010005f73e7c299ed73db937843643bdc276cbc2cc8596287e1e0cf3afc60252\",\"evm_emulator\":\"0x01000d8bae37b82f311186426184866498b357f41d7a02ced11f3e3fbfbacd63\"}}}",
+          "response_sha256": "4e01af48fbbc4019b5ed2e16a05f66032e6f2602e30f46a0a9527cbfc9d95307",
+          "t_request_utc": "2026-09-26T02:47:26.698Z",
+          "t_response_utc": "2026-09-26T02:47:27.003Z"
+        },
+        {
+          "http_status": 200,
+          "method": "zks_getBlockDetails",
+          "ms": 290.013,
+          "name": "blockDetails",
+          "ok": true,
+          "params": [
+            8565576
+          ],
+          "response_raw": "{\"jsonrpc\":\"2.0\",\"id\":10,\"result\":{\"number\":8565576,\"l1BatchNumber\":22269,\"timestamp\":1790390833,\"l1TxCount\":0,\"l2TxCount\":1,\"rootHash\":\"0x572e2acc16073fee531611a18b99acde2e6a86da0e306ca41c6160a3857af713\",\"status\":\"sealed\",\"commitTxHash\":null,\"committedAt\":null,\"commitTxFinality\":null,\"commitChainId\":null,\"proveTxHash\":null,\"proveTxFinality\":null,\"provenAt\":null,\"proveChainId\":null,\"executeTxHash\":null,\"executeTxFinality\":null,\"executedAt\":null,\"executeChainId\":null,\"precommitTxHash\":null,\"precommitTxFinality\":null,\"precommittedAt\":null,\"precommitChainId\":null,\"l1GasPrice\":1525022831,\"l2FairGasPrice\":25000000,\"fairPubdataPrice\":1919444723,\"baseSystemContractsHashes\":{\"bootloader\":\"0x01000911c4db4fe62c98e180cfa7e9b3a22fb15f505905d4bf36192f481551e6\",\"default_aa\":\"0x010005f73e7c299ed73db937843643bdc276cbc2cc8596287e1e0cf3afc60252\",\"evm_emulator\":null},\"operatorAddress\":\"0x381b5cbd43f30a88ac2c7d8ed021325443156455\",\"protocolVersion\":\"Version29\"}}",
+          "response_sha256": "44768097c4a40143914d75480eda1262e62ca0356ba56560f11b83ef727a9979",
+          "t_request_utc": "2026-09-26T02:47:27.003Z",
+          "t_response_utc": "2026-09-26T02:47:27.293Z"
+        },
+        {
+          "http_status": 200,
+          "method": "eth_getBalance",
+          "ms": 323.082,
+          "name": "balance",
+          "ok": true,
+          "params": [
+            "0x6C58f325404dFF6c860034ceDA59D1de789Ac2E3",
+            "latest"
+          ],
+          "response_raw": "{\"jsonrpc\":\"2.0\",\"id\":11,\"result\":\"0x429d069189e0000\"}",
+          "response_sha256": "b53b4460a0ee3f40332d8316191fe9db721ee5e1beb5353c44f5b1e925dc07b1",
+          "t_request_utc": "2026-09-26T02:47:27.294Z",
+          "t_response_utc": "2026-09-26T02:47:27.617Z"
+        },
+        {
+          "http_status": 200,
+          "method": "eth_getTransactionCount",
+          "ms": 257.543,
+          "name": "nonceLatest",
+          "ok": true,
+          "params": [
+            "0x6C58f325404dFF6c860034ceDA59D1de789Ac2E3",
+            "latest"
+          ],
+          "response_raw": "{\"jsonrpc\":\"2.0\",\"id\":12,\"result\":\"0x0\"}",
+          "response_sha256": "6554f569c7aafb306f514fc167d0726ca721541a3a49e63b0f01d1198b879db8",
+          "t_request_utc": "2026-09-26T02:47:27.618Z",
+          "t_response_utc": "2026-09-26T02:47:27.875Z"
+        },
+        {
+          "http_status": 200,
+          "method": "eth_getTransactionCount",
+          "ms": 355.331,
+          "name": "noncePending",
+          "ok": true,
+          "params": [
+            "0x6C58f325404dFF6c860034ceDA59D1de789Ac2E3",
+            "pending"
+          ],
+          "response_raw": "{\"jsonrpc\":\"2.0\",\"id\":13,\"result\":\"0x0\"}",
+          "response_sha256": "6f51e39d85331530d76b59d1238dcc56ac059e01914df735d2d07f31a1576eaf",
+          "t_request_utc": "2026-09-26T02:47:27.875Z",
+          "t_response_utc": "2026-09-26T02:47:28.231Z"
+        }
+      ],
+      "chain_id_expected": 300,
+      "endpoint": {
+        "host": "sepolia.era.zksync.dev",
+        "label": "ZKsync Era Sepolia official public RPC",
+        "role": "primary",
+        "scheme": "https",
+        "url": "https://sepolia.era.zksync.dev",
+        "url_sha256": "8366bcd4a2dff06e774b1669d14489dcdeea53d8dbe92049cbf1f35ba8d2b23d"
+      },
+      "finished_utc": "2026-09-26T02:47:28.231Z",
+      "kind": "network-observation",
+      "label": "doctor-public (read-only)",
+      "network": "era-sepolia",
+      "observation_id": "26edcdbd523f4993",
+      "signer_address": "0x6C58f325404dFF6c860034ceDA59D1de789Ac2E3",
+      "started_utc": "2026-09-26T02:47:23.889Z",
+      "summary": {
+        "calls_failed": 0,
+        "calls_ok": 13,
+        "chain_id": 300,
+        "client_version": "zkSync/v2.0",
+        "latest_base_fee_per_gas": "25000000",
+        "latest_block": 8565576,
+        "latest_block_timestamp": 1790390833
+      }
+    },
+    "sepolia": {
+      "calls": [
+        {
+          "http_status": 200,
+          "method": "eth_chainId",
+          "ms": 529.636,
+          "name": "chainId",
+          "ok": true,
+          "params": [],
+          "response_raw": "{\"jsonrpc\":\"2.0\",\"id\":1,\"result\":\"0xaa36a7\"}",
+          "response_sha256": "87736a36920a1f2877bb0104fa79f9b3e6edf758c45fb517d71f55f9899ea119",
+          "t_request_utc": "2026-09-26T02:47:22.162Z",
+          "t_response_utc": "2026-09-26T02:47:22.692Z"
+        },
+        {
+          "http_status": 200,
+          "method": "web3_clientVersion",
+          "ms": 167.436,
+          "name": "clientVersion",
+          "ok": true,
+          "params": [],
+          "response_raw": "{\"jsonrpc\":\"2.0\",\"id\":2,\"result\":\"reth/v1.10.2-8e3b5e6/x86_64-unknown-linux-gnu\"}",
+          "response_sha256": "bfaf9ef07df276fea099739191b14882bd2d3dd573fe4412ac47d9ff99eb42eb",
+          "t_request_utc": "2026-09-26T02:47:22.693Z",
+          "t_response_utc": "2026-09-26T02:47:22.861Z"
+        },
+        {
+          "http_status": 200,
+          "method": "eth_getBlockByNumber",
+          "ms": 157.904,
+          "name": "latestBlock",
+          "ok": true,
+          "params": [
+            "latest",
+            false
+          ],
+          "response_raw": "{\"jsonrpc\":\"2.0\",\"id\":3,\"result\":{\"hash\":\"0x0365fd028cdbe17da129316c445cbf6c2a238088abaf5aa9d6168b54a3799033\",\"parentHash\":\"0xb40f89ba87268c4954467173ea9d6f6a79fb67709a68b7a4dac5c78200effde5\",\"sha3Uncles\":\"0x1dcc4de8dec75d7aab85b567b6ccd41ad312451b948a7413f0a142fd40d49347\",\"miner\":\"0x670b24610df99b1685aeac0dfd5307b92e0cf4d7\",\"stateRoot\":\"0xd9232978c0399fb87685355a4793e5cfc9d0f3aa6cee79784b7fea05090177f4\",\"transactionsRoot\":\"0x81274ba459bfc866057454b1ad43baaa96693fdae4422af15a3b6fe827ab37f6\",\"receiptsRoot\":\"0xdfc0a0f0fa27cf9f7753eaf3ea4a29976484f3dfbde69711662f3a671589ce54\",\"logsBloom\":\"0x9735815281904b1021530d0bf403922b491813cbc0830f1ca472aa954456a14345cc12f260a4c25e8ad0691f442cebc05249a82216a658009f54ba2afc7d3f5eb31c59ac41ed26204000c45f42ba803016d38b40e1c43450a099872e9610179b3e208b00ee292d502743c66c2c134cc2395a02f0261de51027501cb1444605c903f27a3418fc4b1c28c2247e93166f1cc9d14cc9f016b0683f37bc57c58026898288e2217f140088195027541c79076c50023c600225980491a05a9b966a1219ce10ae8a016b20d80543936259030aead39e13848e2811327b78618a4e90e0252d58a10e40862506cc22525078c07c84d0a42f30dda610c4c68f0a424c14800a\",\"difficulty\":\"0x0\",\"number\":\"0xb3ccce\",\"gasLimit\":\"0x3938700\",\"gasUsed\":\"0xdf7604\",\"timestamp\":\"0x6ab73230\",\"extraData\":\"0x4e65746865726d696e642076322e302e30\",\"mixHash\":\"0x68e31210956f4098ee15acfef4f0bf0a66b6b4b41bbaab476fc4c233d4c2d920\",\"nonce\":\"0x0000000000000000\",\"baseFeePerGas\":\"0x3fe3195f\",\"withdrawalsRoot\":\"0x109c4426d4363e72db37406fb09c4020de97ddbe6308a42fd543093d7354b5fb\",\"blobGasUsed\":\"0x2a0000\",\"excessBlobGas\":\"0xd3ea989\",\"parentBeaconBlockRoot\":\"0x4a7493e2ba091ef4e6220bf3b34053c3a77b89da70818887b78d21ac14807454\",\"requestsHash\":\"0xe3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855\",\"size\":\"0xd294\",\"uncles\":[],\"transactions\":[\"0xc0cd1622d8480c9dff934143c5ca2d076bc62d770cec222cf4da7e967213a72b\",\"0x01a9fbd79810ca9d2705efb875f051f2bf17e85e74fda5deab663332ef96087a\",\"0x999726c8820765dcd90c49969a433a5739df29139e90349dd931eca9c8b8608c\",\"0x8d5ff1a358b695e5663dc93ee58c1d9135a7356839addf2905b846be91979987\",\"0xebea27c50a4b678e81766cc593da7ca93a7b368e587fe6d38d6f6684259c0ae1\",\"0xc188c51f7c73e711437272ee41b7156e8ddf32b475425761a0cc0194e4b97167\",\"0x75a8927ab3db4a31460696495db3af12daeb7a1ae7948255a41bcf856278be93\",\"0x8f698585c9f99278779398171a91c975522561c0a57fd9bc33b24a00d913228a\",\"0x209d3ab79a14c60eb828514dbbe99dbf2ac3b4c3933ccce7b64e49b82fc7a1ba\",\"0x8ee3ecfc28bd3c0baec32bee0803ebe8de79964c9e808a526ec4d6c7a146db5d\",\"0xf7698677ba7fd6e8f9c2239ad536a3609a0b79d971822fcf54e852b30413eae2\",\"0xad91979196f30e293a1a66bbedb2b5c324b448927e15d332311c4148a879f34c\",\"0xd70b1750e16c5444afced71197c08d87e421283b5840bf60ee66003e51914686\",\"0xf45008db93187fd8dba9f9712d282d4b0f0faff81c73c3b312e5c53287555455\",\"0xe0980218c9e8d49882adf93622c1835bc2e85506acd974e973cf0211f31310df\",\"0x4f03319bf53295fade6ecc3e1a829c261b8fa820898eb3b6f904908509e7cf32\",\"0xd477a361163c801ad6c8631e06b8abe328a3437fa19f274799ca46c33243754a\",\"0xeabb13b43ea073fcd07ad1fa02868a858ced3f7b4b8dc5516490ab0671a00908\",\"0x16071053ac3494033bedf8d74c2ee53d395cd2fdb4cf38d92e340d7d0cd3779d\",\"0xf2ecf58fdda07350c52e7d0767d0300ded275827e64572ec7274355960e7b100\",\"0xfb578be77ef78eb1bd69d44704462f4381e7820f89da750144a55b245175f167\",\"0x2a0cb54a4996618be82561dbcc2d0994ec242189fb797695876f39fd050e8745\",\"0xd9cc164c53537b7c953a7127e8bfe0364ee60ec1ce6a9548c87b50fb70347024\",\"0xc862b28e37600eed03dbb8eb8b8377351c53185afaaf2d7b91291eef24464658\",\"0xe58175c3fdc899b798ad402c423bcda74ca0dfce87919e1a8bf8e0644934d00f\",\"0x54855054f9254666527cdeaf82c7aac32c680c06a0b8b443b931fe8f2f0b1171\",\"0xf50b840ef1303710a6d525e4b024c6f50e716a63bdb34682a0d9f4e8c4afc43d\",\"0x7a68bf0e798fe1068e5f590603da28107993657124d21e4aa6edc47996c4ea1c\",\"0xe9debf7a817d31450c05b0102ca5fabdc67d3e5d2687ae94126a236e81ea71a7\",\"0x082b975f86845c9b62ac7ede23c05d0e8a91a2bc5032ad2b9a706c947b28c3cf\",\"0xb9b3bf4c212e7c761b27bc94f976d567c2675c67d7dd5141d30869c22e60d1dc\",\"0x196c88cd10cad25faaa6a6f9b79aa3b625aa57fe9c92bc03652f2572a5517fb7\",\"0x7e946fa3c91ecd8f45a091ffae8095dd8df85d42a6d6e0e78b9b0c067d72a5bc\",\"0x9ec83914dca367221217e9cb715d979618c61d7b95edc88dd0f26a764794f69a\",\"0x7bcbb13b9328a351ba00a297ab63a97cd6f3f03a74a441ae35a1173191a0b2b3\",\"0x2bd00d8305a9a552fe279697fb08be5bad5f17b8366c35d0504573ecf83be72f\",\"0x917965948c0854e7b3a3cab7db4993687653742a967aba6a1576c0beacb489e3\",\"0xc068893e5f49bc53b9f01d2cdccff7361405ceb5462999dc4aabb47b3a30fa98\",\"0x3cfa36741322c0f7c81e82412cf8a96549f2732b3b8ade42591a4d2404e519c5\",\"0x7229c48815970fc98a105c257f699bb19cc20957b870c1bff82ff02eefa89077\",\"0x9723416cd3d139fbdb1c61d7e850d98ec81fa65750e0830dfedc7cc5309a5fbc\",\"0x78fbbc9809d1818544282726a05360ee35182721d92f7e35b6e55727fe235c5f\",\"0x2dca095bef9e7aa54d94bd7da759ed0395ab360bb612edc9d5130b2cd5caaad9\",\"0xeb89d4c7870c43c660b60c775666d1165c3b3ae4248358fe649a7582618bdd3e\",\"0xb89dc9ad63ee121be1c6458e441bdd0c9e8a931ff86ffb2d55749f765258d7e6\",\"0xfd9412a2730d660c32e23f6a109d13843dc5d5efa73b31261ca8e0940fae0004\",\"0x162abace4c117e527259f60d1a4f1a10342424d975183f9434a3bcc2ad1aa1a7\",\"0xfa553d73dac81a10eb891f5c9f3c95ab0fc7e4734574f48896317f6df030adca\",\"0x7dbdb2ea643d2785fd8fe086a600c946383c9b79f77b2265cd3f3b0e00499430\",\"0x63615e6013f14a0c3056ba9d799161bb8763d984ab6c97ed7f52e4c2a6ce2fb5\",\"0xbdc380270b81a9707681392a76d00c9afcd87d87317b1d8abbed6d1d2ea79011\",\"0xbccf15157f0e35f21422858b4d51dfa6c5858f217a482208be686b4f53a7d1b9\",\"0xe029975c1594131411e059e44cb0779a0b8ceaae97e2cdc177005285a4bf0667\",\"0xae19e87b1f3e3cfc0c15414f265780bd5377f775c91a30cc3634c153745ef8be\",\"0x37a8d77e49d07d96a2eacc48bfbbc15c14b0cfd72db696b7d2307bb8f03ae146\",\"0xd5e4de19999c958587f44055c79a8815db93dfb7ad0d7382908c22a92a3179c7\",\"0x21711fbdada638fc7a5675d7269fdb1fe3d67993c81c4bf7e9c03a3f6e813a54\",\"0x484da3403d5aec9a36a958a3d906e15387d1145249f77a2d519ab2694c9f8a3b\",\"0x19ff10800c5631de8f13a24d75cd423a8cf452c71d863e3073adf9aa860ae087\",\"0x3b9e9dc6407b3fabc81c9f6d41d14be8a9e7418b5a314e0069e786c93e30bb57\",\"0xb4d1e0f5ae4302eee6faae43da73095a313316855d4f58d1038e9c8044203cdb\",\"0x443c9ab47011f2467e7859d9fb92a48476a5a43da0a1687fd373a0a86d1254fa\",\"0x0118f17cd68804d51d9d113b0f4d1e2ca83158dc5bc7f90ef6c429cfae552749\",\"0xff27999b8bceb9136c24ca8253ddd038c53e33e707bcc8ea4dbad38d0132ba21\",\"0xab4f1bcc78d2f06f10565b6edd2dfa48d332ab9a258ee8e48ec154e2627b3266\",\"0xc04af436fbcc3743e98f1abcbd1a3dec7ab63b1a07009ccc8e8d7d24b6b0dc31\",\"0xd77c6614b1849337b4706ea5e19e899930263a4276a40a3f7cf44004cba84e1e\",\"0x5d95424b7f6a1d3eb3243605db069c8a45724cc3639601085a9f10a83738b50a\",\"0x0228dbd4c4373f0907c08909380ac8ff8997942cadbaa06f852830b72158bb6e\",\"0x16374f1b767e5f4c6620285a68740e608c397afca275ca0711b7d338c7cb2c6c\",\"0xd9f554d21f630077e49cf4af819f959601cb3975cdd758436e887d66598ecbd4\",\"0xb65fa62df5e21fc99f1170a78ea93736507617002972caae1dd6675c803994ba\",\"0xbe2826491dea66f4eee2d5cce8c0ebefd95890ea550993ec73d87d4d590f3b6d\",\"0x8353135dbb62fad25bf3b7d5b17384415f0000855f0116a453f6a579459bcbb2\",\"0xfcda6e8a5486b7698137b94516af3eed0b3af5d8ad6464e343e5972239b1091e\",\"0x9e021e608421375b3f88962c7f0c292f6b407cb63874ef7af0d1070b2666a669\",\"0x4a46dddbeeeca193500b93853c71108a59c6e0336f0dbe604223920798b7d2c8\",\"0xc336dadbe3b4fb872320b0ad8d31cfd01234212ead7c15d5f4ce5f84da07a68d\",\"0x3b3c10d0322761b9185c7995669e86203341bb9c1fa13af8e70054912a4e90c0\",\"0xd018aa41feaed30cf290932be7ad0b4fd9762e2dae94d5debc2f8bad76edafa1\",\"0xf2e411a8cc609ef75d1fecb1e7d136370c8232166129ae972539eb297f52fb44\",\"0xacac120191dc13881ea30f328d3909e47c4fccf977c52ab0ccb98a738b20d376\",\"0x586c24de64bc85da9030faa33f4cc54889659477e842c659e19d4223b030edb5\",\"0xf88d26aaf0f4646a664284a4e0766b3bb467975f587de030b7e9b3780e658021\",\"0x030add862d9eb44bbeb299cc08d428e79528714a33a87f019dd1ff1adc6bc8ba\",\"0xf8a8a12a9a85e1780d5b7a7a14b27ce5d53bfc3076f4db89a3dab08be365e3e0\",\"0xd9b29f694ca15414e3b89dbd4f57592cb685bbefb44fb27331ecfdee0f69ea22\",\"0x3ef1dc0a8e7b5f260e608f04c7cbd0d0a1ab720b250c69f022032c998e369c94\",\"0x3e88af57c858e7cdfb3c89d1c6ab0379a07e4edee76cbe4aed08d61da17d68ff\",\"0xcdf49a6eadb9959c2fe725d273cc17fa34df8086a5b734db7614a179bb16191f\",\"0xc6d2e44c1079823f0db054156802b91063f6391cf7caf416056e35b16829093f\",\"0xfc34ab3f3dc9da679a97e4dc4646f2c907793ec04d2ac53fe6e9356cc6a31dfa\",\"0xa20b59570af91b6e59dd6dc822a768ab32348c7ae99230a1e8692b81c8e76927\",\"0x6f34bdf8f8b854a56817cabb0e1829eefcae2a3100ed1f3b3ddb6878dca08c32\",\"0x359d26488b81759f304f01135a508bcfa0fc14a54f755d66655729996140c646\",\"0x60e018840a341f3e701a4f4562d2e2ad95cb078cf40aef651d0a571406f1fc6d\",\"0x6aee92cbc566186d1802ffa3d629c841ee085f00c923d2ee01a32d10222ec817\",\"0x40e0f70c69932c291503eccc7578fec06c79a192681f523b4236ffd5770b23f9\",\"0x1226c892bceafe4ca82abc61a56053ea10754f7cf530a1820b4dddfec59678b4\",\"0xf07e5278ad7d02fe854b21d55cd36b4af9e3ba73c5cf1e2ee7bdbe28c00af150\",\"0xa04c5ced6b164bac527c8c3f97c0f7971bcf7925c2a084100f65c9a9e8ac430d\",\"0xdc1595316226a1adf210f5a5e6574030995cd9ead0f0c6a44893d9bd69d324c7\",\"0x7498e01a7a99a52eaf0d394bb96eabe304f0cbadac8c2e42124c3a7e1623d404\",\"0x5074b1ed5b57a8dbd2d61f3a1ce9f8102eee2b49b10b02821c48306da09abc69\",\"0x5b80021f1e1df439d5a3b00fd23c4d0923121f4bb1ff40bab23c07cb0bbdb90e\",\"0xc7f8252b94be2cc22e80090ed94d429e4c52acbe1067fba93993c9d91d96bd70\",\"0xe78c8b18a8c620c890737a24d5a805abd13ec800f554e693c39f47e8166ab1f7\",\"0xf069de377d0847b29791c73b26e1020ef431e23407e19d41465f43b1d20af76d\",\"0xccb25f7b889b2c8aab9424f4034eb643d7ebd5a3dc776e5c19a71412ec17014a\",\"0xc0d5bfdc08ed18b80f490207bf9ac968f2e3e25e050cc7df67c25d494bf85f4d\",\"0x47e25226bd5d861a121f589ceb8981a42b944a9c1d5d9bbc321da34bcee73d87\",\"0xc1f0bf0ff0577a76e5c592517dae200dc01c81d7807a3894f3579b5dcfe69367\",\"0x9097ebf1dc43e145a884c2d41fc70a69b7d128ba1dc8ba1d966c3eff42b27ef0\",\"0xfae6b826e3e138a5e992e02d58266763165f97b869f8f7cf2349d6d5717c2ff6\",\"0x606621e3178cf9d5a25328bf4ef4095b491d9a7a260378715dff227f5ab9e9ee\",\"0x70982212b9315bd0848d45767f270c1a45bfbe18d1d81e66993b4cb67de80c30\",\"0xfb50bf971b0a9ab37310c22c4aa22ddf082a14bcd905c1cc6f0bcdf07b7298c0\",\"0x77d0de8510cd9614a4e049ef22c6f1c790bbb7b482ff091f0f00318e374031e3\",\"0x98a417afff0e8f6b13e5131b65f9341b2cd1dc069cf719ca7b9a14440f307f61\",\"0xc2027ac32fa74305c4d41018f4fcfd0c4dc9c24ac861e305b86a948c1f8442e2\",\"0x1e61b2aa905fb50ff6ae41f72d89c318c5e72ab52fc2ef9c2222bf133803d980\",\"0x797444500089075e8ca304dfa0b34f66e40452e8ee4d2f77f360ae3ce5d477c7\",\"0xa1ef13381164fe1a54ec1cd565cc120e5cd871105a6ffe9dbc5db4748775dd14\"],\"withdrawals\":[{\"index\":\"0x8624c79\",\"validatorIndex\":\"0x537\",\"address\":\"0x89bb1332db257b983ada216746903be808938da1\",\"amount\":\"0x15b4\"},{\"index\":\"0x8624c7a\",\"validatorIndex\":\"0x53d\",\"address\":\"0x89bb1332db257b983ada216746903be808938da1\",\"amount\":\"0x15b4\"},{\"index\":\"0x8624c7b\",\"validatorIndex\":\"0x53e\",\"address\":\"0x89bb1332db257b983ada216746903be808938da1\",\"amount\":\"0x15b4\"},{\"index\":\"0x8624c7c\",\"validatorIndex\":\"0x542\",\"address\":\"0x89bb1332db257b983ada216746903be808938da1\",\"amount\":\"0x15b4\"},{\"index\":\"0x8624c7d\",\"validatorIndex\":\"0x544\",\"address\":\"0x89bb1332db257b983ada216746903be808938da1\",\"amount\":\"0x15b4\"},{\"index\":\"0x8624c7e\",\"validatorIndex\":\"0x549\",\"address\":\"0x89bb1332db257b983ada216746903be808938da1\",\"amount\":\"0x15b4\"},{\"index\":\"0x8624c7f\",\"validatorIndex\":\"0x555\",\"address\":\"0x89bb1332db257b983ada216746903be808938da1\",\"amount\":\"0x1216\"},{\"index\":\"0x8624c80\",\"validatorIndex\":\"0x55b\",\"address\":\"0x89bb1332db257b983ada216746903be808938da1\",\"amount\":\"0x1216\"},{\"index\":\"0x8624c81\",\"validatorIndex\":\"0x564\",\"address\":\"0x89bb1332db257b983ada216746903be808938da1\",\"amount\":\"0x1216\"},{\"index\":\"0x8624c82\",\"validatorIndex\":\"0x56a\",\"address\":\"0x89bb1332db257b983ada216746903be808938da1\",\"amount\":\"0x1216\"},{\"index\":\"0x8624c83\",\"validatorIndex\":\"0x56e\",\"address\":\"0x89bb1332db257b983ada216746903be808938da1\",\"amount\":\"0x1216\"},{\"index\":\"0x8624c84\",\"validatorIndex\":\"0x570\",\"address\":\"0x89bb1332db257b983ada216746903be808938da1\",\"amount\":\"0x1216\"},{\"index\":\"0x8624c85\",\"validatorIndex\":\"0x574\",\"address\":\"0x89bb1332db257b983ada216746903be808938da1\",\"amount\":\"0x1216\"},{\"index\":\"0x8624c86\",\"validatorIndex\":\"0x576\",\"address\":\"0x89bb1332db257b983ada216746903be808938da1\",\"amount\":\"0x242c\"},{\"index\":\"0x8624c87\",\"validatorIndex\":\"0x613\",\"address\":\"0xf97e180c050e5ab072211ad2c213eb5aee4df134\",\"amount\":\"0x242c\"},{\"index\":\"0x8624c88\",\"validatorIndex\":\"0x614\",\"address\":\"0xf97e180c050e5ab072211ad2c213eb5aee4df134\",\"amount\":\"0x1216\"}]}}",
+          "response_sha256": "9fed7dcc63e0a887a38d3b3d1821f74c5229022345b1147a4b57c2f8dd9c7a39",
+          "t_request_utc": "2026-09-26T02:47:22.862Z",
+          "t_response_utc": "2026-09-26T02:47:23.020Z"
+        },
+        {
+          "http_status": 200,
+          "method": "eth_gasPrice",
+          "ms": 159.055,
+          "name": "gasPrice",
+          "ok": true,
+          "params": [],
+          "response_raw": "{\"jsonrpc\":\"2.0\",\"id\":4,\"result\":\"0x3ff25b9f\"}",
+          "response_sha256": "98469347b3ca8ff8f913f189de00a2fdbf42f337418472ee2bdb73beb63ef8b1",
+          "t_request_utc": "2026-09-26T02:47:23.021Z",
+          "t_response_utc": "2026-09-26T02:47:23.180Z"
+        },
+        {
+          "http_status": 200,
+          "method": "eth_maxPriorityFeePerGas",
+          "ms": 160.059,
+          "name": "maxPriorityFeePerGas",
+          "ok": true,
+          "params": [],
+          "response_raw": "{\"jsonrpc\":\"2.0\",\"id\":5,\"result\":\"0xf4240\"}",
+          "response_sha256": "3a98f7a4c27eeaa3535e1ccdb15099596b9606efec1ae399cad425ed90ade022",
+          "t_request_utc": "2026-09-26T02:47:23.180Z",
+          "t_response_utc": "2026-09-26T02:47:23.340Z"
+        },
+        {
+          "http_status": 200,
+          "method": "eth_feeHistory",
+          "ms": 129.366,
+          "name": "feeHistory",
+          "ok": true,
+          "params": [
+            "0x5",
+            "latest",
+            [
+              10,
+              50,
+              90
+            ]
+          ],
+          "response_raw": "{\"jsonrpc\":\"2.0\",\"id\":6,\"result\":{\"baseFeePerGas\":[\"0x3a2db4aa\",\"0x41732a10\",\"0x3d7af0bb\",\"0x38cc0a36\",\"0x3fe3195f\",\"0x3bccb21f\"],\"gasUsedRatio\":[0.9999316165546195,0.2573944445247223,0.19530338333333333,0.9993271666666667,0.244079],\"baseFeePerBlobGas\":[\"0xd18f917\",\"0xcce9649\",\"0xbf92f64\",\"0xbf92f64\",\"0xad2d76f\",\"0xbb52f0b\"],\"blobGasUsedRatio\":[0.5714285714285714,0.38095238095238093,0.6666666666666666,0.23809523809523808,1.0],\"oldestBlock\":\"0xb3ccca\",\"reward\":[[\"0x16d1556\",\"0x16d1556\",\"0x114b987a\"],[\"0xf4240\",\"0xf4240\",\"0x3b9aca00\"],[\"0xf4240\",\"0x146816a9\",\"0x59682f00\"],[\"0x2cebfca\",\"0x2cebfca\",\"0x2cebfca\"],[\"0xf4240\",\"0xf4240\",\"0x59682f00\"]]}}",
+          "response_sha256": "1b7fb36dd32e1d4549c44d7f135a01b5eb3b30de69217fdfa94d0794c91dabba",
+          "t_request_utc": "2026-09-26T02:47:23.341Z",
+          "t_response_utc": "2026-09-26T02:47:23.470Z"
+        },
+        {
+          "http_status": 200,
+          "method": "eth_getBalance",
+          "ms": 127.444,
+          "name": "balance",
+          "ok": true,
+          "params": [
+            "0x6C58f325404dFF6c860034ceDA59D1de789Ac2E3",
+            "latest"
+          ],
+          "response_raw": "{\"jsonrpc\":\"2.0\",\"id\":7,\"result\":\"0x6f05b59d3b20000\"}",
+          "response_sha256": "6d0517eca7eaa0ff18d25ca39323fda1b7e89b3e7fa7b358a1d9ea95ed6d3d70",
+          "t_request_utc": "2026-09-26T02:47:23.470Z",
+          "t_response_utc": "2026-09-26T02:47:23.598Z"
+        },
+        {
+          "http_status": 200,
+          "method": "eth_getTransactionCount",
+          "ms": 158.539,
+          "name": "nonceLatest",
+          "ok": true,
+          "params": [
+            "0x6C58f325404dFF6c860034ceDA59D1de789Ac2E3",
+            "latest"
+          ],
+          "response_raw": "{\"jsonrpc\":\"2.0\",\"id\":8,\"result\":\"0x0\"}",
+          "response_sha256": "86e8c64bda9ebd0fa07617b476992b285e71072147b10daf1fb449a4c21c7eb5",
+          "t_request_utc": "2026-09-26T02:47:23.599Z",
+          "t_response_utc": "2026-09-26T02:47:23.757Z"
+        },
+        {
+          "http_status": 200,
+          "method": "eth_getTransactionCount",
+          "ms": 129.408,
+          "name": "noncePending",
+          "ok": true,
+          "params": [
+            "0x6C58f325404dFF6c860034ceDA59D1de789Ac2E3",
+            "pending"
+          ],
+          "response_raw": "{\"jsonrpc\":\"2.0\",\"id\":9,\"result\":\"0x0\"}",
+          "response_sha256": "f159747aef7bcf0426c47144af1d26bc1046f661c2229f8b68c0aed225e0e1ea",
+          "t_request_utc": "2026-09-26T02:47:23.758Z",
+          "t_response_utc": "2026-09-26T02:47:23.887Z"
+        }
+      ],
+      "chain_id_expected": 11155111,
+      "endpoint": {
+        "host": "eth-sepolia.g.alchemy.com",
+        "label": "Alchemy",
+        "role": "primary",
+        "scheme": "https",
+        "url": null,
+        "url_sha256": "d020365e52fcb294a6f7da7658481c30fb2f4144d2cac3fdd97697cbe33dee10"
+      },
+      "finished_utc": "2026-09-26T02:47:23.888Z",
+      "kind": "network-observation",
+      "label": "doctor-public (read-only)",
+      "network": "sepolia",
+      "observation_id": "cd28811ca763efc4",
+      "signer_address": "0x6C58f325404dFF6c860034ceDA59D1de789Ac2E3",
+      "started_utc": "2026-09-26T02:47:22.162Z",
+      "summary": {
+        "calls_failed": 0,
+        "calls_ok": 9,
+        "chain_id": 11155111,
+        "client_version": "reth/v1.10.2-8e3b5e6/x86_64-unknown-linux-gnu",
+        "latest_base_fee_per_gas": "1071847775",
+        "latest_block": 11783374,
+        "latest_block_timestamp": 1790390832
+      }
+    }
+  },
+  "offline": false,
+  "results": [
+    {
+      "check": "Node.js >= 22",
+      "detail": "v22.23.2",
+      "fix": "use the chainbench-public image or Node 22",
+      "status": "PASS"
+    },
+    {
+      "check": "npm dependencies = package-lock.json (the only runtime dependencies)",
+      "detail": "{\"ethers\":\"6.13.5\",\"zksync-ethers\":\"6.21.2\"}",
+      "fix": "npm ci --ignore-scripts in chainbench/adapters/public (or use the image)",
+      "status": "PASS"
+    },
+    {
+      "check": "dependency graph: 10 packages (ethers, zksync-ethers and their dependencies)",
+      "detail": "10 packages",
+      "fix": "",
+      "status": "PASS"
+    },
+    {
+      "check": "RPC path: node:https/http only (no WebSocket, no ethers provider, no fetch/undici)",
+      "detail": "",
+      "fix": "",
+      "status": "PASS"
+    },
+    {
+      "check": "frozen public image record (ARCHIVE.json: index -> manifest -> config chain verified)",
+      "detail": "image sha256:246e35a06b0e… linux/arm64; archive sha256 d8cbdd0f8a49ffb0…",
+      "fix": "",
+      "status": "PASS"
+    },
+    {
+      "check": "image used by this doctor = the frozen public image",
+      "detail": "sha256:246e35a06b0e823697fd42c5297739e1c3ecca145d6869adbf19b094d9d8eb49",
+      "fix": "",
+      "status": "PASS"
+    },
+    {
+      "check": "frozen primary endpoints in the binding",
+      "detail": "sepolia: Alchemy (eth-sepolia.g.alchemy.com); era-sepolia: ZKsync Era Sepolia official public RPC (sepolia.era.zksync.dev); validated secondary Alchemy (zksync-sepolia.g.alchemy.com), deviation only",
+      "fix": "author input: endpoints.frozen in the binding (protocol section 17)",
+      "status": "PASS"
+    },
+    {
+      "check": "protocol present",
+      "detail": "csi/protocols/chain/CHAIN-PUBLIC-PROTOCOL-v1.md (sha256 51db3707331f72c3…)",
+      "fix": "",
+      "status": "PASS"
+    },
+    {
+      "check": "frozen inputs (INPUTS.sha256, IDENTITY.json)",
+      "detail": "43 identity checks; manifest 14cbed1bac6a22d7…",
+      "fix": "",
+      "status": "PASS"
+    },
+    {
+      "check": "schedule",
+      "detail": "40 transactions (16 setup, 24 verification in 3 sessions)",
+      "fix": "",
+      "status": "PASS"
+    },
+    {
+      "check": "session start times frozen in the binding",
+      "detail": "S1 2026-09-29T02:35:00Z; S2 2026-09-29T11:35:00Z; S3 2026-09-30T07:05:00Z",
+      "fix": "author input: set scheduled_start_utc for S1-S3 (at least two calendar days) and commit before session 1",
+      "status": "PASS"
+    },
+    {
+      "check": "tracked paths clean",
+      "detail": "yes",
+      "fix": "live runs refuse a dirty tree",
+      "status": "PASS"
+    },
+    {
+      "check": "signing key accepted by the key-safety rules",
+      "detail": "signer 0x6C58f325404dFF6c860034ceDA59D1de789Ac2E3 (source file); the key itself is never printed or recorded",
+      "fix": "",
+      "status": "PASS"
+    },
+    {
+      "check": "Ethereum Sepolia endpoint (https)",
+      "detail": "eth-sepolia.g.alchemy.com host eth-sepolia.g.alchemy.com (URL recorded as sha256 only)",
+      "fix": "",
+      "status": "PASS"
+    },
+    {
+      "check": "Ethereum Sepolia endpoint = frozen primary",
+      "detail": "Alchemy (primary)",
+      "fix": "live runs use the frozen primary; a secondary only under a recorded deviation",
+      "status": "PASS"
+    },
+    {
+      "check": "Ethereum Sepolia: chain id",
+      "detail": "11155111",
+      "fix": "",
+      "status": "PASS"
+    },
+    {
+      "check": "Ethereum Sepolia: read-only observation",
+      "detail": "client reth/v1.10.2-8e3b5e6/x86_64-unknown-linux-gnu; block 11783374; base fee 1071847775; 9 calls ok, 0 failed",
+      "fix": "",
+      "status": "PASS"
+    },
+    {
+      "check": "Ethereum Sepolia: signer balance (test ether)",
+      "detail": "500000000000000000 wei",
+      "fix": "fund the dedicated signer before setup",
+      "status": "PASS"
+    },
+    {
+      "check": "ZKsync Era Sepolia endpoint (https)",
+      "detail": "sepolia.era.zksync.dev host sepolia.era.zksync.dev",
+      "fix": "",
+      "status": "PASS"
+    },
+    {
+      "check": "ZKsync Era Sepolia endpoint = frozen primary",
+      "detail": "ZKsync Era Sepolia official public RPC (primary)",
+      "fix": "live runs use the frozen primary; a secondary only under a recorded deviation",
+      "status": "PASS"
+    },
+    {
+      "check": "ZKsync Era Sepolia: chain id",
+      "detail": "300",
+      "fix": "",
+      "status": "PASS"
+    },
+    {
+      "check": "ZKsync Era Sepolia: read-only observation",
+      "detail": "client zkSync/v2.0; block 8565576; base fee 25000000; 13 calls ok, 0 failed",
+      "fix": "",
+      "status": "PASS"
+    },
+    {
+      "check": "ZKsync Era Sepolia: signer balance (test ether)",
+      "detail": "300000000000000000 wei",
+      "fix": "fund the dedicated signer before setup",
+      "status": "PASS"
+    }
+  ],
+  "signer_address": "0x6C58f325404dFF6c860034ceDA59D1de789Ac2E3"
+}

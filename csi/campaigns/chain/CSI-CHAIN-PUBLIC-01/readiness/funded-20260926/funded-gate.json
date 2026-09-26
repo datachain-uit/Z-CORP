@@ -1,0 +1,44 @@
+{
+ "funded_doctor": "csi/campaigns/chain/CSI-CHAIN-PUBLIC-01/readiness/funded-20260926/doctor-20260926T024728Z.json",
+ "gate": "PASS",
+ "networks": {
+  "era-sepolia": {
+   "balance_wei": "300000000000000000",
+   "chain_id": 300,
+   "endpoint": {
+    "host": "sepolia.era.zksync.dev",
+    "label": "ZKsync Era Sepolia official public RPC",
+    "scheme": "https",
+    "url_sha256": "8366bcd4a2dff06e774b1669d14489dcdeea53d8dbe92049cbf1f35ba8d2b23d"
+   },
+   "nonce_latest": 0,
+   "nonce_pending": 0,
+   "observation_id": "26edcdbd523f4993",
+   "observed_utc": [
+    "2026-09-26T02:47:23.889Z",
+    "2026-09-26T02:47:28.231Z"
+   ],
+   "target_wei": "10000000000000000"
+  },
+  "sepolia": {
+   "balance_wei": "500000000000000000",
+   "chain_id": 11155111,
+   "endpoint": {
+    "host": "eth-sepolia.g.alchemy.com",
+    "label": "Alchemy",
+    "scheme": "https",
+    "url_sha256": "d020365e52fcb294a6f7da7658481c30fb2f4144d2cac3fdd97697cbe33dee10"
+   },
+   "nonce_latest": 0,
+   "nonce_pending": 0,
+   "observation_id": "cd28811ca763efc4",
+   "observed_utc": [
+    "2026-09-26T02:47:22.162Z",
+    "2026-09-26T02:47:23.888Z"
+   ],
+   "target_wei": "200000000000000000"
+  }
+ },
+ "sha256": "0bd5518193a2e7e42b1ffe2cd8a6ba49f98cb24d42c4cc1907b9bc0c5990562e",
+ "signer_address": "0x6C58f325404dFF6c860034ceDA59D1de789Ac2E3"
+}
