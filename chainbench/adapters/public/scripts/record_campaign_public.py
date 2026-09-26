@@ -6,6 +6,7 @@ Deterministic output; identity from the campaign binding.
                               [--measurement-code-commit <sha>] [--record NAME=PATH ...]
     record_campaign_public.py --ready --harness-commit <sha> --dry-run <readiness dir> --measurement-code-commit <sha>
                               --results-label <D> --funded-doctor <doctor-public report> [--record NAME=PATH ...]
+    record_campaign_public.py --check-funded-doctor <doctor-public report>     (the --ready funding gate alone; writes nothing)
 writes csi/campaigns/chain/CSI-CHAIN-PUBLIC-01/campaign.json (status planned) and the CSI-CHAIN-PUBLIC-01 row of
 csi/campaign-index.csv (status planned, commit = the harness commit); other registry rows are untouched. Refuses unless
 the harness commit contains the adapter, binding, protocol and frozen inputs exactly as in the working tree, the inputs
@@ -17,8 +18,12 @@ public address (binding key.signer_address; never a key). A dry run made at an e
 measurement code, the image record and the binding (apart from key.signer_address, key.signer_note and results_dir) are identical there.
 --ready (the baseline commit, before the annotated tag chain-public-baseline-<D> is created on it) also requires every
 author input: results_dir = results/chain-public-<D>, the signer address, and a live read-only doctor-public report run
-with the key (no FAIL; its signer = the frozen address; both frozen primary endpoints; balances recorded), and writes
-status ready. The scientific stage is added when it is reached."""
+with the key that passes the funding gate below, and writes status ready. The scientific stage is added when it is reached.
+Funding gate (D5; --ready and --check-funded-doctor): a live report (not --offline) with no FAIL, run in the frozen image by
+the wrapper with the tracked paths clean; its signer is exactly the binding's key.signer_address; for each network the
+observation used the frozen primary endpoint (label, scheme, host, URL sha256; no URL recorded for a non-public endpoint),
+the chain id of the profile, and read the signer's balance and nonces successfully: balance >= FUNDING_TARGET_WEI (the
+author-approved targets) and latest = pending nonce = 0 (the signer has sent nothing before setup)."""
 import argparse, csv, hashlib, json, os, subprocess, sys
 
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -27,10 +32,13 @@ BIND = 'chainbench/workloads/zcorp/campaigns/CSI-CHAIN-PUBLIC-01.json'
 ap = argparse.ArgumentParser()
 st = ap.add_mutually_exclusive_group(required=True)
 st.add_argument('--planned', action='store_true'); st.add_argument('--ready', action='store_true')
-ap.add_argument('--harness-commit', required=True); ap.add_argument('--dry-run', required=True)
+st.add_argument('--check-funded-doctor', metavar='REPORT')
+ap.add_argument('--harness-commit'); ap.add_argument('--dry-run')
 ap.add_argument('--measurement-code-commit'); ap.add_argument('--record', action='append', default=[])
 ap.add_argument('--results-label'); ap.add_argument('--funded-doctor')
 a = ap.parse_args()
+if not a.check_funded_doctor and not (a.harness_commit and a.dry_run):
+    ap.error('--planned and --ready need --harness-commit and --dry-run')
 
 
 def P(p): return p if os.path.isabs(p) else os.path.join(REPO, p)
@@ -52,6 +60,78 @@ MEASUREMENT_CODE_PATHS = ['contracts', 'chainbench/core', 'chainbench/lib/consta
                           'csi/campaigns/chain/CSI-CHAIN-LOCAL-01/inputs/proofset', 'scripts/analysis/derive_chain_public.py']
 B = json.load(open(P(BIND)))
 AR = B['admin_record']; EV = B['evidence_dir']
+# D5: the author-approved funding targets (final pre-flight decisions, 2026-09-25), in wei of test ether
+FUNDING_TARGET_WEI = {'sepolia': 200000000000000000, 'era-sepolia': 10000000000000000}
+
+
+def frozen_image_id():
+    r = subprocess.run(['node', '-e', "const I=require('./adapters/public/lib/imageid');const r=I.loadRecord();console.log(JSON.stringify(r))"], cwd=P('chainbench'), capture_output=True, text=True)
+    if r.returncode:
+        die(f'the frozen image record does not verify: {r.stderr.strip()[:200]}')
+    return json.loads(r.stdout)
+
+
+def funded_doctor_gate(path, SG, image_id):
+    """The --ready funding gate (D5). Returns the funded state per network or refuses."""
+    if not SG:
+        die('the binding has no key.signer_address')
+    doc = json.load(open(P(path)))
+    res = doc.get('results') or []
+    if doc.get('offline') is not False or not res:
+        die('the funded doctor report is not a live doctor-public report (offline, or mode unknown)')
+    fails = [x.get('check') for x in res if x.get('status') == 'FAIL']
+    if fails:
+        die(f'the funded doctor report has {len(fails)} FAIL: {fails[:3]}')
+    if doc.get('signer_address') != SG:
+        die(f"the funded doctor's signer is {doc.get('signer_address')}, not exactly the frozen {SG}")
+    for chk in ('tracked paths clean', 'image used by this doctor = the frozen public image'):
+        if not any(x.get('check') == chk and x.get('status') == 'PASS' for x in res):
+            die(f'the funded doctor report does not show PASS for "{chk}"')
+    im = doc.get('image') or {}
+    if im.get('image_id') != image_id or im.get('verified_by_wrapper') != 'pass':
+        die('the funded doctor did not run in the frozen public image verified by the wrapper')
+    obs = doc.get('observations') or {}
+    state = {}
+    for n in B['networks']:
+        o = obs.get(n)
+        fz = B['endpoints']['frozen'][n]
+        if not o:
+            die(f'the funded doctor has no observation of {n}')
+        ep = o.get('endpoint') or {}
+        if any(ep.get(k) != fz[k] for k in ('label', 'scheme', 'host', 'url_sha256')):
+            die(f'{n}: the funded doctor did not use the frozen primary endpoint ({ep.get("label")}, {ep.get("host")}, {str(ep.get("url_sha256"))[:12]}…)')
+        if fz.get('url') is None and ep.get('url') is not None:
+            die(f'{n}: the report records the URL of a non-public endpoint')
+        if o.get('signer_address') != SG:
+            die(f'{n}: the observation is not of the frozen signer')
+        calls = {c.get('name'): c for c in o.get('calls') or []}
+
+        def val(name, params=None):
+            c = calls.get(name)
+            if not c or not c.get('ok'):
+                die(f'{n}: the funded doctor has no successful {name} call')
+            if params is not None and [str(x).lower() for x in c.get('params') or []] != [str(x).lower() for x in params]:
+                die(f'{n}: {name} was not queried for the frozen signer ({c.get("params")})')
+            return int(json.loads(c['response_raw'])['result'], 16)
+        cid = val('chainId')
+        if cid != B['networks'][n]['chain_id']:
+            die(f'{n}: chain id {cid}, expected {B["networks"][n]["chain_id"]}')
+        wei, nl, npd = val('balance', [SG, 'latest']), val('nonceLatest', [SG, 'latest']), val('noncePending', [SG, 'pending'])
+        if wei < FUNDING_TARGET_WEI[n]:
+            die(f'{n}: signer balance {wei} wei is below the approved target {FUNDING_TARGET_WEI[n]} wei')
+        if nl != 0 or npd != 0:
+            die(f'{n}: signer nonce latest {nl}, pending {npd}; the signer must not have sent any transaction before setup (nonce 0 required)')
+        state[n] = {'chain_id': cid, 'balance_wei': str(wei), 'target_wei': str(FUNDING_TARGET_WEI[n]), 'nonce_latest': nl, 'nonce_pending': npd,
+                    'endpoint': {k: ep.get(k) for k in ('label', 'scheme', 'host', 'url_sha256')}, 'observation_id': o.get('observation_id'),
+                    'observed_utc': [o.get('started_utc'), o.get('finished_utc')]}
+    return state
+
+
+if a.check_funded_doctor:
+    st_ = funded_doctor_gate(a.check_funded_doctor, B['key'].get('signer_address'), frozen_image_id()['image_id'])
+    print(json.dumps({'funded_doctor': os.path.relpath(P(a.check_funded_doctor), REPO), 'sha256': sha(a.check_funded_doctor),
+                      'signer_address': B['key']['signer_address'], 'gate': 'PASS', 'networks': st_}, indent=1, sort_keys=True))
+    sys.exit(0)
 hc = git('rev-parse', a.harness_commit + '^{commit}')
 paths = ['chainbench/adapters/public', 'chainbench/workloads/zcorp/public', BIND, B['protocol'], B['inputs_dir'], 'scripts/analysis/derive_chain_public.py', 'chainbench/run.sh']
 changed = git('diff', '--name-only', hc, '--', *paths) + git('ls-files', '--others', '--exclude-standard', '--', *paths)
@@ -106,10 +186,7 @@ if a.measurement_code_commit:
 image = None
 arc = P('chainbench/adapters/public/ARCHIVE.json')
 if os.path.exists(arc):
-    r = subprocess.run(['node', '-e', "const I=require('./adapters/public/lib/imageid');const r=I.loadRecord();console.log(JSON.stringify(r))"], cwd=P('chainbench'), capture_output=True, text=True)
-    if r.returncode:
-        die(f'the frozen image record does not verify: {r.stderr.strip()[:200]}')
-    ir = json.loads(r.stdout)
+    ir = frozen_image_id()
     image = {k: ir[k] for k in ('image_id', 'manifest_digest', 'config_digest', 'attestation_manifest_digest', 'platform', 'architecture', 'base_image',
                                 'archive', 'archive_bytes', 'archive_sha256', 'rootfs_layers', 'provenance', 'built_utc', 'saved_utc', 'docker_client', 'docker_engine')}
     image['record'] = 'chainbench/adapters/public/ARCHIVE.json'; image['record_sha256'] = sha('chainbench/adapters/public/ARCHIVE.json')
@@ -151,22 +228,12 @@ if a.ready:
         die('ready needs the signer address, --measurement-code-commit, the image record, the session times and both frozen primary endpoints')
     if not a.funded_doctor:
         die('--ready needs --funded-doctor (a live read-only doctor-public report run with the key)')
-    doc = json.load(open(P(a.funded_doctor)))
-    if doc.get('offline') or any(x['status'] == 'FAIL' for x in doc['results']) or doc.get('signer_address') != SG:
-        die('the funded doctor report is offline, has a FAIL, or its signer is not the frozen address')
-    bal = {}
-    for n in B['networks']:
-        o = (doc.get('observations') or {}).get(n)
-        fz = EPB['frozen'][n]
-        if not o or o['endpoint'].get('url_sha256') != fz['url_sha256'] or o['endpoint'].get('host') != fz['host']:
-            die(f'the funded doctor did not observe the frozen primary endpoint of {n}')
-        c = next((x for x in o['calls'] if x['name'] == 'balance' and x['ok']), None)
-        if not c:
-            die(f'the funded doctor has no balance of the signer on {n}')
-        bal[n] = str(int(json.loads(c['response_raw'])['result'], 16))
+    fstate = funded_doctor_gate(a.funded_doctor, SG, image['image_id'])
     status = 'ready'
     baseline = {'tag': tag, 'tagged_commit': f'the commit that adds this record (git rev-parse {tag}^{{commit}}); setup and S1-S3 run from it with a clean tree',
-                'results_dir': B['results_dir'], 'funded_doctor': {'path': os.path.relpath(P(a.funded_doctor), REPO), 'sha256': sha(a.funded_doctor), 'signer_balance_wei': bal},
+                'results_dir': B['results_dir'], 'funded_doctor': {'path': os.path.relpath(P(a.funded_doctor), REPO), 'sha256': sha(a.funded_doctor),
+                                                                   'signer_balance_wei': {n: v['balance_wei'] for n, v in fstate.items()}, 'funding_gate': 'D5 PASS',
+                                                                   'funded_state': fstate},
                 'protocol_sha256': sha(B['protocol']), 'measurement_code_commit': mcc, 'image_id': image['image_id']}
     open_inputs = []
 if image is None:
